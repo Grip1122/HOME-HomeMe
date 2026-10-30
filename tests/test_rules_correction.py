@@ -114,9 +114,23 @@ def test_drop_on_non_surface_refuses(index):
     "我的红色水杯在哪",
     "帮我找钥匙",
     "巡检一下",
+    # 软改写词单独出现时是“普通搬运指令”，不是纠正（实测踩过的误判）
+    "帮我把书搬到卧室",
+    "帮我把水杯移到茶几上",
+    "把钥匙挪到餐桌",
+    "你应该把杯子放到茶几上",
 ])
 def test_normal_commands_are_not_correction(index, q):
     assert correct(index, q, last="cup_red") is None
+
+
+@pytest.mark.parametrize("q", [
+    "应该放书房",
+    "挪到餐桌",
+    "改放卧室",
+])
+def test_short_soft_rewrite_is_treated_as_correction(index, q):
+    assert correct(index, q, last="cup_red") is not None
 
 
 # ---------- 输出必须能被语义校验放行 ----------
