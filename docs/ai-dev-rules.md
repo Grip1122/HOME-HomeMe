@@ -41,7 +41,7 @@ python scripts/mutation_demo.py            # 全部变异
 python scripts/mutation_demo.py -k rules   # 只跑规则相关
 ```
 
-脚本对 11 处关键逻辑逐一施加破坏，验证期望的测试变红，然后自动还原。CI 的 `mutation` job 每个 PR 都会跑。
+脚本对 12 处关键逻辑逐一施加破坏，验证期望的测试变红，然后自动还原。CI 的 `mutation` job 每个 PR 都会跑。
 
 **新增核心逻辑时，同步在 `scripts/mutation_demo.py` 的 `MUTATIONS` 里登记一条变异。**
 
