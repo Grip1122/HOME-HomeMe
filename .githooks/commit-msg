@@ -1,0 +1,22 @@
+#!/bin/sh
+# 提交信息格式：<type>(<scope>): <summary>   示例：feat(robot): 2.1 抓取动作 Punch 过渡
+# 额外要求：正文末尾要有 "Authored-by: ai|human|ai+human" 一行。
+msg_file="$1"
+first=$(head -n1 "$msg_file")
+
+case "$first" in
+  Merge\ *|Revert\ *|fixup!*|squash!*) exit 0 ;;
+esac
+
+echo "$first" | grep -Eq '^(feat|fix|test|docs|contract|chore|refactor|perf)(\([a-z0-9_/-]+\))?: .{3,}$' || {
+  echo "[commit-msg] 首行格式错误。应为  type(scope): 摘要"
+  echo "             type: feat fix test docs contract chore refactor perf"
+  echo "             你写的: $first"
+  exit 1
+}
+
+grep -Eq '^Authored-by: (ai|human|ai\+human)$' "$msg_file" || {
+  echo "[commit-msg] 缺少 'Authored-by: ai|human|ai+human' 行（用于审核时区分 AI 生成与人工修改）。"
+  exit 1
+}
+exit 0

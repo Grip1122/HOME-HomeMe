@@ -1,0 +1,17 @@
+* text=auto eol=lf
+
+*.py    text eol=lf diff=python
+*.js    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.sh    text eol=lf
+*.bat   text eol=crlf
+
+*.png   binary
+*.jpg   binary
+*.glb   binary
+*.gltf  text eol=lf
+*.docx  binary
+*.mp4   binary

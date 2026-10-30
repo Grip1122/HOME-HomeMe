@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hometwin.local/contracts/memory.schema.json",
+  "title": "HomeTwin spatial memory record",
+  "description": "一条空间记忆。后端 SQLite 为唯一真值，前端每次任务开始前全量拉取。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["layout_id", "object_id", "room", "pos", "confidence", "source", "status", "updated_at"],
+  "properties": {
+    "layout_id": { "type": "string" },
+    "object_id": { "type": "string" },
+    "room": { "type": "string" },
+    "pos": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": { "type": "number" }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "source": {
+      "type": "string",
+      "enum": ["observe", "correct", "seed", "rescan"],
+      "description": "写这条记录的来源事件"
+    },
+    "status": { "type": "string", "enum": ["fresh", "stale"] },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

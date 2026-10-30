@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "entries": {
+    "我的红色水杯在哪": {
+      "say": "好的，我去找红色水杯。",
+      "steps": [{ "action": "find", "target": "cup_red" }]
+    },
+    "帮我把红色水杯放到茶几上": {
+      "say": "好的，我去拿红色水杯，放到茶几上。",
+      "steps": [
+        { "action": "find", "target": "cup_red" },
+        { "action": "grab", "target": "cup_red" },
+        { "action": "drop", "target": "cup_red", "to": "table_coffee" }
+      ]
+    },
+    "帮我找钥匙": {
+      "say": "好的，我去找黄色钥匙。",
+      "steps": [{ "action": "find", "target": "keys_yellow" }]
+    },
+    "帮我把书拿到卧室": {
+      "say": "好的，我把蓝色书拿到卧室。",
+      "steps": [
+        { "action": "find", "target": "book_blue" },
+        { "action": "grab", "target": "book_blue" },
+        { "action": "drop", "target": "book_blue", "to": "nightstand" }
+      ]
+    },
+    "巡检一下": {
+      "say": "好的，我转一圈看看。",
+      "steps": [
+        { "action": "observe", "room": "living" },
+        { "action": "observe", "room": "bedroom" },
+        { "action": "observe", "room": "study" }
+      ]
+    }
+  }
+}

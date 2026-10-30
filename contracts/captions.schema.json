@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hometwin.local/contracts/captions.schema.json",
+  "title": "HomeTwin 固化台词表",
+  "description": "路演五句核心台词的本地缓存。key 为归一化后的 query（去空白、去标点、小写）；不含记忆快照，记忆只影响 find 的走法，不影响 steps 结构。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "entries"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "entries": {
+      "type": "object",
+      "minProperties": 5,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["say", "steps"],
+        "properties": {
+          "say": { "type": "string", "maxLength": 40 },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["action"],
+              "properties": {
+                "action": { "type": "string", "enum": ["find", "go", "grab", "drop", "observe"] },
+                "target": { "type": "string" },
+                "to": { "type": "string" },
+                "room": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

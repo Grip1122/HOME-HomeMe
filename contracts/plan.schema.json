@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hometwin.local/contracts/plan.schema.json",
+  "title": "HomeTwin POST /plan",
+  "description": "前后端唯一接口。请求与响应都在此定义；$defs.request / $defs.response 分别用于校验。",
+  "$defs": {
+    "action": {
+      "type": "string",
+      "enum": ["find", "go", "grab", "drop", "observe"]
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action"],
+      "properties": {
+        "action": { "$ref": "#/$defs/action" },
+        "target": { "type": "string", "description": "物体或家具 id；observe 可省略" },
+        "to": { "type": "string", "description": "仅 drop 使用，必须是 surface=true 的家具 id" },
+        "room": { "type": "string", "description": "仅 observe 使用" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "action": { "const": "drop" } }, "required": ["action"] },
+          "then": { "required": ["target", "to"] }
+        },
+        {
+          "if": { "properties": { "action": { "enum": ["find", "go", "grab"] } }, "required": ["action"] },
+          "then": { "required": ["target"] }
+        }
+      ]
+    },
+    "memory_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["object_id", "room", "pos", "confidence"],
+      "properties": {
+        "object_id": { "type": "string" },
+        "room": { "type": "string" },
+        "pos": {
+          "type": "array", "minItems": 3, "maxItems": 3,
+          "items": { "type": "number" }
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["query", "layout_id"],
+      "properties": {
+        "query": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "layout_id": { "type": "string" },
+        "memory": { "type": "array", "items": { "$ref": "#/$defs/memory_entry" } },
+        "memory_enabled": { "type": "boolean", "default": true },
+        "last_object": { "type": ["string", "null"], "description": "上一个任务操作的物体 id；纠正句省略宾语（“不对，放书房”）时用它补全" },
+        "robot": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "pos": {
+              "type": "array", "minItems": 3, "maxItems": 3,
+              "items": { "type": "number" }
+            },
+            "holding": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["say", "steps", "source"],
+      "properties": {
+        "say": { "type": "string", "maxLength": 40 },
+        "steps": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/step" }
+        },
+        "source": {
+          "type": "string",
+          "enum": ["cache", "llm", "rule", "script", "corrective"],
+          "description": "命中来源。corrective 为规则纠错路径，永不来自大模型"
+        },
+        "latency_ms": { "type": "integer", "minimum": 0 },
+        "corrected": { "type": "boolean", "default": false },
+        "corrected_object": { "type": "string" },
+        "corrected_to": { "type": "string" }
+      }
+    }
+  }
+}

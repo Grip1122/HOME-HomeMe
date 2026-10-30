@@ -1,0 +1,23 @@
+# 路径归属。GitHub 会按此自动请求评审。
+# 规则：最后一条匹配的生效。把 @OWNER 换成真实 GitHub 用户名后启用「Require review from Code Owners」。
+#
+# 占位约定：
+#   @OWNER   = 把关人（你），对所有路径兜底，且是 contracts/ 的必审人
+#   @DEV_A   = 设计 A   @DEV_B = 设计 B   @DEV_C = 设计 C   @DEV_D = AI-D
+
+*                         @OWNER
+
+/contracts/               @OWNER @DEV_A @DEV_D
+/web/src/core/            @DEV_A
+/web/src/robot/           @DEV_A
+/web/src/nav/             @DEV_A
+/web/src/scene/           @DEV_B
+/web/public/layouts/      @DEV_B
+/web/src/ui/              @DEV_C
+/web/src/demo/            @DEV_C
+/server/                  @DEV_D
+/scripts/                 @DEV_D
+/tests/                   @DEV_D
+/.github/                 @OWNER @DEV_D
+/.githooks/               @OWNER @DEV_D
+/docs/                    @DEV_C

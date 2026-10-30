@@ -1,0 +1,13 @@
+#!/bin/sh
+# 本地守门：禁止直接推送 main。CI 与分支保护是第二道，这里是第一道。
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    if [ "$HOMETWIN_ALLOW_MAIN_PUSH" = "1" ]; then
+      echo "[pre-push] 已用 HOMETWIN_ALLOW_MAIN_PUSH=1 放行（仅把关人初始化时使用）"
+      continue
+    fi
+    echo "[pre-push] 禁止直接推送 main。请推你的功能分支并开 PR。"
+    exit 1
+  fi
+done
+exit 0

@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Node
+node_modules/
+web/dist/
+.vite/
+npm-debug.log*
+
+# 本地数据与密钥
+.env
+.env.local
+*.key
+server/app/hometwin.db
+server/app/*.db-journal
+playwright-report/
+test-results/
+
+# 编辑器与系统
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 大资产（用 Git LFS 或网盘，不入库）
+web/public/models/**/*.glb
+web/public/models/**/*.gltf
+web/public/models/**/*.bin
+*.blend1

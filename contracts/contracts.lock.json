@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "files": {
+    "layout.schema.json": "426c3470bdc46d87",
+    "layout.example.json": "1374969d30a4c5d8",
+    "plan.schema.json": "2f259cdd44553141",
+    "memory.schema.json": "265e0c2aa8909cb2",
+    "captions.schema.json": "bb1f663dcab313e9",
+    "events.md": "6f1c640ff941c632"
+  },
+  "digest": "62456bf9b1a4bf9e"
+}

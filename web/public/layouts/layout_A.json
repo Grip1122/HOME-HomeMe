@@ -1,0 +1,40 @@
+{
+  "layout_id": "A",
+  "version": 1,
+  "grid": { "cols": 24, "rows": 18, "cell": 0.5, "origin": [-6.0, 0.0, -4.5] },
+  "rooms": [
+    { "id": "living",  "name": "客厅", "aliases": [],       "rect": [0, 0, 12, 18], "scan_point": [-1.5, 0.0, 0.0],  "drop_to": "table_coffee" },
+    { "id": "bedroom", "name": "卧室", "aliases": ["房间"], "rect": [12, 0, 12, 9],  "scan_point": [3.0, 0.0, -1.5],  "drop_to": "nightstand" },
+    { "id": "study",   "name": "书房", "aliases": [],       "rect": [12, 9, 12, 9],  "scan_point": [3.0, 0.0, 2.0],   "drop_to": "desk" }
+  ],
+  "doors": [
+    { "id": "door_living_bedroom", "between": ["living", "bedroom"], "pos": [0.0, 0.0, -2.25], "width": 1.5, "axis": "z" },
+    { "id": "door_living_study",   "between": ["living", "study"],   "pos": [0.0, 0.0, 2.25],  "width": 1.5, "axis": "z" }
+  ],
+  "furniture": [
+    { "id": "sofa",         "name": "沙发",   "aliases": [],               "room": "living",  "pos": [-4.6, 0.0, -4.3], "size": [2.2, 0.85, 0.9],  "blocks": true, "surface": false },
+    { "id": "table_coffee", "name": "茶几",   "aliases": [],               "room": "living",  "pos": [-4.0, 0.0, -0.3], "size": [1.2, 0.45, 0.6],  "blocks": true, "surface": true },
+    { "id": "tv_cabinet",   "name": "电视柜", "aliases": [],               "room": "living",  "pos": [-5.9, 0.0, -0.9], "size": [0.5, 0.5, 1.8],   "blocks": true, "surface": false },
+    { "id": "side_table",   "name": "边几",   "aliases": [],               "room": "living",  "pos": [-2.2, 0.0, -4.3], "size": [0.5, 0.55, 0.5],  "blocks": true, "surface": true },
+    { "id": "table_dining", "name": "餐桌",   "aliases": ["饭桌"],         "room": "living",  "pos": [-3.5, 0.0, 2.4],  "size": [1.6, 0.75, 0.9],  "blocks": true, "surface": true },
+    { "id": "bed",          "name": "床",     "aliases": [],               "room": "bedroom", "pos": [3.6, 0.0, -4.4],  "size": [2.0, 0.5, 1.8],   "blocks": true, "surface": true },
+    { "id": "nightstand",   "name": "床头柜", "aliases": [],               "room": "bedroom", "pos": [3.0, 0.0, -4.4],  "size": [0.5, 0.5, 0.5],   "blocks": true, "surface": true },
+    { "id": "wardrobe",     "name": "衣柜",   "aliases": [],               "room": "bedroom", "pos": [0.2, 0.0, -4.4],  "size": [1.6, 2.0, 0.6],   "blocks": true, "surface": false },
+    { "id": "desk",         "name": "书桌",   "aliases": [],               "room": "study",   "pos": [3.0, 0.0, 3.4],   "size": [1.6, 0.75, 0.7],  "blocks": true, "surface": true },
+    { "id": "bookshelf",    "name": "书架",   "aliases": [],               "room": "study",   "pos": [0.2, 0.0, 3.8],   "size": [1.2, 1.8, 0.4],   "blocks": true, "surface": false }
+  ],
+  "objects": [
+    { "id": "cup_red",         "name": "红色水杯",  "aliases": ["水杯", "杯子", "红杯子", "红色杯子"], "room": "living",  "pos": [-3.0, 0.75, 2.85],  "on": "table_dining" },
+    { "id": "bottle_green",    "name": "绿色水瓶",  "aliases": ["水瓶", "瓶子"],                       "room": "living",  "pos": [-2.3, 0.75, 3.0],   "on": "table_dining" },
+    { "id": "remote_black",    "name": "黑色遥控器","aliases": ["遥控器"],                             "room": "living",  "pos": [-3.2, 0.45, 0.1],   "on": "table_coffee" },
+    { "id": "keys_yellow",     "name": "黄色钥匙",  "aliases": ["钥匙"],                               "room": "living",  "pos": [-1.95, 0.55, -4.05],"on": "side_table" },
+    { "id": "phone_white",     "name": "白色手机",  "aliases": ["手机"],                               "room": "bedroom", "pos": [3.25, 0.5, -4.15],  "on": "nightstand" },
+    { "id": "notebook_orange", "name": "橙色笔记本","aliases": ["笔记本"],                             "room": "bedroom", "pos": [4.75, 0.5, -2.85],  "on": "bed" },
+    { "id": "book_blue",       "name": "蓝色书",    "aliases": ["书", "蓝皮书"],                       "room": "study",   "pos": [3.5, 0.75, 3.55],   "on": "desk" },
+    { "id": "glasses_black",   "name": "黑框眼镜",  "aliases": ["眼镜"],                               "room": "study",   "pos": [4.2, 0.75, 3.6],    "on": "desk" }
+  ],
+  "stains": [
+    { "id": "stain_1", "room": "bedroom", "pos": [2.4, 0.01, -1.0] },
+    { "id": "stain_2", "room": "living",  "pos": [-1.0, 0.01, 1.0] }
+  ]
+}
