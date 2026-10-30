@@ -20,6 +20,8 @@ pytest 以 exit 2 退出，被判成 KILLED —— 假证据。所以现在 exit
 from __future__ import annotations
 
 import argparse
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -75,11 +77,25 @@ MUTATIONS = [
 ]
 
 
+def _purge_bytecode():
+    """删除所有 __pycache__。
+
+    历史教训（CI 首跑失败）：变异 `0.40 -> 0.30` 前后文件大小相同，CI 上变异与还原发生在
+    同一秒内，.pyc 以“mtime(秒) + 文件大小”判定有效，于是还原后仍读到变异版字节码，
+    导致“还原后重跑仍有失败”。本机因运行慢、恰好跨秒而没暴露。
+    """
+    for top in ("server", "scripts", "tests"):
+        for d in (ROOT / top).rglob("__pycache__"):
+            shutil.rmtree(d, ignore_errors=True)
+
+
 def run_pytest(extra=None):
-    cmd = [sys.executable, "-m", "pytest", "-q", "--no-header", "-p", "no:cacheprovider"]
+    _purge_bytecode()
+    cmd = [sys.executable, "-B", "-m", "pytest", "-q", "--no-header", "-p", "no:cacheprovider"]
     cmd += extra or []
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
     p = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True,
-                       encoding="utf-8", errors="replace")
+                       encoding="utf-8", errors="replace", env=env)
     out = (p.stdout or "") + (p.stderr or "")
     failed = [ln.split(" - ")[0].replace("FAILED ", "").strip()
               for ln in out.splitlines() if ln.startswith("FAILED ")]
