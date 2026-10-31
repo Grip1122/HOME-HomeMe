@@ -11,8 +11,8 @@
 
 | 成员 | GitHub | 角色（暂定） | 一句话职责 | 任务书 |
 | --- | --- | --- | --- | --- |
-| **wei** | 待填 | **整体审核与把关人** | 唯一合并权；验收最终交付成果；**不写业务代码**（避免既当运动员又当裁判） | — |
-| **sen** | 待填 | **设计 A**：前端 3D 与执行层 | 机器人怎么动：场景交互、寻路行走、五个动作、状态机。关键路径中心 | [task-A](tasks/task-A-frontend-3d.md) |
+| **wei** | `krlozhilderman287-creator` | **整体审核与把关人** | 唯一合并权；验收最终交付成果；**不写业务代码**（避免既当运动员又当裁判） | — |
+| **sen** | `sen985211sen-sys` | **设计 A**：前端 3D 与执行层 | 机器人怎么动：场景交互、寻路行走、五个动作、状态机。关键路径中心 | [task-A](tasks/task-A-frontend-3d.md) |
 | **Gary** | **无账号** | **设计 B**：场景与美术 | 世界长什么样：layout 数据、家具与物体、灰盒到正式美术 | [task-B](tasks/task-B-scene-art.md) |
 | **Jesu** | `Grip1122`（仓库所有者） | **设计 C**：产品 UI 与验收，**兼 AI-D**：后端与算法；**代 Gary 上传** | HUD 与对话、验收用例、路演；后端剩余的 HTTP 与 SQLite | [task-C](tasks/task-C-ui-acceptance.md)、[task-D](tasks/task-D-backend-algo.md) |
 
@@ -37,8 +37,8 @@
 | 人 | 仓库权限 | 说明 |
 | --- | --- | --- |
 | Jesu | 所有者 | `Grip1122` |
-| wei | 协作者 · Write | 把关人，负责合并 |
-| sen | 协作者 · Write | 设计 A |
+| wei | 协作者 · Write（`krlozhilderman287-creator`） | 把关人，负责合并 |
+| sen | 协作者 · Write（`sen985211sen-sys`） | 设计 A |
 | Gary | 无 | 无法登录 GitHub，成果由 Jesu 代传（见第 5 节） |
 
 > GitHub 免费私有库**无法开启服务端分支保护**：直推 `main` 与跳过 review 在服务端拦不住，目前靠本地钩子（`git config core.hooksPath .githooks`）、CI 与把关人人工把关。详见总览第十五章第五节。
@@ -160,7 +160,7 @@ gary_1-1_20261031-1530.zip
 ## 7. 待确认事项
 
 - [ ] 角色分配（尤其 Jesu 兼任 C 与 AI-D）是否合适
-- [ ] wei 与 sen 的 GitHub 用户名，用来邀请协作者并替换 `.github/CODEOWNERS` 里的占位名
+- [x] wei 与 sen 的 GitHub 用户名（已发出邀请，待对方接受）；`CODEOWNERS` 已换成真实用户名
 - [ ] 日程：原计划的里程碑时间基于 10/30 21:45 开工，实际开工更晚，需要 wei 与 Jesu 按相对工期重排
 - [ ] 是否把文档与代码里的 "小方 / HomeTwin" 全量改成 "小觅 / HOME"（目前只做了命名对照和唤醒词兼容）
 - [ ] **高斯泼溅素材 `scene.ply` 的三项验证由谁承担**（浏览器能否渲染 / 正交相机下是否排序出错 / 帧率）。建议由设计 A（sen）与设计 B（Gary）共同做，结论写回 `assets/gaussian-splat/README.md`，在此之前不要改 `layout_A.json` 的坐标。详见 [`../assets/gaussian-splat/README.md`](../assets/gaussian-splat/README.md)。
