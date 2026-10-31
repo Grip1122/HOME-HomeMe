@@ -30,10 +30,14 @@ jobs:
           fi
       - name: contracts/ 改动必须是 [CONTRACT] PR
         if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          BASE_REF: ${{ github.base_ref }}
         run: |
-          changed=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- contracts/ | grep -v 'contracts.lock.json' | grep -v 'CHANGELOG.md' || true)
-          title='${{ github.event.pull_request.title }}'
-          if [ -n "$changed" ] && ! echo "$title" | grep -q '^\[CONTRACT\]'; then
+          set -euo pipefail
+          changed=$(git diff --name-only "origin/$BASE_REF...HEAD" -- contracts/)
+          changed=$(printf '%s\n' "$changed" | grep -v 'contracts.lock.json' | grep -v 'CHANGELOG.md' || true)
+          if [ -n "$changed" ] && ! echo "$PR_TITLE" | grep -q '^\[CONTRACT\]'; then
             echo "::error::PR 改动了 contracts/ ($changed)，标题必须以 [CONTRACT] 开头"
             exit 1
           fi

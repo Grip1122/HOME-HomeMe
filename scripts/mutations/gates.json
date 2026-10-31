@@ -1,0 +1,16 @@
+[
+  [
+    "gate_invalid_base_fails",
+    "scripts/check_contracts.py",
+    "    if p.returncode != 0:",
+    "    if False:",
+    "test_invalid_git_ref_is_a_failure_with_diagnostic"
+  ],
+  [
+    "ci_title_environment",
+    ".github/workflows/ci.yml",
+    "          PR_TITLE: ${{ github.event.pull_request.title }}",
+    "          BROKEN_TITLE: ${{ github.event.pull_request.title }}",
+    "test_ci_pr_title_is_passed_as_environment_data"
+  ]
+]
