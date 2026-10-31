@@ -1,0 +1,279 @@
+{
+  "task": "Task C · C-01 / C-02 交付清单",
+  "generatedAt": "2026-10-31",
+  "master": "robot-find",
+  "global": {
+    "unit": "meter",
+    "scale": "1:1",
+    "upAxis": "+Y",
+    "forwardAxis": "+Z",
+    "handedness": "right-handed",
+    "groundPlane": "y = 0",
+    "sourceUpAxis": "+Y-down (原始扫描)",
+    "bakedTransform": "绕 X 轴 180°：(x,y,z)->(x,-y,-z)，四元数 (qw,qx,qy,qz)->(qx,-qw,qz,-qy)",
+    "runtimeSceneRotation": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "runtimeScenePosition": [
+      0.35,
+      0.03,
+      -0.3
+    ],
+    "srcToWorld": "world = (src.x + 0.35, -src.y + 0.03 + lift, -src.z - 0.30)",
+    "sceneExtentMeters": {
+      "x": 8.5,
+      "y": 3.9,
+      "z": 3.5
+    },
+    "hashAlgorithm": "SHA-256",
+    "verify": "powershell -NoProfile -ExecutionPolicy Bypass -File tools\\hash-manifest.ps1 <path...>"
+  },
+  "files": [
+    {
+      "item": "C-01",
+      "path": "docs/taskC/C-01_UI流程与状态设计稿.md",
+      "role": "UI / 产品流程与状态设计稿",
+      "bytes": 8797,
+      "sha256": "762f76a48bcd1b6190138eaadf4d87dffa3e46c9d5e85ad44b2cfd038c8edefc",
+      "source": "本项目自制",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "+Y",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "docs/taskC/C-02_素材_节点限位_锚点_材质_渲染参数.md",
+      "role": "机器人/物件素材、节点限位与锚点、材质、渲染参数",
+      "bytes": 12641,
+      "sha256": "f7f0b481fa90a4234ee727d75fe8570484054aa59b10d17880f85a2d507bc30f",
+      "source": "本项目自制",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "+Y",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "src/scene-find.js",
+      "role": "机器人节点树 / 材质 / 锚点 / 导航限位 / 交互状态机实现",
+      "bytes": 44494,
+      "sha256": "93a9eaa773d4de6d3f6f134297396720984b9a22be1be916beb76ad2fa5075fe",
+      "source": "本项目自制",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "+Y",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "src/scene-objects.js",
+      "role": "8 件任务物件运行时目录（含 src 坐标 / dims / 置信度）",
+      "bytes": 2995,
+      "sha256": "30c5cd1d4ec838a280edf7357166d6c1ae2ef6c530817176e2a33e58c008160f",
+      "source": "由 tools/recognize-scene.cjs 从 scene.ply 离线生成",
+      "license": "派生自用户提供的 scene.ply，使用范围以用户授权为准",
+      "upAxis": "src 为源 Y-down；world 为 +Y",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "assets/models/scene-objects.json",
+      "role": "识别输出全量候选（12 项，含被筛除项）",
+      "bytes": 5667,
+      "sha256": "0c5f107f1ee4be369e0820564f7c76d359e2173acae64d3e44bf094d39b0cd41",
+      "source": "由 tools/recognize-scene.cjs 从 scene.ply 离线生成",
+      "license": "派生自用户提供的 scene.ply，使用范围以用户授权为准",
+      "upAxis": "src 为源 Y-down；world 为 +Y",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "assets/models/scene.splat",
+      "role": "实景 3DGS 空间模型（1,555,624 splats，32 B/点）",
+      "bytes": 49779968,
+      "sha256": "05755d69e3987abcc6195bf4d5b364f362fce2be995f8ad365f4930f5c3195f2",
+      "source": "由 tools/convert-scene.cjs 从用户提供的 scene.ply 转换并烘焙坐标",
+      "license": "点云版权归用户 / 场地方，使用范围以用户授权为准",
+      "upAxis": "+Y（已烘焙）",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "assets/models/scene.meta.json",
+      "role": "模型元数据：坐标烘焙说明、裁剪盒、相机预设",
+      "bytes": 1084,
+      "sha256": "bf89f037541072e9868a7efa61ae12c9266ffbf77c1465a14928be115d431033",
+      "source": "由 tools/convert-scene.cjs 生成",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "+Y",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "tools/convert-scene.cjs",
+      "role": "PLY → .splat 转换与 Y-down→Y-up 坐标烘焙脚本",
+      "bytes": 4978,
+      "sha256": "7d25cda5bae551b7d79ad44aa8b8e2ec61be8e5479039446e88fa12d59264ad2",
+      "source": "本项目自制",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "输入 Y-down / 输出 +Y",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "tools/recognize-scene.cjs",
+      "role": "离线物件识别脚本（几何 + 颜色聚类，非语义分割）",
+      "bytes": 8361,
+      "sha256": "1cda81e9230cb9b610bc9b40e5f2cb635f195ef7f72a0e2ab432803946b41b18",
+      "source": "本项目自制",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "源 Y-down",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-02",
+      "path": "src/realtwin.js",
+      "role": "3DGS 视图与渲染参数（viewer 选项、相机、alpha 阈值）",
+      "bytes": 9482,
+      "sha256": "6eb12550e3b8ec7e12bba5e20e846944fd640a9b495a737088c249ceb36584e4",
+      "source": "本项目自制",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "+Y",
+      "scale": "1:1"
+    },
+    {
+      "item": "C-01",
+      "path": "src/realtwin.css",
+      "role": "UI 面板 / 状态样式（含地平线微调控件）",
+      "bytes": 26347,
+      "sha256": "93880099349fa295e5379546b2fe6da8712a7860f318cbf303e66cce3db5fba8",
+      "source": "本项目自制",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "n/a",
+      "scale": "n/a"
+    },
+    {
+      "item": "C-01",
+      "path": "index.html",
+      "role": "母版页面结构（面板、建议词、控件挂载点）",
+      "bytes": 21350,
+      "sha256": "2f8df6dc3a47723d892c7d191b88e3acb29b41f3e9e76d858cee9704cc172608",
+      "source": "本项目自制",
+      "license": "项目内部自有，团队可自由使用",
+      "upAxis": "n/a",
+      "scale": "n/a"
+    },
+    {
+      "item": "C-01",
+      "path": "docs/shots/scene_find_1366_overview.png",
+      "role": "设计稿截图 · 1366 总览态",
+      "bytes": 1259333,
+      "sha256": "926ab5f59d72c61c90f3eebc41c50d8e92c592232d05eb26ead2e023fd1811e7",
+      "source": "本项目运行实拍",
+      "license": "项目内部自有；画面含用户提供点云，对外使用需用户授权",
+      "upAxis": "n/a",
+      "scale": "1366 px 宽"
+    },
+    {
+      "item": "C-01",
+      "path": "docs/shots/scene_find_1920_overview.png",
+      "role": "设计稿截图 · 1920 总览态",
+      "bytes": 2273332,
+      "sha256": "411a71a82be3d42a11ef3a77764964f1b6a7d5e900af20103d52958c829193a6",
+      "source": "本项目运行实拍",
+      "license": "项目内部自有；画面含用户提供点云，对外使用需用户授权",
+      "upAxis": "n/a",
+      "scale": "1920 px 宽"
+    },
+    {
+      "item": "C-01",
+      "path": "docs/shots/scene_find_1366_found.png",
+      "role": "设计稿截图 · 1366 命中态",
+      "bytes": 1245226,
+      "sha256": "da201f7f3b8942dd0e8bda5cb6f0dfca499e085aa3199d240a3b039ed82aadd3",
+      "source": "本项目运行实拍",
+      "license": "项目内部自有；画面含用户提供点云，对外使用需用户授权",
+      "upAxis": "n/a",
+      "scale": "1366 px 宽"
+    },
+    {
+      "item": "C-01",
+      "path": "docs/shots/scene_find_1920_found.png",
+      "role": "设计稿截图 · 1920 命中态",
+      "bytes": 1984028,
+      "sha256": "1d2a16e7c8d2766d3fbe79235692f8ac4362622f7ae6272f568d2e580d15fa2d",
+      "source": "本项目运行实拍",
+      "license": "项目内部自有；画面含用户提供点云，对外使用需用户授权",
+      "upAxis": "n/a",
+      "scale": "1920 px 宽"
+    },
+    {
+      "item": "依赖",
+      "path": "assets/three.min.js",
+      "role": "Three.js r160 运行库",
+      "bytes": 669884,
+      "sha256": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa",
+      "source": "threejs.org 发行版 r160",
+      "license": "MIT",
+      "upAxis": "+Y（库约定）",
+      "scale": "n/a"
+    },
+    {
+      "item": "依赖",
+      "path": "assets/gaussian-splats-3d.umd.js",
+      "role": "@mkkellogg/gaussian-splats-3d 0.4.7 渲染器",
+      "bytes": 665597,
+      "sha256": "ec69904e8e815f1d2b28c8f0e5bf0fb774e59367a14da9ad9c3742d7e9483b92",
+      "source": "npm @mkkellogg/gaussian-splats-3d 0.4.7 UMD 构建",
+      "license": "MIT",
+      "upAxis": "cameraUp 显式设为 [0,1,0]",
+      "scale": "n/a"
+    },
+    {
+      "item": "依赖",
+      "path": "assets/gaussian-splats-3d.LICENSE.txt",
+      "role": "3DGS 渲染器 MIT 许可全文",
+      "bytes": 1069,
+      "sha256": "419ccea77cfe26d024d53ee91b3c10178cd8d6c47af3d403c2c6845a3f77d930",
+      "source": "随 @mkkellogg/gaussian-splats-3d 0.4.7 分发",
+      "license": "MIT",
+      "upAxis": "n/a",
+      "scale": "n/a"
+    }
+  ],
+  "upstreamSource": {
+    "path": "scene.ply（用户微信传入，未纳入交付包）",
+    "bytes": 471149518,
+    "sha256": "901cf8ce0be73706d6ab0f2649e4f7520def2ee4342a30bca984b55ce2678fae",
+    "sourceCount": 1996390,
+    "upAxis": "+Y-down",
+    "license": "版权归用户 / 场地方；因体积 449 MB 未打包，仅登记校验值以便溯源"
+  },
+  "gaps": [
+    "位图贴图：母版当前为纯色 PBR（color + roughness + metalness + emissive），无 albedo/normal/roughness/AO 贴图文件，故无贴图来源、许可、大小与 SHA-256 可填",
+    "云台 / 激光雷达 / 车轮自由度未驱动，文档给出建议限位但未实现",
+    "物件名为几何 + 颜色描述，非语义标签；语义化需引入 SAM / Grounding DINO / CLIP",
+    "C-03（材质优化对比、路演视觉）未开始，待真实日志样例",
+    "真实事件总线 / 真实执行器集成验收不在本轮范围"
+  ],
+  "repositoryMapping": {
+    "note": "files[].path preserves the original delivery layout. docs/taskC entries map to the repository paths below; other entries are relative to the separately archived robot-find package, not this repository root.",
+    "documents": {
+      "docs/taskC/C-01_UI流程与状态设计稿.md": "docs/task-c/robot-find-20261031/c-01-ui-flow-states.md",
+      "docs/taskC/C-02_素材_节点限位_锚点_材质_渲染参数.md": "docs/task-c/robot-find-20261031/c-02-assets-rig-rendering.md"
+    },
+    "prototype": {
+      "release": "https://github.com/Grip1122/HOME-HomeMe/releases/tag/gary-delivery-20261031",
+      "archive": "gary-robot-find-20261031.zip",
+      "archiveRoot": "gary-robot-find-20261031/",
+      "sha256": "007607b3e1a44c1184c2aea8709bbf8bc2451bdfb14430a83cf4e3b079459660"
+    },
+    "verification": {
+      "entries": 19,
+      "matched": 19,
+      "failures": 0,
+      "scope": "Two supplied Markdown files plus 17 prototype files checked against the previously verified archive manifest; not a runtime or integration acceptance."
+    }
+  }
+}
