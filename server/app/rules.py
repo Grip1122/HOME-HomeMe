@@ -18,7 +18,7 @@ import re
 from .layoutlib import Index
 
 HARD_NEG = re.compile(
-    r"(不对|不是|错了|放错|搞错|不应该|别放|不要放|不在这|不在那|没有在)"
+    r"(不对|不是|错了|放错|搞错|不应该|不该|别放|不要放|不在这|不在那|没有在)"
 )
 # 软改写词：单独出现**不足以**判定为纠错。
 # 反例（实测踩过）：“帮我把书搬到卧室”“把钥匙挪到餐桌”是普通搬运指令，
@@ -27,10 +27,11 @@ SOFT_REWRITE = re.compile(r"(应该|该放|改放|挪到|移到|换到|搬到|�
 # 出现这些祈使包装，说明用户在下一道新指令，不是纠正上一轮
 IMPERATIVE = re.compile(r"(帮我|请|麻烦|把|拿|去|找)")
 # 地点前面紧挨着的否定结构：“不要放茶几”“别放在茶几”“不是茶几”
-_NEG_BEFORE_PLACE = re.compile(r"(不要|别|不是|不能|不可以|不用)(放|在|是)?(在|到)?$")
+_NEG_BEFORE_PLACE = re.compile(r"(不应该|不应当|不该|不要|别|不是|不能|不可以|不用)(放|在|是)?(在|到)?$")
 
 _PUNCT = re.compile(r"[\s，。！？、；：,.!?;:~～…\-—\"'“”‘’（）()\[\]【】]+")
-_WAKE = re.compile(r"^(小方|请|麻烦|那个|嗯|呃)+")
+# 正式唤醒词为“小觅”；“小方”仅作为旧演示别名保留。
+_WAKE = re.compile(r"^(小觅|小方|请|麻烦|那个|嗯|呃)+")
 
 
 def normalize(query: str) -> str:
@@ -94,8 +95,13 @@ def try_correct(query, index: Index, last_object=None, holding=None):
 
     # 取最后一个未被否定的地点
     chosen = None
+    previous_end = 0
+    previous_negated = False
     for i, j, tok in place_spans:
-        if _NEG_BEFORE_PLACE.search(text[max(0, i - 6):i]):
+        linked = previous_negated and re.fullmatch(r"(?:和|或|或者|以及|的)*", text[previous_end:i]) is not None
+        negated = bool(_NEG_BEFORE_PLACE.search(text[:i])) or linked
+        previous_end, previous_negated = j, negated
+        if negated:
             continue
         chosen = (i, j, tok)
     if chosen is None:
