@@ -11,8 +11,8 @@
 
 | 结果 | 数字 |
 | --- | --- |
-| 新增前端模块 | 5 个（寻路 2、运动学 2、坐标标定 1），零第三方依赖 |
-| 新增测试 | 前端 44 条（`node --test`）+ 后端 3 条（pytest） |
+| 新增前端模块 | 5 个（寻路 2、运动学 2、坐标标定 1），模块本身不依赖任何库 |
+| 新增测试 | 前端 44 条（vitest）+ 后端 3 条（pytest）；并入脚手架后前端共 48 条 |
 | 后端测试总数 | 70 → 73，全绿 |
 | 入库文件 | 86 归档 + 70 机器人资产 + 5 模块 + 6 测试 + 3 文档 |
 | 未入库体积 | 约 940 MB（依赖、临时产物、超限二进制） |
@@ -105,7 +105,7 @@ server/app/layoutlib.py  ──gen_nav_fixture.py──▶  web/src/nav/__fixtur
 
 ### 设计 A（Jesu）
 
-1. `web/package.json` 已就位（零依赖、`node --test`），CI 前端 job 会自动跑 44 条测试。步骤 1.1 起 Vite 时在这个文件上加 `dev` / `build` 脚本即可。
+1. 步骤 1.1 的脚手架已 rebase 到 main 之上：`web/package.json` 归 Vite + vitest，本次新增的 44 条测试已改为 `import { test } from 'vitest'`，与脚手架的 4 条同跑（共 48 条）。
 2. `nav/astar.js` 输出的 `cells` 还是格子下标，接渲染时需要 `cellsToWorld()` 转米制坐标，再加行走插值与路径虚线（任务书 1.3 明确这部分归 A）。
 
 ### 设计 B（sen）
@@ -126,7 +126,7 @@ python -m pytest -q                      # 73 条，含 3 条寻路快照守护
 python scripts/check_layout.py           # 零错误
 python scripts/check_contracts.py        # 契约闸门通过
 python scripts/gen_nav_fixture.py --check  # 快照未过期
-cd web && npm ci && npm test             # 44 条
+cd web && npm ci && npm test             # 48 条（脚手架 4 + 本次 44）
 ```
 
 **失败演示**（证明测试真的会红）：
@@ -150,6 +150,6 @@ git checkout -- server/app/layoutlib.py web/src/nav/__fixtures__/   # 还原
 | 风险 | 影响 | 处置 |
 | --- | --- | --- |
 | 归档 12 MB 进了 git 历史 | 仓库变大，clone 变慢 | 可接受；真要清理用 `git filter-repo` 摘掉 `reference/` |
-| `web/package.json` 由整合方引入 | 与设计 A 步骤 1.1 的 Vite 初始化重叠 | 已留零依赖基线，A 直接加脚本，不需要推翻 |
+| 测试脚手架曾有两套（整合方 `node --test` / 设计 A `vitest`） | 同目录两个 `package.json` 必然冲突 | 已统一到 vitest：脚手架的 PR #6 rebase 到 main，44 条测试改了 import，48 条同跑 |
 | 两份机器人参数（`manifest.json` 与 `kinematics.js` 常量） | 改一处忘另一处 | `kinematics.test.js` 直接读 `manifest.json` 断言 `links_per_side` 与轮廓周长 |
 | 场景仍是两套（hometwin 的 `scene.ply` / Hackerson 的餐厅） | 视觉与坐标对不上 | 本次已定：**唯一源 = `assets/gaussian-splat/scene.ply`**，Hackerson 的餐厅版本不再维护 |
