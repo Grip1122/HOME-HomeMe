@@ -1,0 +1,9 @@
+{
+  "scope": "Browser smoke checks with mock bus; not full Vitest/build or A+B+C integration.",
+  "corrected_source": "规则/纠错",
+  "robot_moved_100_events_preserve_UI": true,
+  "walking_label": "前往中 · 正在走路",
+  "failed_step_visible": true,
+  "found_label_preserved": "确认找到",
+  "page_errors": []
+}
