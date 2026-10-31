@@ -1,14 +1,20 @@
 # 前端测试与变异证据
 
+> **判定边界**：以下证据使用与 `core/bus.js` **同签名 mock bus**，验证组件行为与事件契约一致性。
+> **未与真实总线联调**，mock 通过不等于生产集成通过。
+
 ## 环境
 
 - Node.js 22（CI 使用 Node 20，Vite 8 / Vitest 5 支持）
 - `web/` 下：`npm ci && npm test`
 - 测试文件与组件同目录：`web/src/ui/*.test.js`
+- 测试环境：`vitest.config.js` 默认 `node`；HUD 的 5 个测试文件首行声明 `// @vitest-environment jsdom`
+  （设计 A 的 `nav/robot/scene` 用 `new URL(..., import.meta.url)` 读文件，jsdom 的 URL 不认 `file:`）
 
 ## 通过证据
 
 `green.txt`：整改后 `vitest run` 输出，**5 个测试文件 / 21 条测试全部通过**。
+代传复核时全仓为 **11 个文件 / 69 条**（含设计 A 的 48 条）。
 
 ## 变红证据
 

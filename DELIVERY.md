@@ -136,6 +136,10 @@ CI 中同样执行 `npm test`；`package.json` 已包含 `vitest`、`jsdom`，�
 - `Tests 21 passed (21)`
 - 覆盖正常、失败、空数据、未知/缺失字段、事件契约兼容
 
+> **⚠️ 判定边界（不能当作生产集成验收）**：以上测试与预览页均使用与 `core/bus.js` **同签名的 mock bus**，
+> 验证的是「组件在给定事件下的行为」与「事件名/字段不越契约」。
+> **真实总线的时序、节流、跨模块联动尚未联调**，mock 通过 ≠ 生产集成通过。
+
 ### 5.3 变红证据
 
 把 `web/src/ui/status.js` 的 `p.to` 故意改成 `p.state` 后：
@@ -158,10 +162,13 @@ CI 中同样执行 `npm test`；`package.json` 已包含 `vitest`、`jsdom`，�
 
 ## 7. 已执行的验证
 
+> 本节全部为**组件级**验证（mock bus + 预览页），不含真实 `core/bus.js` 联调。
+
 | 验证 | 结果 |
 |---|---|
 | `npm ci` | 通过，79 个包，0 漏洞 |
-| `npm test` | 5 文件 / 21 测试通过 |
+| `npm test`（仅 HUD） | 5 文件 / 21 测试通过 |
+| `npm test`（全仓，代传复核） | 11 文件 / 69 测试通过 |
 | 预览 `?auto=memory` | 4 步完成，记忆 8 条，找到卡片正常，无 `.ht-error` |
 | 预览 `?auto=moved` | 失败步骤显示“失败 · 请查看任务日志”，进度 2/9，状态“前往中”，无错误 |
 | 预览 `?auto=compare` | 显示预览标注与示例数据，无错误 |
@@ -171,7 +178,8 @@ CI 中同样执行 `npm test`；`package.json` 已包含 `vitest`、`jsdom`，�
 ## 8. 未完成 / 需要配合
 
 1. ~~尚未推送~~ → **已由 Jesu 代传**：合并 `origin/main` 后落到 `feat/2-3-hud-skeleton`，CI 结果见 PR #7。
-2. **尚未与 `core/bus.js` 联调**：测试使用同签名的 mock bus；事件名与字段已按契约校验，但未在真实场景中跑完整任务。
+2. **尚未与真实 `core/bus.js` 联调**（合并前仍需保留此说明）：测试与预览均使用**同签名 mock bus**，只证明组件行为与契约一致；
+   **mock 通过不等于生产集成通过**，真实总线的事件时序、节流、跨模块联动需联调后另出验收记录。
 3. ~~本地 `npm run build` 未能完成~~ → **已解决**：代传时合并了 `origin/main`（含 `web/src/main.js` 与 `src/core/spinning_cube.js`），`npm run build` 通过（8 modules，527.68 kB，299ms）。
 4. **契约变更**：本 PR 未新增事件；若后续需要 `ui:view` 联动或新的 UI 事件，请按契约第 6 节走 contract PR，由 wei 与 Jesu 审核。
 
