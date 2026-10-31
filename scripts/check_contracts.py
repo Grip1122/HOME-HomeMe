@@ -53,14 +53,16 @@ def build_lock() -> dict:
 def git(*args) -> str:
     p = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True,
                        encoding="utf-8", errors="replace")
-    return p.stdout if p.returncode == 0 else ""
+    if p.returncode != 0:
+        raise RuntimeError(f"git {' '.join(args)}: {p.stderr.strip() or p.stdout.strip() or p.returncode}")
+    return p.stdout
 
 
 def changed_files(base=None, staged=False) -> list[str]:
     if staged:
         out = git("diff", "--cached", "--name-only")
     elif base:
-        out = git("diff", "--name-only", f"{base}...HEAD")
+        out = git("diff", "--name-only", f"{base}...HEAD", "--")
     else:
         out = git("diff", "--name-only", "HEAD")
         out += "\n" + git("ls-files", "--others", "--exclude-standard")
@@ -95,14 +97,17 @@ def main():
                         f"请运行 python scripts/check_contracts.py --update-lock 并单独提交")
 
     # 规则 1 / 2：契约与代码不得混提交
-    # 豁免：仓库还没有任何提交时（初始化冻结那一次），契约与骨架必然同批进入。
-    # 一旦存在第一个提交，这个豁免永久失效。
-    is_bootstrap = not git("rev-parse", "--verify", "-q", "HEAD").strip()
-    files = changed_files(args.base, args.staged)
+    # Git 基线无效时失败；不将任何 Git 错误误当成初始化豁免。
+    try:
+        git("rev-parse", "--verify", "HEAD")
+        files = changed_files(args.base, args.staged)
+    except RuntimeError as exc:
+        print(f"[FAIL] Git 基线检查失败：{exc}")
+        return 1
     touch_contracts = [f for f in files if f.startswith("contracts/")]
     touch_code = [f for f in files if f and not f.startswith("contracts/")
                   and not f.startswith("docs/") and f not in ("README.md",)]
-    if touch_contracts and touch_code and not is_bootstrap:
+    if touch_contracts and touch_code:
         errs.append("契约改动与业务代码混在同一次提交里。契约 PR 必须单独开，"
                     f"当前同时改了：{', '.join(touch_code[:5])}"
                     + ("…" if len(touch_code) > 5 else ""))
@@ -121,7 +126,7 @@ def main():
         return 1
 
     print(f"[OK] 契约闸门通过（检查 {len(files)} 个改动文件，"
-          f"digest={build_lock()['digest']}{'，初始化豁免' if is_bootstrap else ''}）")
+          f"digest={build_lock()['digest']}）")
     return 0
 
 

@@ -1,5 +1,5 @@
 #!/bin/sh
-# 本地守门：禁止直接推送 main。CI 与分支保护是第二道，这里是第一道。
+# 本地守门：禁止直接推送 main。服务端保护尚未启用；CI 与独立人工审核必须继续执行。
 while read local_ref local_sha remote_ref remote_sha; do
   if [ "$remote_ref" = "refs/heads/main" ]; then
     if [ "$HOMETWIN_ALLOW_MAIN_PUSH" = "1" ]; then
