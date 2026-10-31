@@ -204,5 +204,5 @@ Jesu 同时是设计 A，不能随到随传。约定：**每个整点后 10 分�
 - [x] **场景路线已定（Jesu 10/31 确认）：以高斯泼溅素材为准，不做灰盒。** 总览「修订 1」与设计 B 任务书已同步改写
 - [ ] **高斯泼溅素材 `scene.ply` 的三项验证**（浏览器能否渲染 / 正交相机下是否排序出错 / 帧率）：**Jesu 与 sen 共同做**，结论写回 `assets/gaussian-splat/README.md`，在此之前不要改 `layout_A.json` 的坐标。详见 [`../assets/gaussian-splat/README.md`](../assets/gaussian-splat/README.md)
 - [x] `scene.ply` 授权：Jesu 已确认为开源素材（具体许可证条款待补进 `manifest.json`）
-- [ ] 原始文件在 Release `splat-v1`：**上传完成并核对 sha256 后才算数**，在此之前队友无法下载素材
+- [x] 原始文件已在 Release `splat-v1`（2026-10-31 核对：471,149,518 字节，sha256 `901cf8ce…2678fae` 与本地一致）。下载：`gh release download splat-v1 -p scene.ply --repo Grip1122/hometwin`
 - [x] wei 与 sen 的 GitHub 用户名，邀请已被接受；`CODEOWNERS` 已换成真实用户名
