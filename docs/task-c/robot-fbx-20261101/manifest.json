@@ -9,12 +9,15 @@
   },
   "sourceRelease": "https://github.com/Grip1122/HOME-HomeMe/releases/download/robot-fbx-v1/robot.fbx",
   "license": {
-    "status": "user_supplied_for_project_use",
-    "priorUserStatement": "都许可",
-    "specificLicense": null,
-    "author": null,
-    "sourceURL": null,
-    "proofDocumentProvided": false
+    "status": "author_confirmed_project_use_and_repository_distribution",
+    "author": "sen",
+    "sourceType": "self-modeled",
+    "sourceStatement": "我自己建模的",
+    "authorizationStatement": "仅供 HOME 项目使用及在本仓库分发，不声明为通用开源素材（推荐）",
+    "confirmedDate": "2026-11-01",
+    "standardOpenSourceLicense": null,
+    "record": "model-usage.md",
+    "evidence": "Direct author statements in this task; not independent registration or a third-party license audit"
   },
   "webAsset": {
     "file": "robot-web.glb",
@@ -87,7 +90,29 @@
     "main": "web/src/main.js (RF.createRobot factory hook in world.js)",
     "prototype": "gary-robot-find-20261101-fbx.zip; index.html / src/world.js / src/scene-find.js",
     "prototypeRelease": "https://github.com/Grip1122/HOME-HomeMe/releases/download/robot-fbx-v1/gary-robot-find-20261101-fbx.zip",
-    "legacyPackageUnchanged": true
+    "legacyPackageUnchanged": true,
+    "executorAdapter": {
+      "file": "executor-adapter.mjs",
+      "factory": "A createRobot",
+      "canonicalAnchorSource": "web/src/core/config.js CARRY_ANCHOR in A PR #20",
+      "verifiedPosition": [
+        0,
+        0.55,
+        0.4
+      ],
+      "sameThreeInstanceRequired": true,
+      "productionWiring": "pending Jesu integration",
+      "legacyPrototypeWrapperPosition": [
+        0,
+        0.624,
+        0.36
+      ],
+      "note": "Legacy RF factory is a local-demo interface, not an A executor robot port. For A use the raw GLB scene with this adapter; do not nest both wrappers. Pass maxRadius: ROBOT_RADIUS; uniform scale fits actual vertex radius to navigation clearance without modifying source mesh or A constants.",
+      "maxRadiusSource": "A core/config.js ROBOT_RADIUS",
+      "maxRadiusMeters": 0.25,
+      "nominalHeightLimitMeters": 1.2,
+      "fittedDisplayHeightMeters": 0.8272058947508331
+    }
   },
   "validation": {
     "mainVitest": {
@@ -105,13 +130,14 @@
       "model-views.png",
       "main-result.png",
       "prototype-result.png"
-    ]
+    ],
+    "realBusCandidate": "https://github.com/Grip1122/HOME-HomeMe/tree/feat/2-3-hud-skeleton/docs/test-evidence/task-c-reinspection-20261101"
   },
   "limits": [
     "1.2m is display configuration, not measured physical robot height",
     "One mesh; cannot reuse old RS-01 articulated kinematics on this asset",
-    "Exact external license/authorship documents remain unprovided",
-    "This replacement does not close Task C production event-bus integration or Task B scene alignment"
+    "This replacement does not close Task C production event-bus integration or Task B scene alignment",
+    "Model author confirmed self-modeling and project-only use/repository distribution; no general open-source reuse license is declared"
   ],
   "releaseAssets": [
     {
