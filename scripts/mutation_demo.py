@@ -30,6 +30,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 # (名字, 文件, 单行锚点, 改成, 期望失败的测试名)
 MUTATIONS = [
+    ("http_preserve_corrective_source", "server/main.py",
+     '        response = plan_offline(payload["query"], index, payload)',
+     '        response = {**plan_offline(payload["query"], index, payload), "source": "cache"}',
+     "test_plan_preserves_corrective_source_and_updates_memory"),
+    ("storage_miss_calls_existing_formula", "server/app/storage.py",
+     '            confidence = memory.on_hit(old["confidence"]) if hit else memory.on_miss(old["confidence"])',
+     '            confidence = memory.on_hit(old["confidence"]) if hit else memory.on_hit(old["confidence"])',
+     "test_observation_miss_rescan_and_hit_use_existing_confidence_functions"),
+    ("storage_log_counts_executed_steps", "server/app/storage.py",
+     '                 json.dumps(payload["steps"]), len(payload["steps"]), payload["duration_ms"],',
+     '                 json.dumps(payload["steps"]), len(plan["steps"]), payload["duration_ms"],',
+     "test_log_uses_plan_source_correction_flag_and_actual_execution_count"),
     ("rules_drop_location_masking", "server/app/rules.py",
      'obj_spans = _spans("".join(masked), index.object_tokens.keys())',
      'obj_spans = _spans(text, index.object_tokens.keys())',
