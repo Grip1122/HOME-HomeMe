@@ -64,6 +64,7 @@
         rule: "规则解析",
         corrective: "规则/纠错",
         seed: "预置脚本",
+        script: "预置脚本",
         offline: "离线脚本",
       },
     },

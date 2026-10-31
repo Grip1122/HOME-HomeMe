@@ -23,6 +23,7 @@
       this.total = 0;
       this.done = 0;
       this.taskId = null;
+      this.hasStepEvents = false;
       this._subscribe();
     }
 
@@ -91,6 +92,7 @@
       this.taskId = (payload && payload.taskId) || null;
       this.total = this.plannedTotal || 0;
       this.done = 0;
+      this.hasStepEvents = false;
       this.setSource(payload && payload.source, null);
       this.renderProgress();
       this.setState("thinking");
@@ -102,6 +104,7 @@
         return;
       }
       const item = payload.index + 1;
+      this.hasStepEvents = true;
       this.done = payload.ok ? item : payload.index;
       this.renderProgress(payload.ok ? "" : " · " + C.status.stepFailed);
       if (!payload.ok) this.setState("error", C.status.stepFailed);
@@ -113,7 +116,11 @@
         this.setState("error", C.timeline.summaryUnknown);
         return;
       }
-      const steps = Number.isFinite(payload.steps) ? payload.steps : this.done;
+      // A's task:end.steps includes attempted failures; observed step results
+      // determine the number successfully completed by this HUD.
+      const steps = !payload.ok && this.hasStepEvents
+        ? this.done
+        : Number.isFinite(payload.steps) ? payload.steps : this.done;
       const total = this.total || 0;
       const duration = fmtMs(payload.durationMs);
       if (payload.ok) {
@@ -144,6 +151,7 @@
     }
 
     reset() {
+      this.hasStepEvents = false;
       this.plannedTotal = 0;
       this.total = 0;
       this.done = 0;

@@ -106,7 +106,10 @@
 
     end(p) {
       const total = this.plannedTotal || 0;
-      const steps = p && Number.isFinite(p.steps) ? p.steps : this.steps.size;
+      const observed = [...this.steps.values()];
+      const steps = p && p.ok === false && observed.length
+        ? observed.filter((item) => item.el.classList.contains("is-done")).length
+        : p && Number.isFinite(p.steps) ? p.steps : this.steps.size;
       const duration = fmtMs(p && p.durationMs);
       let text;
       if (!p || typeof p.ok !== "boolean") text = C.timeline.summaryUnknown;

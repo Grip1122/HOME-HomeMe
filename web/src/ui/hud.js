@@ -152,12 +152,46 @@
     return root.querySelector(sel);
   }
 
+  // Support both on()->unsubscribe and legacy off(name, handler), owning
+  // only this HUD's listeners so disposal cannot affect other consumers.
+  function scopedBus(bus) {
+    const listeners = new Map();
+    const remove = (name, fn) => {
+      const group = listeners.get(name);
+      const unsubscribe = group && group.get(fn);
+      if (!unsubscribe) return;
+      group.delete(fn);
+      if (!group.size) listeners.delete(name);
+      unsubscribe();
+    };
+    return {
+      on(name, fn) {
+        let group = listeners.get(name);
+        if (!group) listeners.set(name, (group = new Map()));
+        if (!group.has(fn)) {
+          const unsubscribe = bus.on(name, fn);
+          group.set(fn, typeof unsubscribe === "function" ? unsubscribe : () => {
+            if (bus.off) bus.off(name, fn);
+          });
+        }
+        return () => remove(name, fn);
+      },
+      off: remove,
+      emit(name, payload) { return bus.emit(name, payload); },
+      dispose() {
+        for (const [name, group] of [...listeners]) {
+          for (const fn of [...group.keys()]) remove(name, fn);
+        }
+      },
+    };
+  }
+
   class Hud {
     constructor(opts) {
       opts = opts || {};
       if (!opts.bus) throw new Error("createHud requires { bus }");
       if (!C) throw new Error("HomeTwinUI.copy 未加载");
-      this.bus = opts.bus;
+      this.bus = scopedBus(opts.bus);
       this.options = opts;
       this.subs = [];
       this.timers = {};
@@ -327,6 +361,7 @@
         if (c && c.destroy) c.destroy();
       });
       if (this.bus.off) this.subs.forEach(([name, fn]) => this.bus.off(name, fn));
+      this.bus.dispose();
       this.el.remove();
     }
   }
