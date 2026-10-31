@@ -102,6 +102,6 @@ export async function loadRobot(url = '/models/RobotExpressive.glb') {
   const gltf = await new GLTFLoader().loadAsync(url);
   let morphMesh = null;
   gltf.scene.traverse((o) => { if (o.morphTargetDictionary && o.name === 'Head') morphMesh = o; });
-  gltf.scene.scale.setScalar(0.3); // 模型约 3 单位高，缩到约 0.9 米，与 0.5 米网格量级匹配
+  gltf.scene.scale.setScalar(0.2); // 模型约 4.8 单位高（实测缩 0.3 后 1.44 米），缩到约 0.96 米，与 0.5 米网格量级匹配
   return createRobot({ root: gltf.scene, clips: gltf.animations, morphMesh });
 }

@@ -72,16 +72,21 @@ function resolveGoal(ctx, target) {
   throw new RangeError(`未知目标: ${target}`);
 }
 
-/** 走到目标的可达邻格。分区则走到扫描点。 */
-export async function go(ctx, target, { signal, step = null, taskId = null } = {}) {
-  if (ctx.holding === target) return { ok: true };
-  const goal = resolveGoal(ctx, target);
+/** 走到世界平面上的一点 [x,z]（落在家具上时自动吸附到最近可达格）。 */
+export async function goTo(ctx, to, { box = null, signal, step = null, taskId = null } = {}) {
   ctx.sm.moveTo('walking', { step, taskId });
   const [x, , z] = ctx.robot.pos;
-  const path = findPath(ctx.grid, [x, z], goal.to, { box: goal.box });
+  const path = findPath(ctx.grid, [x, z], to, { box });
   if (!path) return blocked(ctx, 'no_path');
   await walkPath({ robot: ctx.robot, ticker: ctx.ticker, bus: ctx.bus, points: path.points, signal });
   return { ok: true };
+}
+
+/** 走到目标的可达邻格。分区则走到扫描点。 */
+export async function go(ctx, target, opts = {}) {
+  if (ctx.holding === target) return { ok: true };
+  const goal = resolveGoal(ctx, target);
+  return goTo(ctx, goal.to, { ...opts, box: goal.box });
 }
 
 /** 原地环顾一周，返回该分区里看得见的物体并写入记忆。 */
@@ -204,7 +209,8 @@ export async function find(ctx, target, { signal, step = null, taskId = null } =
   if (ctx.holding === target) return { ok: true, room: robotRoom(ctx) };
   const mem = ctx.memory.enabled ? ctx.memory.get(target) : null;
   if (mem && mem.confidence >= MEMORY.MIN_USABLE) {
-    const r = await go(ctx, target, opts);
+    // 走向"记忆里的位置"，不是物体的真实位置（否则等于作弊，扑空永远不会发生）
+    const r = await goTo(ctx, [mem.pos[0], mem.pos[2]], opts);
     if (!r.ok) return r;
     const { seen } = await observe(ctx, mem.room, opts);
     if (seen.some((s) => s.id === target)) {

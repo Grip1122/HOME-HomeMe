@@ -202,8 +202,14 @@ describe('2.2 查找策略：三条验收', () => {
   it('杯子被拿到书房：先扑空、困惑、再扫到，记忆置信度先降后刷新', async () => {
     const ctx = createSimContext(layout, { start: [-1.5, 0], observeSeconds: 0.8 });
     ctx.memory.upsert([{ id: 'cup_red', room: 'living', pos: wp(ctx, 'cup_red') }]);
+    const memPos = wp(ctx, 'cup_red');
     moveObject(ctx, 'cup_red', 'desk');
+    // 第一次环顾时机器人应站在"记忆位置"附近（餐桌旁），而不是杯子的真实位置（书房书桌）
+    let firstScanAt = null;
+    ctx.bus.on('robot:state', ({ to }) => { if (to === 'scanning' && !firstScanAt) firstScanAt = [...ctx.robot.pos]; });
     const r = await drive(ctx.ticker, find(ctx, 'cup_red'));
+    expect(hd(firstScanAt, memPos)).toBeLessThan(GRAB_RADIUS);
+    expect(hd(firstScanAt, wp(ctx, 'cup_red'))).toBeGreaterThan(3);
     expect(r).toMatchObject({ ok: true, room: 'study', via: 'scan' });
     const seq = states(ctx);
     expect(seq.indexOf('confused')).toBeGreaterThan(-1);
