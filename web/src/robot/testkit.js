@@ -7,14 +7,15 @@ import { createTaskQueue } from '../core/taskqueue.js';
 import { createLocalMemory } from '../core/memory.js';
 import { buildGrid } from '../nav/route.js';
 import { buildWorld } from './world.js';
+import { assertWorldPort } from './world-port.js';
 import { createRobot } from './robot.js';
 import { createExecutor } from './executor.js';
 
-export function createSimContext(layout, { robot = null, start = [-1.5, 0], memoryEnabled = true, observeSeconds } = {}) {
+export function createSimContext(layout, { world: injected = null, robot = null, start = [-1.5, 0], memoryEnabled = true, observeSeconds } = {}) {
   const ticker = createTicker();
   const bus = createEventBus({ now: () => ticker.time * 1000 });
   const sm = createStateMachine({ bus });
-  const world = buildWorld(layout);
+  const world = injected ? assertWorldPort(injected) : buildWorld(layout);
   const bot = robot ?? createRobot({ root: new THREE.Group() });
   bot.setPose(start[0], start[1], 0);
   world.root.add(bot.group);

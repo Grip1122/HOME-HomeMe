@@ -3,6 +3,7 @@
 // 正式的点云对齐、碰撞层标定属于设计 B（web/src/scene/），届时替换本文件，接口不变。
 import * as THREE from 'three';
 import { furnitureBox } from '../nav/grid.js';
+import { createWorldPort, assertWorldPort } from './world-port.js';
 
 const COLORS = {
   cup_red: 0xe53935, bottle_green: 0x43a047, remote_black: 0x212121, keys_yellow: 0xfdd835,
@@ -62,33 +63,5 @@ export function buildWorld(layout, { visibleFurniture = true } = {}) {
   }
   root.updateMatrixWorld(true);
 
-  const world = {
-    root, layout, rooms, furniture, objects,
-    /** 注册表：按 id 取对象 / 按分区列出物体 / 取世界坐标 */
-    getObject: (id) => objects.get(id),
-    getFurniture: (id) => furniture.get(id),
-    objectsInRoom(roomId) {
-      return [...objects.values()].filter((m) => world.roomOf(m.userData.id) === roomId).map((m) => m.userData.id);
-    },
-    roomOf(objectId) {
-      // 以物体当前的世界位置所在格子为准（被抓走后随机器人移动，不再属于原分区）
-      const p = world.worldPos(objectId);
-      for (const r of layout.rooms) {
-        const [rc, rr, rw, rh] = r.rect;
-        const { cell, origin } = layout.grid;
-        const c = Math.floor((p[0] - origin[0]) / cell);
-        const z = Math.floor((p[2] - origin[2]) / cell);
-        if (c >= rc && c < rc + rw && z >= rr && z < rr + rh) return r.id;
-      }
-      return null;
-    },
-    worldPos(id) {
-      const m = objects.get(id) || furniture.get(id);
-      const v = new THREE.Vector3();
-      m.updateWorldMatrix(true, false);
-      m.getWorldPosition(v);
-      return [v.x, v.y, v.z];
-    },
-  };
-  return world;
+  return assertWorldPort(createWorldPort({ root, layout, rooms, furniture, objects }));
 }
