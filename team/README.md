@@ -1,6 +1,8 @@
 # team/ · 开工前必读
 
-> ## 所有参与协作的 Agent：接取任何任务之前，必须先完整阅读本目录下的两份文档，再按分工领取对应工作。
+> **最新安排（本地待审、未上传、未合并生效）**：先读 [`03-demo-coordination.md`](03-demo-coordination.md)，再读下列历史参考。接续方案沿用 **robot-find 母版**的界面、功能与交互；当前为 **local-demo，未接后端，场景与机器人素材待替换**，demo 尚未进入 main。旧里程碑、职责冲突以 03 为待合并提案准，合并后才生效；不要据旧任务书重做旋转立方体或整套 HUD。
+
+> ## 所有参与协作的 Agent：接取任何任务之前，必须先完整阅读最新安排及下列两份参考文档，再按分工领取对应工作。
 >
 > 没读完就动手的 PR，一律打回，不看代码。
 
@@ -38,24 +40,27 @@ team/
 ├─ README.md            本文件：必读声明、背景、命名对照
 ├─ 01-overview-v3.md    总览：完整方案 V3（19 章）
 ├─ 02-roles.md          分工（暂定）：人员、边界、Gary 交付规范、审核流程
+├─ 03-demo-coordination.md  最新接续安排（本地待审、未上传、待合并提案）
 └─ tasks/               四份个人任务书，按角色领取
    ├─ task-A-frontend-3d.md       设计 A：前端 3D 与执行层　　　　　　　Jesu
-   ├─ task-B-scene-art.md         设计 B：场景与美术　　　　　　　　　　sen（待确认）
-   ├─ task-C-ui-acceptance.md     设计 C：产品 UI 与验收　　　　　　　　Gary（Jesu 代传）
+   ├─ task-B-scene-art.md         设计 B：场景与美术　　　　　　　　　　sen（已确认）
+   ├─ task-C-ui-acceptance.md     设计 C：UI 美术/素材/材质渲染/产品设计　　　　　　　　Gary（Jesu 代传）
    └─ task-D-backend-algo.md      AI-D：后端与算法 ＋ 把关人　　　　　　wei
 ```
 
-## 谁领哪份（暂定）
+## 谁领哪份（按最新用户职责覆盖历史分工）
+
+验收由各 owner 自验、jesu 统筹，wei 技术复核。Gary 不负责唯一验收；无账号保留署名代传。当前未提交/未推送，create_branch 403 未解除，禁止任何网络写入，不猜换 wei 账号。
 
 | 人 | 任务书 | 备注 |
 | --- | --- | --- |
-| wei | `task-D` | 同时是把关人；自己的 PR 由 Jesu 批 |
-| Jesu | `task-A` | 同时负责总体库整合与代 Gary 上传 |
-| Gary | `task-C` | 无 GitHub，交付包交 Jesu，格式见 `02-roles.md` 第 5 节 |
-| sen | `task-B` | 由推断得出，待确认 |
+| wei | `task-D` | 编程代码负责人、后端搭建、代码审核及技术方案合理性判断；自己的代码由 jesu 审核，账号 `mwaiting002` |
+| jesu（Jesu） | `task-A` | 所有文件全局审核、GitHub 整体搭建/审核/维护安排、最终整合审核、前端设计搭建；自己代码由 wei 复核不自审 |
+| Gary | `task-C` | UI 交互美术/通用素材、机器人建模素材、材质渲染、产品设计；无 GitHub，署名交付包由 jesu 代传；不以测试为主 |
+| sen | `task-B` | 场景设计与相关美术、几何/空间/校准、任务空间语义；场景材质接口由 sen 装配，前端 jesu 装配，不并发改 world.js |
 
 ## 开工口令（每人先把这段发给自己的 Agent）
 
-> 请先通读 `team/01-overview-v3.md`、`team/02-roles.md` 和我的任务书 `team/tasks/<我的那份>.md`，**不要写代码**。读完后复述：① 我负责哪些目录、不得触碰哪些目录；② 我的第一个步骤（见 `02-roles.md` 第 7 节）要交付什么；③ 你有哪些不确定、需要我确认的前提。我确认后再开工。
+> 请先通读 `team/03-demo-coordination.md`（本地待审、待合并提案），再读 `team/01-overview-v3.md`、`team/02-roles.md` 和我的任务书 `team/tasks/<我的那份>.md`，**不要写代码**。读完后复述：① 我负责哪些目录、不得触碰哪些目录；② 我的接续任务（见 `03-demo-coordination.md` 第 5 节提案）要交付什么；③ 你有哪些不确定、需要我确认的前提。我确认后再开工。
 
 Gary 的 Agent 同样用这段口令；他的成果不直接推送，而是按 `02-roles.md` 第 5 节打包交给 Jesu。
