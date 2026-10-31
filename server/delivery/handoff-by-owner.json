@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "official_frontend_modified": false,
+  "contracts_modified": false,
+  "roles": {
+    "A": {
+      "owner": "Grip1122",
+      "modules": [
+        "web/src/robot/",
+        "web/src/core/",
+        "web/src/nav/"
+      ],
+      "resources": [
+        "roomscan/assets/robot/roomscan-rs01.glb",
+        "roomscan/assets/robot/manifest.json",
+        "roomscan/web/robot.mjs",
+        "roomscan/web/motion.mjs"
+      ],
+      "integration": [
+        "Import GLB with the existing three.js GLTFLoader; preserve named nodes MastStage1..4, CameraHead, WheelLeft/Right and TreadLeft/Right00..41.",
+        "Bind to contracts/events.md via A-owned EventBus; throttle robot:moved at 10 Hz, interpolate only presentation.",
+        "The crawler has no Punch/Wave clips, arms or carryAnchor. Keep existing action semantics and agree carry-anchor/pick/drop visuals before replacing RobotExpressive.",
+        "The PlayCanvas robot.mjs is a reference implementation, not a direct three.js module."
+      ]
+    },
+    "B": {
+      "owner": "sen985211sen-sys",
+      "modules": [
+        "web/src/scene/",
+        "web/public/",
+        "assets/"
+      ],
+      "resources": [
+        "team-scene/source-manifest.json",
+        "team-scene/preview-manifest.json",
+        "team-scene/home-preview.compressed.ply",
+        "roomscan/assets/robot/"
+      ],
+      "integration": [
+        "Primary scene is the team scene_main Release, checksum verified; no original restaurant asset is included.",
+        "Preview Rx(180), unit scale and origin are not a calibration result. Confirm actual scale/up-axis/offset and layout collision/surface coordinates before enabling navigation or pickup.",
+        "Visual Gaussian data never becomes planner truth; layout JSON remains the only semantic source."
+      ]
+    },
+    "C": {
+      "owner": "Gary via Grip1122",
+      "modules": [
+        "web/src/ui/",
+        "web/src/demo/",
+        "docs/"
+      ],
+      "resources": [
+        "roomscan/web/robot.html",
+        "index.html",
+        "evidence/"
+      ],
+      "integration": [
+        "Use response source=corrective to display the team-required rule/correction label; do not show LLM for corrections.",
+        "Keep HUD within the team width limit, fixed orthographic camera, and event-only subscriptions.",
+        "Prototype screenshots and telemetry are resource references, not completed HOME M1/M2 acceptance."
+      ]
+    },
+    "D": {
+      "owner": "krlozhilderman287-creator",
+      "modules": [
+        "server/",
+        "scripts/",
+        "tests/",
+        ".github/"
+      ],
+      "resources": [
+        "../main.py",
+        "../app/storage.py",
+        "../../scripts/fetch_team_scene.py",
+        "../../scripts/pack_roomscan.py"
+      ],
+      "integration": [
+        "Frozen /plan and memory schemas unchanged; reuse planner.py, rules.py and memory.py.",
+        "One-process FastAPI HTTP + SQLite + static delivery preview, with /api aliases for Vite.",
+        "New HTTP/storage and checksum logic has normal/boundary/exception tests and registered single-line mutations.",
+        "Review and squash merge by Jesu; D does not approve or merge their own PR."
+      ]
+    }
+  }
+}

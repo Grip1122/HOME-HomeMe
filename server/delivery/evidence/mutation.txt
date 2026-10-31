@@ -1,0 +1,23 @@
+[BASE] 基线全绿
+
+  KILLED       archive_excludes_old_restaurant  1 个失败，含 test_user_excluded_restaurant_is_not_in_archive_even_when_git_would_ignore_other_files
+  KILLED       team_scene_reject_checksum_mismatch 2 个失败，含 test_corrupt_scene_does_not_leave_a_partly_installed_asset
+  KILLED       http_preserve_corrective_source  3 个失败，含 test_plan_preserves_corrective_source_and_updates_memory
+  KILLED       storage_miss_calls_existing_formula 1 个失败，含 test_observation_miss_rescan_and_hit_use_existing_confidence_functions
+  KILLED       storage_log_counts_executed_steps 1 个失败，含 test_log_uses_plan_source_correction_flag_and_actual_execution_count
+  KILLED       rules_drop_location_masking      6 个失败，含 test_study_does_not_become_book
+  KILLED       rules_skip_pickup_before_drop    7 个失败，含 test_demo_line_not_right_put_in_study
+  KILLED       rules_ignore_negated_place       3 个失败，含 test_positive_place_then_negated_place_at_end
+  KILLED       rules_never_detect_correction    24 个失败，含 test_demo_line_not_right_put_in_study
+  KILLED       rules_soft_word_always_correction 4 个失败，含 test_normal_commands_are_not_correction
+  KILLED       layout_checker_skip_reach        1 个失败，含 test_object_beyond_reach_is_caught
+  KILLED       layout_checker_skip_surface_height 1 个失败，含 test_object_floating_above_table_is_caught
+  KILLED       layout_checker_skip_door_width   1 个失败，含 test_narrow_door_is_caught
+  KILLED       memory_miss_penalty_wrong        2 个失败，含 test_confidence_miss_weakens_and_floors
+  KILLED       validate_allow_drop_before_grab  2 个失败，含 test_drop_before_grab_rejected
+  KILLED       validate_allow_non_surface       1 个失败，含 test_drop_on_non_surface_rejected
+  KILLED       planner_skip_exit_validation     1 个失败，含 test_poisoned_cache_is_blocked_at_exit
+
+[RESTORE] 还原后重跑: 全绿
+
+汇总: 17/17 个变异被测试抓住

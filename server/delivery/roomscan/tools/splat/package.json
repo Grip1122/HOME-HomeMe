@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@playcanvas/splat-transform": "3.10.3",
+    "playcanvas": "2.23.3"
+  },
+  "private": true
+}
