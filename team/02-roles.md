@@ -13,8 +13,8 @@
 
 | 成员 | GitHub | 角色 | 一句话职责 | 任务书 |
 | --- | --- | --- | --- | --- |
-| **wei** | `krlozhilderman287-creator` | **AI-D**：后端与算法　**＋　整体审核与把关人** | 后端接 HTTP 与 SQLite、GLM 规划；同时是唯一的验收人，验收最终交付成果 | [task-D](tasks/task-D-backend-algo.md) |
-| **Jesu** | `Grip1122`（仓库所有者） | **设计 A**：前端 3D 与执行层　**＋　总体库整合调配　＋　代 Gary 上传** | 机器人怎么动（状态机、寻路行走、五个动作）；维护 `main` 的整合、冲突仲裁、素材与 Release；把 Gary 的交付包校验后上传 | [task-A](tasks/task-A-frontend-3d.md) |
+| **wei** | `krlozhilderman287-creator` | **AI-D**：后端与算法　**＋　整体审核与把关人** | 后端算法/接口、HTTP 与 SQLite、GLM 规划；提供导航参照数据，前端寻路归 A；同时是唯一的验收人，验收最终交付成果 | [task-D](tasks/task-D-backend-algo.md) |
+| **Jesu** | `Grip1122`（仓库所有者） | **设计 A**：前端 3D 与执行层　**＋　总体库整合调配　＋　代 Gary 上传** | 前端寻路网格/A*、行走、状态机与五个动作；Node 环境配置由 Jesu 统一维护；维护 `main` 的整合、冲突仲裁、素材与 Release；把 Gary 的交付包校验后上传 | [task-A](tasks/task-A-frontend-3d.md) |
 | **Gary** | **无账号** | **设计 C**：产品 UI 与验收 | 用户看到的一切：HUD、对话气泡、导演面板、验收用例、路演稿 | [task-C](tasks/task-C-ui-acceptance.md) |
 | **sen** | `sen985211sen-sys` | **设计 B**：场景与美术 | 世界长什么样：layout 数据、点云接入与坐标标定、隐形碰撞层、泼溅质量调优（**不做灰盒**） | [task-B](tasks/task-B-scene-art.md) |
 
@@ -39,6 +39,10 @@
 | AI-D（wei） | `server/` `scripts/` `tests/` `.github/` | `web/`、`contracts/` |
 | 整合（Jesu） | `team/` `assets/`（清单与 Release） | 不替别人写他们目录里的代码 |
 | 把关人（wei） | `contracts/` 的最终裁决 | 不批自己的 PR |
+
+**步骤 1.3 的单一前端负责人是 A。** `web/src/nav/` 的网格、A*、JS 测试与派生快照由 A 提交；D 只维护 `server/` 后端算法、`scripts/` 导出接口、`tests/` 后端对账，不直接写入 `web/`。Node 版本、`.nvmrc` 与前端 README 由 Jesu 维护，不能由多个 D PR 重复携带。
+
+资源目录的跨目录提案须独立待审：B 核对来源、许可、修改与未验证事实，Jesu 核对合规与交付口径；两者确认前不得合并。CI 或组合验证通过不替代目录 owner 确认。
 
 `contracts/` 谁都不能顺手改：要改就单开 `contract/<改什么>` 分支，只含 `contracts/`，标题以 `[CONTRACT]` 开头，由 wei 与 Jesu 共同批准后合并。
 
