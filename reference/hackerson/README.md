@@ -1,57 +1,42 @@
-# 自主升降全景扫描机器人
+# HOME / 小觅：历史扫描器参考
 
-**当前默认场景已替换为「天安骏业集团餐厅」**。页面顶部可切回原演示房间。餐厅使用真实 3DGS 原景展示机器人，使用独立几何代理做导航和 RGB-D 扫描；尺度暂按 1 场景单位 = 1 米，未实测标定。
+`hackerson` 是 D 早期独立原型的历史目录名，不是正式产品名。正式项目为 **HOME / 小觅**；产品的 HTTP、业务布局与前端状态机均不依赖这里的代码。原型使用 MuJoCo、独立 NBV 和 PlayCanvas，不能把旧餐厅截图、覆盖率、吞吐数字当成正式项目验收。
 
-- [履带机器人外观与开源参考](ROBOT.zh-CN.md)
-- [机器人外观截图](artifacts/robot_qa/collapsed.png)
-- [餐厅接入与复现记录](RESTAURANT.zh-CN.md)
-- [餐厅界面截图](artifacts/restaurant_browser_qa/restaurant-ready.png)
-- [餐厅完整扫描验证](artifacts/restaurant-validation.json)
+## 代码归属
 
-目标：扫地机器人形态的底盘搭载伸缩杆和全景相机，在室内仿真中自主选择移动位置、扫描高度和角度，并补扫遮挡区域。服务器运行，Windows 浏览器查看。
+- 本团队 D 的原型代码：`run.py`、`scanner/`、`web/`、建模脚本。
+- 第三方代码：`web/vendor/playcanvas.mjs` 与同目录 MIT 许可。
+- 上游研究 README 快照：`research/upstream/`，不是已集成依赖。
+- 机器人正式资产唯一位置：项目根 `assets/robot/`（PR #9 已合入）。参考目录不再复制模型或高斯场景。
+- 旧餐厅资产不随当前交付。归档中的 RESTAURANT/VALIDATION/RUN_WINDOWS 等历史文档保留原始记录，**不作为当前启动说明**。
 
-当前完成：MuJoCo 家具房间、双履带机器人外观和四节伸缩杆、四方向 RGB-D 环视、已知地图路径规划、位置/高度/俯仰联合选点、观测体素与彩色点云、自动结束、浏览器控制和结果导出。
+## Windows 启动（可选实验环境）
 
-这是使用已知导航地图和仿真位姿的运动学原型，未接真实电机、SLAM 或未知房屋探索。环视是四路图像拼排，尚未生成等距柱状全景。
+Python 3.11+，以下均在项目根目录执行，不使用服务器绝对路径，也不运行 Linux service.py。
 
-```bash
-cd /home/xch/data/cww/Hackerson
-python3 scripts/service.py start
-python3 scripts/service.py status
+```powershell
+py -3.11 -m venv .venv-scanner
+.\.venv-scanner\Scripts\python.exe -m pip install -r reference/hackerson/requirements.txt
+.\.venv-scanner\Scripts\python.exe scripts/run_reference_scanner.py --check-only
+.\.venv-scanner\Scripts\python.exe scripts/run_reference_scanner.py --port 8765
 ```
 
-服务器本地入口：`http://127.0.0.1:8765`；独立机器人外观预览：`http://127.0.0.1:8765/robot`。Windows 通过 SSH 转发后打开浏览器，详见 [Windows 使用说明](RUN_WINDOWS.zh-CN.md)。
+Windows 使用 GLFW，需可用桌面 OpenGL 驱动；`--gpu` 不强行指定 Windows 浏览器或系统图形适配器。浏览器访问 http://127.0.0.1:8765 ，Ctrl+C 停止。依赖仅安装在 `.venv-scanner`，不会加入正式服务 requirements。
 
-- [实现架构与限制](IMPLEMENTATION.zh-CN.md)
-- [验证结果与对比](VALIDATION.zh-CN.md)
-- [完整对比数据](artifacts/comparison.json)
-- [浏览器实拍](artifacts/browser_qa/scanning-desktop.png)
+## Linux 服务器 / Windows 浏览器
 
-- [开源项目筛选与实现方案](research/OPEN_SOURCE_PLAN.zh-CN.md)
-- [重点仓库元数据](research/repositories.json)
-- `research/upstream/`：上游 README 快照，不是完整源码。
-- `scripts/check_headless_render.py`：简化房间、圆盘底盘、升降杆和相机的环境验证；直接设置关节姿态，不代表电机控制或稳定性验证。
-- `artifacts/render_check/`：早期环境验证的第三人称视图、相机图、深度数组及运行结果。
-- `scanner/`：场景、导航、在线地图、NBV 规划和仿真执行。
-- `web/`：无外部 CDN 依赖的浏览器控制界面。
-- `artifacts/runs/`：逐次任务的 PLY、扫描记录、体素地图、评估样本与画面。
-
-运行自动测试和完整离线扫描：
-
-```bash
-python3 -m pytest -q tests
-python3 run.py --benchmark --scene restaurant --max-scans 48
-python3 run.py --benchmark --scene demo --max-scans 48
-python3 run.py --benchmark --scene demo --strategy fixed --max-scans 48
+```sh
+python3 -m venv .venv-scanner
+.venv-scanner/bin/python -m pip install -r reference/hackerson/requirements.txt
+.venv-scanner/bin/python scripts/run_reference_scanner.py --gpu 1 --port 8765
 ```
 
-停止服务：`python3 scripts/service.py stop`。不注册系统服务，不修改其他项目。
+Linux 默认 EGL，`--gpu 1` 设置 MUJOCO_EGL_DEVICE_ID=1；应通过 nvidia-smi 核对实际设备。Windows 转发：`ssh -N -L 8765:127.0.0.1:8765 <服务器用户>@<服务器地址>`，保持窗口打开后访问本地同一端口。
 
-重跑环境验证：
+## 运行与资源边界
 
-```bash
-cd /home/xch/data/cww/Hackerson
-python3 scripts/check_headless_render.py
-```
+启动器先检查依赖、参考源码、正式 GLB/manifest/OBJ。缺失时明确报 missing_optional_dependencies 或 missing_reference_resources，并以非零码退出，不会返回虚假运行成功。启动器将参考代码与机器人复制到 `.local/reference-runtime/` 后运行；日志和结果都写运行副本，保留 reference/ 只读。可用 --runtime 指向另一个空闲目录。不要与已有服务共用端口。
 
-使用服务器已有的 MuJoCo、NumPy、Pillow，默认选择 EGL，没有安装系统依赖。
+入口显式使用 **demo 实验几何**，不加载缺失餐厅、不伪造队友高斯场景或正式导航标定。当前服务器 Hackerson 原型切队友场景/GPU1 的本地运行属于另一份实验产物；它未被这一文档 PR 冒充为正式产品集成。
+
+完整原型备份与校验表见 [团队 D 归档 Release](https://github.com/Grip1122/HOME-HomeMe/releases/tag/d-roomscan-source-20261031)。里面保留历史路径和依赖用于追溯，排除旧餐厅 ZIP 及所有旧餐厅场景数据；不是一键产品安装包。

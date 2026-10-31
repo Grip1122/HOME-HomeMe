@@ -56,3 +56,7 @@ reference/hackerson/**/__pycache__/
 reference/hackerson/.pytest_cache/
 reference/hackerson/.pytest_cache/
 reference/hackerson/*.zip
+
+# Optional HOME scanner experiment
+.venv-scanner/
+.local/

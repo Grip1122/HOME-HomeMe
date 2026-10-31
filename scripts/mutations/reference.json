@@ -1,0 +1,9 @@
+[
+  [
+    "reference_resource_preflight",
+    "scripts/run_reference_scanner.py",
+    "        raise ValueError('missing_reference_resources: '+', '.join(missing))",
+    "        pass",
+    "test_reference_launcher_reports_missing_resources_before_partial_copy"
+  ]
+]
