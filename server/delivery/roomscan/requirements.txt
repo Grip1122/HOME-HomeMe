@@ -1,5 +1,0 @@
-# Versions used by the server during the prototype validation.
-mujoco==3.13.0
-numpy>=1.24
-scipy>=1.10
-Pillow>=9

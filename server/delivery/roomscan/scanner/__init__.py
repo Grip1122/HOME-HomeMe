@@ -1,1 +1,0 @@
-"""Autonomous scanning simulation prototype."""
