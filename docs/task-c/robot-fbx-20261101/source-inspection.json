@@ -1,0 +1,127 @@
+{
+  "source": {
+    "file": "robot.fbx",
+    "bytes": 62266860,
+    "sha256": "463fb1e059831b16d76e3558c9046e8e985d090ea84ee987d091b7168fabe0ed"
+  },
+  "threeRevision": "160",
+  "userData": {
+    "unitScaleFactor": 1
+  },
+  "bounds": {
+    "min": [
+      -13.295499980449677,
+      -23.199372741575512,
+      -13.73767216705405
+    ],
+    "max": [
+      9.515820443630219,
+      24.98169872957082,
+      11.207086647279436
+    ],
+    "size": [
+      22.811320424079895,
+      48.18107147114633,
+      24.944758814333486
+    ]
+  },
+  "nodeCount": 2,
+  "triangles": 1714687,
+  "nodes": [
+    {
+      "name": "",
+      "type": "Group",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "vizcom_node_0001",
+      "type": "Mesh",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        -1.5707964897155764,
+        0,
+        0,
+        "XYZ"
+      ],
+      "scale": [
+        100,
+        99.99999999999999,
+        99.99999999999999
+      ],
+      "vertices": 5144061,
+      "triangles": 1714687,
+      "attributes": [
+        "position",
+        "normal",
+        "uv"
+      ],
+      "groups": [],
+      "box": [
+        22.811320424079895,
+        48.18107147114633,
+        24.944758814333486
+      ],
+      "materials": [
+        "vizcom_material_0.001"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "vizcom_material_0.001",
+      "type": "MeshPhongMaterial",
+      "color": "cccccc",
+      "maps": {
+        "map": {
+          "name": "base_color_texture",
+          "sourceURL": "vizcom_texture_12",
+          "repeat": [
+            1,
+            1
+          ],
+          "offset": [
+            0,
+            0
+          ],
+          "rotation": 0,
+          "flipY": true
+        },
+        "normalMap": {
+          "name": "normalmap_texture",
+          "sourceURL": "vizcom_texture_11",
+          "repeat": [
+            1,
+            1
+          ],
+          "offset": [
+            0,
+            0
+          ],
+          "rotation": 0,
+          "flipY": true
+        }
+      }
+    }
+  ],
+  "textures": [],
+  "animations": []
+}

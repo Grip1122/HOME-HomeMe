@@ -1,0 +1,14 @@
+{
+  "name": "homeme-user-robot-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bundle": "node build-bundle.mjs",
+    "test": "node --test test-model.mjs"
+  },
+  "dependencies": {
+    "three": "0.160.1",
+    "meshoptimizer": "0.25.0",
+    "esbuild": "0.25.12"
+  }
+}

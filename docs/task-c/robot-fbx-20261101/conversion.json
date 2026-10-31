@@ -1,0 +1,79 @@
+{
+  "source": {
+    "file": "robot.fbx",
+    "bytes": 62266860,
+    "sha256": "463fb1e059831b16d76e3558c9046e8e985d090ea84ee987d091b7168fabe0ed"
+  },
+  "output": {
+    "file": "robot-web.glb",
+    "bytes": 8165032,
+    "sha256": "f5dcae49c12905548eb59b9d2960ce36920f3088afc374275074bad0109276e2",
+    "triangles": 120000,
+    "vertices": 78082,
+    "bounds": {
+      "min": [
+        -11.401874542236328,
+        0,
+        -12.47059154510498
+      ],
+      "max": [
+        11.404853820800781,
+        48.18000030517578,
+        12.471070289611816
+      ],
+      "size": [
+        22.80672836303711,
+        48.18000030517578,
+        24.941661834716797
+      ]
+    }
+  },
+  "conversion": {
+    "sourceTriangles": 1714687,
+    "indexedVertices": 895009,
+    "targetTriangles": 120000,
+    "targetError": 0.003,
+    "actualError": 0.0002589493815321475,
+    "algorithm": "meshoptimizer simplifyWithAttributes",
+    "weights": [
+      0.1,
+      0.1,
+      0.1,
+      0.5,
+      0.5
+    ],
+    "sourceTranslation": [
+      -1.8898396492004395,
+      -23.199369430541992,
+      -1.2652902603149414
+    ],
+    "uvVFlipped": true,
+    "baseColorFactor": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "roughness": 0.7,
+    "metalness": 0
+  },
+  "textures": [
+    {
+      "slot": "baseColor",
+      "name": "vizcom_texture_12.png",
+      "bytes": 2775066,
+      "sha256": "6fcd15b951d2b986b19ca631ccdebf994629dc0bdd53fe4282d3496388175b02"
+    },
+    {
+      "slot": "normal",
+      "name": "vizcom_texture_11.png",
+      "bytes": 1449546,
+      "sha256": "72642e2b51d2d65e77284e3b61dfd2e7bdfa828f1c3771cff36899eed7e82648"
+    }
+  ],
+  "rig": {
+    "bones": 0,
+    "animationClips": 0,
+    "jointMotionAvailable": false
+  }
+}
