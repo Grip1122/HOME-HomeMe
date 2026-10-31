@@ -1,6 +1,6 @@
 # web
 
-Node.js 22.12+（CI 使用最新 22.x；锁定的 Vitest 5 不支持 Node 20）。
+Node.js 版本统一由 `web/.nvmrc` 指定为 24，与 Jesu 的 PR #10 环境方案一致。
 
 前端由设计 A 在步骤 1.1 用 Vite vanilla 模板初始化（PR #6），测试跑 vitest。
 
