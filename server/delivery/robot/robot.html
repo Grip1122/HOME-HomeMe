@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RS-01 · 扫描机器人</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;color:#e8e8e2;background:#101a1e;font-family:Inter,"Microsoft YaHei",sans-serif}a{color:inherit}main{max-width:1440px;margin:auto;padding:38px 44px}header{display:flex;justify-content:space-between;align-items:center}header span{font:11px monospace;letter-spacing:3px;color:#96b0b5}header a{text-decoration:none;font-size:12px;color:#9fb3b8}h1{font-size:48px;letter-spacing:-2px;font-weight:500;margin:20px 0 10px}h1 small{font-size:17px;letter-spacing:0;color:#acb7b5;margin-left:20px;font-weight:400}.intro{font-size:14px;color:#a0b0b4;line-height:1.8;margin:0}.stage{position:relative;margin-top:24px;border:1px solid #33434a;border-radius:16px;overflow:hidden;background:radial-gradient(ellipse at 45% 45%,#334247,#142126 75%);height:min(65vh,700px);min-height:410px}canvas{width:100%;height:100%;display:block;touch-action:none}.stage-top{position:absolute;top:22px;left:25px;font:11px monospace;letter-spacing:2px;color:#cbb784;pointer-events:none}.hint{position:absolute;right:25px;bottom:20px;font-size:11px;color:#92a6ac;pointer-events:none}.model-status{position:absolute;left:25px;bottom:20px;color:#d9b86e;font-size:12px}.controls{display:grid;grid-template-columns:1fr 1fr auto;gap:32px;padding:25px 4px;border-bottom:1px solid #34444a}.controls label{font-size:12px;color:#9fb3b8;display:flex;justify-content:space-between;margin-bottom:15px}.controls output{font-family:monospace;color:#edd39c;font-size:15px}input{width:100%;accent-color:#e1b55d}button{border:1px solid #64716b;background:#283736;color:#e9d5a4;border-radius:6px;padding:12px 20px;cursor:pointer;font-size:12px;align-self:center}.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:25px}.specs span{display:block;font-size:10px;color:#8fa4ab;letter-spacing:1px}.specs strong{display:block;font-size:14px;font-weight:400;margin-top:8px;color:#d6dedc}.credit{margin-top:24px;font-size:11px;line-height:1.8;color:#8fa4ab}.credit a{color:#cdb782}#error{color:#efae9f}@media(max-width:650px){main{padding:22px 18px}h1{font-size:36px}h1 small{display:block;margin:8px 0 0;font-size:16px}.controls{grid-template-columns:1fr;gap:20px}.specs{grid-template-columns:1fr 1fr}.stage{height:54vh;min-height:370px}.intro{font-size:12px}}
+  </style>
+</head>
+<body><main>
+  <header><span>ROOMSCAN / ROBOT DESIGN</span><a href="../index.html">返回扫描工作台 ↗</a></header>
+  <h1>RS–01<small>会升高视野的空间扫描机器人</small></h1>
+  <p class="intro">双履带移动底座，搭配四节伸缩杆与环视相机。三角履带、金黄色方形机身和双镜头头部，延续 WALL·E 的机械感。</p>
+  <div class="stage"><canvas id="robot-preview" aria-label="可旋转的扫描机器人模型"></canvas><div class="stage-top">RS–01 / TELESCOPIC SCANNER</div><div class="hint">拖动旋转 · 滚轮缩放</div><div id="model-status" class="model-status">正在加载机器人…</div></div>
+  <div class="controls">
+    <div><label for="mast-height">相机高度 <output id="height-value">1.15 m</output></label><input id="mast-height" type="range" min="0.55" max="2.3" step="0.01" value="1.15"></div>
+    <div><label for="head-tilt">相机俯仰 <output id="tilt-value">0°</output></label><input id="head-tilt" type="range" min="-37" max="37" step="1" value="0"></div>
+    <button id="animate-mast">演示伸缩 ↕</button>
+  </div>
+  <div class="specs"><div><span>MOBILE BASE</span><strong>双履带 · 三轮支撑</strong></div><div><span>TELESCOPIC MAST</span><strong>四节套筒 · 0.55–2.30 m</strong></div><div><span>CAMERA HEAD</span><strong>双目造型 · 四向环视</strong></div><div><span>DESIGN PALETTE</span><strong>暖金 / 石墨黑 / 金属银</strong></div></div>
+  <p class="credit">造型参考 <a href="https://github.com/chillibasket/walle-replica">开源 WALL·E 复刻项目</a>与用户提供的图片；履带、机身、伸缩杆和相机头均在本项目中建模。 · <a href="../assets/robot/roomscan-rs01.glb" download>下载机器人 GLB ↓</a><br>此页用于预览外观与关节，不改变扫描工作台的任务状态。场景中的米制尺度仍按原仿真约定。</p><p id="error" hidden></p>
+  <script type="module" src="./robot-preview.mjs"></script>
+</main></body></html>
