@@ -137,13 +137,17 @@ async function grabInner(ctx, target, { signal, step = null, taskId = null } = {
   ctx.holding = target;
   const from = mesh.position.clone();
   const s0 = mesh.scale.x;
-  await tween(ctx, signal, ACTION_MAX_SECONDS, (k) => {
-    mesh.position.lerpVectors(from, ZERO, k);
-    mesh.scale.setScalar(s0 + (CARRY_SCALE - s0) * k);
-  });
-  mesh.position.copy(ZERO);
-  mesh.scale.setScalar(CARRY_SCALE);
-  ctx.bus.emit('robot:holding', { objectId: target });
+  try {
+    await tween(ctx, signal, ACTION_MAX_SECONDS, (k) => {
+      mesh.position.lerpVectors(from, ZERO, k);
+      mesh.scale.setScalar(s0 + (CARRY_SCALE - s0) * k);
+    });
+  } finally {
+    // 取消时同样落定在手上：holding 已指向 target，挂载与姿态必须与之一致。
+    mesh.position.copy(ZERO);
+    mesh.scale.setScalar(CARRY_SCALE);
+    ctx.bus.emit('robot:holding', { objectId: target });
+  }
   return { ok: true };
 }
 
@@ -188,10 +192,18 @@ async function dropInner(ctx, target, to, { signal, step = null, taskId = null }
   const from = mesh.position.clone();
   const to3 = new THREE.Vector3(wx - fg.position.x, fg.userData.top - fg.position.y + mesh.userData.halfH, wz - fg.position.z);
   const s0 = mesh.scale.x;
-  await tween(ctx, signal, ACTION_MAX_SECONDS, (k) => {
-    mesh.position.lerpVectors(from, to3, k);
-    mesh.scale.setScalar(s0 + (1 - s0) * k);
-  });
+  try {
+    await tween(ctx, signal, ACTION_MAX_SECONDS, (k) => {
+      mesh.position.lerpVectors(from, to3, k);
+      mesh.scale.setScalar(s0 + (1 - s0) * k);
+    });
+  } catch (e) {
+    // 放置被取消：物体退回手中，holding 保持 target，不留"挂在桌上却仍算持有"的中间态。
+    attachKeepWorld(ctx.robot.carryAnchor, mesh);
+    mesh.position.copy(ZERO);
+    mesh.scale.setScalar(CARRY_SCALE);
+    throw e;
+  }
   settleOnSurface(fg, mesh, wx, wz);
   ctx.holding = null;
   ctx.bus.emit('robot:holding', { objectId: null });

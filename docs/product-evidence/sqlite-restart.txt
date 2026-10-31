@@ -1,0 +1,4 @@
+after restart rows: 3
+3 帮我把红色水杯放到2号桌上 ['find:succeeded', 'grab:cancelled']
+2 帮我把红色水杯放到3号桌上 ['find:failed']
+1 帮我把红色水杯放到3号桌上 ['find:succeeded', 'grab:succeeded', 'drop:succeeded']
