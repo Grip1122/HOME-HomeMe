@@ -58,3 +58,9 @@ reference/hackerson/**/__pycache__/
 reference/hackerson/.pytest_cache/
 reference/hackerson/.pytest_cache/
 reference/hackerson/*.zip
+
+# robot-find 本地记忆包、SQLite 临时文件与模型缓存
+*.rfpack.json
+*.db-wal
+*.db-shm
+web/public/robot-find/models/*.splat
