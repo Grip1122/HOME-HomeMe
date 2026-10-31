@@ -1,0 +1,261 @@
+[
+  {
+    "path": "web/src/core/config.js",
+    "sha": "7f4c58886080a4e92c763f79087a1828c60b3024",
+    "size": 2139,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/core/eventbus.js",
+    "sha": "46dedabeb4969db0eb63c0673a453190328404e5",
+    "size": 1637,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/core/memory.js",
+    "sha": "a236c38aab5c4d0009e3660dbbc26c9e0d5347e5",
+    "size": 1934,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/core/sim.js",
+    "sha": "bb15c973e04783676502fc5c4ec03b846928df73",
+    "size": 851,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/core/spinning_cube.js",
+    "sha": "36611d96a78269fdac03b058c66afc7312859b85",
+    "size": 790,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/core/statemachine.js",
+    "sha": "0d0f908fee24837af4c981b2097d479ef4d08a41",
+    "size": 4257,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/core/taskqueue.js",
+    "sha": "b3c36be73026b5d5c3222123810cc3ff9f994bfa",
+    "size": 1053,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/core/ticker.js",
+    "sha": "c15b9da866cd92cb3778b2bd837f675bf2872da4",
+    "size": 1703,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/nav/__fixtures__/layout_A.nav.json",
+    "sha": "880958918646b7334ec06add856a1e75f003626f",
+    "size": 28900,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/nav/astar.js",
+    "sha": "56b0bc221d8723d9c9471a2d83b244ee083e7c4c",
+    "size": 6390,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/nav/grid.js",
+    "sha": "be0be6e0aea6dc874ceb5118cdc75f8abc9e6e8e",
+    "size": 5860,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/nav/route.js",
+    "sha": "d7296c1c6b1ad8551a0a3ed7d2a81d42275361d8",
+    "size": 3336,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/nav/walker.js",
+    "sha": "629b5552ed552aa074204c0f0a49724e59efd4de",
+    "size": 2311,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/actions.js",
+    "sha": "1f0e55bb34534ac40ef639fbc70cd6a8845677dd",
+    "size": 10777,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/executor.js",
+    "sha": "f2af78bbf433b264e803685669c2fe05ef3a7d03",
+    "size": 2605,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/kinematics.js",
+    "sha": "de52ca9ca17270a6ed612501e7229ddd437c8a8b",
+    "size": 6354,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/log-report.js",
+    "sha": "0f772a95c1575e9fb7b612710bbb691e64968b6d",
+    "size": 2226,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/pose-buffer.js",
+    "sha": "e35cdf74e0d72724763aa94303979df24ed7fe50",
+    "size": 3290,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/robot.js",
+    "sha": "f12583c9284ad40096c88919abc529e7012312f2",
+    "size": 4433,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/testkit.js",
+    "sha": "675332be4739a7674798bdd69d295c1249d0c69f",
+    "size": 1519,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/world-port.js",
+    "sha": "109e97fcea749b9c5e3538a834ccaf75395cb978",
+    "size": 3576,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/src/robot/world.js",
+    "sha": "59d24fb27a048beaec784ce8c1bb14c940d3bcab",
+    "size": 2932,
+    "pr": 20,
+    "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+  },
+  {
+    "path": "web/public/layouts/layout_restaurant.json",
+    "sha": "c741e0b2984605620a989e202d6cb9aab69426e2",
+    "size": 63241,
+    "pr": 23,
+    "ref": "b41d6793e2dde5cc783024421aae569941743211"
+  },
+  {
+    "path": "web/public/scene-data/restaurant_scene_config.json",
+    "sha": "2bec16d7b9ed62cfcc19603950bbed3364a1a165",
+    "size": 1625,
+    "pr": 23,
+    "ref": "b41d6793e2dde5cc783024421aae569941743211"
+  },
+  {
+    "path": "web/public/scene-data/restaurant_semantics.json",
+    "sha": "b0d4ed5bb1f916745a3fe957d6f31405b6738deb",
+    "size": 62508,
+    "pr": 23,
+    "ref": "b41d6793e2dde5cc783024421aae569941743211"
+  },
+  {
+    "path": "web/src/scene/restaurant-scene.js",
+    "sha": "07f79a12ddd72809ef082c25c2e2342a6a0ab848",
+    "size": 8363,
+    "pr": 23,
+    "ref": "b41d6793e2dde5cc783024421aae569941743211"
+  },
+  {
+    "path": "web/src/ui/chat.js",
+    "sha": "50814938a9f415ef1d4900fd7149bd5d84ea7d6e",
+    "size": 5455,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/compare.js",
+    "sha": "f59368d2527ae4ef0f573c4310661534320b5ff3",
+    "size": 7554,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/copy.js",
+    "sha": "fe4a198be97de96c723154e434633a82d8b72f1c",
+    "size": 6762,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/director.js",
+    "sha": "c0dd304b15a0af268fdd87dc1e9b47f6f830770d",
+    "size": 3927,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/hud.css",
+    "sha": "87f1aa4455854ec953bff8861e5dde4a05c6594e",
+    "size": 31352,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/hud.js",
+    "sha": "6daf1d6ffd145ac73bb9b9d7d097c4482438333e",
+    "size": 16556,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/index.mjs",
+    "sha": "8c746816d504e64964b3c4e50bbd93ac0f7cdd31",
+    "size": 801,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/memory-panel.js",
+    "sha": "deb92e2384a1c256c666387effb8413f67815cf3",
+    "size": 7327,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/status.js",
+    "sha": "696151ad3f857edc2319cbb279516e91a48cf627",
+    "size": 5445,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/timeline.js",
+    "sha": "39ffc5f78928c9e9cd8946ffc13bc5f7466e3f98",
+    "size": 4845,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  },
+  {
+    "path": "web/src/ui/voice.js",
+    "sha": "97eb49a1d07b1580b8d744f6028796e4b4bea9b3",
+    "size": 5020,
+    "pr": 7,
+    "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+  }
+]

@@ -1,0 +1,1498 @@
+{
+  "client_date": "2026-11-01",
+  "scope": "Pinned unmerged A+B+C sources; real A bus/executor, B restaurant layout/proxies, C DOM HUD and new GLB geometry. No main-page wiring, GPU rendering, texture pixel decoding, HTTP planner, hardware FPS or joint animation claim.",
+  "checks": [
+    {
+      "name": "real bus throttles moved to 10Hz and never drops one-shot events",
+      "ok": true,
+      "movedEvents": 11,
+      "oneShotEvents": 30
+    },
+    {
+      "name": "HUD destroy removes subscriptions from A real bus with no off method",
+      "ok": true,
+      "detachedState": "待机 · 我在呢"
+    },
+    {
+      "name": "all five real actions drive the same restaurant model, anchor, memory and HUD",
+      "ok": true,
+      "steps": 5,
+      "dropY": 0.8164929297566415,
+      "eventCount": 58
+    },
+    {
+      "name": "real failed first action cannot count as a completed step or 100 percent",
+      "ok": true,
+      "result": {
+        "ok": false,
+        "reason": "not_holding",
+        "steps": 1
+      },
+      "hud": {
+        "state": "任务中断 · 已完成 0/1 步",
+        "step": "任务中断 · 已完成 0/1 步",
+        "progress": "0%",
+        "timeline": "放置物品 · 红色水杯失败 · 请查看任务日志33ms任务中断 · 已完成 0/1 步",
+        "memory": ""
+      }
+    }
+  ],
+  "fiveActions": {
+    "result": {
+      "ok": true,
+      "reason": null,
+      "steps": 5
+    },
+    "actions": [
+      {
+        "taskId": "real-five",
+        "index": 0,
+        "action": "go",
+        "target": "restaurant",
+        "ok": true,
+        "ms": 33
+      },
+      {
+        "taskId": "real-five",
+        "index": 1,
+        "action": "observe",
+        "target": "restaurant",
+        "ok": true,
+        "ms": 67
+      },
+      {
+        "taskId": "real-five",
+        "index": 2,
+        "action": "find",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 2533
+      },
+      {
+        "taskId": "real-five",
+        "index": 3,
+        "action": "grab",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 633
+      },
+      {
+        "taskId": "real-five",
+        "index": 4,
+        "action": "drop",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 600
+      }
+    ],
+    "anchor": {
+      "position": [
+        0,
+        0.55,
+        0.4
+      ],
+      "existingPrototypeWrapper": [
+        0,
+        0.624,
+        0.36
+      ],
+      "requiresProductionUnification": true
+    },
+    "held": {
+      "parent": "carryAnchor",
+      "local": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.4,
+      "world": [
+        -2.377151294057687,
+        0.55,
+        -2.4389602187582384
+      ]
+    },
+    "drop": {
+      "furniture": "table_01",
+      "position": [
+        -2.464851494614996,
+        0.8164929297566415,
+        -2.5931291897672475
+      ],
+      "expectedY": 0.8164929297566415
+    },
+    "attachments": [
+      {
+        "parent": "carryAnchor",
+        "before": [
+          -2.240583410372418,
+          0.8164929297566415,
+          -2.6119564120373613
+        ],
+        "after": [
+          -2.2405834103724183,
+          0.8164929297566415,
+          -2.6119564120373613
+        ],
+        "error": 4.440892098500626e-16
+      },
+      {
+        "parent": "furniture:table_01",
+        "before": [
+          -2.4955256190378066,
+          0.55,
+          -2.5034658302600867
+        ],
+        "after": [
+          -2.4955256190378066,
+          0.55,
+          -2.5034658302600867
+        ],
+        "error": 0
+      },
+      {
+        "parent": "furniture:table_01",
+        "before": [
+          -2.464851494614996,
+          0.8164929297566415,
+          -2.5931291897672475
+        ],
+        "after": [
+          -2.464851494614996,
+          0.8164929297566415,
+          -2.5931291897672475
+        ],
+        "error": 0
+      }
+    ],
+    "hud": {
+      "state": "待机 · 我在呢",
+      "step": "任务完成 · 5 步 · 4.9s",
+      "progress": "100%",
+      "timeline": "前往目标 · restaurant成功33ms环顾观察 · restaurant成功67ms查找目标 · 红色水杯成功2.5s抓取物品 · 红色水杯成功633ms放置物品 · 红色水杯成功600ms任务完成 · 5 步 · 4.9s",
+      "memory": "白色手机restaurant · table_0780%橙色笔记本restaurant · table_0980%黑框眼镜restaurant · counter_0180%黑色遥控器restaurant · long_table_0180%红色水杯restaurant · table_0185%黄色钥匙restaurant · table_0580%蓝色书restaurant · table_1080%绿色水瓶restaurant · table_0380%"
+    },
+    "movedEvents": 25,
+    "model": {
+      "modelCapabilities": {
+        "rootTranslation": true,
+        "rootYaw": true,
+        "bones": 0,
+        "animationClips": 0,
+        "articulatedGrasp": false
+      },
+      "displayHeightMeters": 0.8272058947508332,
+      "geometryRadiusMeters": 0.25,
+      "requestedHeightMeters": 1.2,
+      "navigationRadiusMeters": 0.25,
+      "heightIsMeasured": false,
+      "verifiedGeometryRadius": 0.24999999999999997,
+      "three": "187",
+      "meshes": 1,
+      "animationClips": 0,
+      "mixer": "none",
+      "requestedClips": [
+        "Idle",
+        "Walking",
+        "Idle",
+        "Walking",
+        "Idle",
+        "Walking",
+        "Punch",
+        "Walking",
+        "Wave",
+        "ThumbsUp",
+        "Idle"
+      ]
+    },
+    "eventLog": [
+      {
+        "t": 0,
+        "name": "plan:request",
+        "payload": {
+          "query": "餐厅五动作验证",
+          "memoryEnabled": true
+        }
+      },
+      {
+        "t": 0,
+        "name": "plan:received",
+        "payload": {
+          "source": "script",
+          "steps": [
+            {
+              "action": "go",
+              "target": "restaurant"
+            },
+            {
+              "action": "observe",
+              "room": "restaurant"
+            },
+            {
+              "action": "find",
+              "target": "cup_red"
+            },
+            {
+              "action": "grab",
+              "target": "cup_red"
+            },
+            {
+              "action": "drop",
+              "target": "cup_red",
+              "to": "table_01"
+            }
+          ],
+          "latencyMs": 0
+        }
+      },
+      {
+        "t": 0,
+        "name": "task:start",
+        "payload": {
+          "taskId": "real-five",
+          "query": "餐厅五动作验证",
+          "source": "script"
+        }
+      },
+      {
+        "t": 0,
+        "name": "robot:state",
+        "payload": {
+          "from": "idle",
+          "to": "thinking",
+          "step": null,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 0,
+        "name": "task:say",
+        "payload": {
+          "text": "餐厅五动作检查",
+          "who": "robot"
+        }
+      },
+      {
+        "t": 0,
+        "name": "robot:state",
+        "payload": {
+          "from": "thinking",
+          "to": "walking",
+          "step": 0,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 33.333333333333336,
+        "name": "task:step",
+        "payload": {
+          "taskId": "real-five",
+          "index": 0,
+          "action": "go",
+          "target": "restaurant",
+          "ok": true,
+          "ms": 33
+        }
+      },
+      {
+        "t": 33.333333333333336,
+        "name": "robot:state",
+        "payload": {
+          "from": "walking",
+          "to": "scanning",
+          "step": 1,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 100,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "cup_red",
+          "room": "restaurant",
+          "confidence": 0.8,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 100,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "bottle_green",
+          "room": "restaurant",
+          "confidence": 0.8,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 100,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "remote_black",
+          "room": "restaurant",
+          "confidence": 0.8,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 100,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "keys_yellow",
+          "room": "restaurant",
+          "confidence": 0.8,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 100,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "phone_white",
+          "room": "restaurant",
+          "confidence": 0.8,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 100,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "notebook_orange",
+          "room": "restaurant",
+          "confidence": 0.8,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 100,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "book_blue",
+          "room": "restaurant",
+          "confidence": 0.8,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 100,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "glasses_black",
+          "room": "restaurant",
+          "confidence": 0.8,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 100,
+        "name": "task:step",
+        "payload": {
+          "taskId": "real-five",
+          "index": 1,
+          "action": "observe",
+          "target": "restaurant",
+          "ok": true,
+          "ms": 67
+        }
+      },
+      {
+        "t": 100,
+        "name": "robot:state",
+        "payload": {
+          "from": "scanning",
+          "to": "walking",
+          "step": 2,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 133.33333333333334,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.125,
+            0,
+            -0.125
+          ],
+          "yaw": 0.13333333333333333
+        }
+      },
+      {
+        "t": 266.6666666666667,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.125,
+            0,
+            -0.125
+          ],
+          "yaw": 0.6666666666666666
+        }
+      },
+      {
+        "t": 399.99999999999994,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.125,
+            0,
+            -0.125
+          ],
+          "yaw": 1.2
+        }
+      },
+      {
+        "t": 499.99999999999994,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.125,
+            0,
+            -0.125
+          ],
+          "yaw": 1.5999999999999999
+        }
+      },
+      {
+        "t": 600,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.125,
+            0,
+            -0.125
+          ],
+          "yaw": 1.9999999999999998
+        }
+      },
+      {
+        "t": 700,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.125,
+            0,
+            -0.125
+          ],
+          "yaw": 2.4
+        }
+      },
+      {
+        "t": 833.3333333333333,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.125,
+            0,
+            -0.125
+          ],
+          "yaw": 2.8966139904629293
+        }
+      },
+      {
+        "t": 933.3333333333333,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.09589572499564,
+            0,
+            -0.24141710001743988
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1033.3333333333333,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.06679144999128,
+            0,
+            -0.35783420003487976
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1133.3333333333335,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.03768717498692,
+            0,
+            -0.47425130005231964
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1233.333333333334,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -3.00858289998256,
+            0,
+            -0.5906684000697595
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1333.3333333333342,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.9794786249782,
+            0,
+            -0.7070855000871994
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1433.3333333333344,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.95037434997384,
+            0,
+            -0.8235026001046393
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1533.3333333333348,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.92127007496948,
+            0,
+            -0.9399197001220791
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1633.333333333335,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.8921657999651202,
+            0,
+            -1.056336800139519
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1733.3333333333353,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.8630615249607603,
+            0,
+            -1.172753900156959
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1833.3333333333358,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.8339572499564003,
+            0,
+            -1.2891710001743988
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 1933.333333333336,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.8048529749520403,
+            0,
+            -1.4055881001918387
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 2033.333333333336,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.7757486999476804,
+            0,
+            -1.5220052002092785
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 2166.666666666669,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.736942999941867,
+            0,
+            -1.6772280002325317
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 2300.000000000002,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.698137299936054,
+            0,
+            -1.8324508002557849
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 2433.3333333333344,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.6593315999302405,
+            0,
+            -1.987673600279038
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 2566.6666666666674,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.625,
+            0,
+            -2.1249999999999996
+          ],
+          "yaw": 2.896613990462929
+        }
+      },
+      {
+        "t": 2566.6666666666674,
+        "name": "robot:state",
+        "payload": {
+          "from": "walking",
+          "to": "scanning",
+          "step": 2,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 2633.333333333334,
+        "name": "memory:hit",
+        "payload": {
+          "objectId": "cup_red",
+          "confidence": 0.85
+        }
+      },
+      {
+        "t": 2633.333333333334,
+        "name": "memory:updated",
+        "payload": {
+          "objectId": "cup_red",
+          "room": "restaurant",
+          "confidence": 0.85,
+          "status": "fresh"
+        }
+      },
+      {
+        "t": 2633.333333333334,
+        "name": "task:step",
+        "payload": {
+          "taskId": "real-five",
+          "index": 2,
+          "action": "find",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 2533
+        }
+      },
+      {
+        "t": 2700,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.625,
+            0,
+            -2.125
+          ],
+          "yaw": 2.6299473237962623
+        }
+      },
+      {
+        "t": 2766.6666666666665,
+        "name": "robot:state",
+        "payload": {
+          "from": "scanning",
+          "to": "walking",
+          "step": 3,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 2766.6666666666665,
+        "name": "robot:state",
+        "payload": {
+          "from": "walking",
+          "to": "picking",
+          "step": 3,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 3266.6666666666647,
+        "name": "robot:holding",
+        "payload": {
+          "objectId": "cup_red"
+        }
+      },
+      {
+        "t": 3266.6666666666647,
+        "name": "task:step",
+        "payload": {
+          "taskId": "real-five",
+          "index": 3,
+          "action": "grab",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 633
+        }
+      },
+      {
+        "t": 3266.6666666666647,
+        "name": "robot:state",
+        "payload": {
+          "from": "picking",
+          "to": "walking",
+          "step": 4,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 3299.999999999998,
+        "name": "robot:moved",
+        "payload": {
+          "pos": [
+            -2.625,
+            0,
+            -2.125
+          ],
+          "yaw": 2.606665264694244
+        }
+      },
+      {
+        "t": 3366.6666666666647,
+        "name": "robot:state",
+        "payload": {
+          "from": "walking",
+          "to": "placing",
+          "step": 4,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 3866.666666666663,
+        "name": "robot:holding",
+        "payload": {
+          "objectId": null
+        }
+      },
+      {
+        "t": 3866.666666666663,
+        "name": "task:step",
+        "payload": {
+          "taskId": "real-five",
+          "index": 4,
+          "action": "drop",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 600
+        }
+      },
+      {
+        "t": 3866.666666666663,
+        "name": "robot:state",
+        "payload": {
+          "from": "placing",
+          "to": "celebrating",
+          "step": null,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 4866.666666666659,
+        "name": "robot:state",
+        "payload": {
+          "from": "celebrating",
+          "to": "idle",
+          "step": null,
+          "taskId": "real-five"
+        }
+      },
+      {
+        "t": 4866.666666666659,
+        "name": "task:end",
+        "payload": {
+          "taskId": "real-five",
+          "ok": true,
+          "steps": 5,
+          "durationMs": 4867,
+          "corrected": false
+        }
+      }
+    ]
+  },
+  "failure": {
+    "result": {
+      "ok": false,
+      "reason": "not_holding",
+      "steps": 1
+    },
+    "hud": {
+      "state": "任务中断 · 已完成 0/1 步",
+      "step": "任务中断 · 已完成 0/1 步",
+      "progress": "0%",
+      "timeline": "放置物品 · 红色水杯失败 · 请查看任务日志33ms任务中断 · 已完成 0/1 步",
+      "memory": ""
+    },
+    "eventLog": [
+      {
+        "t": 0,
+        "name": "plan:request",
+        "payload": {
+          "query": "餐厅五动作验证",
+          "memoryEnabled": true
+        }
+      },
+      {
+        "t": 0,
+        "name": "plan:received",
+        "payload": {
+          "source": "script",
+          "steps": [
+            {
+              "action": "drop",
+              "target": "cup_red",
+              "to": "table_01"
+            }
+          ],
+          "latencyMs": 0
+        }
+      },
+      {
+        "t": 0,
+        "name": "task:start",
+        "payload": {
+          "taskId": "real-failure",
+          "query": "餐厅五动作验证",
+          "source": "script"
+        }
+      },
+      {
+        "t": 0,
+        "name": "robot:state",
+        "payload": {
+          "from": "idle",
+          "to": "thinking",
+          "step": null,
+          "taskId": "real-failure"
+        }
+      },
+      {
+        "t": 0,
+        "name": "robot:blocked",
+        "payload": {
+          "reason": "not_holding",
+          "at": [
+            -3.125,
+            0,
+            -0.125
+          ]
+        }
+      },
+      {
+        "t": 33.333333333333336,
+        "name": "task:step",
+        "payload": {
+          "taskId": "real-failure",
+          "index": 0,
+          "action": "drop",
+          "target": "cup_red",
+          "ok": false,
+          "ms": 33
+        }
+      },
+      {
+        "t": 33.333333333333336,
+        "name": "robot:state",
+        "payload": {
+          "from": "thinking",
+          "to": "confused",
+          "step": null,
+          "taskId": "real-failure"
+        }
+      },
+      {
+        "t": 1233.333333333334,
+        "name": "robot:state",
+        "payload": {
+          "from": "confused",
+          "to": "idle",
+          "step": null,
+          "taskId": "real-failure"
+        }
+      },
+      {
+        "t": 1233.333333333334,
+        "name": "task:end",
+        "payload": {
+          "taskId": "real-failure",
+          "ok": false,
+          "steps": 1,
+          "durationMs": 1233,
+          "corrected": false
+        }
+      }
+    ]
+  },
+  "verified_source_lock": {
+    "modelSHA256": "f5dcae49c12905548eb59b9d2960ce36920f3088afc374275074bad0109276e2",
+    "sources": [
+      {
+        "path": "web/src/core/config.js",
+        "gitBlob": "7f4c58886080a4e92c763f79087a1828c60b3024",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/eventbus.js",
+        "gitBlob": "46dedabeb4969db0eb63c0673a453190328404e5",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/memory.js",
+        "gitBlob": "a236c38aab5c4d0009e3660dbbc26c9e0d5347e5",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/sim.js",
+        "gitBlob": "bb15c973e04783676502fc5c4ec03b846928df73",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/spinning_cube.js",
+        "gitBlob": "36611d96a78269fdac03b058c66afc7312859b85",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/statemachine.js",
+        "gitBlob": "0d0f908fee24837af4c981b2097d479ef4d08a41",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/taskqueue.js",
+        "gitBlob": "b3c36be73026b5d5c3222123810cc3ff9f994bfa",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/ticker.js",
+        "gitBlob": "c15b9da866cd92cb3778b2bd837f675bf2872da4",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/__fixtures__/layout_A.nav.json",
+        "gitBlob": "880958918646b7334ec06add856a1e75f003626f",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/astar.js",
+        "gitBlob": "56b0bc221d8723d9c9471a2d83b244ee083e7c4c",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/grid.js",
+        "gitBlob": "be0be6e0aea6dc874ceb5118cdc75f8abc9e6e8e",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/route.js",
+        "gitBlob": "d7296c1c6b1ad8551a0a3ed7d2a81d42275361d8",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/walker.js",
+        "gitBlob": "629b5552ed552aa074204c0f0a49724e59efd4de",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/actions.js",
+        "gitBlob": "1f0e55bb34534ac40ef639fbc70cd6a8845677dd",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/executor.js",
+        "gitBlob": "f2af78bbf433b264e803685669c2fe05ef3a7d03",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/kinematics.js",
+        "gitBlob": "de52ca9ca17270a6ed612501e7229ddd437c8a8b",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/log-report.js",
+        "gitBlob": "0f772a95c1575e9fb7b612710bbb691e64968b6d",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/pose-buffer.js",
+        "gitBlob": "e35cdf74e0d72724763aa94303979df24ed7fe50",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/robot.js",
+        "gitBlob": "f12583c9284ad40096c88919abc529e7012312f2",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/testkit.js",
+        "gitBlob": "675332be4739a7674798bdd69d295c1249d0c69f",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/world-port.js",
+        "gitBlob": "109e97fcea749b9c5e3538a834ccaf75395cb978",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/world.js",
+        "gitBlob": "59d24fb27a048beaec784ce8c1bb14c940d3bcab",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/public/layouts/layout_restaurant.json",
+        "gitBlob": "c741e0b2984605620a989e202d6cb9aab69426e2",
+        "baselinePR": 23,
+        "baselineRef": "b41d6793e2dde5cc783024421aae569941743211",
+        "actualRef": "b41d6793e2dde5cc783024421aae569941743211"
+      },
+      {
+        "path": "web/public/scene-data/restaurant_scene_config.json",
+        "gitBlob": "2bec16d7b9ed62cfcc19603950bbed3364a1a165",
+        "baselinePR": 23,
+        "baselineRef": "b41d6793e2dde5cc783024421aae569941743211",
+        "actualRef": "b41d6793e2dde5cc783024421aae569941743211"
+      },
+      {
+        "path": "web/public/scene-data/restaurant_semantics.json",
+        "gitBlob": "b0d4ed5bb1f916745a3fe957d6f31405b6738deb",
+        "baselinePR": 23,
+        "baselineRef": "b41d6793e2dde5cc783024421aae569941743211",
+        "actualRef": "b41d6793e2dde5cc783024421aae569941743211"
+      },
+      {
+        "path": "web/src/scene/restaurant-scene.js",
+        "gitBlob": "07f79a12ddd72809ef082c25c2e2342a6a0ab848",
+        "baselinePR": 23,
+        "baselineRef": "b41d6793e2dde5cc783024421aae569941743211",
+        "actualRef": "b41d6793e2dde5cc783024421aae569941743211"
+      },
+      {
+        "path": "web/src/ui/chat.js",
+        "gitBlob": "50814938a9f415ef1d4900fd7149bd5d84ea7d6e",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/compare.js",
+        "gitBlob": "f59368d2527ae4ef0f573c4310661534320b5ff3",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/copy.js",
+        "gitBlob": "3ac5f8b77035f6cb72f68dc2653e740267eed722",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "91c682e2fcc51249e4b914395dee3aa273082024"
+      },
+      {
+        "path": "web/src/ui/director.js",
+        "gitBlob": "c0dd304b15a0af268fdd87dc1e9b47f6f830770d",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/hud.css",
+        "gitBlob": "87f1aa4455854ec953bff8861e5dde4a05c6594e",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/hud.js",
+        "gitBlob": "314df796d0294291d5726cb8e14260b09c3bf833",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "91c682e2fcc51249e4b914395dee3aa273082024"
+      },
+      {
+        "path": "web/src/ui/index.mjs",
+        "gitBlob": "8c746816d504e64964b3c4e50bbd93ac0f7cdd31",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/memory-panel.js",
+        "gitBlob": "deb92e2384a1c256c666387effb8413f67815cf3",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/status.js",
+        "gitBlob": "5459072dcdd845d862368e3f93f8480245aaea98",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "91c682e2fcc51249e4b914395dee3aa273082024"
+      },
+      {
+        "path": "web/src/ui/timeline.js",
+        "gitBlob": "4614355bbaeb2311aa79bedb09184cb9aa0f1910",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "91c682e2fcc51249e4b914395dee3aa273082024"
+      },
+      {
+        "path": "web/src/ui/voice.js",
+        "gitBlob": "97eb49a1d07b1580b8d744f6028796e4b4bea9b3",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      }
+    ]
+  },
+  "source_references": [
+    {
+      "path": "web/src/core/config.js",
+      "sha": "7f4c58886080a4e92c763f79087a1828c60b3024",
+      "size": 2139,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/core/eventbus.js",
+      "sha": "46dedabeb4969db0eb63c0673a453190328404e5",
+      "size": 1637,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/core/memory.js",
+      "sha": "a236c38aab5c4d0009e3660dbbc26c9e0d5347e5",
+      "size": 1934,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/core/sim.js",
+      "sha": "bb15c973e04783676502fc5c4ec03b846928df73",
+      "size": 851,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/core/spinning_cube.js",
+      "sha": "36611d96a78269fdac03b058c66afc7312859b85",
+      "size": 790,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/core/statemachine.js",
+      "sha": "0d0f908fee24837af4c981b2097d479ef4d08a41",
+      "size": 4257,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/core/taskqueue.js",
+      "sha": "b3c36be73026b5d5c3222123810cc3ff9f994bfa",
+      "size": 1053,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/core/ticker.js",
+      "sha": "c15b9da866cd92cb3778b2bd837f675bf2872da4",
+      "size": 1703,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/nav/__fixtures__/layout_A.nav.json",
+      "sha": "880958918646b7334ec06add856a1e75f003626f",
+      "size": 28900,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/nav/astar.js",
+      "sha": "56b0bc221d8723d9c9471a2d83b244ee083e7c4c",
+      "size": 6390,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/nav/grid.js",
+      "sha": "be0be6e0aea6dc874ceb5118cdc75f8abc9e6e8e",
+      "size": 5860,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/nav/route.js",
+      "sha": "d7296c1c6b1ad8551a0a3ed7d2a81d42275361d8",
+      "size": 3336,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/nav/walker.js",
+      "sha": "629b5552ed552aa074204c0f0a49724e59efd4de",
+      "size": 2311,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/actions.js",
+      "sha": "1f0e55bb34534ac40ef639fbc70cd6a8845677dd",
+      "size": 10777,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/executor.js",
+      "sha": "f2af78bbf433b264e803685669c2fe05ef3a7d03",
+      "size": 2605,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/kinematics.js",
+      "sha": "de52ca9ca17270a6ed612501e7229ddd437c8a8b",
+      "size": 6354,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/log-report.js",
+      "sha": "0f772a95c1575e9fb7b612710bbb691e64968b6d",
+      "size": 2226,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/pose-buffer.js",
+      "sha": "e35cdf74e0d72724763aa94303979df24ed7fe50",
+      "size": 3290,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/robot.js",
+      "sha": "f12583c9284ad40096c88919abc529e7012312f2",
+      "size": 4433,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/testkit.js",
+      "sha": "675332be4739a7674798bdd69d295c1249d0c69f",
+      "size": 1519,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/world-port.js",
+      "sha": "109e97fcea749b9c5e3538a834ccaf75395cb978",
+      "size": 3576,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/src/robot/world.js",
+      "sha": "59d24fb27a048beaec784ce8c1bb14c940d3bcab",
+      "size": 2932,
+      "pr": 20,
+      "ref": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+    },
+    {
+      "path": "web/public/layouts/layout_restaurant.json",
+      "sha": "c741e0b2984605620a989e202d6cb9aab69426e2",
+      "size": 63241,
+      "pr": 23,
+      "ref": "b41d6793e2dde5cc783024421aae569941743211"
+    },
+    {
+      "path": "web/public/scene-data/restaurant_scene_config.json",
+      "sha": "2bec16d7b9ed62cfcc19603950bbed3364a1a165",
+      "size": 1625,
+      "pr": 23,
+      "ref": "b41d6793e2dde5cc783024421aae569941743211"
+    },
+    {
+      "path": "web/public/scene-data/restaurant_semantics.json",
+      "sha": "b0d4ed5bb1f916745a3fe957d6f31405b6738deb",
+      "size": 62508,
+      "pr": 23,
+      "ref": "b41d6793e2dde5cc783024421aae569941743211"
+    },
+    {
+      "path": "web/src/scene/restaurant-scene.js",
+      "sha": "07f79a12ddd72809ef082c25c2e2342a6a0ab848",
+      "size": 8363,
+      "pr": 23,
+      "ref": "b41d6793e2dde5cc783024421aae569941743211"
+    },
+    {
+      "path": "web/src/ui/chat.js",
+      "sha": "50814938a9f415ef1d4900fd7149bd5d84ea7d6e",
+      "size": 5455,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/compare.js",
+      "sha": "f59368d2527ae4ef0f573c4310661534320b5ff3",
+      "size": 7554,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/copy.js",
+      "sha": "fe4a198be97de96c723154e434633a82d8b72f1c",
+      "size": 6762,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/director.js",
+      "sha": "c0dd304b15a0af268fdd87dc1e9b47f6f830770d",
+      "size": 3927,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/hud.css",
+      "sha": "87f1aa4455854ec953bff8861e5dde4a05c6594e",
+      "size": 31352,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/hud.js",
+      "sha": "6daf1d6ffd145ac73bb9b9d7d097c4482438333e",
+      "size": 16556,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/index.mjs",
+      "sha": "8c746816d504e64964b3c4e50bbd93ac0f7cdd31",
+      "size": 801,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/memory-panel.js",
+      "sha": "deb92e2384a1c256c666387effb8413f67815cf3",
+      "size": 7327,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/status.js",
+      "sha": "696151ad3f857edc2319cbb279516e91a48cf627",
+      "size": 5445,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/timeline.js",
+      "sha": "39ffc5f78928c9e9cd8946ffc13bc5f7466e3f98",
+      "size": 4845,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    },
+    {
+      "path": "web/src/ui/voice.js",
+      "sha": "97eb49a1d07b1580b8d744f6028796e4b4bea9b3",
+      "size": 5020,
+      "pr": 7,
+      "ref": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+    }
+  ]
+}

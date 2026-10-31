@@ -1,0 +1,351 @@
+{
+  "date": "2026-11-01",
+  "acceptance": "conditional_component_delivery; Task C not closed",
+  "sources": {
+    "A_PR20": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+    "B_PR23": "b41d6793e2dde5cc783024421aae569941743211",
+    "C_PR7_baseline": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+    "robot_PR27": "988faa389f67a362d1c0d465c6917cafbeeea292"
+  },
+  "hudFixes": [
+    "Release subscriptions via on() unsubscribe even when no off() exists",
+    "Count observed successful step results when end.steps includes attempted failures",
+    "Translate executor source=script as 预置脚本"
+  ],
+  "uiRegression": {
+    "files": 6,
+    "tests": 28,
+    "passed": true
+  },
+  "realBusCandidate": {
+    "checks": 4,
+    "passed": true,
+    "redBeforeFix": 2,
+    "stepActions": [
+      "go",
+      "observe",
+      "find",
+      "grab",
+      "drop"
+    ],
+    "anchor": [
+      0,
+      0.55,
+      0.4
+    ],
+    "droppedCupY": 0.8164929297566415,
+    "modelDisplay": {
+      "modelCapabilities": {
+        "rootTranslation": true,
+        "rootYaw": true,
+        "bones": 0,
+        "animationClips": 0,
+        "articulatedGrasp": false
+      },
+      "displayHeightMeters": 0.8272058947508332,
+      "geometryRadiusMeters": 0.25,
+      "requestedHeightMeters": 1.2,
+      "navigationRadiusMeters": 0.25,
+      "heightIsMeasured": false,
+      "verifiedGeometryRadius": 0.24999999999999997,
+      "three": "187",
+      "meshes": 1,
+      "animationClips": 0,
+      "mixer": "none",
+      "requestedClips": [
+        "Idle",
+        "Walking",
+        "Idle",
+        "Walking",
+        "Idle",
+        "Walking",
+        "Punch",
+        "Walking",
+        "Wave",
+        "ThumbsUp",
+        "Idle"
+      ]
+    }
+  },
+  "browser": {
+    "sceneSHA256": "db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "three": "170",
+    "averageFPS": 15.413780273904639,
+    "run": {
+      "result": {
+        "ok": true,
+        "reason": null,
+        "steps": 5
+      },
+      "wallDurationMs": 5519.100000008941,
+      "actions": [
+        {
+          "taskId": "browser-five-1",
+          "index": 0,
+          "action": "go",
+          "target": "restaurant",
+          "ok": true,
+          "ms": 0
+        },
+        {
+          "taskId": "browser-five-1",
+          "index": 1,
+          "action": "observe",
+          "target": "restaurant",
+          "ok": true,
+          "ms": 325
+        },
+        {
+          "taskId": "browser-five-1",
+          "index": 2,
+          "action": "find",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 2845
+        },
+        {
+          "taskId": "browser-five-1",
+          "index": 3,
+          "action": "grab",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 659
+        },
+        {
+          "taskId": "browser-five-1",
+          "index": 4,
+          "action": "drop",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 641
+        }
+      ],
+      "drop": {
+        "actual": [
+          -2.464851494614996,
+          0.8164929297566415,
+          -2.5931291897672475
+        ],
+        "expectedY": 0.8164929297566415,
+        "parentMatches": true
+      },
+      "anchor": [
+        0,
+        0.55,
+        0.4
+      ],
+      "averageFps": 15.413780273904639,
+      "frames": 87,
+      "hudProgress": "100%",
+      "textureCount": 2,
+      "ok": true
+    },
+    "scope": "Existing restaurant validation page with real bus/executor/HUD and static GLB; fixed input plan, no backend planner or joint animation; not the product main entry.",
+    "viewports": [
+      {
+        "panels": [
+          {
+            "className": "ht-side left",
+            "fraction": 0.21005673499267935,
+            "left": 16,
+            "right": 302.9375,
+            "width": 286.9375
+          },
+          {
+            "className": "ht-side right",
+            "fraction": 0.21005673499267935,
+            "left": 1063.4625244140625,
+            "right": 1350.4000244140625,
+            "width": 286.9375
+          }
+        ],
+        "viewport": [
+          1366,
+          768
+        ],
+        "passed": true,
+        "run": {
+          "result": {
+            "ok": true,
+            "reason": null,
+            "steps": 5
+          },
+          "wallDurationMs": 5519.100000008941,
+          "actions": [
+            {
+              "taskId": "browser-five-1",
+              "index": 0,
+              "action": "go",
+              "target": "restaurant",
+              "ok": true,
+              "ms": 0
+            },
+            {
+              "taskId": "browser-five-1",
+              "index": 1,
+              "action": "observe",
+              "target": "restaurant",
+              "ok": true,
+              "ms": 325
+            },
+            {
+              "taskId": "browser-five-1",
+              "index": 2,
+              "action": "find",
+              "target": "cup_red",
+              "ok": true,
+              "ms": 2845
+            },
+            {
+              "taskId": "browser-five-1",
+              "index": 3,
+              "action": "grab",
+              "target": "cup_red",
+              "ok": true,
+              "ms": 659
+            },
+            {
+              "taskId": "browser-five-1",
+              "index": 4,
+              "action": "drop",
+              "target": "cup_red",
+              "ok": true,
+              "ms": 641
+            }
+          ],
+          "drop": {
+            "actual": [
+              -2.464851494614996,
+              0.8164929297566415,
+              -2.5931291897672475
+            ],
+            "expectedY": 0.8164929297566415,
+            "parentMatches": true
+          },
+          "anchor": [
+            0,
+            0.55,
+            0.4
+          ],
+          "averageFps": 15.413780273904639,
+          "frames": 87,
+          "hudProgress": "100%",
+          "textureCount": 2,
+          "ok": true
+        }
+      },
+      {
+        "panels": [
+          {
+            "className": "ht-side left",
+            "fraction": 0.1625,
+            "left": 16,
+            "right": 328,
+            "width": 312
+          },
+          {
+            "className": "ht-side right",
+            "fraction": 0.1625,
+            "left": 1592,
+            "right": 1904,
+            "width": 312
+          }
+        ],
+        "viewport": [
+          1920,
+          1080
+        ],
+        "passed": true,
+        "run": {
+          "result": {
+            "ok": true,
+            "reason": null,
+            "steps": 5
+          },
+          "wallDurationMs": 6035.0999999940395,
+          "actions": [
+            {
+              "taskId": "browser-five-1",
+              "index": 0,
+              "action": "go",
+              "target": "restaurant",
+              "ok": true,
+              "ms": 0
+            },
+            {
+              "taskId": "browser-five-1",
+              "index": 1,
+              "action": "observe",
+              "target": "restaurant",
+              "ok": true,
+              "ms": 317
+            },
+            {
+              "taskId": "browser-five-1",
+              "index": 2,
+              "action": "find",
+              "target": "cup_red",
+              "ok": true,
+              "ms": 2897
+            },
+            {
+              "taskId": "browser-five-1",
+              "index": 3,
+              "action": "grab",
+              "target": "cup_red",
+              "ok": true,
+              "ms": 733
+            },
+            {
+              "taskId": "browser-five-1",
+              "index": 4,
+              "action": "drop",
+              "target": "cup_red",
+              "ok": true,
+              "ms": 732
+            }
+          ],
+          "drop": {
+            "actual": [
+              -2.464851494614996,
+              0.8164929297566415,
+              -2.5931291897672475
+            ],
+            "expectedY": 0.8164929297566415,
+            "parentMatches": true
+          },
+          "anchor": [
+            0,
+            0.55,
+            0.4
+          ],
+          "averageFps": 12.332826139184753,
+          "frames": 77,
+          "hudProgress": "100%",
+          "textureCount": 2,
+          "ok": true
+        }
+      }
+    ]
+  },
+  "modelPermission": {
+    "author": "sen",
+    "source": "Self-modeled, per author statement",
+    "grant": "Only for HOME project use and distribution in this repository; no general open-source license",
+    "record": "https://github.com/Grip1122/HOME-HomeMe/blob/feat/robot-fbx-v1/docs/task-c/robot-fbx-20261101/model-usage.md"
+  },
+  "blenderDraft": {
+    "file": "build_robot_blender.py",
+    "status": "excluded_from_usable_modeling_program_acceptance",
+    "reason": "Hardcoded humanoid boxes, shape/dimensions/up-axis mismatch; no rig or export; do not execute as model deliverable"
+  },
+  "remaining": [
+    "Jesu integrates A/B/C and asset adapter into the actual product entry; do not nest legacy robot wrappers or mix Three instances",
+    "Re-test on the intended 1650 discrete GPU and production browser/resolutions",
+    "Review actual scene alignment and visual grasp behavior on the accepted layout/resource pair",
+    "No independent head/mast/wheel/grasp articulation exists in the single-mesh asset; decide whether logical five-action support suffices",
+    "Original old-building scan provenance and original four-candidate exclusion reasons remain separate unresolved historical archive items"
+  ],
+  "hudFixCommit": "91c682e2fcc51249e4b914395dee3aa273082024"
+}

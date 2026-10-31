@@ -1,0 +1,59 @@
+
+ RUN  v5.0.5 D:/黑客松/HOME-HomeMe_PR7/web
+
+ ❯ src/ui/hud.contract.test.js (2 tests | 1 failed) 147ms
+   ❯ HUD · event contract compatibility (2)
+     ✓ only subscribes to and emits event names declared in contracts/events.md 104ms
+     × uses only contract fields in the status path 42ms
+ ✓ src/ui/timeline.test.js (4 tests) 171ms
+ ✓ src/ui/compare.test.js (4 tests) 179ms
+ ✓ src/ui/interaction.test.js (5 tests) 203ms
+ ❯ src/ui/status.test.js (6 tests | 1 failed) 218ms
+   ❯ Status · official contract (6)
+     × reads robot:state.to for idle / walking / celebrating / error 106ms
+     ✓ does not keep a stale success state when to is missing 33ms
+     ✓ keeps progress below 100% for a failed task 31ms
+     ✓ sets 100% only for an ok task 17ms
+     ✓ handles missing task:end.ok without claiming success 14ms
+     ✓ marks malformed task:step payloads as data errors 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/hud.contract.test.js > HUD · event contract compatibility > uses only contract fields in the status path
+AssertionError: expected '状态未知' to contain '前往中'
+
+Expected: "前往中"
+Received: "状态未知"
+
+ ❯ src/ui/hud.contract.test.js:93:64
+     91|     bus.emit("task:start", { taskId: "t1", query: "找钥匙", source: "rule…
+     92|     bus.emit("robot:state", { from: "idle", to: "walking", step: 0, ta…
+     93|     expect(hud.el.querySelector(".ht-state-text").textContent).toConta…
+       |                                                                ^
+     94|     bus.emit("task:step", { taskId: "t1", index: 0, action: "go", targ…
+     95|     bus.emit("task:end", { taskId: "t1", ok: true, steps: 1, durationM…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/ui/status.test.js > Status · official contract > reads robot:state.to for idle / walking / celebrating / error
+AssertionError: expected '状态未知' to contain '待机'
+
+Expected: "待机"
+Received: "状态未知"
+
+ ❯ src/ui/status.test.js:54:66
+     52|     ]) {
+     53|       bus.emit("robot:state", { from: "idle", to, step: 0, taskId: "t1…
+     54|       expect(hud.el.querySelector(".ht-state-text").textContent).toCon…
+       |                                                                  ^
+     55|     }
+     56|     hud.destroy();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  2 failed | 19 passed (21)
+   Start at  13:46:43
+   Duration  1.65s (environment 82%, tests 13%, import 2%, transform 2%, worker 1%)
+EXIT_CODE=1

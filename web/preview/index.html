@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>小方 HomeTwin · 设计 C HUD 预览</title>
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="../src/ui/hud.css" />
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 52% 35%, #3b2a1d 0%, #1b1410 42%, #0b0806 100%);
+    font-family: "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+  }
+  #ht-scene {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+  }
+  #ht-root { position: fixed; inset: 0; }
+  #ht-error {
+    display: none;
+    position: fixed; left: 16px; right: 16px; bottom: 16px;
+    z-index: 999;
+    max-height: 40vh; overflow: auto;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: #2a1210;
+    color: #ffb9ae;
+    border: 1px solid rgba(255, 120, 100, .35);
+    font: 11px/1.6 "Cascadia Code", Consolas, monospace;
+    white-space: pre-wrap;
+  }
+</style>
+<script>
+  window.__previewErrors = [];
+  function __showPreviewError(message) {
+    window.__previewErrors.push(String(message));
+    var el = document.getElementById("ht-error");
+    if (el) {
+      el.style.display = "block";
+      el.textContent = window.__previewErrors.join("\n\n");
+    }
+  }
+  window.addEventListener("error", function (e) {
+    __showPreviewError((e.error && e.error.stack) || e.message || "脚本错误");
+  });
+  window.addEventListener("unhandledrejection", function (e) {
+    __showPreviewError("Promise: " + ((e.reason && e.reason.stack) || e.reason));
+  });
+</script>
+</head>
+<body>
+<canvas id="ht-scene"></canvas>
+<div id="ht-root"></div>
+<pre id="ht-error"></pre>
+
+<script src="../src/ui/copy.js"></script>
+<script src="../src/ui/chat.js"></script>
+<script src="../src/ui/status.js"></script>
+<script src="../src/ui/memory-panel.js"></script>
+<script src="../src/ui/timeline.js"></script>
+<script src="../src/ui/compare.js"></script>
+<script src="../src/ui/voice.js"></script>
+<script src="../src/ui/director.js"></script>
+<script src="../src/ui/hud.js"></script>
+<script src="scene.js"></script>
+<script src="preview.js"></script>
+</body>
+</html>

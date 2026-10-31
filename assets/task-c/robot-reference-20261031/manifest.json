@@ -1,0 +1,539 @@
+{
+  "scope": "Robot visual references and unexecuted Blender prototype source; not an integrated model/rig/texture delivery",
+  "permission": {
+    "status": "user_confirmed_permission",
+    "statement": "都许可",
+    "confirmed_date": "2026-10-31",
+    "purpose": "Upload the supplied scene/reference materials to this project as requested by the user",
+    "author": null,
+    "source_url": null,
+    "specific_license_or_spdx": null,
+    "documentary_proof_provided": false,
+    "note": "User permission confirmation is recorded separately from an identified public/open-source license. No CC/MIT license is inferred for the reference images or scan."
+  },
+  "files": [
+    {
+      "original_name": "前.jpg",
+      "repository_name": "front.jpg",
+      "bytes": 295431,
+      "sha256": "b8c901fc9c3339f342a2af61057077e2246beaeb041025e73fe37e36fe4a1b7e",
+      "path": "assets/task-c/robot-reference-20261031/front.jpg",
+      "role": "visual_reference_not_material_texture",
+      "physical_dimensions_verified": false
+    },
+    {
+      "original_name": "顶.jpg",
+      "repository_name": "top.jpg",
+      "bytes": 1640737,
+      "sha256": "45b522780e832180524b451b9027c9cf2d6f8d44b7a3b82a0d8eb35f03c9eb99",
+      "path": "assets/task-c/robot-reference-20261031/top.jpg",
+      "role": "visual_reference_not_material_texture",
+      "physical_dimensions_verified": false
+    },
+    {
+      "original_name": "左.png",
+      "repository_name": "left.png",
+      "bytes": 1000290,
+      "sha256": "ffb7753bda1d3109cbc1b4b41a31e9ab7df183b4b90376831fd087d360c0cbb6",
+      "path": "assets/task-c/robot-reference-20261031/left.png",
+      "role": "visual_reference_not_material_texture",
+      "physical_dimensions_verified": false
+    },
+    {
+      "original_name": "右.png",
+      "repository_name": "right.png",
+      "bytes": 1331872,
+      "sha256": "c654011b55b3607cb88146749fc689c1f1d9dd8b40f5563d82e9642cd5cc7cb9",
+      "path": "assets/task-c/robot-reference-20261031/right.png",
+      "role": "visual_reference_not_material_texture",
+      "physical_dimensions_verified": false
+    },
+    {
+      "original_name": "build_robot_blender.py",
+      "repository_name": "build_robot_blender.py",
+      "bytes": 3076,
+      "sha256": "2d17ade05e1c51422ff8b7bd1cdcaaaa24178a706b83e2529205ef7a87bc413a",
+      "path": "assets/task-c/robot-reference-20261031/build_robot_blender.py",
+      "role": "unexecuted_source_prototype",
+      "physical_dimensions_verified": false
+    }
+  ],
+  "script_static_audit": {
+    "assessment": "human-shaped hardcoded boxes; does not implement the supplied wheeled/tracked references",
+    "static_syntax_check": "passed",
+    "executed": false,
+    "box_count": 17,
+    "nodes": [
+      {
+        "name": "Head",
+        "line": 38,
+        "blender_position_xyz": [
+          0,
+          1.65,
+          0
+        ],
+        "declared_size_xyz": [
+          0.28,
+          0.28,
+          0.28
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.14,
+          0.14,
+          0.14
+        ],
+        "color_rgb": [
+          0.9,
+          0.3,
+          0.24
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "Neck",
+        "line": 41,
+        "blender_position_xyz": [
+          0,
+          1.45,
+          0
+        ],
+        "declared_size_xyz": [
+          0.12,
+          0.08,
+          0.12
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.06,
+          0.04,
+          0.06
+        ],
+        "color_rgb": [
+          0.58,
+          0.65,
+          0.65
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "TorsoUpper",
+        "line": 44,
+        "blender_position_xyz": [
+          0,
+          1.15,
+          0
+        ],
+        "declared_size_xyz": [
+          0.48,
+          0.35,
+          0.25
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.24,
+          0.175,
+          0.125
+        ],
+        "color_rgb": [
+          0.2,
+          0.6,
+          0.86
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "TorsoLower",
+        "line": 47,
+        "blender_position_xyz": [
+          0,
+          0.82,
+          0
+        ],
+        "declared_size_xyz": [
+          0.42,
+          0.3,
+          0.22
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.21,
+          0.15,
+          0.11
+        ],
+        "color_rgb": [
+          0.16,
+          0.5,
+          0.73
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "LeftUpperArm",
+        "line": 50,
+        "blender_position_xyz": [
+          -0.34,
+          1.1,
+          0
+        ],
+        "declared_size_xyz": [
+          0.14,
+          0.32,
+          0.14
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.07,
+          0.16,
+          0.07
+        ],
+        "color_rgb": [
+          0.61,
+          0.35,
+          0.71
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "LeftLowerArm",
+        "line": 51,
+        "blender_position_xyz": [
+          -0.34,
+          0.72,
+          0
+        ],
+        "declared_size_xyz": [
+          0.12,
+          0.3,
+          0.12
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.06,
+          0.15,
+          0.06
+        ],
+        "color_rgb": [
+          0.56,
+          0.27,
+          0.68
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "LeftHand",
+        "line": 52,
+        "blender_position_xyz": [
+          -0.34,
+          0.5,
+          0
+        ],
+        "declared_size_xyz": [
+          0.1,
+          0.12,
+          0.08
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.05,
+          0.06,
+          0.04
+        ],
+        "color_rgb": [
+          0.49,
+          0.24,
+          0.6
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "RightUpperArm",
+        "line": 55,
+        "blender_position_xyz": [
+          0.34,
+          1.1,
+          0
+        ],
+        "declared_size_xyz": [
+          0.14,
+          0.32,
+          0.14
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.07,
+          0.16,
+          0.07
+        ],
+        "color_rgb": [
+          0.61,
+          0.35,
+          0.71
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "RightLowerArm",
+        "line": 56,
+        "blender_position_xyz": [
+          0.34,
+          0.72,
+          0
+        ],
+        "declared_size_xyz": [
+          0.12,
+          0.3,
+          0.12
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.06,
+          0.15,
+          0.06
+        ],
+        "color_rgb": [
+          0.56,
+          0.27,
+          0.68
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "RightHand",
+        "line": 57,
+        "blender_position_xyz": [
+          0.34,
+          0.5,
+          0
+        ],
+        "declared_size_xyz": [
+          0.1,
+          0.12,
+          0.08
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.05,
+          0.06,
+          0.04
+        ],
+        "color_rgb": [
+          0.49,
+          0.24,
+          0.6
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "Waist",
+        "line": 60,
+        "blender_position_xyz": [
+          0,
+          0.6,
+          0
+        ],
+        "declared_size_xyz": [
+          0.38,
+          0.1,
+          0.2
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.19,
+          0.05,
+          0.1
+        ],
+        "color_rgb": [
+          0.2,
+          0.29,
+          0.37
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "LeftUpperLeg",
+        "line": 63,
+        "blender_position_xyz": [
+          -0.13,
+          0.3,
+          0
+        ],
+        "declared_size_xyz": [
+          0.16,
+          0.32,
+          0.16
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.08,
+          0.16,
+          0.08
+        ],
+        "color_rgb": [
+          0.09,
+          0.63,
+          0.52
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "LeftLowerLeg",
+        "line": 64,
+        "blender_position_xyz": [
+          -0.13,
+          -0.05,
+          0
+        ],
+        "declared_size_xyz": [
+          0.14,
+          0.33,
+          0.14
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.07,
+          0.165,
+          0.07
+        ],
+        "color_rgb": [
+          0.07,
+          0.55,
+          0.46
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "LeftFoot",
+        "line": 65,
+        "blender_position_xyz": [
+          -0.13,
+          -0.28,
+          0.06
+        ],
+        "declared_size_xyz": [
+          0.16,
+          0.08,
+          0.24
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.08,
+          0.04,
+          0.12
+        ],
+        "color_rgb": [
+          0.06,
+          0.4,
+          0.33
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "RightUpperLeg",
+        "line": 68,
+        "blender_position_xyz": [
+          0.13,
+          0.3,
+          0
+        ],
+        "declared_size_xyz": [
+          0.16,
+          0.32,
+          0.16
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.08,
+          0.16,
+          0.08
+        ],
+        "color_rgb": [
+          0.09,
+          0.63,
+          0.52
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "RightLowerLeg",
+        "line": 69,
+        "blender_position_xyz": [
+          0.13,
+          -0.05,
+          0
+        ],
+        "declared_size_xyz": [
+          0.14,
+          0.33,
+          0.14
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.07,
+          0.165,
+          0.07
+        ],
+        "color_rgb": [
+          0.07,
+          0.55,
+          0.46
+        ],
+        "parent": null,
+        "joints": []
+      },
+      {
+        "name": "RightFoot",
+        "line": 70,
+        "blender_position_xyz": [
+          0.13,
+          -0.28,
+          0.06
+        ],
+        "declared_size_xyz": [
+          0.16,
+          0.08,
+          0.24
+        ],
+        "actual_cube_dimensions_xyz": [
+          0.08,
+          0.04,
+          0.12
+        ],
+        "color_rgb": [
+          0.06,
+          0.4,
+          0.33
+        ],
+        "parent": null,
+        "joints": []
+      }
+    ],
+    "actual_aabb_if_run_unchanged": {
+      "min": [
+        -0.375,
+        -0.30000000000000004,
+        -0.07
+      ],
+      "max": [
+        0.375,
+        1.72,
+        0.12
+      ]
+    },
+    "issues": [
+      "primitive_cube_add(size=1) and scale=(sx/2,sy/2,sz/2) produce half the declared dimensions",
+      "Height values are put on Blender Y; default Blender up is Z, with no coordinate/export conversion",
+      "Feet have negative height values although the comment says origin is at feet",
+      "No image loading or image-analysis code; proportions are hardcoded",
+      "No root hierarchy, armature, joint constraints, anchor objects, bitmap maps or GLB/BLEND export",
+      "select_all SELECT followed by delete removes all selected scene objects; script was not executed",
+      "view3d.view_all and context.screen require interactive Blender context"
+    ]
+  },
+  "missing": [
+    "matching Blender/GLB model",
+    "physical scale and calibrated view projection",
+    "rig constraints/animation/anchor objects",
+    "bitmap material maps",
+    "original authors and source/permission proof URLs"
+  ]
+}
