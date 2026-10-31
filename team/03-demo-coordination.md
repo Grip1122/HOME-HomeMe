@@ -34,7 +34,7 @@
 
 迁移期 `web/src/robot-find/`（含 app.js、world.js、styles.css）由 jesu 单写，不并发修改 world.js。Gary 交设计稿、素材和材质参数；需要独立 UI 模块时先与 jesu 约定文件清单，由 jesu 接入，不保留两套 UI。sen 通过 manifest/layout/工厂接口交付。正式拆分须有行为回归并单独 PR，本轮不重构。
 
-wei 的历史 CODEOWNERS 使用 `krlozhilderman287-creator`，后续 D 交付使用 `mwaiting002`；当前仓库可写协作者与有效审阅账号待确认，不能自动给新账号授权或静默替换所有权。确认前 CODEOWNERS 保留历史账号并在 PR 人工指定实际审阅人。CODEOWNERS 是评审路由，不是目录写权限，也不能单独强制两人批准。
+wei 账号已确认为 `mwaiting002`（jesu 10-31 确认，截图见仓库协作者列表，且与 #8 提交作者邮箱一致），CODEOWNERS 里的旧账号 `krlozhilderman287-creator` 已替换。sen 为 `sen985211sen-sys`。CODEOWNERS 是评审路由，不是目录写权限，也不能单独强制两人批准；是否开启分支保护与强制 Code Owners 审核由 jesu 另行决定。
 
 ## 3. 目录与资源规划
 
@@ -87,7 +87,7 @@ P0=阻断整合/发布；P1=闭环后优化。下表当前全为待领取或在�
 
 | ID / 优先级 | owner | 依赖 | 交付范围 | 可判定验收（owner 自验，jesu 统筹；wei 技术复核） |
 | --- | --- | --- | --- | --- |
-| INT-01 P0 | jesu | 无 | 最新分工、文件单写清单、GitHub 搭建/审核/维护安排及 #18 冲突结论 | 四人职责无冲突；wei 有效账号标待确认；403 未解除前无网络写入；jesu 代码明确由 wei 审 |
+| INT-01 P0 | jesu | 无 | 最新分工、文件单写清单、GitHub 搭建/审核/维护安排及 #18 冲突结论 | 四人职责无冲突；wei 账号已确认；403 未解除前无网络写入；jesu 代码明确由 wei 审 |
 | ENV-01 P0 | wei | INT-01、#10 待审 | Node24/CI 技术方案及 #11/#13–16 重复环境差异清单，jesu 审 GitHub 配置 | 干净检出可安装；版本不符明确失败；CI/本地一致；不自动合并旧 PR |
 | B-01 P0 | sen | 无 | scene_main 场景几何、单位/轴向/坐标、门/家具/扫描点、layout 配对 | 实测参照与误差有据；check_layout 通过；视觉与导航一致；证据绑定资源 SHA |
 | C-01 P0 | Gary | 母版与 jesu 功能范围 | UI 交互美术、图标/通用素材、产品流程与状态设计稿 | 两桌面尺寸不遮挡；成功/失败/空态/存储模式均有设计；附来源、许可、完整 SHA；不重做替代母版 |
@@ -138,7 +138,7 @@ PR正文固定包含：任务ID/owner、base/head SHA、依赖、文件允许清
 
 待确认/待授权：
 - 当前 GitHub create_branch 403 权限拒绝尚未解除；本轮禁止任何网络写/提交/push/PR，不重试，也不换通道绕过。
-- wei有效可审阅GitHub账号及仓库权限；不根据昵称猜账号。
+- 已确认（10-31）：wei=`mwaiting002`，sen=`sen985211sen-sys`，均为仓库协作者。遗留：`server/delivery/handoff-by-owner.json` 的 D 段仍写旧账号，由 wei 在后端 PR 中更正；本 PR 不改。
 - 正式场景最终asset_id/SHA、#19与旧餐厅排除关系、具体分发许可。
 - B提供正式坐标/布局版本，A+D确认demo到HOME映射和纠正写入责任。
 - C确认窄屏功能范围；母版当前隐藏侧栏，不可宣传移动端完整适配。

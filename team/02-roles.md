@@ -1,7 +1,7 @@
 # 分工（最新用户职责 · 本地待审）
 
 > **最新安排（本地待审、未上传、未合并生效）**：先读 [`03-demo-coordination.md`](03-demo-coordination.md)。接续方案沿用 **robot-find 母版**；当前为 **local-demo，未接后端，场景与机器人素材待替换**，demo 尚未进入 main。旧里程碑、职责冲突以 03 为待合并提案准，合并后才生效；Gary 的第 5 节交付包、署名与代传审核规范保留，具体任务范围按 03 提案对齐，不重做整套 HUD。
-> **人员确认**：sen 担任设计 B 已确认。wei 的有效审阅账号及仓库权限仍待核验，保留现有账号，不因昵称或后续交付账号自动替换。
+> **人员确认（10-31）**：sen 担任设计 B，账号 `sen985211sen-sys`；wei 账号 `mwaiting002`。两人均在仓库协作者列表中。Gary 无账号，仍由 jesu 署名代传。
 
 > **项目全称**：小觅HOME：虚拟孪生家庭具身空间物体定位（四人团队·AI辅助开发）
 >
@@ -16,7 +16,7 @@
 
 | 成员 | GitHub | 角色 | 一句话职责 | 任务书 |
 | --- | --- | --- | --- | --- |
-| **wei** | 有效账号待确认；保留历史路由 `krlozhilderman287-creator`，不猜换 | **AI-D**：编程代码负责人、后端搭建与技术复核 | 代码审核、技术方案合理性判断、后端一致性与验证；jesu 自己的代码由 wei 独立复核，不自批 | [task-D](tasks/task-D-backend-algo.md) |
+| **wei** | `mwaiting002`（jesu 10-31 确认，仓库协作者）；旧路由 `krlozhilderman287-creator` 已替换 | **AI-D**：编程代码负责人、后端搭建与技术复核 | 代码审核、技术方案合理性判断、后端一致性与验证；jesu 自己的代码由 wei 独立复核，不自批 | [task-D](tasks/task-D-backend-algo.md) |
 | **jesu（Jesu）** | `Grip1122` | **设计 A**：前端设计搭建、全局审核及整合 | 所有文件全局审核，GitHub 整体搭建/审核/维护安排，最终整合审核，前端与动作代码；Gary 署名代传 | [task-A](tasks/task-A-frontend-3d.md) |
 | **Gary** | **无账号，不伪造** | **设计 C**：UI 交互美术、素材、材质渲染与产品设计 | UI/通用素材、机器人建模素材、材质贴图与渲染参数、参与产品设计；不再以测试为主 | [task-C](tasks/task-C-ui-acceptance.md) |
 | **sen** | `sen985211sen-sys` | **设计 B**：场景设计及相关美术、空间点位校准 | 场景几何/空间/layout/碰撞/校准、任务空间语义；装配 Gary 的场景材质接口 | [task-B](tasks/task-B-scene-art.md) |
@@ -50,7 +50,7 @@
 | 人 | 仓库权限 | 说明 |
 | --- | --- | --- |
 | jesu | 历史记录为所有者；本轮不核验或修改远端权限 | `Grip1122`；负责 GitHub 整体安排与最终整合审核，自己的代码由 wei 复核 |
-| wei | 当前有效账号和审阅权限待确认 | 保留历史 `krlozhilderman287-creator` 路由，不自动替换或授权 |
+| wei | `mwaiting002`，已在仓库协作者列表中（jesu 10-31 确认） | CODEOWNERS 已改为该账号；是否需要分支保护与强制 Code Owners 审核另行决定 |
 | sen | 协作者 · Write | `sen985211sen-sys`；设计 B |
 | Gary | 无 | 无法登录 GitHub，成果由 Jesu 代传（见第 5 节） |
 
