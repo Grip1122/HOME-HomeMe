@@ -26,7 +26,7 @@ Linux / macOS 用 `python3 -m http.server 8767 --bind 127.0.0.1`。打开 http:/
 
 - 当前履带造型是 D 程序化生成的项目资产，生成器见 `reference/hackerson/scripts/build_robot.py`；外观参考 WALL·E 复刻项目，未复制其程序/STL。
 - `assets/robot/source/create3/` 是 iRobot Create 3 上游参考源码，适用同目录 BSD-3-Clause；当前履带模型不使用这些源模型。不能把该许可证扩展到场景或其他第三方素材。
-- `reference/hackerson/` 是历史独立扫描器，Hackerson 仅为归档标识；其旧操作文档和测试数字不是 HOME 正式验收。见 [实验原型边界](roomscan/README.md)。
+- `reference/hackerson/` 是历史独立扫描器，Hackerson 仅为归档标识；其旧操作文档和测试数字不是 HOME 正式验收。见 [实验原型边界](EXPERIMENTAL.md)。
 - 原始高斯场景来源为 [Milano Living / argenzio](https://superspl.at/scene/0131a3b9)，页面声明 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)；基于开源素材进行优化时须保留署名、来源/许可、修改说明，限定非商业用途。本 PR 不携带/下载此场景。来源核验、摘要和下载限制由资源工具 PR 维护。
 - 机器人模型无手臂、Punch/Wave 或已定义 carryAnchor；不宣称五动作完整接入。场景单位/朝上轴未标定，不宣称全房导航或 M1/M2 完成。
 
