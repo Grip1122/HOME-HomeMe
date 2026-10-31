@@ -44,3 +44,15 @@ assets/gaussian-splat/*.ply
 assets/gaussian-splat/*.splat
 assets/gaussian-splat/*.ksplat
 assets/gaussian-splat/*.spz
+
+# 参照实现归档（reference/hackerson）：依赖、超限资产与临时产物一律不入库。
+# 逐项理由见 reference/hackerson/README.zh-CN.md 第 2 节
+reference/hackerson/tools/
+reference/hackerson/assets/robot/
+reference/hackerson/assets/restaurant/
+reference/hackerson/artifacts/runs/
+reference/hackerson/__pycache__/
+reference/hackerson/**/__pycache__/
+reference/hackerson/.pytest_cache/
+reference/hackerson/.pytest_cache/
+reference/hackerson/*.zip

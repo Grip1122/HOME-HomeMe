@@ -38,6 +38,7 @@ cd web && npm ci && npm run dev     # 目录当前只有 README，npm 脚本待 
 | `server/` | AI-D | 规划、校验、纠错规则、记忆、日志 | AI-D |
 | `scripts/` `tests/` `.github/` | AI-D | 守门脚本、CI、测试基座 | AI-D |
 | `docs/` | 设计 C 主笔 | 提示词模板、验收用例、审核清单、路演稿 | 设计 C（他人可提 PR） |
+| `reference/` | 整合（Jesu） | 已验证的参照实现归档，**不进产品运行路径**；删掉不影响构建与测试 | 只读归档 |
 
 违反边界不靠人喊，靠 `CODEOWNERS` 声明 + `scripts/check_contracts.py` 拦截 + 审核清单第一关。
 
