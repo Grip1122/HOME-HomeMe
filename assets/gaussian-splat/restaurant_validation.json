@@ -1,0 +1,144 @@
+{
+  "recorded_date": "2026-10-31",
+  "owner": "sen",
+  "asset_id": "scene_restaurant",
+  "file": "scene.ply",
+  "bytes": 235796393,
+  "sha256": "db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28",
+  "file_checks": {
+    "points": 999131,
+    "properties_per_point": 59,
+    "sh_degree": 3,
+    "non_finite_attribute_values": 0,
+    "declared_length_matches": true
+  },
+  "measurement": {
+    "user_confirmed_correct": true,
+    "reference_object": null,
+    "real_length_meters": null,
+    "measured_units": null
+  },
+  "editor_transform": {
+    "viewer": "SuperSplat 3.7.0",
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation_degrees_xyz": [
+      0,
+      0,
+      180
+    ],
+    "scale": 1,
+    "note": "截图所见编辑器变换；原始PLY未改写。项目导入器需要核对，避免重复转换。"
+  },
+  "observations": {
+    "browser_rendering": "screenshots_reviewed",
+    "dimension_measurement": "user_confirmed_without_numeric_attachment",
+    "orthographic_45_degree": "pending",
+    "project_layout_alignment": "pending"
+  },
+  "performance": {
+    "gpu_reported": "1650（具体型号未独立核实）",
+    "motion_fps_initial": 18,
+    "sh_bands_1_and_0_combined_fps_range": [
+      22,
+      27
+    ],
+    "per_band_fps": null,
+    "stochastic_alpha_mode": null,
+    "source": "sen 实机观察；非受控基准",
+    "hard_30_fps_required": false,
+    "acceptance_decision": "sen 决定保留画质，帧率留档；最终演示机复测。"
+  },
+  "point_reduction_trials": [
+    {
+      "points": 800000,
+      "fps": null,
+      "performance": "提升不明显",
+      "obvious_holes": false,
+      "selected": false
+    },
+    {
+      "points": 500000,
+      "fps_approx": 28,
+      "obvious_holes": true,
+      "selected": false
+    }
+  ],
+  "test_method": "确定性分层抽样，仅保留原始记录；不是高斯合并优化。减少点数不能据此承诺提速或画质。",
+  "rejected_test_files": [
+    {
+      "file": "scene_800k_test.ply",
+      "points": 800000,
+      "bytes": 188801578,
+      "sha256": "7669f6be7018d95a5f1198769f45533908ca7dec1ba2db023f70839a6c405b1b"
+    },
+    {
+      "file": "scene_500k_test.ply",
+      "points": 500000,
+      "bytes": 118001578,
+      "sha256": "2e4a40ce01e05abf713d87bf987160fbf487a80b6ab4671138593641ab909363"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "shots/overview.png",
+      "sha256": "e5463428e6a330b252dd1880d0caa5ae7fbca885b933171293fc1414df27f308",
+      "width": 1920,
+      "height": 850,
+      "observations": "Overview; source name and transform panel visible."
+    },
+    {
+      "file": "shots/oblique_view.png",
+      "sha256": "b9108835f9ceb682fac29b32c9b19650b250e042e09c251b1491fc06a6e4892a",
+      "width": 1920,
+      "height": 850,
+      "observations": "Oblique downward view; not proof of orthographic projection or a complete floor plan."
+    },
+    {
+      "file": "shots/detail_floor_01.png",
+      "sha256": "ee6082d8c3d13dd89f09c42395d50a38a66b8da10b2fee7a27264bce2e209d2b",
+      "width": 1020,
+      "height": 460,
+      "observations": "Grid-like dotted lines visible; hide grid first to distinguish overlays from scene artifacts."
+    },
+    {
+      "file": "shots/detail_floor_02.png",
+      "sha256": "565dcc094f1be140d62d2e4f489fb89b6b8411e2386d9c991ec9c80919967224",
+      "width": 1304,
+      "height": 499,
+      "observations": "Grid-like dotted lines visible; hide grid first to distinguish overlays from scene artifacts."
+    }
+  ],
+  "grid_artifacts": "sen 已检查并确认无问题",
+  "selected_version": "original",
+  "acceptance": {
+    "authorized_by": "sen",
+    "hard_30_fps_required": false,
+    "visual_quality_priority": true,
+    "final_demo_machine_retest_required": true,
+    "orthographic_camera_still_required": true
+  },
+  "attribution": {
+    "title": "天安骏业集团餐厅",
+    "author": "Hilo",
+    "source": "https://superspl.at/scene/40c67340",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "release_observation": {
+    "url": "https://github.com/Grip1122/HOME-HomeMe/releases/tag/splat-restaurant-v1",
+    "release_id": 429755566,
+    "asset_id": 694545411,
+    "download_url": "https://github.com/Grip1122/HOME-HomeMe/releases/download/splat-restaurant-v1/scene.ply",
+    "draft": false,
+    "state": "uploaded",
+    "status": "uploaded_verified",
+    "bytes": 235796393,
+    "digest": "sha256:db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28",
+    "verified_date": "2026-10-31",
+    "verification_method": "GitHub Release reported size/digest compared with locally computed SHA256"
+  }
+}
