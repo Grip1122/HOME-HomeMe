@@ -1,0 +1,71 @@
+[
+  {
+    "repo": "fkie/fkie-nbv-planner",
+    "url": "https://github.com/fkie/fkie-nbv-planner",
+    "default_branch": "main",
+    "pushed_at": "2026-03-06T16:20:28Z",
+    "license": "BSD-3-Clause",
+    "verified_date": "2026-10-30",
+    "status": "README inspected; not built or run"
+  },
+  {
+    "repo": "HITSZ-NRSL/active_mapping_dvc",
+    "url": "https://github.com/HITSZ-NRSL/active_mapping_dvc",
+    "default_branch": "master",
+    "pushed_at": "2023-06-04T09:14:33Z",
+    "archived": false,
+    "license": "MIT",
+    "verified_date": "2026-10-30",
+    "status": "metadata and README inspected; not built or run"
+  },
+  {
+    "repo": "hello-robot/stretch_mujoco",
+    "url": "https://github.com/hello-robot/stretch_mujoco",
+    "default_branch": "main",
+    "pushed_at": "2026-10-07T21:19:43Z",
+    "archived": false,
+    "license": "BSD-3-Clause-Clear",
+    "verified_date": "2026-10-30",
+    "status": "metadata and README inspected; not built or run"
+  },
+  {
+    "repo": "robo-friends/m-explore-ros2",
+    "url": "https://github.com/robo-friends/m-explore-ros2",
+    "default_branch": "main",
+    "pushed_at": "2026-06-01T22:03:48Z",
+    "archived": false,
+    "license": "NOASSERTION",
+    "verified_date": "2026-10-30",
+    "status": "metadata and README inspected; not built or run"
+  },
+  {
+    "repo": "introlab/rtabmap_ros",
+    "url": "https://github.com/introlab/rtabmap_ros",
+    "default_branch": "ros2",
+    "pushed_at": "2026-10-26T12:26:23Z",
+    "archived": false,
+    "license": "BSD-3-Clause",
+    "verified_date": "2026-10-30",
+    "status": "metadata and README inspected; not built or run"
+  },
+  {
+    "repo": "OctoMap/octomap",
+    "url": "https://github.com/OctoMap/octomap",
+    "default_branch": "devel",
+    "pushed_at": "2026-09-26T18:12:00Z",
+    "archived": false,
+    "license": "See component licenses",
+    "verified_date": "2026-10-30",
+    "status": "metadata and README inspected; not built or run"
+  },
+  {
+    "repo": "ROBOTIS-GIT/turtlebot3_simulations",
+    "url": "https://github.com/ROBOTIS-GIT/turtlebot3_simulations",
+    "default_branch": "main",
+    "pushed_at": "2025-07-14T04:49:34Z",
+    "archived": false,
+    "license": "Apache-2.0",
+    "verified_date": "2026-10-30",
+    "status": "metadata and README inspected; not built or run"
+  }
+]

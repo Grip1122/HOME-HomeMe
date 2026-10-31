@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "page_errors": [],
+  "poses": [
+    {
+      "model": "RoomScan RS-01 Crawler",
+      "head": [
+        0,
+        0.550000011920929,
+        0
+      ],
+      "stages": [
+        0.55,
+        0,
+        0,
+        0
+      ],
+      "leftAngle": 0,
+      "rightAngle": 0,
+      "leftTravel": 0,
+      "rightTravel": 0,
+      "trackLinks": [
+        42,
+        42
+      ]
+    },
+    {
+      "model": "RoomScan RS-01 Crawler",
+      "head": [
+        0,
+        2.299999952316284,
+        0
+      ],
+      "stages": [
+        0.9875,
+        0.43749999999999994,
+        0.43749999999999994,
+        0.43749999999999994
+      ],
+      "leftAngle": 0,
+      "rightAngle": 0,
+      "leftTravel": 0,
+      "rightTravel": 0,
+      "trackLinks": [
+        42,
+        42
+      ]
+    },
+    {
+      "model": "RoomScan RS-01 Crawler",
+      "head": [
+        0,
+        1.149999976158142,
+        0
+      ],
+      "stages": [
+        0.7,
+        0.14999999999999997,
+        0.14999999999999997,
+        0.14999999999999997
+      ],
+      "leftAngle": 0,
+      "rightAngle": 0,
+      "leftTravel": 0,
+      "rightTravel": 0,
+      "trackLinks": [
+        42,
+        42
+      ]
+    }
+  ],
+  "turning": {
+    "model": "RoomScan RS-01 Crawler",
+    "head": [
+      0,
+      1.149999976158142,
+      0
+    ],
+    "stages": [
+      0.7,
+      0.14999999999999997,
+      0.14999999999999997,
+      0.14999999999999997
+    ],
+    "leftAngle": -0.5224489795918368,
+    "rightAngle": 0.5224489795918368,
+    "leftTravel": -0.0256,
+    "rightTravel": 0.0256,
+    "trackLinks": [
+      42,
+      42
+    ]
+  },
+  "live_robot": {
+    "model": "RoomScan RS-01 Crawler",
+    "head": [
+      3.4200000762939453,
+      0.550000011920929,
+      -0.7799999713897705
+    ],
+    "stages": [
+      0.55,
+      0,
+      0,
+      0
+    ],
+    "leftAngle": 2.5591654582303662,
+    "rightAngle": -2.5591654582303662,
+    "leftTravel": 0.12539910745328794,
+    "rightTravel": -0.12539910745328794,
+    "trackLinks": [
+      42,
+      42
+    ]
+  },
+  "note": "Server-side Chromium with NVIDIA Vulkan; no Windows frame-rate claim."
+}

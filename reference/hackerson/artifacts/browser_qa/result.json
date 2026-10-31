@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "page_errors": [],
+  "paused_state": {
+    "scans": 3,
+    "coverage": 67.14,
+    "cloud_points": 9747,
+    "status": "paused"
+  },
+  "checks": [
+    "real frames",
+    "start",
+    "pause",
+    "point cloud rotation",
+    "export/download",
+    "reset",
+    "strategy switch",
+    "invalid command",
+    "cross-origin rejection",
+    "mobile overflow"
+  ]
+}

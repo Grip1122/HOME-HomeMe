@@ -1,0 +1,14 @@
+{"scan": 1, "xy": [3.4200000000000017, 0.7800000000000011], "height": 1.15, "tilt_deg": 0.0, "coverage": 19.959, "known_voxels": 18712, "new_voxels": 18712, "cloud_points": 4592, "new_surface_points": 4592, "distance_m": 0.0, "elapsed_s": 0.4, "predicted_gain": null}
+{"scan": 2, "xy": [-1.8599999999999994, -0.6599999999999993], "height": 1.15, "tilt_deg": 0.0, "coverage": 31.224, "known_voxels": 28403, "new_voxels": 9691, "cloud_points": 7815, "new_surface_points": 3223, "distance_m": 5.704, "elapsed_s": 16.8, "predicted_gain": 5500}
+{"scan": 3, "xy": [-4.739999999999998, -1.8599999999999994], "height": 1.15, "tilt_deg": 0.0, "coverage": 39.943, "known_voxels": 31456, "new_voxels": 3053, "cloud_points": 10987, "new_surface_points": 3172, "distance_m": 8.824, "elapsed_s": 28.4, "predicted_gain": 3229}
+{
+  "strategy": "adaptive",
+  "scans": 3,
+  "coverage": 39.94341563786008,
+  "cloud_points": 10987,
+  "known_voxels": 31456,
+  "distance_m": 8.824229886184126,
+  "stop_reason": "scan_budget",
+  "wall_seconds": 1.063921180088073,
+  "export": "/data/xch/cww/Hackerson/artifacts/runs/20261030_232034_694990"
+}

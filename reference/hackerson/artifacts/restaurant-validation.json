@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "scene": "restaurant",
+  "benchmark": {
+    "strategy": "adaptive",
+    "scans": 48,
+    "coverage": 91.5380658436214,
+    "cloud_points": 83218,
+    "known_voxels": 48255,
+    "distance_m": 189.98045147381282,
+    "stop_reason": "scan_budget",
+    "wall_seconds": 16.274872179841623,
+    "export": "/data/xch/cww/Hackerson/artifacts/runs/20261030_232650_080703"
+  },
+  "candidate_count": 16,
+  "reference_samples": 3888,
+  "scope": "几何代理参考表面覆盖率；不是完整餐厅实测覆盖率。",
+  "scale_calibrated": false,
+  "checks": [
+    "48 scans completed",
+    "nonzero depth-derived cloud",
+    "monotonic proxy coverage",
+    "multiple camera heights",
+    "multiple tilt angles",
+    "safe motion completed"
+  ]
+}

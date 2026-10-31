@@ -1,0 +1,1310 @@
+{
+  "adaptive": {
+    "final": {
+      "strategy": "adaptive",
+      "scans": 48,
+      "coverage": 99.8170941025002,
+      "cloud_points": 40874,
+      "known_voxels": 16168,
+      "distance_m": 157.67668260114294,
+      "stop_reason": "scan_budget",
+      "wall_seconds": 19.325678650056943,
+      "export": "/data/xch/cww/Hackerson/artifacts/runs/20261030_223919_268509"
+    },
+    "at_23_scans": {
+      "scan": 23,
+      "xy": [
+        -0.05000000000000071,
+        2.0
+      ],
+      "height": 0.55,
+      "tilt_deg": -37.2,
+      "coverage": 98.17,
+      "known_voxels": 16108,
+      "new_voxels": 54,
+      "cloud_points": 35042,
+      "new_surface_points": 324,
+      "distance_m": 74.006,
+      "elapsed_s": 265.2,
+      "predicted_gain": 243
+    },
+    "surface_breakdown": {
+      "cabinet": 99.33,
+      "ceiling": 100.0,
+      "east_wall": 99.1,
+      "floor": 99.69,
+      "island": 100.0,
+      "north_wall": 99.88,
+      "partition": 100.0,
+      "sofa_back": 100.0,
+      "sofa_seat": 100.0,
+      "south_wall": 100.0,
+      "table_leg_a": 100.0,
+      "table_leg_b": 100.0,
+      "table_leg_c": 100.0,
+      "table_leg_d": 100.0,
+      "table_top": 98.9,
+      "west_wall": 100.0
+    },
+    "history": [
+      {
+        "scan": 1,
+        "xy": [
+          -3.1,
+          -2.1
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 33.286,
+        "known_voxels": 10714,
+        "new_voxels": 10714,
+        "cloud_points": 3109,
+        "new_surface_points": 3109,
+        "distance_m": 0.0,
+        "elapsed_s": 0.4,
+        "predicted_gain": null
+      },
+      {
+        "scan": 2,
+        "xy": [
+          2.049999999999999,
+          0.9500000000000002
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 58.363,
+        "known_voxels": 13933,
+        "new_voxels": 3219,
+        "cloud_points": 7213,
+        "new_surface_points": 4104,
+        "distance_m": 6.16,
+        "elapsed_s": 14.8,
+        "predicted_gain": 1450
+      },
+      {
+        "scan": 3,
+        "xy": [
+          -1.1000000000000005,
+          2.0
+        ],
+        "height": 0.55,
+        "tilt_deg": 0.0,
+        "coverage": 67.139,
+        "known_voxels": 14643,
+        "new_voxels": 710,
+        "cloud_points": 9747,
+        "new_surface_points": 2534,
+        "distance_m": 10.083,
+        "elapsed_s": 29.2,
+        "predicted_gain": 878
+      },
+      {
+        "scan": 4,
+        "xy": [
+          3.0999999999999988,
+          -2.2
+        ],
+        "height": 0.55,
+        "tilt_deg": 0.0,
+        "coverage": 73.468,
+        "known_voxels": 15149,
+        "new_voxels": 506,
+        "cloud_points": 11704,
+        "new_surface_points": 1957,
+        "distance_m": 16.745,
+        "elapsed_s": 43.6,
+        "predicted_gain": 637
+      },
+      {
+        "scan": 5,
+        "xy": [
+          0.9999999999999991,
+          -2.2
+        ],
+        "height": 0.55,
+        "tilt_deg": 0.0,
+        "coverage": 79.97,
+        "known_voxels": 15748,
+        "new_voxels": 599,
+        "cloud_points": 13855,
+        "new_surface_points": 2151,
+        "distance_m": 18.845,
+        "elapsed_s": 52.8,
+        "predicted_gain": 411
+      },
+      {
+        "scan": 6,
+        "xy": [
+          -0.05000000000000071,
+          -2.2
+        ],
+        "height": 0.55,
+        "tilt_deg": 37.2,
+        "coverage": 83.073,
+        "known_voxels": 15810,
+        "new_voxels": 62,
+        "cloud_points": 15539,
+        "new_surface_points": 1684,
+        "distance_m": 19.895,
+        "elapsed_s": 60.4,
+        "predicted_gain": 329
+      },
+      {
+        "scan": 7,
+        "xy": [
+          -3.2,
+          -0.10000000000000009
+        ],
+        "height": 0.55,
+        "tilt_deg": 37.2,
+        "coverage": 86.058,
+        "known_voxels": 15844,
+        "new_voxels": 34,
+        "cloud_points": 17652,
+        "new_surface_points": 2113,
+        "distance_m": 23.684,
+        "elapsed_s": 72.4,
+        "predicted_gain": 340
+      },
+      {
+        "scan": 8,
+        "xy": [
+          -0.05000000000000071,
+          2.0
+        ],
+        "height": 0.55,
+        "tilt_deg": 37.2,
+        "coverage": 87.031,
+        "known_voxels": 15909,
+        "new_voxels": 65,
+        "cloud_points": 18915,
+        "new_surface_points": 1263,
+        "distance_m": 27.508,
+        "elapsed_s": 83.2,
+        "predicted_gain": 321
+      },
+      {
+        "scan": 9,
+        "xy": [
+          -1.1000000000000005,
+          0.9500000000000002
+        ],
+        "height": 1.15,
+        "tilt_deg": -37.2,
+        "coverage": 90.362,
+        "known_voxels": 15975,
+        "new_voxels": 66,
+        "cloud_points": 21091,
+        "new_surface_points": 2176,
+        "distance_m": 28.993,
+        "elapsed_s": 91.2,
+        "predicted_gain": 321
+      },
+      {
+        "scan": 10,
+        "xy": [
+          2.049999999999999,
+          2.0
+        ],
+        "height": 1.85,
+        "tilt_deg": -37.2,
+        "coverage": 93.403,
+        "known_voxels": 16030,
+        "new_voxels": 55,
+        "cloud_points": 23216,
+        "new_surface_points": 2125,
+        "distance_m": 33.113,
+        "elapsed_s": 106.4,
+        "predicted_gain": 354
+      },
+      {
+        "scan": 11,
+        "xy": [
+          0.9999999999999991,
+          -1.1500000000000001
+        ],
+        "height": 1.85,
+        "tilt_deg": -37.2,
+        "coverage": 94.574,
+        "known_voxels": 16038,
+        "new_voxels": 8,
+        "cloud_points": 25084,
+        "new_surface_points": 1868,
+        "distance_m": 36.433,
+        "elapsed_s": 118.8,
+        "predicted_gain": 306
+      },
+      {
+        "scan": 12,
+        "xy": [
+          -3.2,
+          -2.2
+        ],
+        "height": 1.85,
+        "tilt_deg": -37.2,
+        "coverage": 94.894,
+        "known_voxels": 16041,
+        "new_voxels": 3,
+        "cloud_points": 26242,
+        "new_surface_points": 1158,
+        "distance_m": 40.762,
+        "elapsed_s": 133.6,
+        "predicted_gain": 312
+      },
+      {
+        "scan": 13,
+        "xy": [
+          -1.1000000000000005,
+          -2.2
+        ],
+        "height": 1.85,
+        "tilt_deg": -37.2,
+        "coverage": 95.071,
+        "known_voxels": 16043,
+        "new_voxels": 2,
+        "cloud_points": 27378,
+        "new_surface_points": 1136,
+        "distance_m": 42.862,
+        "elapsed_s": 143.2,
+        "predicted_gain": 222
+      },
+      {
+        "scan": 14,
+        "xy": [
+          2.049999999999999,
+          -2.2
+        ],
+        "height": 1.85,
+        "tilt_deg": 37.2,
+        "coverage": 96.053,
+        "known_voxels": 16046,
+        "new_voxels": 3,
+        "cloud_points": 28601,
+        "new_surface_points": 1223,
+        "distance_m": 46.012,
+        "elapsed_s": 154.4,
+        "predicted_gain": 293
+      },
+      {
+        "scan": 15,
+        "xy": [
+          3.0999999999999988,
+          -0.10000000000000009
+        ],
+        "height": 1.85,
+        "tilt_deg": 37.2,
+        "coverage": 96.46,
+        "known_voxels": 16046,
+        "new_voxels": 0,
+        "cloud_points": 29758,
+        "new_surface_points": 1157,
+        "distance_m": 49.177,
+        "elapsed_s": 168.0,
+        "predicted_gain": 228
+      },
+      {
+        "scan": 16,
+        "xy": [
+          0.9999999999999991,
+          -0.10000000000000009
+        ],
+        "height": 1.85,
+        "tilt_deg": 37.2,
+        "coverage": 97.09,
+        "known_voxels": 16047,
+        "new_voxels": 1,
+        "cloud_points": 30894,
+        "new_surface_points": 1136,
+        "distance_m": 51.277,
+        "elapsed_s": 179.6,
+        "predicted_gain": 186
+      },
+      {
+        "scan": 17,
+        "xy": [
+          -0.05000000000000071,
+          0.9500000000000002
+        ],
+        "height": 1.85,
+        "tilt_deg": 37.2,
+        "coverage": 97.09,
+        "known_voxels": 16047,
+        "new_voxels": 0,
+        "cloud_points": 31610,
+        "new_surface_points": 716,
+        "distance_m": 52.762,
+        "elapsed_s": 189.6,
+        "predicted_gain": 150
+      },
+      {
+        "scan": 18,
+        "xy": [
+          -2.1500000000000004,
+          -1.1500000000000001
+        ],
+        "height": 1.85,
+        "tilt_deg": 37.2,
+        "coverage": 97.332,
+        "known_voxels": 16049,
+        "new_voxels": 2,
+        "cloud_points": 32608,
+        "new_surface_points": 998,
+        "distance_m": 56.795,
+        "elapsed_s": 205.6,
+        "predicted_gain": 150
+      },
+      {
+        "scan": 19,
+        "xy": [
+          -3.2,
+          -1.1500000000000001
+        ],
+        "height": 2.3,
+        "tilt_deg": -37.2,
+        "coverage": 97.501,
+        "known_voxels": 16054,
+        "new_voxels": 5,
+        "cloud_points": 33081,
+        "new_surface_points": 473,
+        "distance_m": 57.845,
+        "elapsed_s": 216.4,
+        "predicted_gain": 132
+      },
+      {
+        "scan": 20,
+        "xy": [
+          2.049999999999999,
+          -0.10000000000000009
+        ],
+        "height": 0.55,
+        "tilt_deg": -37.2,
+        "coverage": 97.551,
+        "known_voxels": 16054,
+        "new_voxels": 0,
+        "cloud_points": 33673,
+        "new_surface_points": 592,
+        "distance_m": 63.395,
+        "elapsed_s": 232.0,
+        "predicted_gain": 162
+      },
+      {
+        "scan": 21,
+        "xy": [
+          -2.1500000000000004,
+          -2.2
+        ],
+        "height": 0.55,
+        "tilt_deg": -37.2,
+        "coverage": 97.624,
+        "known_voxels": 16054,
+        "new_voxels": 0,
+        "cloud_points": 34313,
+        "new_surface_points": 640,
+        "distance_m": 68.091,
+        "elapsed_s": 246.0,
+        "predicted_gain": 117
+      },
+      {
+        "scan": 22,
+        "xy": [
+          -1.1000000000000005,
+          -1.1500000000000001
+        ],
+        "height": 0.55,
+        "tilt_deg": 0.0,
+        "coverage": 97.697,
+        "known_voxels": 16054,
+        "new_voxels": 0,
+        "cloud_points": 34718,
+        "new_surface_points": 405,
+        "distance_m": 69.576,
+        "elapsed_s": 252.4,
+        "predicted_gain": 81
+      },
+      {
+        "scan": 23,
+        "xy": [
+          -0.05000000000000071,
+          2.0
+        ],
+        "height": 0.55,
+        "tilt_deg": -37.2,
+        "coverage": 98.17,
+        "known_voxels": 16108,
+        "new_voxels": 54,
+        "cloud_points": 35042,
+        "new_surface_points": 324,
+        "distance_m": 74.006,
+        "elapsed_s": 265.2,
+        "predicted_gain": 243
+      },
+      {
+        "scan": 24,
+        "xy": [
+          2.049999999999999,
+          2.0
+        ],
+        "height": 0.55,
+        "tilt_deg": -37.2,
+        "coverage": 98.319,
+        "known_voxels": 16114,
+        "new_voxels": 6,
+        "cloud_points": 35520,
+        "new_surface_points": 478,
+        "distance_m": 78.224,
+        "elapsed_s": 278.8,
+        "predicted_gain": 249
+      },
+      {
+        "scan": 25,
+        "xy": [
+          3.0999999999999988,
+          -0.10000000000000009
+        ],
+        "height": 0.55,
+        "tilt_deg": -37.2,
+        "coverage": 98.411,
+        "known_voxels": 16114,
+        "new_voxels": 0,
+        "cloud_points": 35955,
+        "new_surface_points": 435,
+        "distance_m": 80.572,
+        "elapsed_s": 286.8,
+        "predicted_gain": 198
+      },
+      {
+        "scan": 26,
+        "xy": [
+          -0.05000000000000071,
+          -1.1500000000000001
+        ],
+        "height": 1.15,
+        "tilt_deg": -37.2,
+        "coverage": 98.424,
+        "known_voxels": 16114,
+        "new_voxels": 0,
+        "cloud_points": 36392,
+        "new_surface_points": 437,
+        "distance_m": 83.974,
+        "elapsed_s": 298.8,
+        "predicted_gain": 78
+      },
+      {
+        "scan": 27,
+        "xy": [
+          -1.1000000000000005,
+          2.0
+        ],
+        "height": 2.3,
+        "tilt_deg": -37.2,
+        "coverage": 98.749,
+        "known_voxels": 16146,
+        "new_voxels": 32,
+        "cloud_points": 36887,
+        "new_surface_points": 495,
+        "distance_m": 87.766,
+        "elapsed_s": 313.6,
+        "predicted_gain": 255
+      },
+      {
+        "scan": 28,
+        "xy": [
+          3.0999999999999988,
+          -2.2
+        ],
+        "height": 2.3,
+        "tilt_deg": 37.2,
+        "coverage": 98.903,
+        "known_voxels": 16157,
+        "new_voxels": 11,
+        "cloud_points": 37241,
+        "new_surface_points": 354,
+        "distance_m": 94.428,
+        "elapsed_s": 334.0,
+        "predicted_gain": 252
+      },
+      {
+        "scan": 29,
+        "xy": [
+          2.049999999999999,
+          0.9500000000000002
+        ],
+        "height": 2.3,
+        "tilt_deg": 37.2,
+        "coverage": 99.482,
+        "known_voxels": 16160,
+        "new_voxels": 3,
+        "cloud_points": 37817,
+        "new_surface_points": 576,
+        "distance_m": 98.089,
+        "elapsed_s": 350.4,
+        "predicted_gain": 131
+      },
+      {
+        "scan": 30,
+        "xy": [
+          -3.2,
+          -0.10000000000000009
+        ],
+        "height": 2.3,
+        "tilt_deg": -37.2,
+        "coverage": 99.596,
+        "known_voxels": 16161,
+        "new_voxels": 1,
+        "cloud_points": 38207,
+        "new_surface_points": 390,
+        "distance_m": 103.866,
+        "elapsed_s": 372.0,
+        "predicted_gain": 161
+      },
+      {
+        "scan": 31,
+        "xy": [
+          -3.2,
+          -2.2
+        ],
+        "height": 2.3,
+        "tilt_deg": -37.2,
+        "coverage": 99.596,
+        "known_voxels": 16161,
+        "new_voxels": 0,
+        "cloud_points": 38338,
+        "new_surface_points": 131,
+        "distance_m": 105.966,
+        "elapsed_s": 384.4,
+        "predicted_gain": 135
+      },
+      {
+        "scan": 32,
+        "xy": [
+          2.049999999999999,
+          -2.2
+        ],
+        "height": 1.85,
+        "tilt_deg": -37.2,
+        "coverage": 99.596,
+        "known_voxels": 16161,
+        "new_voxels": 0,
+        "cloud_points": 38501,
+        "new_surface_points": 163,
+        "distance_m": 111.216,
+        "elapsed_s": 399.6,
+        "predicted_gain": 132
+      },
+      {
+        "scan": 33,
+        "xy": [
+          0.9999999999999991,
+          -2.2
+        ],
+        "height": 1.15,
+        "tilt_deg": 37.2,
+        "coverage": 99.596,
+        "known_voxels": 16161,
+        "new_voxels": 0,
+        "cloud_points": 38868,
+        "new_surface_points": 367,
+        "distance_m": 112.266,
+        "elapsed_s": 409.6,
+        "predicted_gain": 126
+      },
+      {
+        "scan": 34,
+        "xy": [
+          -1.1000000000000005,
+          0.9500000000000002
+        ],
+        "height": 1.15,
+        "tilt_deg": 37.2,
+        "coverage": 99.596,
+        "known_voxels": 16161,
+        "new_voxels": 0,
+        "cloud_points": 39186,
+        "new_surface_points": 318,
+        "distance_m": 116.614,
+        "elapsed_s": 423.6,
+        "predicted_gain": 114
+      },
+      {
+        "scan": 35,
+        "xy": [
+          -3.2,
+          -1.1500000000000001
+        ],
+        "height": 0.55,
+        "tilt_deg": 37.2,
+        "coverage": 99.596,
+        "known_voxels": 16161,
+        "new_voxels": 0,
+        "cloud_points": 39351,
+        "new_surface_points": 165,
+        "distance_m": 119.858,
+        "elapsed_s": 436.4,
+        "predicted_gain": 102
+      },
+      {
+        "scan": 36,
+        "xy": [
+          -2.1500000000000004,
+          -2.2
+        ],
+        "height": 0.55,
+        "tilt_deg": 37.2,
+        "coverage": 99.608,
+        "known_voxels": 16161,
+        "new_voxels": 0,
+        "cloud_points": 39529,
+        "new_surface_points": 178,
+        "distance_m": 121.343,
+        "elapsed_s": 442.8,
+        "predicted_gain": 78
+      },
+      {
+        "scan": 37,
+        "xy": [
+          2.049999999999999,
+          2.0
+        ],
+        "height": 0.55,
+        "tilt_deg": 37.2,
+        "coverage": 99.646,
+        "known_voxels": 16164,
+        "new_voxels": 3,
+        "cloud_points": 39758,
+        "new_surface_points": 229,
+        "distance_m": 127.461,
+        "elapsed_s": 456.8,
+        "predicted_gain": 177
+      },
+      {
+        "scan": 38,
+        "xy": [
+          -0.05000000000000071,
+          2.0
+        ],
+        "height": 1.85,
+        "tilt_deg": -37.2,
+        "coverage": 99.683,
+        "known_voxels": 16164,
+        "new_voxels": 0,
+        "cloud_points": 39913,
+        "new_surface_points": 155,
+        "distance_m": 131.589,
+        "elapsed_s": 471.2,
+        "predicted_gain": 186
+      },
+      {
+        "scan": 39,
+        "xy": [
+          -1.1000000000000005,
+          -2.2
+        ],
+        "height": 2.3,
+        "tilt_deg": -37.2,
+        "coverage": 99.683,
+        "known_voxels": 16164,
+        "new_voxels": 0,
+        "cloud_points": 40018,
+        "new_surface_points": 105,
+        "distance_m": 136.39,
+        "elapsed_s": 488.4,
+        "predicted_gain": 81
+      },
+      {
+        "scan": 40,
+        "xy": [
+          -0.05000000000000071,
+          -2.2
+        ],
+        "height": 2.3,
+        "tilt_deg": -37.2,
+        "coverage": 99.683,
+        "known_voxels": 16164,
+        "new_voxels": 0,
+        "cloud_points": 40095,
+        "new_surface_points": 77,
+        "distance_m": 137.44,
+        "elapsed_s": 498.0,
+        "predicted_gain": 63
+      },
+      {
+        "scan": 41,
+        "xy": [
+          3.0999999999999988,
+          -2.2
+        ],
+        "height": 2.3,
+        "tilt_deg": -37.2,
+        "coverage": 99.707,
+        "known_voxels": 16165,
+        "new_voxels": 1,
+        "cloud_points": 40218,
+        "new_surface_points": 123,
+        "distance_m": 140.59,
+        "elapsed_s": 510.8,
+        "predicted_gain": 102
+      },
+      {
+        "scan": 42,
+        "xy": [
+          3.0999999999999988,
+          -0.10000000000000009
+        ],
+        "height": 2.3,
+        "tilt_deg": 37.2,
+        "coverage": 99.806,
+        "known_voxels": 16166,
+        "new_voxels": 1,
+        "cloud_points": 40381,
+        "new_surface_points": 163,
+        "distance_m": 142.767,
+        "elapsed_s": 524.8,
+        "predicted_gain": 96
+      },
+      {
+        "scan": 43,
+        "xy": [
+          2.049999999999999,
+          2.0
+        ],
+        "height": 2.3,
+        "tilt_deg": 37.2,
+        "coverage": 99.817,
+        "known_voxels": 16168,
+        "new_voxels": 2,
+        "cloud_points": 40538,
+        "new_surface_points": 157,
+        "distance_m": 145.115,
+        "elapsed_s": 538.0,
+        "predicted_gain": 157
+      },
+      {
+        "scan": 44,
+        "xy": [
+          -0.05000000000000071,
+          2.0
+        ],
+        "height": 2.3,
+        "tilt_deg": 37.2,
+        "coverage": 99.817,
+        "known_voxels": 16168,
+        "new_voxels": 0,
+        "cloud_points": 40593,
+        "new_surface_points": 55,
+        "distance_m": 149.242,
+        "elapsed_s": 555.6,
+        "predicted_gain": 138
+      },
+      {
+        "scan": 45,
+        "xy": [
+          0.9999999999999991,
+          -0.1000000000000001
+        ],
+        "height": 1.85,
+        "tilt_deg": -37.2,
+        "coverage": 99.817,
+        "known_voxels": 16168,
+        "new_voxels": 0,
+        "cloud_points": 40651,
+        "new_surface_points": 58,
+        "distance_m": 151.805,
+        "elapsed_s": 568.8,
+        "predicted_gain": 57
+      },
+      {
+        "scan": 46,
+        "xy": [
+          -0.05000000000000071,
+          0.9500000000000002
+        ],
+        "height": 1.15,
+        "tilt_deg": -37.2,
+        "coverage": 99.817,
+        "known_voxels": 16168,
+        "new_voxels": 0,
+        "cloud_points": 40759,
+        "new_surface_points": 108,
+        "distance_m": 153.29,
+        "elapsed_s": 578.4,
+        "predicted_gain": 54
+      },
+      {
+        "scan": 47,
+        "xy": [
+          0.9999999999999991,
+          -2.2
+        ],
+        "height": 0.55,
+        "tilt_deg": -37.2,
+        "coverage": 99.817,
+        "known_voxels": 16168,
+        "new_voxels": 0,
+        "cloud_points": 40828,
+        "new_surface_points": 69,
+        "distance_m": 156.627,
+        "elapsed_s": 588.8,
+        "predicted_gain": 102
+      },
+      {
+        "scan": 48,
+        "xy": [
+          2.049999999999999,
+          -2.2
+        ],
+        "height": 0.55,
+        "tilt_deg": -37.2,
+        "coverage": 99.817,
+        "known_voxels": 16168,
+        "new_voxels": 0,
+        "cloud_points": 40874,
+        "new_surface_points": 46,
+        "distance_m": 157.677,
+        "elapsed_s": 593.6,
+        "predicted_gain": 102
+      }
+    ]
+  },
+  "fixed": {
+    "final": {
+      "strategy": "fixed",
+      "scans": 23,
+      "coverage": 96.90348339363737,
+      "cloud_points": 29485,
+      "known_voxels": 16094,
+      "distance_m": 71.8839955307849,
+      "stop_reason": "candidates_exhausted",
+      "wall_seconds": 3.357622342882678,
+      "export": "/data/xch/cww/Hackerson/artifacts/runs/20261030_223904_590153"
+    },
+    "at_23_scans": {
+      "scan": 23,
+      "xy": [
+        -2.1500000000000004,
+        -2.2
+      ],
+      "height": 1.15,
+      "tilt_deg": 0.0,
+      "coverage": 96.903,
+      "known_voxels": 16094,
+      "new_voxels": 1,
+      "cloud_points": 29485,
+      "new_surface_points": 187,
+      "distance_m": 71.884,
+      "elapsed_s": 249.2,
+      "predicted_gain": 15
+    },
+    "surface_breakdown": {
+      "cabinet": 77.79,
+      "ceiling": 100.0,
+      "east_wall": 96.94,
+      "floor": 98.66,
+      "island": 94.4,
+      "north_wall": 95.83,
+      "partition": 100.0,
+      "sofa_back": 76.61,
+      "sofa_seat": 100.0,
+      "south_wall": 100.0,
+      "table_leg_a": 100.0,
+      "table_leg_b": 100.0,
+      "table_leg_c": 100.0,
+      "table_leg_d": 100.0,
+      "table_top": 57.62,
+      "west_wall": 98.39
+    },
+    "history": [
+      {
+        "scan": 1,
+        "xy": [
+          -3.1,
+          -2.1
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 33.286,
+        "known_voxels": 10714,
+        "new_voxels": 10714,
+        "cloud_points": 3109,
+        "new_surface_points": 3109,
+        "distance_m": 0.0,
+        "elapsed_s": 0.4,
+        "predicted_gain": null
+      },
+      {
+        "scan": 2,
+        "xy": [
+          2.049999999999999,
+          0.9500000000000002
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 58.363,
+        "known_voxels": 13933,
+        "new_voxels": 3219,
+        "cloud_points": 7213,
+        "new_surface_points": 4104,
+        "distance_m": 6.16,
+        "elapsed_s": 14.8,
+        "predicted_gain": 1450
+      },
+      {
+        "scan": 3,
+        "xy": [
+          -1.1000000000000005,
+          2.0
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 69.72,
+        "known_voxels": 14621,
+        "new_voxels": 688,
+        "cloud_points": 10410,
+        "new_surface_points": 3197,
+        "distance_m": 10.083,
+        "elapsed_s": 29.2,
+        "predicted_gain": 625
+      },
+      {
+        "scan": 4,
+        "xy": [
+          0.9999999999999991,
+          -2.2
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 80.226,
+        "known_voxels": 15723,
+        "new_voxels": 1102,
+        "cloud_points": 13101,
+        "new_surface_points": 2691,
+        "distance_m": 14.897,
+        "elapsed_s": 42.0,
+        "predicted_gain": 470
+      },
+      {
+        "scan": 5,
+        "xy": [
+          3.0999999999999988,
+          -2.2
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 83.127,
+        "known_voxels": 15814,
+        "new_voxels": 91,
+        "cloud_points": 14735,
+        "new_surface_points": 1634,
+        "distance_m": 16.997,
+        "elapsed_s": 49.2,
+        "predicted_gain": 305
+      },
+      {
+        "scan": 6,
+        "xy": [
+          -2.1500000000000004,
+          -1.1500000000000001
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 86.746,
+        "known_voxels": 15866,
+        "new_voxels": 52,
+        "cloud_points": 17262,
+        "new_surface_points": 2527,
+        "distance_m": 22.579,
+        "elapsed_s": 65.2,
+        "predicted_gain": 246
+      },
+      {
+        "scan": 7,
+        "xy": [
+          -0.05000000000000071,
+          2.0
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 88.32,
+        "known_voxels": 16006,
+        "new_voxels": 140,
+        "cloud_points": 18259,
+        "new_surface_points": 997,
+        "distance_m": 27.057,
+        "elapsed_s": 79.2,
+        "predicted_gain": 188
+      },
+      {
+        "scan": 8,
+        "xy": [
+          2.049999999999999,
+          2.0
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 89.26,
+        "known_voxels": 16034,
+        "new_voxels": 28,
+        "cloud_points": 19369,
+        "new_surface_points": 1110,
+        "distance_m": 31.274,
+        "elapsed_s": 93.2,
+        "predicted_gain": 186
+      },
+      {
+        "scan": 9,
+        "xy": [
+          2.049999999999999,
+          -0.10000000000000009
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 92.179,
+        "known_voxels": 16049,
+        "new_voxels": 15,
+        "cloud_points": 20852,
+        "new_surface_points": 1483,
+        "distance_m": 33.374,
+        "elapsed_s": 102.0,
+        "predicted_gain": 147
+      },
+      {
+        "scan": 10,
+        "xy": [
+          -1.1000000000000005,
+          -1.1500000000000001
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 93.487,
+        "known_voxels": 16061,
+        "new_voxels": 12,
+        "cloud_points": 22095,
+        "new_surface_points": 1243,
+        "distance_m": 36.725,
+        "elapsed_s": 114.8,
+        "predicted_gain": 139
+      },
+      {
+        "scan": 11,
+        "xy": [
+          -3.2,
+          -0.10000000000000009
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 94.575,
+        "known_voxels": 16073,
+        "new_voxels": 12,
+        "cloud_points": 23375,
+        "new_surface_points": 1280,
+        "distance_m": 39.16,
+        "elapsed_s": 125.6,
+        "predicted_gain": 117
+      },
+      {
+        "scan": 12,
+        "xy": [
+          -0.05000000000000071,
+          -1.1500000000000001
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 95.532,
+        "known_voxels": 16076,
+        "new_voxels": 3,
+        "cloud_points": 24482,
+        "new_surface_points": 1107,
+        "distance_m": 42.614,
+        "elapsed_s": 136.0,
+        "predicted_gain": 87
+      },
+      {
+        "scan": 13,
+        "xy": [
+          0.9999999999999991,
+          -0.10000000000000009
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.123,
+        "known_voxels": 16083,
+        "new_voxels": 7,
+        "cloud_points": 25441,
+        "new_surface_points": 959,
+        "distance_m": 44.099,
+        "elapsed_s": 142.8,
+        "predicted_gain": 86
+      },
+      {
+        "scan": 14,
+        "xy": [
+          3.0999999999999988,
+          -0.10000000000000009
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.483,
+        "known_voxels": 16087,
+        "new_voxels": 4,
+        "cloud_points": 26127,
+        "new_surface_points": 686,
+        "distance_m": 46.199,
+        "elapsed_s": 150.0,
+        "predicted_gain": 93
+      },
+      {
+        "scan": 15,
+        "xy": [
+          2.049999999999999,
+          -2.2
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.483,
+        "known_voxels": 16088,
+        "new_voxels": 1,
+        "cloud_points": 26550,
+        "new_surface_points": 423,
+        "distance_m": 49.316,
+        "elapsed_s": 162.8,
+        "predicted_gain": 72
+      },
+      {
+        "scan": 16,
+        "xy": [
+          -0.05000000000000071,
+          -2.2
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.543,
+        "known_voxels": 16091,
+        "new_voxels": 3,
+        "cloud_points": 27014,
+        "new_surface_points": 464,
+        "distance_m": 51.416,
+        "elapsed_s": 173.2,
+        "predicted_gain": 60
+      },
+      {
+        "scan": 17,
+        "xy": [
+          -0.05000000000000072,
+          0.9500000000000002
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.668,
+        "known_voxels": 16093,
+        "new_voxels": 2,
+        "cloud_points": 27562,
+        "new_surface_points": 548,
+        "distance_m": 54.697,
+        "elapsed_s": 185.6,
+        "predicted_gain": 57
+      },
+      {
+        "scan": 18,
+        "xy": [
+          -1.1000000000000005,
+          0.9500000000000002
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.668,
+        "known_voxels": 16093,
+        "new_voxels": 0,
+        "cloud_points": 28041,
+        "new_surface_points": 479,
+        "distance_m": 55.747,
+        "elapsed_s": 194.4,
+        "predicted_gain": 51
+      },
+      {
+        "scan": 19,
+        "xy": [
+          -3.2,
+          -2.2
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.729,
+        "known_voxels": 16093,
+        "new_voxels": 0,
+        "cloud_points": 28388,
+        "new_surface_points": 347,
+        "distance_m": 59.957,
+        "elapsed_s": 208.0,
+        "predicted_gain": 42
+      },
+      {
+        "scan": 20,
+        "xy": [
+          0.9999999999999991,
+          -1.1500000000000001
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.805,
+        "known_voxels": 16093,
+        "new_voxels": 0,
+        "cloud_points": 28821,
+        "new_surface_points": 433,
+        "distance_m": 64.286,
+        "elapsed_s": 218.8,
+        "predicted_gain": 33
+      },
+      {
+        "scan": 21,
+        "xy": [
+          -3.2,
+          -1.1500000000000001
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.854,
+        "known_voxels": 16093,
+        "new_voxels": 0,
+        "cloud_points": 29072,
+        "new_surface_points": 251,
+        "distance_m": 68.486,
+        "elapsed_s": 232.4,
+        "predicted_gain": 21
+      },
+      {
+        "scan": 22,
+        "xy": [
+          -1.1000000000000005,
+          -2.2
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.854,
+        "known_voxels": 16093,
+        "new_voxels": 0,
+        "cloud_points": 29298,
+        "new_surface_points": 226,
+        "distance_m": 70.834,
+        "elapsed_s": 240.4,
+        "predicted_gain": 18
+      },
+      {
+        "scan": 23,
+        "xy": [
+          -2.1500000000000004,
+          -2.2
+        ],
+        "height": 1.15,
+        "tilt_deg": 0.0,
+        "coverage": 96.903,
+        "known_voxels": 16094,
+        "new_voxels": 1,
+        "cloud_points": 29485,
+        "new_surface_points": 187,
+        "distance_m": 71.884,
+        "elapsed_s": 249.2,
+        "predicted_gain": 15
+      }
+    ]
+  },
+  "scope": "Single deterministic furnished simulation, known navigation map and exact simulation camera poses; area-weighted reference samples with 0.125 m matching radius and 0.035 m surface-plane tolerance. Not a real-world accuracy claim."
+}
