@@ -1,0 +1,15 @@
+{
+  "browser": "Chrome headless on local machine",
+  "loaded_original_gaussians": 999131,
+  "semantic_furniture": 63,
+  "task_objects": 8,
+  "blocking_proxies": 99,
+  "matching_blocked_cells": 2027,
+  "analytic_route_segments_checked": 180,
+  "continuous_radius025_obstacle_crossings": 0,
+  "animated_route": "cup_red from scan point",
+  "arrived_horizontal_distance_m": 0.6204052398273254,
+  "attach_result": "挂载坐标保持检查：cup_red\n挂载前后世界坐标差 0.000e+0 米\n这是挂载测试，不是最终抓取动画。",
+  "page_errors": [],
+  "scope": "Standalone B integration candidate only; no final robot model/animation, merged main entry or independent physical doorway verification."
+}

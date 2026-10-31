@@ -1,0 +1,8 @@
+{
+  "local_file_loader": "passed",
+  "missing_server_ply_fallback": "passed",
+  "public_json_paths_self_contained": true,
+  "private_server_json_requests": [],
+  "loaded_gaussians": 999131,
+  "page_errors": []
+}
