@@ -1,0 +1,646 @@
+{
+  "kind": "actual-A-executor-with-B-restaurant-adapter",
+  "generated_at": "2026-10-31T12:09:30.820Z",
+  "references": {
+    "A_PR": 20,
+    "A_sha": "1499b6a420219c9788e2cc8eac0384464de78edb",
+    "B_base_PR": 23,
+    "B_base_sha": "a65f0531cf238e7a7bc5a2e7668e0268a1791196",
+    "three_revision": "170",
+    "scene_ply_sha256": "db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28"
+  },
+  "scope": "Real A executor/navigation against restaurant JSON and B Object3D proxies. Node has no Gaussian renderer, GLB, HTTP backend or measured hardware FPS. Real PLY rendering is a separate browser evidence item.",
+  "objects": [
+    {
+      "object_id": "cup_red",
+      "initial_surface": "table_01",
+      "destination": "table_01",
+      "nearest_reachable_stand_cell": [
+        20,
+        9
+      ],
+      "nearest_stand_world_xz": [
+        -2.625,
+        -2.125
+      ],
+      "nearest_stand_distance_m": 0.6204052398273254,
+      "route_goal_cell": [
+        20,
+        9
+      ],
+      "steps": [
+        {
+          "taskId": "t1",
+          "index": 0,
+          "action": "find",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 4000
+        },
+        {
+          "taskId": "t1",
+          "index": 1,
+          "action": "grab",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 633
+        },
+        {
+          "taskId": "t1",
+          "index": 2,
+          "action": "drop",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 600
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 4.440892098500626e-16
+        },
+        {
+          "parent": "furniture:table_01",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:table_01",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        -2.464851494614996,
+        0.8164929297566415,
+        -2.5931291897672475
+      ],
+      "final_contact_y": 0.7464929297566414,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 187,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 6.233333333333321
+    },
+    {
+      "object_id": "bottle_green",
+      "initial_surface": "table_03",
+      "destination": "table_03",
+      "nearest_reachable_stand_cell": [
+        3,
+        16
+      ],
+      "nearest_stand_world_xz": [
+        -6.875,
+        -0.375
+      ],
+      "nearest_stand_distance_m": 0.58417235003755,
+      "route_goal_cell": [
+        3,
+        16
+      ],
+      "steps": [
+        {
+          "taskId": "t2",
+          "index": 0,
+          "action": "find",
+          "target": "bottle_green",
+          "ok": true,
+          "ms": 6400
+        },
+        {
+          "taskId": "t2",
+          "index": 1,
+          "action": "grab",
+          "target": "bottle_green",
+          "ok": true,
+          "ms": 767
+        },
+        {
+          "taskId": "t2",
+          "index": 2,
+          "action": "drop",
+          "target": "bottle_green",
+          "ok": true,
+          "ms": 600
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 4.440892098500626e-16
+        },
+        {
+          "parent": "furniture:table_03",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:table_03",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        -6.461551146277263,
+        0.8006919172406197,
+        -0.47673670053004824
+      ],
+      "final_contact_y": 0.7306919172406197,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 263,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 8.766666666666646
+    },
+    {
+      "object_id": "remote_black",
+      "initial_surface": "long_table_01",
+      "destination": "long_table_01",
+      "nearest_reachable_stand_cell": [
+        14,
+        26
+      ],
+      "nearest_stand_world_xz": [
+        -4.125,
+        2.125
+      ],
+      "nearest_stand_distance_m": 0.4317667180155685,
+      "route_goal_cell": [
+        14,
+        26
+      ],
+      "steps": [
+        {
+          "taskId": "t3",
+          "index": 0,
+          "action": "find",
+          "target": "remote_black",
+          "ok": true,
+          "ms": 6867
+        },
+        {
+          "taskId": "t3",
+          "index": 1,
+          "action": "grab",
+          "target": "remote_black",
+          "ok": true,
+          "ms": 867
+        },
+        {
+          "taskId": "t3",
+          "index": 2,
+          "action": "drop",
+          "target": "remote_black",
+          "ok": true,
+          "ms": 2967
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:long_table_01",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:long_table_01",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        -6.104178491116659,
+        1.0983707168698311,
+        1.734900998935264
+      ],
+      "final_contact_y": 1.058370716869831,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 351,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 11.699999999999969
+    },
+    {
+      "object_id": "keys_yellow",
+      "initial_surface": "table_05",
+      "destination": "table_05",
+      "nearest_reachable_stand_cell": [
+        15,
+        29
+      ],
+      "nearest_stand_world_xz": [
+        -3.875,
+        2.875
+      ],
+      "nearest_stand_distance_m": 0.65708078664681,
+      "route_goal_cell": [
+        15,
+        29
+      ],
+      "steps": [
+        {
+          "taskId": "t4",
+          "index": 0,
+          "action": "find",
+          "target": "keys_yellow",
+          "ok": true,
+          "ms": 6700
+        },
+        {
+          "taskId": "t4",
+          "index": 1,
+          "action": "grab",
+          "target": "keys_yellow",
+          "ok": true,
+          "ms": 800
+        },
+        {
+          "taskId": "t4",
+          "index": 2,
+          "action": "drop",
+          "target": "keys_yellow",
+          "ok": true,
+          "ms": 1567
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 4.440892098500626e-16
+        },
+        {
+          "parent": "furniture:table_05",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:table_05",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        -4.07863631206352,
+        0.7761446097493172,
+        3.4257969590536477
+      ],
+      "final_contact_y": 0.7361446097493172,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 302,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 10.066666666666642
+    },
+    {
+      "object_id": "phone_white",
+      "initial_surface": "table_07",
+      "destination": "table_07",
+      "nearest_reachable_stand_cell": [
+        39,
+        29
+      ],
+      "nearest_stand_world_xz": [
+        2.125,
+        2.875
+      ],
+      "nearest_stand_distance_m": 0.6380459575191327,
+      "route_goal_cell": [
+        39,
+        29
+      ],
+      "steps": [
+        {
+          "taskId": "t5",
+          "index": 0,
+          "action": "find",
+          "target": "phone_white",
+          "ok": true,
+          "ms": 8167
+        },
+        {
+          "taskId": "t5",
+          "index": 1,
+          "action": "grab",
+          "target": "phone_white",
+          "ok": true,
+          "ms": 900
+        },
+        {
+          "taskId": "t5",
+          "index": 2,
+          "action": "drop",
+          "target": "phone_white",
+          "ok": true,
+          "ms": 1500
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 4.440892098500626e-16
+        },
+        {
+          "parent": "furniture:table_07",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:table_07",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        1.884480400579852,
+        0.7770551303029061,
+        3.3938299008994197
+      ],
+      "final_contact_y": 0.737055130302906,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 347,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 11.566666666666636
+    },
+    {
+      "object_id": "notebook_orange",
+      "initial_surface": "table_09",
+      "destination": "table_09",
+      "nearest_reachable_stand_cell": [
+        57,
+        29
+      ],
+      "nearest_stand_world_xz": [
+        6.625,
+        2.875
+      ],
+      "nearest_stand_distance_m": 0.5782523897696362,
+      "route_goal_cell": [
+        57,
+        29
+      ],
+      "steps": [
+        {
+          "taskId": "t6",
+          "index": 0,
+          "action": "find",
+          "target": "notebook_orange",
+          "ok": true,
+          "ms": 12033
+        },
+        {
+          "taskId": "t6",
+          "index": 1,
+          "action": "grab",
+          "target": "notebook_orange",
+          "ok": true,
+          "ms": 900
+        },
+        {
+          "taskId": "t6",
+          "index": 2,
+          "action": "drop",
+          "target": "notebook_orange",
+          "ok": true,
+          "ms": 1533
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 9.930136612989092e-16
+        },
+        {
+          "parent": "furniture:table_09",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:table_09",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        6.3604853594849295,
+        0.7709944108128548,
+        3.3419861410884306
+      ],
+      "final_contact_y": 0.7309944108128548,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 464,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 15.466666666666622
+    },
+    {
+      "object_id": "book_blue",
+      "initial_surface": "table_10",
+      "destination": "table_10",
+      "nearest_reachable_stand_cell": [
+        39,
+        28
+      ],
+      "nearest_stand_world_xz": [
+        2.125,
+        2.625
+      ],
+      "nearest_stand_distance_m": 0.6370329529054285,
+      "route_goal_cell": [
+        39,
+        28
+      ],
+      "steps": [
+        {
+          "taskId": "t7",
+          "index": 0,
+          "action": "find",
+          "target": "book_blue",
+          "ok": true,
+          "ms": 8300
+        },
+        {
+          "taskId": "t7",
+          "index": 1,
+          "action": "grab",
+          "target": "book_blue",
+          "ok": true,
+          "ms": 933
+        },
+        {
+          "taskId": "t7",
+          "index": 2,
+          "action": "drop",
+          "target": "book_blue",
+          "ok": true,
+          "ms": 5633
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 2.220446049250313e-16
+        },
+        {
+          "parent": "furniture:table_10",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:table_10",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        1.8746964418313223,
+        0.782528684437275,
+        1.1101787518653927
+      ],
+      "final_contact_y": 0.7425286844372749,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 476,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 15.866666666666621
+    },
+    {
+      "object_id": "glasses_black",
+      "initial_surface": "counter_01",
+      "destination": "counter_01",
+      "nearest_reachable_stand_cell": [
+        36,
+        19
+      ],
+      "nearest_stand_world_xz": [
+        1.375,
+        0.375
+      ],
+      "nearest_stand_distance_m": 0.8368153911422448,
+      "route_goal_cell": [
+        36,
+        19
+      ],
+      "steps": [
+        {
+          "taskId": "t8",
+          "index": 0,
+          "action": "find",
+          "target": "glasses_black",
+          "ok": true,
+          "ms": 5800
+        },
+        {
+          "taskId": "t8",
+          "index": 1,
+          "action": "grab",
+          "target": "glasses_black",
+          "ok": true,
+          "ms": 933
+        },
+        {
+          "taskId": "t8",
+          "index": 2,
+          "action": "drop",
+          "target": "glasses_black",
+          "ok": true,
+          "ms": 4200
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 2.220446049250313e-16
+        },
+        {
+          "parent": "furniture:counter_01",
+          "error_m": 5.551115123125783e-17
+        },
+        {
+          "parent": "furniture:counter_01",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        3.329857253914593,
+        0.8706608274579049,
+        -0.2804042824911088
+      ],
+      "final_contact_y": 0.8306608274579048,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 358,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 11.933333333333302
+    }
+  ],
+  "cross_furniture": [
+    {
+      "object_id": "cup_red",
+      "initial_surface": "table_01",
+      "destination": "table_03",
+      "nearest_reachable_stand_cell": [
+        20,
+        9
+      ],
+      "nearest_stand_world_xz": [
+        -2.625,
+        -2.125
+      ],
+      "nearest_stand_distance_m": 0.6204052398273254,
+      "route_goal_cell": [
+        20,
+        9
+      ],
+      "steps": [
+        {
+          "taskId": "t9",
+          "index": 0,
+          "action": "find",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 4000
+        },
+        {
+          "taskId": "t9",
+          "index": 1,
+          "action": "grab",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 633
+        },
+        {
+          "taskId": "t9",
+          "index": 2,
+          "action": "drop",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 7500
+        }
+      ],
+      "attachments": [
+        {
+          "parent": "carryAnchor",
+          "error_m": 4.440892098500626e-16
+        },
+        {
+          "parent": "furniture:table_03",
+          "error_m": 0
+        },
+        {
+          "parent": "furniture:table_03",
+          "error_m": 0
+        }
+      ],
+      "final_world_center": [
+        -6.461551146277263,
+        0.8006919172406197,
+        -0.47673670053004824
+      ],
+      "final_contact_y": 0.7306919172406197,
+      "drop_inside_true_surface_polygon": true,
+      "sampled_frames": 394,
+      "sampled_frames_intersecting_inflated_proxy": 0,
+      "continuous_proxy_crossings": 0,
+      "simulated_seconds": 13.133333333333297
+    }
+  ],
+  "registry": {
+    "furniture": 63,
+    "task_objects": 8,
+    "actual_proxy_mesh_bounds_checked": 99,
+    "dynamic_room_query": "passed"
+  },
+  "actual_A_drop_polygon_failures": [],
+  "status": "passed"
+}
