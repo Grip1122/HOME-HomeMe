@@ -1,0 +1,39 @@
+{
+  "source_asset": "scene_main",
+  "source_sha256": "901cf8ce0be73706d6ab0f2649e4f7520def2ee4342a30bca984b55ce2678fae",
+  "source_url": "https://github.com/Grip1122/HOME-HomeMe/releases/download/splat-v1/scene.ply",
+  "preview_file": "home-preview.compressed.ply",
+  "preview_sha256": "b9a5a013433331d37d1f8e157e43a3301bc9dc84f2f3aa2a5b880d396718f884",
+  "preview_bytes": 2221739,
+  "transform_preview_only": {
+    "rotate_x_deg": 180,
+    "scale": 1,
+    "offset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "scale_calibrated": false,
+  "logic_source": "web/public/layouts; never derived from this visual point cloud",
+  "crop_raw": [
+    -5,
+    -3.5,
+    -2.5,
+    4,
+    0.2,
+    2.5
+  ],
+  "sampling": "28% uniform",
+  "spherical_harmonics": 0,
+  "converter": "@playcanvas/splat-transform 3.10.3",
+  "camera": {
+    "projection": "orthographic",
+    "pitch_degrees": 45,
+    "rotate": false,
+    "zoom": [
+      0.7,
+      1.5
+    ]
+  }
+}

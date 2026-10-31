@@ -30,6 +30,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 # (名字, 文件, 单行锚点, 改成, 期望失败的测试名)
 MUTATIONS = [
+    ("archive_excludes_old_restaurant", "scripts/pack_roomscan.py",
+     '        if excluded(relative, runs):',
+     '        if False:',
+     "test_user_excluded_restaurant_is_not_in_archive_even_when_git_would_ignore_other_files"),
+    ("team_scene_reject_checksum_mismatch", "scripts/fetch_team_scene.py",
+     '    if Path(path).stat().st_size != asset["bytes"] or digest.hexdigest() != asset["sha256"]:',
+     '    if False:',
+     "test_corrupt_scene_does_not_leave_a_partly_installed_asset"),
     ("http_preserve_corrective_source", "server/main.py",
      '        response = plan_offline(payload["query"], index, payload)',
      '        response = {**plan_offline(payload["query"], index, payload), "source": "cache"}',
