@@ -20,6 +20,7 @@ pytest 以 exit 2 退出，被判成 KILLED —— 假证据。所以现在 exit
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import shutil
 import subprocess
@@ -85,6 +86,11 @@ MUTATIONS = [
      "ROBOT_RADIUS = 0.26",
      "test_fixture_matches_current_layout"),
 ]
+
+
+# Each small PR owns its mutation specifications, avoiding one shared edit list.
+for specification in sorted((ROOT / "scripts/mutations").glob("*.json")):
+    MUTATIONS.extend(json.loads(specification.read_text(encoding="utf-8")))
 
 
 def _purge_bytecode():
