@@ -11,10 +11,10 @@
         "web/src/nav/"
       ],
       "resources": [
-        "roomscan/assets/robot/roomscan-rs01.glb",
-        "roomscan/assets/robot/manifest.json",
-        "roomscan/web/robot.mjs",
-        "roomscan/web/motion.mjs"
+        "../../assets/robot/roomscan-rs01.glb",
+        "../../assets/robot/manifest.json",
+        "robot/robot.mjs",
+        "../../reference/hackerson/web/motion.mjs"
       ],
       "integration": [
         "Import GLB with the existing three.js GLTFLoader; preserve named nodes MastStage1..4, CameraHead, WheelLeft/Right and TreadLeft/Right00..41.",
@@ -31,10 +31,10 @@
         "assets/"
       ],
       "resources": [
-        "team-scene/source-manifest.json",
+        "../../assets/gaussian-splat/manifest.json",
         "team-scene/preview-manifest.json",
         "team-scene/home-preview.compressed.ply",
-        "roomscan/assets/robot/"
+        "../../assets/robot/"
       ],
       "integration": [
         "Primary scene is the team scene_main Release, checksum verified; no original restaurant asset is included.",
@@ -50,7 +50,7 @@
         "docs/"
       ],
       "resources": [
-        "roomscan/web/robot.html",
+        "robot/robot.html",
         "index.html",
         "evidence/"
       ],

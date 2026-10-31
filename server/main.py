@@ -193,6 +193,12 @@ def create_app(db_path=None, layouts=None, static_dir=None):
     # Keep D's delivery resources separate from A/B/C-owned frontend modules.
     delivery = ROOT / "server/delivery"
     if delivery.is_dir():
+        # Shared resources live once in the repo (assets/ owned by B, reference/ read-only archive).
+        # Mount them under /delivery/ before the catch-all instead of copying; /assets is left to Vite's dist.
+        for prefix, source in (("/delivery/assets", ROOT / "assets"),
+                               ("/delivery/vendor", ROOT / "reference/hackerson/web/vendor")):
+            if source.is_dir():
+                app.mount(prefix, StaticFiles(directory=source), name=prefix.strip("/").replace("/", "-"))
         app.mount("/delivery", StaticFiles(directory=delivery, html=True), name="delivery")
     frontend = Path(static_dir or os.getenv("HOMETWIN_WEB_DIST", str(ROOT / "web/dist")))
     if frontend.is_dir():

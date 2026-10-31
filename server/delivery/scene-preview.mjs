@@ -1,5 +1,5 @@
-import * as pc from './roomscan/web/vendor/playcanvas.mjs';
-import {loadScannerRobot} from './roomscan/web/robot.mjs';
+import * as pc from './vendor/playcanvas.mjs';
+import {loadScannerRobot} from './robot/robot.mjs';
 const canvas=document.getElementById('scene'),message=document.getElementById('message');
 const app=new pc.Application(canvas,{graphicsDeviceOptions:{antialias:false,alpha:false,powerPreference:'high-performance'}});
 app.setCanvasFillMode(pc.FILLMODE_NONE);app.setCanvasResolution(pc.RESOLUTION_AUTO);app.graphicsDevice.maxPixelRatio=Math.min(devicePixelRatio,1.5);

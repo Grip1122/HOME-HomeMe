@@ -51,7 +51,7 @@ GET /log?layout_id=A&limit=50
 
 | 分工 | 已备妥资源 | 集成责任 |
 | --- | --- | --- |
-| A / Jesu | `roomscan/assets/robot/` 的 GLB 与部件清单，`roomscan/web/robot.mjs`、`motion.mjs` 动画/插值参考 | 用既有 three.js GLTFLoader 接入；通过团队事件总线绑定状态机、导航和动作，不直接导入 PlayCanvas 参考模块。 |
+| A / Jesu | [`assets/robot/`](../../assets/robot/) 的 GLB 与部件清单，`robot/robot.mjs`、[`reference/hackerson/web/motion.mjs`](../../reference/hackerson/web/motion.mjs) 动画/插值参考 | 用既有 three.js GLTFLoader 接入；通过团队事件总线绑定状态机、导航和动作，不直接导入 PlayCanvas 参考模块。 |
 | B / sen | 团队 `scene_main` 的来源清单、原始 SHA-256、2.2 MiB 轻量预览和转换参数 | 人工确认方向、尺度、偏移、layout 碰撞层及台面高度。预览变换不等于标定。 |
 | C / Gary | `evidence/` 截图、模型预览与界面联调参考 | 按团队事件契约接 HUD、来源标签和验收；资源预览不替代 M1/M2 验收。 |
 | D / wei | FastAPI、SQLite、校验下载脚本、完整归档与测试/变异证据 | 维护接口与交付；由 Jesu 审批合并。 |
@@ -84,7 +84,7 @@ python scripts/fetch_team_scene.py
 
 用户已明确排除原餐厅 ZIP、解压/转换场景资产及包含旧餐厅的扫描结果/效果图。排除项有完整清单，没有用 `.gitignore` 默默丢弃其他目录。
 
-`roomscan/` 是便于团队直接评审的程序与机器人资源副本；原工程的 `run.py`、MuJoCo 扫描器、实验文档作为参考保留，不作为 HOME 的默认执行入口。旧餐厅运行资产已排除，因此不要使用旧文档中的默认餐厅启动命令；原版代码的完整备份以归档为准。原版 MuJoCo / NumPy / SciPy 等依赖与安装副本只随备份保存，不加入团队后端依赖或 CI。
+**仓库内只保留一份**（2026-10-31 合并前去重）：机器人资产在 [`assets/robot/`](../../assets/robot/)，原工程源码、文档与 QA 截图在 [`reference/hackerson/`](../../reference/hackerson/)（只读归档），逐文件清单只在 Release 附件 `hackerson-d-delivery.tar.gz.manifest.json`。本目录只放 D 自己的预览页与改写过的 3 个文件：`robot/`（资源路径改成相对 URL，由 `server/main.py` 把仓库根 `assets/` 只读挂载为 `/delivery/assets/`）、`/delivery/vendor/`（挂载 `reference/hackerson/web/vendor/`，PlayCanvas 全仓只此一份）、`tools/splat/`（转换工具依赖声明）。原工程的 `run.py`、MuJoCo 扫描器不作为 HOME 的默认执行入口；旧餐厅运行资产已排除，不要使用旧文档中的默认餐厅启动命令。原版 MuJoCo / NumPy / SciPy 等依赖只随 Release 备份保存，不加入团队后端依赖或 CI。
 
 ## 验证与假设
 

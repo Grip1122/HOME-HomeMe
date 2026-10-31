@@ -1,4 +1,4 @@
-import * as pc from './vendor/playcanvas.mjs';
+import * as pc from '../vendor/playcanvas.mjs';
 import {loadScannerRobot} from './robot.mjs';
 
 const canvas=document.getElementById('robot-preview'),status=document.getElementById('model-status');

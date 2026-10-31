@@ -133,3 +133,15 @@ def test_reset_seed_validates_confidence_before_deleting_existing_memory(client)
     entry = {"object_id": "cup_red", "room": "living", "pos": [0, .75, 0], "confidence": 1.1, "status": "fresh"}
     assert client.post("/memory/reset", json={"layout_id": "A", "entries": [entry]}).status_code == 422
     assert client.get("/memory", params={"layout_id": "A"}).json()[0]["confidence"] == .8
+
+
+def test_delivery_preview_serves_shared_assets_without_a_second_copy(client):
+    """D's preview reuses repo-root assets/ and the archived PlayCanvas; no duplicate copy under server/delivery/."""
+    from server.main import ROOT
+    glb = client.get("/delivery/assets/robot/roomscan-rs01.glb")
+    assert glb.status_code == 200
+    assert glb.content == (ROOT / "assets/robot/roomscan-rs01.glb").read_bytes()
+    assert client.get("/delivery/assets/robot/manifest.json").json()["tracks"]
+    assert client.get("/delivery/vendor/playcanvas.mjs").status_code == 200
+    assert client.get("/delivery/robot/robot.html").status_code == 200
+    assert not (ROOT / "server/delivery/roomscan").exists()
