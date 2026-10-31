@@ -78,7 +78,7 @@ python scripts/fetch_team_scene.py
 
 ## 全文件归档
 
-下载：[D 完整归档与逐文件清单](https://github.com/mwaiting002/HOME-HomeMe/releases/tag/d-roomscan-source-20261031)。GitHub 返回的 SHA-256 与本地逐项校验结果一致。
+下载：[D 完整归档与逐文件清单](https://github.com/Grip1122/HOME-HomeMe/releases/tag/d-roomscan-source-20261031)。GitHub 返回的 SHA-256 与本地逐项校验结果一致。
 
 原始 Hackerson 中所有未被用户排除的文件（含隐藏文件、依赖安装副本、模型源文件及上游许可）保存在 `hackerson-d-delivery.tar.gz`。逐文件清单及校验和随包提供；大归档走 GitHub Release，不塞进 Git 历史。
 
