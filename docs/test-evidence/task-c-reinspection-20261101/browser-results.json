@@ -1,0 +1,690 @@
+{
+  "kind": "browser-pinned-candidate",
+  "client_date": "2026-11-01",
+  "scope": "Existing restaurant validation page with real bus/executor/HUD and static GLB; fixed input plan, no backend planner or joint animation; not the product main entry.",
+  "rendererThree": "170",
+  "assetSHA256": "db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28",
+  "layout": "layout_restaurant",
+  "modelSHA256": "f5dcae49c12905548eb59b9d2960ce36920f3088afc374275074bad0109276e2",
+  "runs": [
+    {
+      "result": {
+        "ok": true,
+        "reason": null,
+        "steps": 5
+      },
+      "wallDurationMs": 5519.100000008941,
+      "actions": [
+        {
+          "taskId": "browser-five-1",
+          "index": 0,
+          "action": "go",
+          "target": "restaurant",
+          "ok": true,
+          "ms": 0
+        },
+        {
+          "taskId": "browser-five-1",
+          "index": 1,
+          "action": "observe",
+          "target": "restaurant",
+          "ok": true,
+          "ms": 325
+        },
+        {
+          "taskId": "browser-five-1",
+          "index": 2,
+          "action": "find",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 2845
+        },
+        {
+          "taskId": "browser-five-1",
+          "index": 3,
+          "action": "grab",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 659
+        },
+        {
+          "taskId": "browser-five-1",
+          "index": 4,
+          "action": "drop",
+          "target": "cup_red",
+          "ok": true,
+          "ms": 641
+        }
+      ],
+      "drop": {
+        "actual": [
+          -2.464851494614996,
+          0.8164929297566415,
+          -2.5931291897672475
+        ],
+        "expectedY": 0.8164929297566415,
+        "parentMatches": true
+      },
+      "anchor": [
+        0,
+        0.55,
+        0.4
+      ],
+      "averageFps": 15.413780273904639,
+      "frames": 87,
+      "hudProgress": "100%",
+      "textureCount": 2,
+      "ok": true
+    }
+  ],
+  "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "modelDisplay": {
+    "modelCapabilities": {
+      "rootTranslation": true,
+      "rootYaw": true,
+      "bones": 0,
+      "animationClips": 0,
+      "articulatedGrasp": false
+    },
+    "displayHeightMeters": 0.8272058947508332,
+    "geometryRadiusMeters": 0.25,
+    "requestedHeightMeters": 1.2,
+    "navigationRadiusMeters": 0.25,
+    "heightIsMeasured": false
+  },
+  "events": [
+    {
+      "t": 75353.10000000894,
+      "name": "plan:received",
+      "payload": {
+        "source": "script",
+        "steps": [
+          {
+            "action": "go",
+            "target": "restaurant"
+          },
+          {
+            "action": "observe",
+            "room": "restaurant"
+          },
+          {
+            "action": "find",
+            "target": "cup_red"
+          },
+          {
+            "action": "grab",
+            "target": "cup_red"
+          },
+          {
+            "action": "drop",
+            "target": "cup_red",
+            "to": "table_01"
+          }
+        ],
+        "latencyMs": 0
+      }
+    },
+    {
+      "t": 75353.90000000596,
+      "name": "task:start",
+      "payload": {
+        "taskId": "browser-five-1",
+        "query": "固定五动作检查",
+        "source": "script"
+      }
+    },
+    {
+      "t": 75356.10000000894,
+      "name": "robot:state",
+      "payload": {
+        "from": "idle",
+        "to": "thinking",
+        "step": null,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 75356.40000000596,
+      "name": "task:say",
+      "payload": {
+        "text": "餐厅固定五动作检查",
+        "who": "robot"
+      }
+    },
+    {
+      "t": 75357.60000000894,
+      "name": "robot:state",
+      "payload": {
+        "from": "thinking",
+        "to": "walking",
+        "step": 0,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 75363.79999999702,
+      "name": "task:step",
+      "payload": {
+        "taskId": "browser-five-1",
+        "index": 0,
+        "action": "go",
+        "target": "restaurant",
+        "ok": true,
+        "ms": 0
+      }
+    },
+    {
+      "t": 75365.10000000894,
+      "name": "robot:state",
+      "payload": {
+        "from": "walking",
+        "to": "scanning",
+        "step": 1,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 75568,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "cup_red",
+        "room": "restaurant",
+        "confidence": 0.8,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 75568.5,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "bottle_green",
+        "room": "restaurant",
+        "confidence": 0.8,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 75569,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "remote_black",
+        "room": "restaurant",
+        "confidence": 0.8,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 75569.5,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "keys_yellow",
+        "room": "restaurant",
+        "confidence": 0.8,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 75570,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "phone_white",
+        "room": "restaurant",
+        "confidence": 0.8,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 75570.5,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "notebook_orange",
+        "room": "restaurant",
+        "confidence": 0.8,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 75571,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "book_blue",
+        "room": "restaurant",
+        "confidence": 0.8,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 75571.90000000596,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "glasses_black",
+        "room": "restaurant",
+        "confidence": 0.8,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 75573.60000000894,
+      "name": "task:step",
+      "payload": {
+        "taskId": "browser-five-1",
+        "index": 1,
+        "action": "observe",
+        "target": "restaurant",
+        "ok": true,
+        "ms": 325
+      }
+    },
+    {
+      "t": 75579,
+      "name": "robot:state",
+      "payload": {
+        "from": "scanning",
+        "to": "walking",
+        "step": 2,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 75632.29999999702,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.125,
+          0,
+          -0.125
+        ],
+        "yaw": 0.2775999999999767
+      }
+    },
+    {
+      "t": 75776,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.125,
+          0,
+          -0.125
+        ],
+        "yaw": 0.832
+      }
+    },
+    {
+      "t": 75888.90000000596,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.125,
+          0,
+          -0.125
+        ],
+        "yaw": 1.2492000000000116
+      }
+    },
+    {
+      "t": 76074.10000000894,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.125,
+          0,
+          -0.125
+        ],
+        "yaw": 1.928
+      }
+    },
+    {
+      "t": 76216,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.125,
+          0,
+          -0.125
+        ],
+        "yaw": 2.4815999999999767
+      }
+    },
+    {
+      "t": 76340.79999999702,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.125,
+          0,
+          -0.125
+        ],
+        "yaw": 2.8966139904629293
+      }
+    },
+    {
+      "t": 76520.20000000298,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.080790606268379,
+          0,
+          -0.30183757492648433
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 76647.5,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.0455744335131034,
+          0,
+          -0.4427022659475865
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 76781.40000000596,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -3.005235908357059,
+          0,
+          -0.604056366571765
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 76907,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.9699906313267816,
+          0,
+          -0.7450374746928744
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 77038.70000000298,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.929826731820765,
+          0,
+          -0.9056930727169413
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 77171.79999999702,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.8896628323147486,
+          0,
+          -1.0663486707410081
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 77306.10000000894,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.8540683039844157,
+          0,
+          -1.2087267840623406
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 77436.60000000894,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.813729778828371,
+          0,
+          -1.370080884686519
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 77571.70000000298,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.773333045122323,
+          0,
+          -1.5316678195107118
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 77701,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.7381459766420493,
+          0,
+          -1.6724160934318069
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 77826,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.70275517823675,
+          0,
+          -1.8139792870530036
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 77946.10000000894,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.67365090323239,
+          0,
+          -1.9303963870704435
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 78080.79999999702,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.6334578994513715,
+          0,
+          -2.0911684021945174
+        ],
+        "yaw": 2.896613990462929
+      }
+    },
+    {
+      "t": 78148.29999999702,
+      "name": "robot:state",
+      "payload": {
+        "from": "walking",
+        "to": "scanning",
+        "step": 2,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 78482.60000000894,
+      "name": "memory:hit",
+      "payload": {
+        "objectId": "cup_red",
+        "confidence": 0.85
+      }
+    },
+    {
+      "t": 78483.60000000894,
+      "name": "memory:updated",
+      "payload": {
+        "objectId": "cup_red",
+        "room": "restaurant",
+        "confidence": 0.85,
+        "status": "fresh"
+      }
+    },
+    {
+      "t": 78484.20000000298,
+      "name": "task:step",
+      "payload": {
+        "taskId": "browser-five-1",
+        "index": 2,
+        "action": "find",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 2845
+      }
+    },
+    {
+      "t": 78548.79999999702,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.625,
+          0,
+          -2.125
+        ],
+        "yaw": 2.6198139904629407
+      }
+    },
+    {
+      "t": 78609.60000000894,
+      "name": "robot:state",
+      "payload": {
+        "from": "scanning",
+        "to": "walking",
+        "step": 3,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 78609.70000000298,
+      "name": "robot:state",
+      "payload": {
+        "from": "walking",
+        "to": "picking",
+        "step": 3,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 79129.40000000596,
+      "name": "robot:holding",
+      "payload": {
+        "objectId": "cup_red"
+      }
+    },
+    {
+      "t": 79129.40000000596,
+      "name": "task:step",
+      "payload": {
+        "taskId": "browser-five-1",
+        "index": 3,
+        "action": "grab",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 659
+      }
+    },
+    {
+      "t": 79130.40000000596,
+      "name": "robot:state",
+      "payload": {
+        "from": "picking",
+        "to": "walking",
+        "step": 4,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 79188.5,
+      "name": "robot:moved",
+      "payload": {
+        "pos": [
+          -2.625,
+          0,
+          -2.125
+        ],
+        "yaw": 2.6813319313609107
+      }
+    },
+    {
+      "t": 79253,
+      "name": "robot:state",
+      "payload": {
+        "from": "walking",
+        "to": "placing",
+        "step": 4,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 79774.40000000596,
+      "name": "robot:holding",
+      "payload": {
+        "objectId": null
+      }
+    },
+    {
+      "t": 79774.40000000596,
+      "name": "task:step",
+      "payload": {
+        "taskId": "browser-five-1",
+        "index": 4,
+        "action": "drop",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 641
+      }
+    },
+    {
+      "t": 79775.5,
+      "name": "robot:state",
+      "payload": {
+        "from": "placing",
+        "to": "celebrating",
+        "step": null,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 80870.70000000298,
+      "name": "robot:state",
+      "payload": {
+        "from": "celebrating",
+        "to": "idle",
+        "step": null,
+        "taskId": "browser-five-1"
+      }
+    },
+    {
+      "t": 80870.79999999702,
+      "name": "task:end",
+      "payload": {
+        "taskId": "browser-five-1",
+        "ok": true,
+        "steps": 5,
+        "durationMs": 5521,
+        "corrected": false
+      }
+    }
+  ]
+}
