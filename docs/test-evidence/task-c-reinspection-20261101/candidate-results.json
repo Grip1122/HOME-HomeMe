@@ -970,6 +970,270 @@
       }
     ]
   },
+  "verified_source_lock": {
+    "modelSHA256": "f5dcae49c12905548eb59b9d2960ce36920f3088afc374275074bad0109276e2",
+    "sources": [
+      {
+        "path": "web/src/core/config.js",
+        "gitBlob": "7f4c58886080a4e92c763f79087a1828c60b3024",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/eventbus.js",
+        "gitBlob": "46dedabeb4969db0eb63c0673a453190328404e5",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/memory.js",
+        "gitBlob": "a236c38aab5c4d0009e3660dbbc26c9e0d5347e5",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/sim.js",
+        "gitBlob": "bb15c973e04783676502fc5c4ec03b846928df73",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/spinning_cube.js",
+        "gitBlob": "36611d96a78269fdac03b058c66afc7312859b85",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/statemachine.js",
+        "gitBlob": "0d0f908fee24837af4c981b2097d479ef4d08a41",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/taskqueue.js",
+        "gitBlob": "b3c36be73026b5d5c3222123810cc3ff9f994bfa",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/core/ticker.js",
+        "gitBlob": "c15b9da866cd92cb3778b2bd837f675bf2872da4",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/__fixtures__/layout_A.nav.json",
+        "gitBlob": "880958918646b7334ec06add856a1e75f003626f",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/astar.js",
+        "gitBlob": "56b0bc221d8723d9c9471a2d83b244ee083e7c4c",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/grid.js",
+        "gitBlob": "be0be6e0aea6dc874ceb5118cdc75f8abc9e6e8e",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/route.js",
+        "gitBlob": "d7296c1c6b1ad8551a0a3ed7d2a81d42275361d8",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/nav/walker.js",
+        "gitBlob": "629b5552ed552aa074204c0f0a49724e59efd4de",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/actions.js",
+        "gitBlob": "1f0e55bb34534ac40ef639fbc70cd6a8845677dd",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/executor.js",
+        "gitBlob": "f2af78bbf433b264e803685669c2fe05ef3a7d03",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/kinematics.js",
+        "gitBlob": "de52ca9ca17270a6ed612501e7229ddd437c8a8b",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/log-report.js",
+        "gitBlob": "0f772a95c1575e9fb7b612710bbb691e64968b6d",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/pose-buffer.js",
+        "gitBlob": "e35cdf74e0d72724763aa94303979df24ed7fe50",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/robot.js",
+        "gitBlob": "f12583c9284ad40096c88919abc529e7012312f2",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/testkit.js",
+        "gitBlob": "675332be4739a7674798bdd69d295c1249d0c69f",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/world-port.js",
+        "gitBlob": "109e97fcea749b9c5e3538a834ccaf75395cb978",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/src/robot/world.js",
+        "gitBlob": "59d24fb27a048beaec784ce8c1bb14c940d3bcab",
+        "baselinePR": 20,
+        "baselineRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd",
+        "actualRef": "f0babb9659c99504e17f2ba4a4b3ec33e6706cfd"
+      },
+      {
+        "path": "web/public/layouts/layout_restaurant.json",
+        "gitBlob": "c741e0b2984605620a989e202d6cb9aab69426e2",
+        "baselinePR": 23,
+        "baselineRef": "b41d6793e2dde5cc783024421aae569941743211",
+        "actualRef": "b41d6793e2dde5cc783024421aae569941743211"
+      },
+      {
+        "path": "web/public/scene-data/restaurant_scene_config.json",
+        "gitBlob": "2bec16d7b9ed62cfcc19603950bbed3364a1a165",
+        "baselinePR": 23,
+        "baselineRef": "b41d6793e2dde5cc783024421aae569941743211",
+        "actualRef": "b41d6793e2dde5cc783024421aae569941743211"
+      },
+      {
+        "path": "web/public/scene-data/restaurant_semantics.json",
+        "gitBlob": "b0d4ed5bb1f916745a3fe957d6f31405b6738deb",
+        "baselinePR": 23,
+        "baselineRef": "b41d6793e2dde5cc783024421aae569941743211",
+        "actualRef": "b41d6793e2dde5cc783024421aae569941743211"
+      },
+      {
+        "path": "web/src/scene/restaurant-scene.js",
+        "gitBlob": "07f79a12ddd72809ef082c25c2e2342a6a0ab848",
+        "baselinePR": 23,
+        "baselineRef": "b41d6793e2dde5cc783024421aae569941743211",
+        "actualRef": "b41d6793e2dde5cc783024421aae569941743211"
+      },
+      {
+        "path": "web/src/ui/chat.js",
+        "gitBlob": "50814938a9f415ef1d4900fd7149bd5d84ea7d6e",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/compare.js",
+        "gitBlob": "f59368d2527ae4ef0f573c4310661534320b5ff3",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/copy.js",
+        "gitBlob": "3ac5f8b77035f6cb72f68dc2653e740267eed722",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "91c682e2fcc51249e4b914395dee3aa273082024"
+      },
+      {
+        "path": "web/src/ui/director.js",
+        "gitBlob": "c0dd304b15a0af268fdd87dc1e9b47f6f830770d",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/hud.css",
+        "gitBlob": "87f1aa4455854ec953bff8861e5dde4a05c6594e",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/hud.js",
+        "gitBlob": "314df796d0294291d5726cb8e14260b09c3bf833",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "91c682e2fcc51249e4b914395dee3aa273082024"
+      },
+      {
+        "path": "web/src/ui/index.mjs",
+        "gitBlob": "8c746816d504e64964b3c4e50bbd93ac0f7cdd31",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/memory-panel.js",
+        "gitBlob": "deb92e2384a1c256c666387effb8413f67815cf3",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      },
+      {
+        "path": "web/src/ui/status.js",
+        "gitBlob": "5459072dcdd845d862368e3f93f8480245aaea98",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "91c682e2fcc51249e4b914395dee3aa273082024"
+      },
+      {
+        "path": "web/src/ui/timeline.js",
+        "gitBlob": "4614355bbaeb2311aa79bedb09184cb9aa0f1910",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "91c682e2fcc51249e4b914395dee3aa273082024"
+      },
+      {
+        "path": "web/src/ui/voice.js",
+        "gitBlob": "97eb49a1d07b1580b8d744f6028796e4b4bea9b3",
+        "baselinePR": 7,
+        "baselineRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27",
+        "actualRef": "d179a7b492d77007673db8351c8a5e0fb1b76d27"
+      }
+    ]
+  },
   "source_references": [
     {
       "path": "web/src/core/config.js",
