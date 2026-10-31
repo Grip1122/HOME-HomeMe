@@ -18,6 +18,9 @@ async function boot() {
   const base = import.meta.env.BASE_URL;
   window.RF = { config };
   await loadScript(`${base}robot-find/vendor/three.min.js`);
+  window.RF.robotModelConfig = { url: `${base}robot-find/models/robot-web.glb`, height: 1.2, yaw: -Math.PI / 2 };
+  await loadScript(`${base}robot-find/vendor/robot-model.js`);
+  await window.RF.preloadRobotModel();
   await loadScript(`${base}robot-find/vendor/gaussian-splats-3d.umd.js`);
   await import('./robot-find/utils.js');
   await import('./robot-find/nav.js');
@@ -37,3 +40,4 @@ boot().catch((error) => {
 
 // 原样本没有组件卸载协议；热更新使用整页刷新，不叠加 RAF 和 DOM 监听。
 if (import.meta.hot) import.meta.hot.accept(() => window.location.reload());
+
