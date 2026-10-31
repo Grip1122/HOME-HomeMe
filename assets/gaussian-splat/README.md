@@ -1,5 +1,12 @@
 # 建筑高斯泼溅素材（项目视觉基点）
 
+## 来源与许可（2026-10-31 核实）
+
+HOME / 小觅基于开源素材进行优化。原作 [Milano Living](https://superspl.at/scene/0131a3b9)，作者 argenzio (Corridori Ruggero)，页面声明 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)：保留署名、来源与许可、注明修改，只限非商业用途。商业使用需另行确认授权。获取日期为 2026-10-31，团队 Release 的字节数与 SHA 已核对；原始网站下载与团队文件的逐字节同一性尚未独立确认。页面高斯数与团队文件头一致，来源由 D 提供。
+
+下载命令 `python scripts/fetch_team_scene.py` 会校验来源、许可、大小、摘要并原子安装；断网或校验失败不留下半成品。具体限制与核验记录见 manifest.json、scripts/RESOURCE_DELIVERY.md。以下空间数据仍为未标定参考，正式 renderer_decision 与轴向验证未完成。
+
+
 > **本项目所有场景表现以这份素材为基点。** 它是真实建筑的高斯泼溅重建。**决定（10/31）：以它为唯一场景来源，不做灰盒。**后续的家具体块、机器人走位、相机参数，都要能落在这份重建出的空间里。
 
 ## 1. 为什么它决定了整个技术路线

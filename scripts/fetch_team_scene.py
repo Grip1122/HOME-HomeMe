@@ -25,12 +25,19 @@ def verify(path, asset):
 
 def fetch(destination, manifest, source=None):
     asset = next(a for a in manifest["assets"] if a["id"] == "scene_main")
+    if (asset.get("license_status") != "verified" or not asset.get("license_name")
+            or not str(asset.get("license_source_url", "")).startswith("https://")
+            or asset.get("distribution_allowed") is not True):
+        raise ValueError("team_scene_license_unverified: provide the original license and source before installation")
+    expected_url = f"https://github.com/{REPOSITORY}/releases/download/splat-v1/scene.ply"
+    if asset.get("download_url") != expected_url:
+        raise ValueError("team_scene_untrusted_source")
     destination = Path(destination)
     if destination.exists():
         verify(destination, asset)
         return destination
     destination.parent.mkdir(parents=True, exist_ok=True)
-    url = f"https://github.com/{REPOSITORY}/releases/download/splat-v1/scene.ply"
+    url = expected_url
     with tempfile.TemporaryDirectory(dir=destination.parent) as temporary:
         download = Path(temporary) / "scene.ply"
         if source is not None:

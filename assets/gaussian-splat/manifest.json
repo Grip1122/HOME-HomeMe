@@ -1,7 +1,7 @@
 {
   "$comment": "建筑高斯泼溅素材清单。原始文件不入库（449 MiB，超出 GitHub 单文件上限），此文件是唯一索引。",
   "version": 1,
-  "project": "小觅HOME：虚拟孪生家庭具身空间物体定位",
+  "project": "HOME / 小觅",
   "assets": [
     {
       "id": "scene_main",
@@ -18,23 +18,67 @@
       "header_bytes": 1478,
       "non_finite_points": 0,
       "bbox": {
-        "min": [-26.22, -11.58, -12.35],
-        "max": [9.82, 3.41, 6.87],
-        "extent": [36.05, 14.99, 19.23]
+        "min": [
+          -26.22,
+          -11.58,
+          -12.35
+        ],
+        "max": [
+          9.82,
+          3.41,
+          6.87
+        ],
+        "extent": [
+          36.05,
+          14.99,
+          19.23
+        ]
       },
       "roi_p1_p99": {
-        "min": [-4.09, -3.03, -1.95],
-        "max": [3.53, 0.06, 1.94],
+        "min": [
+          -4.09,
+          -3.03,
+          -1.95
+        ],
+        "max": [
+          3.53,
+          0.06,
+          1.94
+        ],
         "note": "主体建筑集中区，外围为稀疏离群高斯"
       },
-      "centroid": [0.11, -0.73, -0.08],
+      "centroid": [
+        0.11,
+        -0.73,
+        -0.08
+      ],
       "units": "unknown",
       "units_note": "重建坐标系原始值，未标定。需量一处已知尺寸求缩放系数后填 sceneScale。",
       "up_axis_verified": false,
-      "source": "外部提供（D:\\学术工作台\\空间定位虚拟具身\\scene.ply）",
-      "license": "开源素材（Jesu 于 2026-10-31 确认；具体许可证条款待补）",
-      "external_copy": "https://github.com/Grip1122/hometwin/releases/tag/splat-v1（已上传并核对 sha256 一致，2026-10-31）",
-      "converted": []
+      "source": "Milano Living — argenzio (Corridori Ruggero)",
+      "license": "CC-BY-NC-4.0",
+      "external_copy": "https://github.com/Grip1122/HOME-HomeMe/releases/tag/splat-v1",
+      "converted": [],
+      "description": "基于开源素材进行优化（团队描述，不构成许可证声明）",
+      "license_name": "Creative Commons Attribution-NonCommercial 4.0 International",
+      "license_source_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "license_status": "verified",
+      "distribution_allowed": true,
+      "acquired_on": "2026-10-31",
+      "download_url": "https://github.com/Grip1122/HOME-HomeMe/releases/download/splat-v1/scene.ply",
+      "release_restrictions": [
+        "CC BY-NC 4.0：保留作者署名、原始页面和许可链接；注明优化修改；仅限非商业用途，商用需另行授权",
+        "原始下载 PLY 与团队 Release 的逐字节同一性未独立确认；以用户提供来源和高斯数量一致建立来源关联",
+        "units 未标定、up_axis_verified=false；不得用预览变换冒充标定",
+        "renderer_decision=null；正式渲染器尚未选定"
+      ],
+      "usage_scope": "noncommercial_only",
+      "source_page": "https://superspl.at/scene/0131a3b9",
+      "source_author": "argenzio",
+      "source_title": "Milano Living",
+      "source_verified_at": "2026-10-31T05:26:27.003838+00:00",
+      "provenance_verification": "Source page supplied by D; page splat count 1996390 matches team PLY header. Exact upstream PLY byte equivalence not independently verified; source download requires login.",
+      "attribution": "Milano Living by argenzio (Corridori Ruggero), https://superspl.at/scene/0131a3b9, CC BY-NC 4.0 https://creativecommons.org/licenses/by-nc/4.0/ ; HOME / 小觅 基于开源素材进行优化；裁剪、采样与 SH 简化属于修改，不代表作者背书。"
     }
   ],
   "renderer_decision": null,
@@ -42,5 +86,6 @@
     "antimatter15/splat",
     "mkkellogg/GaussianSplats3D",
     "playcanvas/engine"
-  ]
+  ],
+  "formal_delivery_status": "pending_provenance_byte_verification_and_calibration"
 }
