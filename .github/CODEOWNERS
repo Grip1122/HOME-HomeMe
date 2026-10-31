@@ -1,25 +1,30 @@
-# 路径归属。GitHub 会按此自动请求评审。
-# 规则：最后一条匹配的生效。把 @OWNER 换成真实 GitHub 用户名后启用「Require review from Code Owners」。
+# 路径归属。GitHub 会按此自动请求评审（启用 Code Owners 审核后生效）。
+# 规则：最后一条匹配的生效。
 #
-# 占位约定：
-#   @OWNER   = 把关人（你），对所有路径兜底，且是 contracts/ 的必审人
-#   @DEV_A   = 设计 A   @DEV_B = 设计 B   @DEV_C = 设计 C   @DEV_D = AI-D
+# 角色对照（详见 team/02-roles.md）：
+#   @krlozhilderman287-creator  wei  —— AI-D（后端）＋ 整体审核与把关人
+#   @Grip1122                   Jesu —— 设计 A（前端 3D）＋ 总体库整合 ＋ 代 Gary 上传
+#   @sen985211sen-sys           sen  —— 设计 B（场景与美术）【推断，待确认】
+#   Gary                        设计 C，无 GitHub 账号，其成果由 Jesu 代传（路径按 @Grip1122 归属）
+#
+# 自审回避：wei 写的路径（server/ scripts/ tests/）由 Jesu 同时列为审核人；
+#           契约需要 wei 与 Jesu 两人都批。
 
-*                         @OWNER
+*                         @krlozhilderman287-creator
 
-/contracts/               @OWNER @DEV_A @DEV_D
-/web/src/core/            @DEV_A
-/web/src/robot/           @DEV_A
-/web/src/nav/             @DEV_A
-/web/src/scene/           @DEV_B
-/web/public/layouts/      @DEV_B
-/web/src/ui/              @DEV_C
-/web/src/demo/            @DEV_C
-/server/                  @DEV_D
-/scripts/                 @DEV_D
-/tests/                   @DEV_D
-/.github/                 @OWNER @DEV_D
-/.githooks/               @OWNER @DEV_D
-/docs/                    @DEV_C
-/team/                    @OWNER @DEV_C
-/assets/                  @DEV_B @OWNER
+/contracts/               @krlozhilderman287-creator @Grip1122
+/web/src/core/            @Grip1122
+/web/src/robot/           @Grip1122
+/web/src/nav/             @Grip1122
+/web/src/scene/           @sen985211sen-sys
+/web/public/              @sen985211sen-sys
+/web/src/ui/              @Grip1122
+/web/src/demo/            @Grip1122
+/server/                  @krlozhilderman287-creator @Grip1122
+/scripts/                 @krlozhilderman287-creator @Grip1122
+/tests/                   @krlozhilderman287-creator @Grip1122
+/.github/                 @krlozhilderman287-creator @Grip1122
+/.githooks/               @krlozhilderman287-creator @Grip1122
+/docs/                    @Grip1122
+/team/                    @Grip1122 @krlozhilderman287-creator
+/assets/                  @Grip1122 @sen985211sen-sys

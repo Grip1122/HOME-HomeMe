@@ -39,8 +39,23 @@ team/
 ├─ 01-overview-v3.md    总览：完整方案 V3（19 章）
 ├─ 02-roles.md          分工（暂定）：人员、边界、Gary 交付规范、审核流程
 └─ tasks/               四份个人任务书，按角色领取
-   ├─ task-A-frontend-3d.md       设计 A：前端 3D 与执行层
-   ├─ task-B-scene-art.md         设计 B：场景与美术
-   ├─ task-C-ui-acceptance.md     设计 C：产品 UI 与验收
-   └─ task-D-backend-algo.md      AI-D：后端与算法
+   ├─ task-A-frontend-3d.md       设计 A：前端 3D 与执行层　　　　　　　Jesu
+   ├─ task-B-scene-art.md         设计 B：场景与美术　　　　　　　　　　sen（待确认）
+   ├─ task-C-ui-acceptance.md     设计 C：产品 UI 与验收　　　　　　　　Gary（Jesu 代传）
+   └─ task-D-backend-algo.md      AI-D：后端与算法 ＋ 把关人　　　　　　wei
 ```
+
+## 谁领哪份（暂定）
+
+| 人 | 任务书 | 备注 |
+| --- | --- | --- |
+| wei | `task-D` | 同时是把关人；自己的 PR 由 Jesu 批 |
+| Jesu | `task-A` | 同时负责总体库整合与代 Gary 上传 |
+| Gary | `task-C` | 无 GitHub，交付包交 Jesu，格式见 `02-roles.md` 第 5 节 |
+| sen | `task-B` | 由推断得出，待确认 |
+
+## 开工口令（每人先把这段发给自己的 Agent）
+
+> 请先通读 `team/01-overview-v3.md`、`team/02-roles.md` 和我的任务书 `team/tasks/<我的那份>.md`，**不要写代码**。读完后复述：① 我负责哪些目录、不得触碰哪些目录；② 我的第一个步骤（见 `02-roles.md` 第 7 节）要交付什么；③ 你有哪些不确定、需要我确认的前提。我确认后再开工。
+
+Gary 的 Agent 同样用这段口令；他的成果不直接推送，而是按 `02-roles.md` 第 5 节打包交给 Jesu。
