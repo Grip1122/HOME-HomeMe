@@ -2,22 +2,24 @@
 # 规则：最后一条匹配的生效。
 #
 # 角色对照（详见 team/02-roles.md）：
-#   @krlozhilderman287-creator  wei  —— AI-D（后端）＋ 整体审核与把关人
-#   @Grip1122                   Jesu —— 设计 A（前端 3D）＋ 总体库整合 ＋ 代 Gary 上传
-#   @sen985211sen-sys           sen  —— 设计 B（场景与美术）【推断，待确认】
+#   @krlozhilderman287-creator  wei  —— 历史账号保留，有效账号待确认；代码负责人/后端/技术复核
+#   @Grip1122                   jesu —— 全文件全局审核、GitHub 整体安排、最终整合审核、前端与代传
+#   @sen985211sen-sys           sen  —— 设计 B（场景与美术）【角色已确认】
 #   Gary                        设计 C，无 GitHub 账号，其成果由 Jesu 代传（路径按 @Grip1122 归属）
 #
 # 自审回避：wei 写的路径（server/ scripts/ tests/）由 Jesu 同时列为审核人；
-#           契约需要 wei 与 Jesu 两人都批。
+#           jesu 自己的代码必须由 wei 独立复核，不自审；契约需要双方同意。
+# Gary 主责 UI/通用素材、机器人建模素材、材质参数与产品设计，无账号由 jesu 署名代传。
+# sen 主责场景几何/空间/校准及场景材质装配；保留具体路径 owner，不据路由并发改 world.js。
 
-*                         @krlozhilderman287-creator
+*                         @krlozhilderman287-creator @Grip1122
 
 /contracts/               @krlozhilderman287-creator @Grip1122
 /web/src/core/            @Grip1122
 /web/src/robot/           @Grip1122
 /web/src/nav/             @Grip1122
-/web/src/scene/           @sen985211sen-sys
-/web/public/              @sen985211sen-sys
+/web/src/scene/           @sen985211sen-sys @Grip1122
+/web/public/              @sen985211sen-sys @Grip1122
 /web/src/ui/              @Grip1122
 /web/src/demo/            @Grip1122
 /server/                  @krlozhilderman287-creator @Grip1122
@@ -29,3 +31,12 @@
 /team/                    @Grip1122 @krlozhilderman287-creator
 /assets/                  @Grip1122 @sen985211sen-sys
 /reference/               @Grip1122 @krlozhilderman287-creator
+
+# 接续安排见 team/03-demo-coordination.md（本地待审、未合并生效）。
+# wei 的有效审阅账号与仓库权限待核验；保留历史账号，不静默替换。
+# CODEOWNERS 仅作评审路由，不授予写权限，也不保证多 owner 同时批准。
+/web/index.html                      @Grip1122
+/web/src/main.js                     @Grip1122
+/web/src/robot-find/                 @Grip1122
+/web/public/robot-find/vendor/       @Grip1122
+/web/public/robot-find/models/       @sen985211sen-sys @Grip1122
