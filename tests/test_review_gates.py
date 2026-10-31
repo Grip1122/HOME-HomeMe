@@ -1,4 +1,5 @@
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -47,6 +48,6 @@ def test_ci_pr_title_is_passed_as_environment_data():
     assert 'echo "$PR_TITLE"' in text
     # Shell expansion preserves quotes, substitutions and newlines as data.
     title="[CONTRACT] O'Reilly $(echo injected) `echo unsafe`\nsecond line"
-    result=subprocess.run(['bash','-c','printf "%s" "$PR_TITLE"'],env={'PR_TITLE':title},capture_output=True,text=True) if shutil.which('bash') else None
+    result=subprocess.run(['bash','-c','printf "%s" "$PR_TITLE"'],env={'PR_TITLE':title},capture_output=True,text=True) if os.name != 'nt' and shutil.which('bash') else None
     if result:
         assert result.stdout==title
