@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-// HUD 组件依赖 DOM；设计 A 的导航/机器人测试依赖 node 环境，故按文件声明环境。
+// Keep DOM tests scoped to HUD; the repository's A/B tests require node.
 import { afterEach, describe, expect, it } from "vitest";
 import { createHud } from "./index.mjs";
 
@@ -106,6 +106,35 @@ describe("Status · official contract", () => {
     bus.emit("task:start", { taskId: "t4", query: "x", source: "rule" });
     bus.emit("task:step", { taskId: "t4", action: "go" });
     expect(hud.el.querySelector(".ht-step-indicator").textContent).toBe("步骤数据异常");
+    hud.destroy();
+  });
+
+  it("shows 规则/纠错 after plan:corrected", () => {
+    const { bus, hud } = mount();
+    bus.emit("plan:received", { source: "rule", steps: [{}, {}], latencyMs: 120 });
+    bus.emit("plan:corrected", { objectId: "cup_red", to: "卧室", source: "corrective" });
+    expect(hud.el.querySelector(".ht-source-badge").textContent).toBe("规则/纠错");
+    hud.destroy();
+  });
+
+  it("does not react to robot:moved at 10 Hz", () => {
+    const { bus, hud } = mount();
+    bus.emit("plan:received", { source: "rule", steps: [{}, {}], latencyMs: 120 });
+    bus.emit("task:start", { taskId: "t5", query: "x", source: "rule" });
+    bus.emit("task:step", { taskId: "t5", index: 0, action: "go", target: "x", ok: true, ms: 100 });
+    const before = {
+      state: hud.el.querySelector(".ht-state-text").textContent,
+      step: hud.el.querySelector(".ht-step-indicator").textContent,
+      source: hud.el.querySelector(".ht-source-badge").textContent,
+      timeline: hud.el.querySelector(".ht-timeline").innerHTML,
+    };
+    for (let i = 0; i < 100; i++) {
+      bus.emit("robot:moved", { pos: [i * 0.01, 0, 0], yaw: 0 });
+    }
+    expect(hud.el.querySelector(".ht-state-text").textContent).toBe(before.state);
+    expect(hud.el.querySelector(".ht-step-indicator").textContent).toBe(before.step);
+    expect(hud.el.querySelector(".ht-source-badge").textContent).toBe(before.source);
+    expect(hud.el.querySelector(".ht-timeline").innerHTML).toBe(before.timeline);
     hud.destroy();
   });
 });

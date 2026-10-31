@@ -31,6 +31,7 @@
         "robot:state": (p) => this.onRobotState(p),
         "plan:received": (p) => this.onPlanReceived(p),
         "plan:rejected": (p) => this.onPlanRejected(p),
+        "plan:corrected": (p) => this.onPlanCorrected(p),
         "task:start": (p) => this.startTask(p),
         "task:step": (p) => this.updateStep(p),
         "task:end": (p) => this.endTask(p),
@@ -61,6 +62,11 @@
       this.stepEl.textContent = p && p.reason ? C.status.planRejected + "：" + p.reason : C.status.planRejected;
       this.progressEl.style.width = "0%";
       this.setState("error", C.status.planRejected);
+    }
+
+    onPlanCorrected(p) {
+      if (!p) return;
+      this.setSource("corrective", null);
     }
 
     onBlocked(p) {
