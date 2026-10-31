@@ -17,10 +17,32 @@ test('raw point follows one scene quaternion and ground translation',()=>{
 test('semantic registry has task coordinates, hidden proxies and real surface heights',()=>{
  const layer=createRestaurantScene({THREE,layout,semantics});
  assert.equal(layer.listObjectsByRoom('restaurant').length,71);assert.equal(layer.surfaceById.size,14);
- for(const o of layout.objects)layer.getWorldPosition(o.id).forEach((n,i)=>assert.ok(Math.abs(n-o.pos[i])<1e-12));
+ for(const o of layout.objects){
+  const mesh=layer.getObject(o.id),expected=[o.pos[0],o.pos[1]+mesh.userData.halfH,o.pos[2]];
+  layer.worldPos(o.id).forEach((n,i)=>assert.ok(Math.abs(n-expected[i])<1e-12));
+  assert.equal(mesh.parent,layer.getFurniture(o.on));
+  assert.deepEqual(layer.getWorldPosition(o.id),layer.worldPos(o.id));
+ }
  for(const id of semantics.navigation_proxy_ids)assert.equal(layer.getObjectById(id).material.visible,false);
  assert.ok(Math.abs(layer.getSurfacePosition('table_01')[1]-layout.furniture.find(f=>f.id==='table_01').size[1])<1e-12);
  assert.throws(()=>layer.getObjectById('missing'),/unknown/);layer.dispose();assert.equal(layer.entries.size,0);
+});
+
+test('A registry excludes navigation proxies and follows moved objects across room bounds',()=>{
+ const layer=createRestaurantScene({THREE,layout,semantics});
+ assert.equal(layer.getObject('missing'),undefined);assert.equal(layer.getFurniture('missing'),undefined);
+ assert.deepEqual(new Set(layer.objectsInRoom('restaurant')),new Set(layout.objects.map(o=>o.id)));
+ assert.equal(layer.furniture.size,63);assert.equal(layer.objects.size,8);
+ for(const f of layout.furniture.filter(f=>semantics.semantic_ids.includes(f.id))){
+  const group=layer.getFurniture(f.id);assert.equal(group.isObject3D,true);
+  assert.deepEqual(group.userData.box,[f.pos[0],f.pos[2],f.pos[0]+f.size[0],f.pos[2]+f.size[2]]);
+  assert.equal(group.userData.top,f.pos[1]+f.size[1]);assert.equal(group.userData.surface,f.surface);
+  assert.deepEqual(layer.worldPos(f.id),[f.pos[0]+f.size[0]/2,f.pos[1],f.pos[2]+f.size[2]/2]);
+ }
+ for(const id of semantics.navigation_proxy_ids)assert.equal(layer.getFurniture(id),undefined);
+ const parent=new THREE.Group(),cup=layer.getObject('cup_red');layer.root.add(parent);parent.attach(cup);parent.position.x=100;
+ assert.equal(layer.roomOf('cup_red'),null);assert.ok(!layer.objectsInRoom('restaurant').includes('cup_red'));
+ assert.throws(()=>layer.worldPos('missing'),/unknown/);layer.dispose();
 });
 
 test('attach retains world coordinates with parent transform',()=>{

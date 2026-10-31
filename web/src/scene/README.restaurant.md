@@ -6,7 +6,8 @@
 
 - 63件原语义家具世界坐标、14处不可见四点台面、8件新增彩色虚拟任务物体。
 - 99块不可见阻挡代理：所有家具外接范围和显式禁入区向外取整到1/4096米，再将二维并集分解为无重叠矩形。只向外扩，不缩小家具；分割前后量化并集面积相同。
-- 注册表getObjectById、listObjectsByRoom、getWorldPosition；家具网格世界位置是包围盒中心，放置应使用getSurfacePosition或布局台面高度。物体世界位置是放置锚点，子网格向上偏移。
+- 直接兼容 A PR #20 的 world adapter：getFurniture、getObject、worldPos、objectsInRoom、roomOf；详见 [world-adapter.md](world-adapter.md)。家具提供 box/surface/top，8 个任务 Mesh 提供 halfH 并能直接 attach。任务世界坐标为几何中心，台面接触点是 layout.objects[].pos。
+- 保留 getObjectById、listObjectsByRoom、getWorldPosition 调试接口；家具调试网格位置仍是包围盒中心，A worldPos 返回家具底面中心。不要混淆 listObjectsByRoom 与仅列任务物体的 objectsInRoom。
 - attachKeepingWorld通过Object3D.attach保持世界坐标，挂载差值有测试。不代替最终机器人抓取动画。
 - sourcePointToLayout用于原始坐标校验；真正渲染高斯时对整个实体使用config中的四元数和位移，不能只改PLY中心。
 
@@ -26,8 +27,8 @@ raw_ply_entity_transform采用Ry(-25.448004826759416°)*Rz(180°)，四元数xyz
 
 1. Jesu在core/config维护唯一相机与场景变换，并把createRestaurantScene的root挂到主场景。该模块不自行改core。GLSL正交协方差兼容适配目前在独立页中；采用其他高斯渲染器时必须重新验证，不能只复制参数。
 2. wei让后端与导航读取同一份layout_restaurant.json。保留所有99个代理。场景词典新增餐桌1～12、长桌、水槽台等唯一别名；原家庭卧室/书房的缓存台词不能直接用于单餐厅演示，应重新录制/固化示例。
-3. 注册表listObjectsByRoom默认不返回nav_block_*，可以includeNavigation=true调试。任务操作应以8个对象id和真实语义家具id为目标，不能把导航代理作为可放置台面。
-4. 主入口与最终机器人模型、抓取动画仍待A接入；独立页蓝色圆柱仅为导航测试体。后续重跑项目自身测试、布局检查、主页面遮挡与性能，不将这里的头浏览器瞬时FPS当目标机基准。
+3. createRestaurantScene 的返回值直接传给 A 的 ctx.world；ACTIONS 和 executor 不改写。getFurniture 不向动作层暴露 nav_block_*；objectsInRoom 只返回 8 件任务物体并随挂载后的世界位置更新。
+4. 已用未改动的 A PR #20 执行器在此餐厅布局上跑通 9 条 find→grab→drop，并在既有页面加载原 PLY 后运行红杯跨桌放置。对应报告和叠加图见 assets/gaussian-splat/task-b-restaurant/README.adapter.md。主入口与最终机器人 GLB/动画仍待 A 整合验收；未将独立页或本机瞬时 FPS 当作完整产品结果。
 
 ## 独立页依赖
 
