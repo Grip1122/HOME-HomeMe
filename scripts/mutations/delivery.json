@@ -1,0 +1,9 @@
+[
+  [
+    "delivery_canonical_asset_url",
+    "server/delivery/robot.html",
+    "new GLTFLoader().loadAsync('/assets/robot/roomscan-rs01.glb')",
+    "new GLTFLoader().loadAsync('/assets/robot/missing.glb')",
+    "test_robot_delivery_uses_canonical_glb_and_four_mast_nodes"
+  ]
+]
