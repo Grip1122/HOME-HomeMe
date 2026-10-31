@@ -58,8 +58,14 @@ def test_llm_source_value_is_allowed_but_corrective_exists():
     assert "corrective" in enum and "llm" in enum
 
 
-def test_frontend_layout_copy_is_identical_to_contract_example():
-    """前端从 web/public/layouts 读、后端与测试从 contracts 读，两份必须逐字节一致。"""
-    a = (C / "layout.example.json").read_bytes()
-    b = (ROOT / "web" / "public" / "layouts" / "layout_A.json").read_bytes()
-    assert a == b, "layout_A.json 与 contracts/layout.example.json 不一致：改契约示例后要同步拷贝"
+def test_frontend_layouts_match_schema():
+    """运行布局由 B 管理；契约示例是示例，不是运行布局的字节镜像。"""
+    paths = sorted((ROOT / "web/public/layouts").glob("*.json"))
+    assert paths, "至少需要一个运行布局"
+    ids = set()
+    for path in paths:
+        layout = json.loads(path.read_text(encoding="utf-8"))
+        validator(load("layout.schema.json")).validate(layout)
+        assert isinstance(layout.get("version"), int) and layout["version"] >= 1
+        assert layout["layout_id"] not in ids, "运行布局 id 重复"
+        ids.add(layout["layout_id"])
