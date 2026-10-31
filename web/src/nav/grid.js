@@ -103,7 +103,7 @@ export function reachableCells(grid, start) {
   return seen;
 }
 
-function distToBox(px, pz, [x0, z0, x1, z1]) {
+export function distToBox(px, pz, [x0, z0, x1, z1]) {
   return Math.hypot(Math.max(x0 - px, 0, px - x1), Math.max(z0 - pz, 0, pz - z1));
 }
 
