@@ -1,0 +1,10 @@
+{
+  "name": "hometwin-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "小觅HOME 前端（阶段 1：零依赖的寻路 / 运动学纯函数与测试，Vite 脚手架由设计 A 在 1.1 接入）",
+  "scripts": {
+    "test": "node --test"
+  }
+}

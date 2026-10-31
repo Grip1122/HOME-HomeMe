@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "desktop": {
+    "canvas": 1035,
+    "viewport": 1035,
+    "ringHidden": true
+  },
+  "mobile": {
+    "canvas": 358,
+    "viewport": 358,
+    "scroll": 390,
+    "width": 390
+  },
+  "page_errors": []
+}

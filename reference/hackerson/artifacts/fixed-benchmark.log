@@ -1,0 +1,34 @@
+{"scan": 1, "xy": [-3.1, -2.1], "height": 1.15, "tilt_deg": 0.0, "coverage": 33.286, "known_voxels": 10714, "new_voxels": 10714, "cloud_points": 3109, "new_surface_points": 3109, "distance_m": 0.0, "elapsed_s": 0.4, "predicted_gain": null}
+{"scan": 2, "xy": [2.049999999999999, 0.9500000000000002], "height": 1.15, "tilt_deg": 0.0, "coverage": 58.363, "known_voxels": 13933, "new_voxels": 3219, "cloud_points": 7213, "new_surface_points": 4104, "distance_m": 6.16, "elapsed_s": 14.8, "predicted_gain": 1450}
+{"scan": 3, "xy": [-1.1000000000000005, 2.0], "height": 1.15, "tilt_deg": 0.0, "coverage": 69.72, "known_voxels": 14621, "new_voxels": 688, "cloud_points": 10410, "new_surface_points": 3197, "distance_m": 10.083, "elapsed_s": 29.2, "predicted_gain": 625}
+{"scan": 4, "xy": [0.9999999999999991, -2.2], "height": 1.15, "tilt_deg": 0.0, "coverage": 80.226, "known_voxels": 15723, "new_voxels": 1102, "cloud_points": 13101, "new_surface_points": 2691, "distance_m": 14.897, "elapsed_s": 42.0, "predicted_gain": 470}
+{"scan": 5, "xy": [3.0999999999999988, -2.2], "height": 1.15, "tilt_deg": 0.0, "coverage": 83.127, "known_voxels": 15814, "new_voxels": 91, "cloud_points": 14735, "new_surface_points": 1634, "distance_m": 16.997, "elapsed_s": 49.2, "predicted_gain": 305}
+{"scan": 6, "xy": [-2.1500000000000004, -1.1500000000000001], "height": 1.15, "tilt_deg": 0.0, "coverage": 86.746, "known_voxels": 15866, "new_voxels": 52, "cloud_points": 17262, "new_surface_points": 2527, "distance_m": 22.579, "elapsed_s": 65.2, "predicted_gain": 246}
+{"scan": 7, "xy": [-0.05000000000000071, 2.0], "height": 1.15, "tilt_deg": 0.0, "coverage": 88.32, "known_voxels": 16006, "new_voxels": 140, "cloud_points": 18259, "new_surface_points": 997, "distance_m": 27.057, "elapsed_s": 79.2, "predicted_gain": 188}
+{"scan": 8, "xy": [2.049999999999999, 2.0], "height": 1.15, "tilt_deg": 0.0, "coverage": 89.26, "known_voxels": 16034, "new_voxels": 28, "cloud_points": 19369, "new_surface_points": 1110, "distance_m": 31.274, "elapsed_s": 93.2, "predicted_gain": 186}
+{"scan": 9, "xy": [2.049999999999999, -0.10000000000000009], "height": 1.15, "tilt_deg": 0.0, "coverage": 92.179, "known_voxels": 16049, "new_voxels": 15, "cloud_points": 20852, "new_surface_points": 1483, "distance_m": 33.374, "elapsed_s": 102.0, "predicted_gain": 147}
+{"scan": 10, "xy": [-1.1000000000000005, -1.1500000000000001], "height": 1.15, "tilt_deg": 0.0, "coverage": 93.487, "known_voxels": 16061, "new_voxels": 12, "cloud_points": 22095, "new_surface_points": 1243, "distance_m": 36.725, "elapsed_s": 114.8, "predicted_gain": 139}
+{"scan": 11, "xy": [-3.2, -0.10000000000000009], "height": 1.15, "tilt_deg": 0.0, "coverage": 94.575, "known_voxels": 16073, "new_voxels": 12, "cloud_points": 23375, "new_surface_points": 1280, "distance_m": 39.16, "elapsed_s": 125.6, "predicted_gain": 117}
+{"scan": 12, "xy": [-0.05000000000000071, -1.1500000000000001], "height": 1.15, "tilt_deg": 0.0, "coverage": 95.532, "known_voxels": 16076, "new_voxels": 3, "cloud_points": 24482, "new_surface_points": 1107, "distance_m": 42.614, "elapsed_s": 136.0, "predicted_gain": 87}
+{"scan": 13, "xy": [0.9999999999999991, -0.10000000000000009], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.123, "known_voxels": 16083, "new_voxels": 7, "cloud_points": 25441, "new_surface_points": 959, "distance_m": 44.099, "elapsed_s": 142.8, "predicted_gain": 86}
+{"scan": 14, "xy": [3.0999999999999988, -0.10000000000000009], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.483, "known_voxels": 16087, "new_voxels": 4, "cloud_points": 26127, "new_surface_points": 686, "distance_m": 46.199, "elapsed_s": 150.0, "predicted_gain": 93}
+{"scan": 15, "xy": [2.049999999999999, -2.2], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.483, "known_voxels": 16088, "new_voxels": 1, "cloud_points": 26550, "new_surface_points": 423, "distance_m": 49.316, "elapsed_s": 162.8, "predicted_gain": 72}
+{"scan": 16, "xy": [-0.05000000000000071, -2.2], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.543, "known_voxels": 16091, "new_voxels": 3, "cloud_points": 27014, "new_surface_points": 464, "distance_m": 51.416, "elapsed_s": 173.2, "predicted_gain": 60}
+{"scan": 17, "xy": [-0.05000000000000072, 0.9500000000000002], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.668, "known_voxels": 16093, "new_voxels": 2, "cloud_points": 27562, "new_surface_points": 548, "distance_m": 54.697, "elapsed_s": 185.6, "predicted_gain": 57}
+{"scan": 18, "xy": [-1.1000000000000005, 0.9500000000000002], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.668, "known_voxels": 16093, "new_voxels": 0, "cloud_points": 28041, "new_surface_points": 479, "distance_m": 55.747, "elapsed_s": 194.4, "predicted_gain": 51}
+{"scan": 19, "xy": [-3.2, -2.2], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.729, "known_voxels": 16093, "new_voxels": 0, "cloud_points": 28388, "new_surface_points": 347, "distance_m": 59.957, "elapsed_s": 208.0, "predicted_gain": 42}
+{"scan": 20, "xy": [0.9999999999999991, -1.1500000000000001], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.805, "known_voxels": 16093, "new_voxels": 0, "cloud_points": 28821, "new_surface_points": 433, "distance_m": 64.286, "elapsed_s": 218.8, "predicted_gain": 33}
+{"scan": 21, "xy": [-3.2, -1.1500000000000001], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.854, "known_voxels": 16093, "new_voxels": 0, "cloud_points": 29072, "new_surface_points": 251, "distance_m": 68.486, "elapsed_s": 232.4, "predicted_gain": 21}
+{"scan": 22, "xy": [-1.1000000000000005, -2.2], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.854, "known_voxels": 16093, "new_voxels": 0, "cloud_points": 29298, "new_surface_points": 226, "distance_m": 70.834, "elapsed_s": 240.4, "predicted_gain": 18}
+{"scan": 23, "xy": [-2.1500000000000004, -2.2], "height": 1.15, "tilt_deg": 0.0, "coverage": 96.903, "known_voxels": 16094, "new_voxels": 1, "cloud_points": 29485, "new_surface_points": 187, "distance_m": 71.884, "elapsed_s": 249.2, "predicted_gain": 15}
+{
+  "strategy": "fixed",
+  "scans": 23,
+  "coverage": 96.90348339363737,
+  "cloud_points": 29485,
+  "known_voxels": 16094,
+  "distance_m": 71.8839955307849,
+  "stop_reason": "candidates_exhausted",
+  "wall_seconds": 3.357622342882678,
+  "export": "/data/xch/cww/Hackerson/artifacts/runs/20261030_223904_590153"
+}

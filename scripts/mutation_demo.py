@@ -78,6 +78,12 @@ MUTATIONS = [
      "    if errs:",
      "    if False:",
      "test_poisoned_cache_is_blocked_at_exit"),
+    # 步骤 1.3：前端的 nav/grid.js 靠 __fixtures__ 里的快照与 layoutlib 对齐。
+    # 把后端外扩半径改 1 cm，快照立刻过期 —— 证明这条对账不是摆设。
+    ("nav_fixture_radius_drift", "server/app/layoutlib.py",
+     "ROBOT_RADIUS = 0.25",
+     "ROBOT_RADIUS = 0.26",
+     "test_fixture_matches_current_layout"),
 ]
 
 
@@ -129,11 +135,12 @@ def main():
             print(f"  {'SKIP':<12} {name:<32} 锚点不唯一")
             continue
 
-        path.write_text(src.replace(old, new, 1), encoding="utf-8")
+        # newline="\n" 不能省：Windows 上按默认换行写回会变 CRLF，还原后整文件仍显示为改动。
+        path.write_text(src.replace(old, new, 1), encoding="utf-8", newline="\n")
         try:
             code, out, failed = run_pytest(["-rf", "--tb=no"])
         finally:
-            path.write_text(src, encoding="utf-8")
+            path.write_text(src, encoding="utf-8", newline="\n")
 
         if code == 2:
             verdict, note = "INVALID", "pytest 因语法/收集中断退出，不算抓住"

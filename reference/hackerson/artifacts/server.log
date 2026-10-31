@@ -1,0 +1,56 @@
+Scanner control room: http://127.0.0.1:8765
+Scanner control room: http://127.0.0.1:8765
+Scanner control room: http://127.0.0.1:8765
+127.0.0.1 - - [30/Oct/2026 22:38:35] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:38:41] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:38:45] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:38:45] "POST /api/command HTTP/1.1" 400 -
+127.0.0.1 - - [30/Oct/2026 22:38:45] "POST /api/command HTTP/1.1" 403 -
+Scanner control room: http://127.0.0.1:8765
+127.0.0.1 - - [30/Oct/2026 22:41:07] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:41:14] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:41:24] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:41:28] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:41:29] "POST /api/command HTTP/1.1" 400 -
+127.0.0.1 - - [30/Oct/2026 22:41:29] "POST /api/command HTTP/1.1" 403 -
+127.0.0.1 - - [30/Oct/2026 22:41:29] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:41:29] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:41:29] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 22:54:40] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:06:05] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:06:06] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:06:07] "POST /api/command HTTP/1.1" 202 -
+Scanner control room: http://127.0.0.1:8765
+127.0.0.1 - - [30/Oct/2026 23:25:23] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:25:35] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:25:50] "POST /api/command HTTP/1.1" 202 -
+Scanner control room: http://127.0.0.1:8765
+127.0.0.1 - - [30/Oct/2026 23:28:27] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:28:43] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:29:06] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:29:07] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [30/Oct/2026 23:36:09] "POST /api/command HTTP/1.1" 202 -
+Scanner control room: http://127.0.0.1:8765
+127.0.0.1 - - [31/Oct/2026 09:03:42] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 09:04:19] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 09:04:42] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 09:05:19] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 09:05:24] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 09:05:26] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 09:05:33] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 09:05:35] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 09:06:10] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:15:43] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:15:44] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:15:45] "POST /api/command HTTP/1.1" 202 -
+Scanner control room: http://127.0.0.1:8765
+Scanner control room: http://127.0.0.1:8765
+127.0.0.1 - - [31/Oct/2026 10:25:22] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:25:25] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:25:26] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:25:27] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:25:28] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:25:30] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:25:37] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:25:39] "POST /api/command HTTP/1.1" 202 -
+127.0.0.1 - - [31/Oct/2026 10:27:40] "POST /api/command HTTP/1.1" 202 -

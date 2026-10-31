@@ -1,0 +1,441 @@
+{
+  "name": "RoomScan RS-01",
+  "version": 1,
+  "source": {
+    "repository": "https://github.com/iRobotEducation/create3_sim",
+    "commit": "6c305843afcfe094bf8eb2a0c6997f531e526b9d",
+    "license": "BSD-3-Clause",
+    "files": [
+      "body_visual.dae",
+      "bumper_visual.dae"
+    ],
+    "scale": 1.36,
+    "changes": "Body rotated per upstream URDF, scaled, recolored; custom mast, head, lid, drive-wheel visuals."
+  },
+  "coordinates": "GLB: X forward, Y up, Z right; MJCF: X forward, Y left, Z up",
+  "footprint_radius_m": 0.25,
+  "camera_height_limits_m": [
+    0.55,
+    2.3
+  ],
+  "camera_tilt_limits_rad": [
+    -0.7,
+    0.7
+  ],
+  "components": {
+    "Base": [
+      {
+        "mesh": "Base_graphite",
+        "rgba": [
+          0.12549,
+          0.16078,
+          0.17647,
+          1.0
+        ]
+      },
+      {
+        "mesh": "Base_rubber",
+        "rgba": [
+          0.06275,
+          0.0902,
+          0.10588,
+          1.0
+        ]
+      },
+      {
+        "mesh": "Base_ochre",
+        "rgba": [
+          0.86275,
+          0.64706,
+          0.27843,
+          1.0
+        ]
+      },
+      {
+        "mesh": "Base_gold_edge",
+        "rgba": [
+          0.94902,
+          0.8,
+          0.47451,
+          1.0
+        ]
+      },
+      {
+        "mesh": "Base_alloy",
+        "rgba": [
+          0.66275,
+          0.72157,
+          0.73725,
+          1.0
+        ]
+      },
+      {
+        "mesh": "Base_glass",
+        "rgba": [
+          0.06275,
+          0.18039,
+          0.26667,
+          1.0
+        ]
+      },
+      {
+        "mesh": "Base_mint",
+        "rgba": [
+          0.40392,
+          0.90196,
+          0.77255,
+          1.0
+        ]
+      },
+      {
+        "mesh": "Base_red",
+        "rgba": [
+          0.87451,
+          0.43922,
+          0.34902,
+          1.0
+        ]
+      },
+      {
+        "mesh": "Base_dark_alloy",
+        "rgba": [
+          0.32157,
+          0.39608,
+          0.41961,
+          1.0
+        ]
+      }
+    ],
+    "WheelLeft": [
+      {
+        "mesh": "WheelLeft_rubber",
+        "rgba": [
+          0.06275,
+          0.0902,
+          0.10588,
+          1.0
+        ]
+      },
+      {
+        "mesh": "WheelLeft_dark_alloy",
+        "rgba": [
+          0.32157,
+          0.39608,
+          0.41961,
+          1.0
+        ]
+      },
+      {
+        "mesh": "WheelLeft_ochre",
+        "rgba": [
+          0.86275,
+          0.64706,
+          0.27843,
+          1.0
+        ]
+      },
+      {
+        "mesh": "WheelLeft_graphite",
+        "rgba": [
+          0.12549,
+          0.16078,
+          0.17647,
+          1.0
+        ]
+      },
+      {
+        "mesh": "WheelLeft_alloy",
+        "rgba": [
+          0.66275,
+          0.72157,
+          0.73725,
+          1.0
+        ]
+      }
+    ],
+    "WheelRight": [
+      {
+        "mesh": "WheelRight_rubber",
+        "rgba": [
+          0.06275,
+          0.0902,
+          0.10588,
+          1.0
+        ]
+      },
+      {
+        "mesh": "WheelRight_dark_alloy",
+        "rgba": [
+          0.32157,
+          0.39608,
+          0.41961,
+          1.0
+        ]
+      },
+      {
+        "mesh": "WheelRight_ochre",
+        "rgba": [
+          0.86275,
+          0.64706,
+          0.27843,
+          1.0
+        ]
+      },
+      {
+        "mesh": "WheelRight_graphite",
+        "rgba": [
+          0.12549,
+          0.16078,
+          0.17647,
+          1.0
+        ]
+      },
+      {
+        "mesh": "WheelRight_alloy",
+        "rgba": [
+          0.66275,
+          0.72157,
+          0.73725,
+          1.0
+        ]
+      }
+    ],
+    "MastStage1": [
+      {
+        "mesh": "MastStage1_alloy",
+        "rgba": [
+          0.66275,
+          0.72157,
+          0.73725,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage1_dark_alloy",
+        "rgba": [
+          0.32157,
+          0.39608,
+          0.41961,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage1_graphite",
+        "rgba": [
+          0.12549,
+          0.16078,
+          0.17647,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage1_gold_edge",
+        "rgba": [
+          0.94902,
+          0.8,
+          0.47451,
+          1.0
+        ]
+      }
+    ],
+    "MastStage2": [
+      {
+        "mesh": "MastStage2_alloy",
+        "rgba": [
+          0.66275,
+          0.72157,
+          0.73725,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage2_dark_alloy",
+        "rgba": [
+          0.32157,
+          0.39608,
+          0.41961,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage2_graphite",
+        "rgba": [
+          0.12549,
+          0.16078,
+          0.17647,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage2_gold_edge",
+        "rgba": [
+          0.94902,
+          0.8,
+          0.47451,
+          1.0
+        ]
+      }
+    ],
+    "MastStage3": [
+      {
+        "mesh": "MastStage3_alloy",
+        "rgba": [
+          0.66275,
+          0.72157,
+          0.73725,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage3_dark_alloy",
+        "rgba": [
+          0.32157,
+          0.39608,
+          0.41961,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage3_graphite",
+        "rgba": [
+          0.12549,
+          0.16078,
+          0.17647,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage3_gold_edge",
+        "rgba": [
+          0.94902,
+          0.8,
+          0.47451,
+          1.0
+        ]
+      }
+    ],
+    "MastStage4": [
+      {
+        "mesh": "MastStage4_alloy",
+        "rgba": [
+          0.66275,
+          0.72157,
+          0.73725,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage4_dark_alloy",
+        "rgba": [
+          0.32157,
+          0.39608,
+          0.41961,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage4_graphite",
+        "rgba": [
+          0.12549,
+          0.16078,
+          0.17647,
+          1.0
+        ]
+      },
+      {
+        "mesh": "MastStage4_gold_edge",
+        "rgba": [
+          0.94902,
+          0.8,
+          0.47451,
+          1.0
+        ]
+      }
+    ],
+    "CameraHead": [
+      {
+        "mesh": "CameraHead_dark_alloy",
+        "rgba": [
+          0.32157,
+          0.39608,
+          0.41961,
+          1.0
+        ]
+      },
+      {
+        "mesh": "CameraHead_ochre",
+        "rgba": [
+          0.86275,
+          0.64706,
+          0.27843,
+          1.0
+        ]
+      },
+      {
+        "mesh": "CameraHead_graphite",
+        "rgba": [
+          0.12549,
+          0.16078,
+          0.17647,
+          1.0
+        ]
+      },
+      {
+        "mesh": "CameraHead_alloy",
+        "rgba": [
+          0.66275,
+          0.72157,
+          0.73725,
+          1.0
+        ]
+      },
+      {
+        "mesh": "CameraHead_ivory",
+        "rgba": [
+          0.91373,
+          0.89412,
+          0.83922,
+          1.0
+        ]
+      },
+      {
+        "mesh": "CameraHead_gold_edge",
+        "rgba": [
+          0.94902,
+          0.8,
+          0.47451,
+          1.0
+        ]
+      },
+      {
+        "mesh": "CameraHead_glass",
+        "rgba": [
+          0.06275,
+          0.18039,
+          0.26667,
+          1.0
+        ]
+      },
+      {
+        "mesh": "CameraHead_lens_blue",
+        "rgba": [
+          0.14902,
+          0.39608,
+          0.5098,
+          1.0
+        ]
+      },
+      {
+        "mesh": "CameraHead_mint",
+        "rgba": [
+          0.40392,
+          0.90196,
+          0.77255,
+          1.0
+        ]
+      }
+    ]
+  },
+  "triangles": 31812,
+  "glb_bytes": 557144
+}
