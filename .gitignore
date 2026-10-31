@@ -44,6 +44,8 @@ assets/gaussian-splat/*.ply
 assets/gaussian-splat/*.splat
 assets/gaussian-splat/*.ksplat
 assets/gaussian-splat/*.spz
+# robot-find 样本模型仅本地预览，授权与正式替换独立处理。
+web/public/robot-find/models/
 
 # 参照实现归档（reference/hackerson）：依赖、超限资产与临时产物一律不入库。
 # 逐项理由见 reference/hackerson/README.zh-CN.md 第 2 节
