@@ -21,3 +21,5 @@
 /.github/                 @OWNER @DEV_D
 /.githooks/               @OWNER @DEV_D
 /docs/                    @DEV_C
+/team/                    @OWNER @DEV_C
+/assets/                  @DEV_B @OWNER

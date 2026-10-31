@@ -37,3 +37,10 @@ web/public/models/**/*.glb
 web/public/models/**/*.gltf
 web/public/models/**/*.bin
 *.blend1
+
+# 高斯泼溅建筑素材（单文件 450 MB，超出 GitHub 单文件 100 MB 上限）
+# 仓库只保存清单与校验和；原始 .ply / .splat 走网盘或本地共享
+assets/gaussian-splat/*.ply
+assets/gaussian-splat/*.splat
+assets/gaussian-splat/*.ksplat
+assets/gaussian-splat/*.spz

@@ -1,6 +1,9 @@
-# 小方 HomeTwin
+# 小觅HOME：虚拟孪生家庭具身空间物体定位（四人团队·AI辅助开发）
 
-> 虚拟孪生家庭具身找物 Agent。四人团队 × AI 辅助开发，26 小时执行窗口。
+> 项目 **HOME**（读音 "home me"，谐音 *homie*，"伙伴"之意），配套机器人 **小觅**。
+> **开工前必读**：所有 Agent 在接取任何任务前，必须先完整阅读 [`team/01-overview-v3.md`](team/01-overview-v3.md) 与 [`team/02-roles.md`](team/02-roles.md)，再按分工领取工作。入口见 [`team/README.md`](team/README.md)。
+> **视觉基点**：建筑高斯泼溅素材 `scene.ply`（见 [`assets/gaussian-splat/`](assets/gaussian-splat/README.md)）。
+> 旧称 "HomeTwin / 小方" 即本项目与小觅；仓库名 `hometwin` 与代码标识符暂不改名。
 
 本仓库是《HomeTwin 分步实施计划 V3》的落地载体。**契约先于代码**：`contracts/` 是唯一真值，任何模块只允许通过契约互相调用。
 
