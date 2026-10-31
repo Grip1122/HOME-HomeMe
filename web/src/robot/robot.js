@@ -84,6 +84,18 @@ export function createRobot({ root, clips = [], morphMesh = null }) {
   };
 }
 
+/** 状态 -> 表情（形变目标）。confused 用 Sad（任务书 3.1 动作表）。 */
+export const STATE_EXPRESSION = Object.freeze({ confused: 'Sad' });
+
+/** 视觉层订阅：robot:state 到来时切动画与表情。单向，只读事件，不回写任何逻辑状态。返回取消订阅函数。 */
+export function bindRobotVisuals(bus, robot) {
+  return bus.on('robot:state', ({ to }) => {
+    robot.play(STATE_CLIPS[to]);
+    for (const name of new Set(Object.values(STATE_EXPRESSION))) robot.setExpression(name, 0);
+    if (STATE_EXPRESSION[to]) robot.setExpression(STATE_EXPRESSION[to], 1);
+  });
+}
+
 /** 浏览器里加载 RobotExpressive.glb。返回 createRobot 的结果。 */
 export async function loadRobot(url = '/models/RobotExpressive.glb') {
   const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
