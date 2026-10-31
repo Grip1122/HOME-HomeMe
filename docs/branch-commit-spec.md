@@ -8,7 +8,7 @@
 
 | 分支 | 谁用 | 命名 | 生命周期 |
 |---|---|---|---|
-| `main` | 全员只读 | — | 永久；**禁止直推**（本地钩子与人工审查；服务端保护尚未启用） |
+| `main` | 全员只读 | — | 永久；**禁止直推**（本地 pre-push + CI + 分支保护三重） |
 | 功能分支 | 每人 | `feat/<步骤号>-<短名>`，如 `feat/2-1-grab-action` | 合并后删除 |
 | 修复分支 | 每人 | `fix/<现象短名>`，如 `fix/grab-scope-jump` | 合并后删除 |
 | 契约分支 | 任何人 | `contract/<改什么>`，如 `contract/doors-width` | 合并后删除 |
@@ -55,7 +55,7 @@ Step: 2.1
 
 只允许 **Squash and merge**，PR 标题即最终提交信息（沿用上面的格式）。理由：演示期分支多、提交碎，squash 让 `main` 的历史一条 PR 一行，回滚粒度清晰。
 
-合并前必须满足（当前采用人工门禁；GitHub 分支保护未启用）：
+合并前必须满足（GitHub 分支保护 + 人工）：
 
 1. CI 四个 job 全绿（契约闸门 / 后端测试 / 变异验证 / 前端测试）。
 2. 把关人已 approve，且 PR 模板自检项**全部勾选**。
@@ -88,11 +88,3 @@ Step: 2.1
 4. 改完立刻用录屏兜底。
 
 **超过这个范围的改动一律拒绝**，宁可播放录屏。
-
-## 当前服务端门禁状态（2026-10-31）
-
-仓库公开；当前上传账号只有 push 权限，没有 admin/maintain 权限。main 的保护接口返回 404，仓库 rulesets 为空，不能声称已经启用服务端保护。保留公开属性与当前方案，不擅自转私有或升级付费。管理员 Jesu 应核对分支保护可用性，能启用时要求 PR、独立审核与四项 CI；无法启用时继续人工门禁：作者不自审、不直推 main，Jesu 审核 D 的 PR，CI 全绿后由非作者 squash merge。CODEOWNERS 与本地钩子不等同于服务端强制保护。
-
-## 布局更新边界
-
-`contracts/layout.schema.json` 定义结构；`contracts/layout.example.json` 是合法用例，不是运行真值。运行布局的唯一源是 B 管理的 `web/public/layouts/*.json`，其版本独立递增并经过 Schema、静态布局与寻路快照检查。契约示例更新只提交 contracts/ 和自动刷新的 lock；无需复制到 layout_A。业务布局改动另开 PR，运行 `python scripts/gen_nav_fixture.py` 更新派生导航快照。Schema 发生不兼容更新时，应先设计向后兼容/分阶段迁移，不绕过契约门禁混合提交。

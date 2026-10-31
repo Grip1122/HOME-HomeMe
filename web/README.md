@@ -1,7 +1,5 @@
 # web
 
-Node.js 版本统一由 `web/.nvmrc` 指定为 24，与 Jesu 的 PR #10 环境方案一致。
-
 前端由设计 A 在步骤 1.1 用 Vite vanilla 模板初始化（PR #6），测试跑 vitest。
 
 ```bash
@@ -15,7 +13,7 @@ npm run build    # 产物在 dist/，已被 .gitignore 排除
 web/
 ├─ index.html · vite.config.js · .env.example
 ├─ package.json                 # three / tween.js / lil-gui / pathfinding；vite / vitest
-├─ public/layouts/              # 运行布局真值（contracts/ 定义结构并提供示例，示例不与运行布局逐字节绑定）
+├─ public/layouts/              # layout 数据（契约的真值在 contracts/）
 └─ src/
    ├─ main.js · core/           # 设计 A：脚手架、旋转立方体与 4 条测试
    ├─ robot/                    # 设计 A：kinematics.js 四节杆/差速履带；pose-buffer.js 位姿插值
