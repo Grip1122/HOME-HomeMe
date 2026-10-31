@@ -11,6 +11,12 @@ import threading
 from . import memory
 
 
+def execution_ok(payload):
+    steps = payload["steps"]
+    return (len(steps) == len(payload["plan"]["steps"])
+            and all(step.get("result") == "succeeded" for step in steps))
+
+
 class Store:
     def __init__(self, path):
         self.path = Path(path)
@@ -33,6 +39,16 @@ class Store:
                   corrected INTEGER NOT NULL, memory_enabled INTEGER NOT NULL,
                   created_at TEXT NOT NULL);
             """)
+        # Additive migration: preserve existing databases and execution history.
+        with self.connection() as db:
+            columns = {row["name"] for row in db.execute("PRAGMA table_info(task_log)")}
+            if "ok" not in columns:
+                db.execute("ALTER TABLE task_log ADD COLUMN ok INTEGER NOT NULL DEFAULT 0")
+                for row in db.execute("SELECT id,plan_json,steps_json FROM task_log").fetchall():
+                    value = {"plan": json.loads(row["plan_json"]), "steps": json.loads(row["steps_json"])}
+                    db.execute("UPDATE task_log SET ok=? WHERE id=?", (int(execution_ok(value)), row["id"]))
+            if "reason" not in columns:
+                db.execute("ALTER TABLE task_log ADD COLUMN reason TEXT")
 
     @contextmanager
     def connection(self):
@@ -41,6 +57,8 @@ class Store:
             db.row_factory = sqlite3.Row
             try:
                 with db:
+                    # Serialize read-modify-write across independent Store instances/processes.
+                    db.execute("BEGIN IMMEDIATE")
                     yield db
             finally:
                 db.close()
@@ -105,17 +123,18 @@ class Store:
         plan = payload["plan"]
         with self.connection() as db:
             result = db.execute("""INSERT INTO task_log
-                (layout_id,query,plan_json,source,steps_json,step_count,duration_ms,corrected,memory_enabled,created_at)
-                VALUES (?,?,?,?,?,?,?,?,?,?)""",
+                (layout_id,query,plan_json,source,steps_json,step_count,duration_ms,corrected,memory_enabled,created_at,ok,reason)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
                 (payload["layout_id"], payload["query"], json.dumps(plan), plan["source"],
                  json.dumps(payload["steps"]), len(payload["steps"]), payload["duration_ms"],
                  int(plan.get("corrected", False)), int(payload["memory_enabled"]),
-                 datetime.now(timezone.utc).isoformat()))
+                 datetime.now(timezone.utc).isoformat(),
+                 int(execution_ok(payload) and payload.get("ok", True)), payload.get("reason")))
             return result.lastrowid
 
     def logs(self, layout_id, limit):
         with self.connection() as db:
             rows = db.execute("SELECT * FROM task_log WHERE layout_id=? ORDER BY id DESC LIMIT ?",
                               (layout_id, limit)).fetchall()
-            return [{**dict(row), "plan": json.loads(row["plan_json"]),
+            return [{**dict(row), "ok": bool(row["ok"]), "plan": json.loads(row["plan_json"]),
                      "steps": json.loads(row["steps_json"])} for row in rows]
