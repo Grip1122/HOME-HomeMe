@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "page_errors": [],
+  "scene": "scene_main",
+  "old_restaurant_requests": false,
+  "correction_plan": {
+    "say": "抱歉，我记错了。这就把红色水杯放到书桌。",
+    "steps": [
+      {
+        "action": "go",
+        "target": "cup_red"
+      },
+      {
+        "action": "grab",
+        "target": "cup_red"
+      },
+      {
+        "action": "go",
+        "target": "desk"
+      },
+      {
+        "action": "drop",
+        "target": "cup_red",
+        "to": "desk"
+      }
+    ],
+    "source": "corrective",
+    "corrected": true,
+    "corrected_object": "cup_red",
+    "corrected_to": "desk",
+    "latency_ms": 0
+  },
+  "robot": {
+    "model": "RoomScan RS-01 Crawler",
+    "head": [
+      0,
+      2.299999952316284,
+      0
+    ],
+    "stages": [
+      0.9875,
+      0.43749999999999994,
+      0.43749999999999994,
+      0.43749999999999994
+    ],
+    "leftAngle": 0,
+    "rightAngle": 0,
+    "leftTravel": 0,
+    "rightTravel": 0,
+    "trackLinks": [
+      42,
+      42
+    ]
+  },
+  "note": "Server-side Chromium/NVIDIA Vulkan; no Windows FPS claim."
+}

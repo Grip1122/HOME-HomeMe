@@ -16,7 +16,7 @@ python3 -m venv .venv
 .venv/bin/python scripts/run_home.py --port 8000 --database .local/home.db
 ```
 
-打开 http://127.0.0.1:8000/docs。正式前端 `web/dist` 存在时托管它，否则跳转接口文档。HTTP 服务不需要机器人、MuJoCo 或高斯场景，不附带资源预览。
+打开 http://127.0.0.1:8000/docs。正式前端 `web/dist` 存在时托管它，否则跳转接口文档。HTTP 计算不需要机器人、MuJoCo 或高斯场景。本修复不新增资源，保留主干已经存在的独立 delivery 静态路由。
 
 `/plan` 请求/响应遵守冻结 `contracts/plan.schema.json`。`/memory` 查询和 `/memory/{observe,hit,miss,correct,reset}` 写入使用现有置信度公式与 SQLite 事务；`/api` 前缀提供相同接口。运行布局来自 `web/public/layouts/*.json` 内容中的 layout_id；可通过 HOMETWIN_LAYOUT_DIR/HOMETWIN_DB/HOMETWIN_WEB_DIST 配置。
 
