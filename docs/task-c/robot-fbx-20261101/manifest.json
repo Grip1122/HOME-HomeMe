@@ -1,0 +1,138 @@
+{
+  "id": "user-robot-fbx-v1",
+  "selectedBy": "sen",
+  "selectedDate": "2026-11-01",
+  "source": {
+    "file": "robot.fbx",
+    "bytes": 62266860,
+    "sha256": "463fb1e059831b16d76e3558c9046e8e985d090ea84ee987d091b7168fabe0ed"
+  },
+  "sourceRelease": "https://github.com/Grip1122/HOME-HomeMe/releases/download/robot-fbx-v1/robot.fbx",
+  "license": {
+    "status": "user_supplied_for_project_use",
+    "priorUserStatement": "都许可",
+    "specificLicense": null,
+    "author": null,
+    "sourceURL": null,
+    "proofDocumentProvided": false
+  },
+  "webAsset": {
+    "file": "robot-web.glb",
+    "bytes": 8165032,
+    "sha256": "f5dcae49c12905548eb59b9d2960ce36920f3088afc374275074bad0109276e2",
+    "triangles": 120000,
+    "vertices": 78082,
+    "bounds": {
+      "min": [
+        -11.401874542236328,
+        0,
+        -12.47059154510498
+      ],
+      "max": [
+        11.404853820800781,
+        48.18000030517578,
+        12.471070289611816
+      ],
+      "size": [
+        22.80672836303711,
+        48.18000030517578,
+        24.941661834716797
+      ]
+    },
+    "repositoryPath": "web/public/robot-find/models/robot-web.glb"
+  },
+  "textures": [
+    {
+      "slot": "baseColor",
+      "name": "vizcom_texture_12.png",
+      "bytes": 2775066,
+      "sha256": "6fcd15b951d2b986b19ca631ccdebf994629dc0bdd53fe4282d3496388175b02"
+    },
+    {
+      "slot": "normal",
+      "name": "vizcom_texture_11.png",
+      "bytes": 1449546,
+      "sha256": "72642e2b51d2d65e77284e3b61dfd2e7bdfa828f1c3771cff36899eed7e82648"
+    }
+  ],
+  "pose": {
+    "up": "+Y",
+    "sourceFront": "+X",
+    "applicationFront": "+Z",
+    "visualYawRadians": -1.5707963267948966,
+    "defaultDisplayHeightMeters": 1.2,
+    "heightIsPhysicalMeasurement": false,
+    "groundY": 0
+  },
+  "capabilities": {
+    "rootTranslation": true,
+    "rootYaw": true,
+    "independentHead": false,
+    "independentMast": false,
+    "independentWheelMotion": false,
+    "graspRig": false,
+    "skeletonBones": 0,
+    "animationClips": 0
+  },
+  "anchor": {
+    "name": "carryAnchor",
+    "positionMeters": [
+      0,
+      0.624,
+      0.36
+    ],
+    "status": "programmatic display offset; not calibrated gripper"
+  },
+  "integration": {
+    "main": "web/src/main.js (RF.createRobot factory hook in world.js)",
+    "prototype": "gary-robot-find-20261101-fbx.zip; index.html / src/world.js / src/scene-find.js",
+    "prototypeRelease": "https://github.com/Grip1122/HOME-HomeMe/releases/download/robot-fbx-v1/gary-robot-find-20261101-fbx.zip",
+    "legacyPackageUnchanged": true
+  },
+  "validation": {
+    "mainVitest": {
+      "filesPassed": 9,
+      "testsPassed": 197
+    },
+    "mainViteBuild": true,
+    "modelNodeTests": {
+      "passed": 2
+    },
+    "realFindQuery": "黑色中长条",
+    "realFindResult": "完成 · 找到啦；已完成5步",
+    "manualVisual": "Front/side/back rendered; external base-color/normal PNGs embedded in GLB; ground and orientation inspected",
+    "screenshots": [
+      "model-views.png",
+      "main-result.png",
+      "prototype-result.png"
+    ]
+  },
+  "limits": [
+    "1.2m is display configuration, not measured physical robot height",
+    "One mesh; cannot reuse old RS-01 articulated kinematics on this asset",
+    "Exact external license/authorship documents remain unprovided",
+    "This replacement does not close Task C production event-bus integration or Task B scene alignment"
+  ],
+  "releaseAssets": [
+    {
+      "name": "robot.fbx",
+      "bytes": 62266860,
+      "sha256": "463fb1e059831b16d76e3558c9046e8e985d090ea84ee987d091b7168fabe0ed"
+    },
+    {
+      "name": "vizcom_texture_12.png",
+      "bytes": 2775066,
+      "sha256": "6fcd15b951d2b986b19ca631ccdebf994629dc0bdd53fe4282d3496388175b02"
+    },
+    {
+      "name": "vizcom_texture_11.png",
+      "bytes": 1449546,
+      "sha256": "72642e2b51d2d65e77284e3b61dfd2e7bdfa828f1c3771cff36899eed7e82648"
+    },
+    {
+      "name": "gary-robot-find-20261101-fbx.zip",
+      "bytes": 48530981,
+      "sha256": "0d67b6de086493507a2900548606089a7de86a0991fe76cbb1a9b5dfb1eb411b"
+    }
+  ]
+}

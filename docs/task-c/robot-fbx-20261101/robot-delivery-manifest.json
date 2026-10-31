@@ -1,0 +1,25 @@
+{
+  "release": "robot-fbx-v1",
+  "files": [
+    {
+      "name": "robot.fbx",
+      "bytes": 62266860,
+      "sha256": "463fb1e059831b16d76e3558c9046e8e985d090ea84ee987d091b7168fabe0ed"
+    },
+    {
+      "name": "vizcom_texture_12.png",
+      "bytes": 2775066,
+      "sha256": "6fcd15b951d2b986b19ca631ccdebf994629dc0bdd53fe4282d3496388175b02"
+    },
+    {
+      "name": "vizcom_texture_11.png",
+      "bytes": 1449546,
+      "sha256": "72642e2b51d2d65e77284e3b61dfd2e7bdfa828f1c3771cff36899eed7e82648"
+    },
+    {
+      "name": "gary-robot-find-20261101-fbx.zip",
+      "bytes": 48530981,
+      "sha256": "0d67b6de086493507a2900548606089a7de86a0991fe76cbb1a9b5dfb1eb411b"
+    }
+  ]
+}
