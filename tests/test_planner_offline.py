@@ -1,10 +1,21 @@
 """五句固化台词 + 语义校验 + 置信度纯函数。"""
+from pathlib import Path
+
 import pytest
 
+from server.app import layoutlib as L
 from server.app import memory as M
 from server.app import rules
 from server.app.planner import load_cache, plan_offline
 from server.app.validate import validate_steps
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+@pytest.fixture(scope="module")
+def restaurant():
+    return L.Index(L.load_json(ROOT / "web/public/layouts/layout_restaurant.json"))
+
 
 FIVE = [
     "我的红色水杯在哪？",
@@ -38,9 +49,36 @@ def test_unknown_query_is_clarified_not_empty_crash(index):
     assert r["steps"] == [] and "没听懂" in r["say"]
 
 
-def test_every_cache_entry_is_semantically_valid(index):
+def test_every_cache_entry_is_semantically_valid_on_some_shipped_layout(index, restaurant):
     for k, v in load_cache().items():
-        assert validate_steps(index, v["steps"]) == [], k
+        assert validate_steps(index, v["steps"]) == [] or validate_steps(restaurant, v["steps"]) == [], k
+
+
+# ---------- 餐厅布局：同一份缓存也要能为 restaurant_candidate_v1 出计划 ----------
+@pytest.mark.parametrize("q,dest", [
+    ("帮我把红色水杯放到长桌上", "long_table_01"),
+    ("帮我把红色水杯放到2号桌上", "table_02"),
+    ("帮我把红色水杯放到3号桌上", "table_03"),
+])
+def test_restaurant_cup_delivery_lines_hit_cache(restaurant, q, dest):
+    r = plan_offline(q, restaurant)
+    assert r["source"] == "cache", q
+    assert r["steps"] == [
+        {"action": "find", "target": "cup_red"},
+        {"action": "grab", "target": "cup_red"},
+        {"action": "drop", "target": "cup_red", "to": dest},
+    ]
+    assert validate_steps(restaurant, r["steps"]) == []
+
+
+def test_restaurant_find_line_reuses_existing_entry(restaurant):
+    r = plan_offline("我的红色水杯在哪？", restaurant)
+    assert r["source"] == "cache" and r["steps"] == [{"action": "find", "target": "cup_red"}]
+
+
+def test_home_only_lines_are_still_refused_on_restaurant(restaurant):
+    r = plan_offline("帮我把书拿到卧室", restaurant)
+    assert r["steps"] == [] and "没听懂" in r["say"]
 
 
 def test_poisoned_cache_is_blocked_at_exit(index):
