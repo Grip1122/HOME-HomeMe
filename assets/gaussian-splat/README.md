@@ -52,7 +52,7 @@
 单文件 449 MiB，**超过 GitHub 普通提交 100 MB 的单文件上限**，直接推会被服务端拒绝。因此：
 
 - 仓库内保存：本说明 + `manifest.json`（校验和、来源、尺寸）
-- 原始 `.ply` 存放：**网盘**（链接写进 `manifest.json`），以及设计 B 与 Jesu 的本地各一份
+- 原始 `.ply` 存放：**网盘**（链接写进 `manifest.json`），以及 sen（设计 B）与 Jesu 的本地各一份；另在 GitHub Release `splat-v1` 存一份（上传完成并核对 sha256 后才算数）
 - `.gitignore` 已排除 `assets/gaussian-splat/*.ply`，防止有人误提交
 
 若确需版本化，可选 Git LFS（免费额度 1 GB 存储 / 1 GB 月流量，单文件 449 MB 会占掉近一半），**不推荐**：这是静态素材，不需要版本历史。

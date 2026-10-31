@@ -1,5 +1,7 @@
 # 设计 B · 任务书（场景与美术建模）
 
+> **负责人：sen**（`sen985211sen-sys`，由推断得出，待确认）。素材 `scene.ply` 在 Release `splat-v1`；三项验证与 Jesu 共同承担。
+
 > **开工前必读**：先读完 [`../01-overview-v3.md`](../01-overview-v3.md) 与 [`../02-roles.md`](../02-roles.md)，再按本任务书领取步骤。项目全称「小觅HOME：虚拟孪生家庭具身空间物体定位（四人团队·AI 辅助开发）」，题目 HOME（"home me"，谐音 homie），机器人"小觅"；旧称"小方 / HomeTwin"同指。
 
 > 自包含。把这一份整段给你的 Agent。

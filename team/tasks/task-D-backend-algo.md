@@ -1,5 +1,7 @@
 # AI-D · 任务书（后端与算法）
 
+> **负责人：wei**（`krlozhilderman287-creator`）。你同时是把关人：**自审回避**——你写的 PR 由 Jesu 批，不得自批；契约 PR 需你与 Jesu 两人都批。
+
 > **开工前必读**：先读完 [`../01-overview-v3.md`](../01-overview-v3.md) 与 [`../02-roles.md`](../02-roles.md)，再按本任务书领取步骤。项目全称「小觅HOME：虚拟孪生家庭具身空间物体定位（四人团队·AI 辅助开发）」，题目 HOME（"home me"，谐音 homie），机器人"小觅"；旧称"小方 / HomeTwin"同指。
 
 > 自包含。把这一份整段给你的 Agent。

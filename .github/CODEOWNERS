@@ -1,30 +1,30 @@
-# 路径归属。GitHub 会按此自动请求评审。
-# 规则：最后一条匹配的生效。启用「Require review from Code Owners」后生效。
+# 路径归属。GitHub 会按此自动请求评审（启用 Code Owners 审核后生效）。
+# 规则：最后一条匹配的生效。
 #
 # 角色对照（详见 team/02-roles.md）：
-#   @Grip1122                   Jesu —— 仓库所有者；设计 C + AI-D；代 Gary 上传
-#   @sen985211sen-sys           sen —— 设计 A（前端 3D 与执行层）
-#   @krlozhilderman287-creator  wei —— 整体审核与把关人
-#   Gary                        无 GitHub 账号，其成果由 Jesu 代传（按 @Grip1122 归属）
+#   @krlozhilderman287-creator  wei  —— AI-D（后端）＋ 整体审核与把关人
+#   @Grip1122                   Jesu —— 设计 A（前端 3D）＋ 总体库整合 ＋ 代 Gary 上传
+#   @sen985211sen-sys           sen  —— 设计 B（场景与美术）【推断，待确认】
+#   Gary                        设计 C，无 GitHub 账号，其成果由 Jesu 代传（路径按 @Grip1122 归属）
+#
+# 自审回避：wei 写的路径（server/ scripts/ tests/）由 Jesu 同时列为审核人；
+#           契约需要 wei 与 Jesu 两人都批。
 
-*                         @Grip1122
+*                         @krlozhilderman287-creator
 
-/contracts/               @Grip1122 @sen985211sen-sys @krlozhilderman287-creator
-/web/src/core/            @sen985211sen-sys
-/web/src/robot/           @sen985211sen-sys
-/web/src/nav/             @sen985211sen-sys
-/web/src/scene/           @Grip1122
-/web/public/layouts/      @Grip1122
-/web/public/models/       @Grip1122
-/web/public/textures/     @Grip1122
-/web/public/shots/        @Grip1122
+/contracts/               @krlozhilderman287-creator @Grip1122
+/web/src/core/            @Grip1122
+/web/src/robot/           @Grip1122
+/web/src/nav/             @Grip1122
+/web/src/scene/           @sen985211sen-sys
+/web/public/              @sen985211sen-sys
 /web/src/ui/              @Grip1122
 /web/src/demo/            @Grip1122
-/server/                  @Grip1122
-/scripts/                 @Grip1122
-/tests/                   @Grip1122
-/.github/                 @Grip1122 @krlozhilderman287-creator
-/.githooks/               @Grip1122 @krlozhilderman287-creator
+/server/                  @krlozhilderman287-creator @Grip1122
+/scripts/                 @krlozhilderman287-creator @Grip1122
+/tests/                   @krlozhilderman287-creator @Grip1122
+/.github/                 @krlozhilderman287-creator @Grip1122
+/.githooks/               @krlozhilderman287-creator @Grip1122
 /docs/                    @Grip1122
 /team/                    @Grip1122 @krlozhilderman287-creator
-/assets/                  @Grip1122 @krlozhilderman287-creator
+/assets/                  @Grip1122 @sen985211sen-sys
