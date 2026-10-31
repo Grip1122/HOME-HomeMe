@@ -63,4 +63,3 @@ reference/hackerson/*.zip
 *.rfpack.json
 *.db-wal
 *.db-shm
-web/public/robot-find/models/*.splat
