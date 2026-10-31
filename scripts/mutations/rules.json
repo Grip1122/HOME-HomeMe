@@ -1,0 +1,9 @@
+[
+  [
+    "rules_formal_wake_name",
+    "server/app/rules.py",
+    "    return _WAKE.sub(\"\", q).lower()",
+    "    return q.lower()",
+    "test_formal_wake_name_and_legacy_alias_match_cache"
+  ]
+]

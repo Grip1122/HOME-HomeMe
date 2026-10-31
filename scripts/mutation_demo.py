@@ -20,6 +20,7 @@ pytest 以 exit 2 退出，被判成 KILLED —— 假证据。所以现在 exit
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import shutil
 import subprocess
@@ -59,8 +60,8 @@ MUTATIONS = [
      "    if True:",
      "test_demo_line_not_right_put_in_study"),
     ("rules_ignore_negated_place", "server/app/rules.py",
-     "        if _NEG_BEFORE_PLACE.search(text[max(0, i - 6):i]):",
-     "        if False and _NEG_BEFORE_PLACE.search(text[max(0, i - 6):i]):",
+     "        if negated:",
+     "        if False:",
      "test_positive_place_then_negated_place_at_end"),
     ("rules_never_detect_correction", "server/app/rules.py",
      "    if not is_correction(text):",
@@ -105,6 +106,11 @@ MUTATIONS = [
      "ROBOT_RADIUS = 0.26",
      "test_fixture_matches_current_layout"),
 ]
+
+
+# Each small PR owns its mutation specifications, avoiding one shared edit list.
+for specification in sorted((ROOT / "scripts/mutations").glob("*.json")):
+    MUTATIONS.extend(json.loads(specification.read_text(encoding="utf-8")))
 
 
 def _purge_bytecode():
