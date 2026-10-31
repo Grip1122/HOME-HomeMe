@@ -82,7 +82,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.has_web.outputs.present == 'true'
         with:
-          node-version: "20"
+          node-version-file: web/.nvmrc
           cache: npm
           cache-dependency-path: web/package-lock.json
       - if: steps.has_web.outputs.present == 'true'
