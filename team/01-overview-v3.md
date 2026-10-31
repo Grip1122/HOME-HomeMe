@@ -551,7 +551,7 @@ objectMesh.scale.setScalar(1)
 | 设计 B | 下载家具包与机器人模型放入资产目录（大文件不入库，见第十四章） | — |
 | 设计 C | 建协作看板，把本计划步骤录入卡片 | 让 AI 把本计划转成看板卡片 |
 
-**工具。**Git、Node.js 20 以上、Python 3.11、VS Code 或 Cursor、GitHub CLI。
+**工具。**Git、Node.js 24（唯一支持的主版本，见 `web/README.md`）、Python 3.11、VS Code 或 Cursor、GitHub CLI。
 
 **依赖、工期与风险。**无前置依赖，工期 40 分钟。风险是 GitHub 与 npm 在国内网络不稳定。**本版实测踩到了**：本机 git 经代理推送偶发 502，而直连可用；处置是"先直连、失败再换代理端口"，并且代理端口会漂移，不得写死。模型文件改用 jsDelivr 镜像，npm 配置国内源；仓库推送失败时先用局域网共享文件夹同步，网络恢复后再推。
 
