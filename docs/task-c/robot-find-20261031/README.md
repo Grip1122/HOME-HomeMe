@@ -44,3 +44,11 @@
 - 旧 HUD / PR #7 的结论不计入本轮 Task C。
 - C-03 材质优化对比与路演视觉，待真实日志样例。
 - 全局测试与验收主责。
+
+## 复核补充材料
+
+见 [review-followup.md](review-followup.md)：原始场景来源/许可确认与 SHA、12→8 候选对照、原型资产/节点/限位/锚点/材质清单，以及新四视图和 Blender 草稿的实际状态。该记录保留待补证项，不作为 C-01/C-02 已关单的声明。
+
+2026-11-01 更新：用户已指定新 FBX；新模型、两张贴图及替换版另行交付，见 [模型交付记录](https://github.com/Grip1122/HOME-HomeMe/tree/feat/robot-fbx-v1/docs/task-c/robot-fbx-20261101)。本目录原始构造器清单描述的是未改动的 20261031 归档版本。
+
+模型替换审核： https://github.com/Grip1122/HOME-HomeMe/pull/27（待审核合并）。

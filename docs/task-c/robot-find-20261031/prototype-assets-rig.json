@@ -1,0 +1,991 @@
+{
+  "scope": "Measured from archived procedural robot code, separate from the new visual references and Blender draft",
+  "source_package": "gary-robot-find-20261031.zip",
+  "source_file": "src/scene-find.js",
+  "source_sha256": "93a9eaa773d4de6d3f6f134297396720984b9a22be1be916beb76ad2fa5075fe",
+  "extraction": "Archived Three r160 + original scene-objects.js and scene-find.js in isolated Node VM; _buildRobotMesh executed without browser/WebGL, no Blender script execution.",
+  "three_revision": "160",
+  "robot": {
+    "root_type": "Group",
+    "root_runtime_name": null,
+    "node_count_including_root": 12,
+    "mesh_count": 11,
+    "world_dimensions": [
+      0.40400001406669617,
+      0.3699999987706542,
+      0.40400001406669617
+    ],
+    "units": "prototype-declared metres; no independent physical survey",
+    "runtime_names_assigned": false,
+    "nodes": [
+      {
+        "label": "base",
+        "runtime_path": "robotMesh.children[0]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "CylinderGeometry",
+        "geometry_parameters": {
+          "radiusTop": 0.16,
+          "radiusBottom": 0.2,
+          "height": 0.12,
+          "radialSegments": 24,
+          "heightSegments": 1,
+          "openEnded": false,
+          "thetaStart": 0,
+          "thetaLength": 6.283185307179586
+        },
+        "local_position": [
+          0,
+          0.1,
+          0
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          0
+        ],
+        "world_aabb": {
+          "min": [
+            -0.20000000298023224,
+            0.04000000134110451,
+            -0.20000000298023224
+          ],
+          "max": [
+            0.20000000298023224,
+            0.1599999986588955,
+            0.20000000298023224
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#e7f7f3",
+          "roughness": 0.42,
+          "metalness": 0.25,
+          "emissive": "#000000",
+          "emissive_intensity": 1,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "upper",
+        "runtime_path": "robotMesh.children[1]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "SphereGeometry",
+        "geometry_parameters": {
+          "radius": 0.16,
+          "widthSegments": 20,
+          "heightSegments": 12,
+          "phiStart": 0,
+          "phiLength": 6.283185307179586,
+          "thetaStart": 0,
+          "thetaLength": 1.5707963267948966
+        },
+        "local_position": [
+          0,
+          0.16,
+          0
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          0
+        ],
+        "world_aabb": {
+          "min": [
+            -0.1599999964237213,
+            0.16,
+            -0.1599999964237213
+          ],
+          "max": [
+            0.1599999964237213,
+            0.31999999642372134,
+            0.1599999964237213
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#e7f7f3",
+          "roughness": 0.42,
+          "metalness": 0.25,
+          "emissive": "#000000",
+          "emissive_intensity": 1,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "head",
+        "runtime_path": "robotMesh.children[2]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "BoxGeometry",
+        "geometry_parameters": {
+          "width": 0.19,
+          "height": 0.09,
+          "depth": 0.13,
+          "widthSegments": 1,
+          "heightSegments": 1,
+          "depthSegments": 1
+        },
+        "local_position": [
+          0,
+          0.29,
+          0
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          0
+        ],
+        "world_aabb": {
+          "min": [
+            -0.0949999988079071,
+            0.24499999821186064,
+            -0.06499999761581421
+          ],
+          "max": [
+            0.0949999988079071,
+            0.3350000017881393,
+            0.06499999761581421
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#16353a",
+          "roughness": 0.5,
+          "metalness": 0.4,
+          "emissive": "#000000",
+          "emissive_intensity": 1,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "eye_l",
+        "runtime_path": "robotMesh.children[3]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "SphereGeometry",
+        "geometry_parameters": {
+          "radius": 0.017,
+          "widthSegments": 10,
+          "heightSegments": 8,
+          "phiStart": 0,
+          "phiLength": 6.283185307179586,
+          "thetaStart": 0,
+          "thetaLength": 3.141592653589793
+        },
+        "local_position": [
+          -0.045,
+          0.3,
+          0.071
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          0
+        ],
+        "world_aabb": {
+          "min": [
+            -0.06200000092387199,
+            0.282999999076128,
+            0.05483203893899917
+          ],
+          "max": [
+            -0.027999999076128004,
+            0.317000000923872,
+            0.08716796106100082
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#8ef5e3",
+          "roughness": 0.35,
+          "metalness": 0,
+          "emissive": "#2fd0b8",
+          "emissive_intensity": 1.4,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "eye_r",
+        "runtime_path": "robotMesh.children[4]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "SphereGeometry",
+        "geometry_parameters": {
+          "radius": 0.017,
+          "widthSegments": 10,
+          "heightSegments": 8,
+          "phiStart": 0,
+          "phiLength": 6.283185307179586,
+          "thetaStart": 0,
+          "thetaLength": 3.141592653589793
+        },
+        "local_position": [
+          0.045,
+          0.3,
+          0.071
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          0
+        ],
+        "world_aabb": {
+          "min": [
+            0.027999999076128004,
+            0.282999999076128,
+            0.05483203893899917
+          ],
+          "max": [
+            0.06200000092387199,
+            0.317000000923872,
+            0.08716796106100082
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#8ef5e3",
+          "roughness": 0.35,
+          "metalness": 0,
+          "emissive": "#2fd0b8",
+          "emissive_intensity": 1.4,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "lidar",
+        "runtime_path": "robotMesh.children[5]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "CylinderGeometry",
+        "geometry_parameters": {
+          "radiusTop": 0.055,
+          "radiusBottom": 0.055,
+          "height": 0.03,
+          "radialSegments": 20,
+          "heightSegments": 1,
+          "openEnded": false,
+          "thetaStart": 0,
+          "thetaLength": 6.283185307179586
+        },
+        "local_position": [
+          0,
+          0.355,
+          0
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          0
+        ],
+        "world_aabb": {
+          "min": [
+            -0.054999999701976776,
+            0.3400000003352761,
+            -0.054999999701976776
+          ],
+          "max": [
+            0.054999999701976776,
+            0.36999999966472386,
+            0.054999999701976776
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#16353a",
+          "roughness": 0.5,
+          "metalness": 0.4,
+          "emissive": "#000000",
+          "emissive_intensity": 1,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "ring",
+        "runtime_path": "robotMesh.children[6]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "TorusGeometry",
+        "geometry_parameters": {
+          "radius": 0.195,
+          "tube": 0.007,
+          "radialSegments": 8,
+          "tubularSegments": 40,
+          "arc": 6.283185307179586
+        },
+        "local_position": [
+          0,
+          0.018,
+          0
+        ],
+        "local_rotation_xyz_radians": [
+          1.5707963267948966,
+          0,
+          0
+        ],
+        "world_aabb": {
+          "min": [
+            -0.20200000703334808,
+            0.010999999783933116,
+            -0.20200000703334808
+          ],
+          "max": [
+            0.20200000703334808,
+            0.02500000021606688,
+            0.20200000703334808
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#8ef5e3",
+          "roughness": 0.35,
+          "metalness": 0,
+          "emissive": "#2fd0b8",
+          "emissive_intensity": 1.4,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "wheel_fl",
+        "runtime_path": "robotMesh.children[7]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "CylinderGeometry",
+        "geometry_parameters": {
+          "radiusTop": 0.04,
+          "radiusBottom": 0.04,
+          "height": 0.03,
+          "radialSegments": 12,
+          "heightSegments": 1,
+          "openEnded": false,
+          "thetaStart": 0,
+          "thetaLength": 6.283185307179586
+        },
+        "local_position": [
+          -0.13,
+          0.04,
+          -0.08
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          1.5707963267948966
+        ],
+        "world_aabb": {
+          "min": [
+            -0.14499999966472388,
+            8.940696724635266e-10,
+            -0.11999999910593033
+          ],
+          "max": [
+            -0.11500000033527612,
+            0.07999999910593034,
+            -0.04000000089406967
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#16353a",
+          "roughness": 0.5,
+          "metalness": 0.4,
+          "emissive": "#000000",
+          "emissive_intensity": 1,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "wheel_fr",
+        "runtime_path": "robotMesh.children[8]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "CylinderGeometry",
+        "geometry_parameters": {
+          "radiusTop": 0.04,
+          "radiusBottom": 0.04,
+          "height": 0.03,
+          "radialSegments": 12,
+          "heightSegments": 1,
+          "openEnded": false,
+          "thetaStart": 0,
+          "thetaLength": 6.283185307179586
+        },
+        "local_position": [
+          0.13,
+          0.04,
+          -0.08
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          1.5707963267948966
+        ],
+        "world_aabb": {
+          "min": [
+            0.11500000033527612,
+            8.940696724635266e-10,
+            -0.11999999910593033
+          ],
+          "max": [
+            0.14499999966472388,
+            0.07999999910593034,
+            -0.04000000089406967
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#16353a",
+          "roughness": 0.5,
+          "metalness": 0.4,
+          "emissive": "#000000",
+          "emissive_intensity": 1,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "wheel_rl",
+        "runtime_path": "robotMesh.children[9]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "CylinderGeometry",
+        "geometry_parameters": {
+          "radiusTop": 0.04,
+          "radiusBottom": 0.04,
+          "height": 0.03,
+          "radialSegments": 12,
+          "heightSegments": 1,
+          "openEnded": false,
+          "thetaStart": 0,
+          "thetaLength": 6.283185307179586
+        },
+        "local_position": [
+          -0.13,
+          0.04,
+          0.08
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          1.5707963267948966
+        ],
+        "world_aabb": {
+          "min": [
+            -0.14499999966472388,
+            8.940696724635266e-10,
+            0.04000000089406967
+          ],
+          "max": [
+            -0.11500000033527612,
+            0.07999999910593034,
+            0.11999999910593033
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#16353a",
+          "roughness": 0.5,
+          "metalness": 0.4,
+          "emissive": "#000000",
+          "emissive_intensity": 1,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      },
+      {
+        "label": "wheel_rr",
+        "runtime_path": "robotMesh.children[10]",
+        "runtime_name": null,
+        "parent": "robotMesh",
+        "type": "Mesh",
+        "geometry": "CylinderGeometry",
+        "geometry_parameters": {
+          "radiusTop": 0.04,
+          "radiusBottom": 0.04,
+          "height": 0.03,
+          "radialSegments": 12,
+          "heightSegments": 1,
+          "openEnded": false,
+          "thetaStart": 0,
+          "thetaLength": 6.283185307179586
+        },
+        "local_position": [
+          0.13,
+          0.04,
+          0.08
+        ],
+        "local_rotation_xyz_radians": [
+          0,
+          0,
+          1.5707963267948966
+        ],
+        "world_aabb": {
+          "min": [
+            0.11500000033527612,
+            8.940696724635266e-10,
+            0.04000000089406967
+          ],
+          "max": [
+            0.14499999966472388,
+            0.07999999910593034,
+            0.11999999910593033
+          ]
+        },
+        "material": {
+          "type": "MeshStandardMaterial",
+          "color": "#16353a",
+          "roughness": 0.5,
+          "metalness": 0.4,
+          "emissive": "#000000",
+          "emissive_intensity": 1,
+          "maps": {
+            "albedo": false,
+            "normal": false,
+            "roughness": false,
+            "metalness": false,
+            "ao": false
+          }
+        }
+      }
+    ]
+  },
+  "motion": {
+    "implemented": {
+      "root_translation": "XZ",
+      "root_world_y": 0,
+      "root_yaw": "atan2(dx,dz), updated only for horizontal motion > 1e-4 m"
+    },
+    "not_implemented": [
+      "head joint drive",
+      "lidar spin",
+      "wheel roll",
+      "armature/IK"
+    ],
+    "joint_limits_verified": false,
+    "suggested_limits_in_C02_are_not_implemented": true,
+    "root_z_clamp_on_stop_m": [
+      -1.4,
+      1.4
+    ]
+  },
+  "anchors": [
+    {
+      "label": "ground",
+      "local_position": [
+        0,
+        0,
+        0
+      ],
+      "status": "root origin; implemented navigation render reference"
+    },
+    {
+      "label": "nameplate",
+      "offset": [
+        0,
+        0.55,
+        0
+      ],
+      "status": "implemented DOM projection offset, not a named Object3D anchor"
+    },
+    {
+      "label": "sensor",
+      "local_position": [
+        0,
+        0.355,
+        0
+      ],
+      "status": "lidar geometry center; conceptual anchor only"
+    },
+    {
+      "label": "gaze",
+      "local_position": [
+        0,
+        0.3,
+        0.071
+      ],
+      "status": "eye midpoint; conceptual anchor only"
+    },
+    {
+      "label": "grasp",
+      "local_position": [
+        0,
+        0.29,
+        0.13
+      ],
+      "status": "C02 proposed anchor, not implemented or used by executor"
+    }
+  ],
+  "task_objects": {
+    "count": 8,
+    "kind": "point-cloud clusters plus UI metadata/markers; not eight independent attachable model files",
+    "objects": [
+      {
+        "id": "obj_1",
+        "name": "黑色大长方体物体",
+        "colorName": "黑",
+        "color": "#272218",
+        "shape": "长方体",
+        "size": "大",
+        "zone": "C",
+        "furniture": "层板",
+        "src": [
+          3.207,
+          -0.902,
+          -0.482
+        ],
+        "base": 0.88,
+        "points": 3285,
+        "dims": [
+          0.44,
+          0.04,
+          0.52
+        ],
+        "aliases": [
+          "黑色长方体",
+          "大长方体",
+          "长方体",
+          "黑色大长方体"
+        ],
+        "category": "长方体",
+        "world": [
+          3.557,
+          0.932,
+          0.182
+        ],
+        "confidence_basis": "hardcoded demonstration prior, not calibrated recognition probability"
+      },
+      {
+        "id": "obj_2",
+        "name": "橙色大长方体物体",
+        "colorName": "橙",
+        "color": "#5b4c3e",
+        "shape": "长方体",
+        "size": "大",
+        "zone": "C",
+        "furniture": "矮桌",
+        "src": [
+          2.873,
+          -0.625,
+          -1.522
+        ],
+        "base": 0.86,
+        "points": 1823,
+        "dims": [
+          0.08,
+          0.32,
+          0.24
+        ],
+        "aliases": [
+          "橙色长方体",
+          "大长方体",
+          "长方体",
+          "橙色大长方体"
+        ],
+        "category": "长方体",
+        "world": [
+          3.2230000000000003,
+          0.655,
+          1.222
+        ],
+        "confidence_basis": "hardcoded demonstration prior, not calibrated recognition probability"
+      },
+      {
+        "id": "obj_3",
+        "name": "黑色大圆柱物体",
+        "colorName": "黑",
+        "color": "#5e564f",
+        "shape": "圆柱",
+        "size": "大",
+        "zone": "C",
+        "furniture": "矮桌",
+        "src": [
+          2.985,
+          -0.842,
+          0.007
+        ],
+        "base": 0.84,
+        "points": 932,
+        "dims": [
+          0.24,
+          0.24,
+          0.28
+        ],
+        "aliases": [
+          "黑色圆柱",
+          "大圆柱",
+          "圆柱",
+          "黑色大圆柱"
+        ],
+        "category": "圆柱",
+        "world": [
+          3.335,
+          0.872,
+          -0.307
+        ],
+        "confidence_basis": "hardcoded demonstration prior, not calibrated recognition probability"
+      },
+      {
+        "id": "obj_4",
+        "name": "灰色大圆柱物体",
+        "colorName": "灰",
+        "color": "#857f7a",
+        "shape": "圆柱",
+        "size": "大",
+        "zone": "B",
+        "furniture": "矮桌",
+        "src": [
+          1.339,
+          -0.652,
+          0.181
+        ],
+        "base": 0.82,
+        "points": 915,
+        "dims": [
+          0.32,
+          0.36,
+          0.32
+        ],
+        "aliases": [
+          "灰色圆柱",
+          "大圆柱",
+          "圆柱",
+          "灰色大圆柱"
+        ],
+        "category": "圆柱",
+        "world": [
+          1.689,
+          0.682,
+          -0.481
+        ],
+        "confidence_basis": "hardcoded demonstration prior, not calibrated recognition probability"
+      },
+      {
+        "id": "obj_5",
+        "name": "灰色中长条物体",
+        "colorName": "灰",
+        "color": "#867e7d",
+        "shape": "长条",
+        "size": "中",
+        "zone": "B",
+        "furniture": "矮桌",
+        "src": [
+          0.417,
+          -0.695,
+          -0.2
+        ],
+        "base": 0.8,
+        "points": 788,
+        "dims": [
+          0.08,
+          0.08,
+          0.24
+        ],
+        "aliases": [
+          "灰色长条",
+          "中长条",
+          "长条",
+          "灰色中长条"
+        ],
+        "category": "长条",
+        "world": [
+          0.7669999999999999,
+          0.725,
+          -0.09999999999999998
+        ],
+        "confidence_basis": "hardcoded demonstration prior, not calibrated recognition probability"
+      },
+      {
+        "id": "obj_8",
+        "name": "黑色中长方体物体",
+        "colorName": "黑",
+        "color": "#3b3835",
+        "shape": "长方体",
+        "size": "中",
+        "zone": "C",
+        "furniture": "台面",
+        "src": [
+          3.104,
+          -1.102,
+          -1.012
+        ],
+        "base": 0.78,
+        "points": 585,
+        "dims": [
+          0.12,
+          0.16,
+          0.2
+        ],
+        "aliases": [
+          "黑色长方体",
+          "中长方体",
+          "长方体",
+          "黑色中长方体"
+        ],
+        "category": "长方体",
+        "world": [
+          3.454,
+          1.1320000000000001,
+          0.712
+        ],
+        "confidence_basis": "hardcoded demonstration prior, not calibrated recognition probability"
+      },
+      {
+        "id": "obj_10",
+        "name": "黑色中长条物体",
+        "colorName": "黑",
+        "color": "#191816",
+        "shape": "长条",
+        "size": "中",
+        "zone": "A",
+        "furniture": "台面",
+        "src": [
+          -3.41,
+          -1.387,
+          0.033
+        ],
+        "base": 0.76,
+        "points": 345,
+        "dims": [
+          0.08,
+          0.2,
+          0.08
+        ],
+        "aliases": [
+          "黑色长条",
+          "中长条",
+          "长条",
+          "黑色中长条"
+        ],
+        "category": "长条",
+        "world": [
+          -3.06,
+          1.417,
+          -0.33299999999999996
+        ],
+        "confidence_basis": "hardcoded demonstration prior, not calibrated recognition probability"
+      },
+      {
+        "id": "obj_11",
+        "name": "橙色中长方体物体",
+        "colorName": "橙",
+        "color": "#b59f76",
+        "shape": "长方体",
+        "size": "中",
+        "zone": "B",
+        "furniture": "矮桌",
+        "src": [
+          1.269,
+          -0.738,
+          -0.095
+        ],
+        "base": 0.74,
+        "points": 332,
+        "dims": [
+          0.12,
+          0.2,
+          0.2
+        ],
+        "aliases": [
+          "橙色长方体",
+          "中长方体",
+          "长方体",
+          "橙色中长方体"
+        ],
+        "category": "长方体",
+        "world": [
+          1.6189999999999998,
+          0.768,
+          -0.205
+        ],
+        "confidence_basis": "hardcoded demonstration prior, not calibrated recognition probability"
+      }
+    ]
+  },
+  "materials": {
+    "type": "solid-colour procedural MeshStandardMaterial; values on robot.nodes",
+    "bitmap_textures": [],
+    "bitmap_maps_delivered": false,
+    "reference_images_are_textures": false
+  },
+  "new_robot_reference": {
+    "manifest": "assets/task-c/robot-reference-20261031/manifest.json",
+    "matches_current_runtime_robot": false,
+    "model_export_provided": false
+  },
+  "acceptance_status": "partial: procedural inventory documented; bitmap maps, finished matching model and actual rig/anchor integration remain missing",
+  "robotModelReplacement": {
+    "date": "2026-11-01",
+    "record": "https://github.com/Grip1122/HOME-HomeMe/tree/feat/robot-fbx-v1/docs/task-c/robot-fbx-20261101",
+    "release": "https://github.com/Grip1122/HOME-HomeMe/releases/tag/robot-fbx-v1",
+    "legacyInventoryScope": "20261031 archived prototype before replacement",
+    "newModelRig": "single mesh, no bones or animation clips"
+  }
+}

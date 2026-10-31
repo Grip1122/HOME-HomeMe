@@ -275,5 +275,21 @@
       "failures": 0,
       "scope": "Two supplied Markdown files plus 17 prototype files checked against the previously verified archive manifest; not a runtime or integration acceptance."
     }
+  },
+  "reviewFollowup": {
+    "record": "docs/task-c/robot-find-20261031/review-followup.md",
+    "scene_provenance": "docs/task-c/robot-find-20261031/source-provenance.json",
+    "candidate_selection": "docs/task-c/robot-find-20261031/candidate-selection.json",
+    "prototype_assets_rig": "docs/task-c/robot-find-20261031/prototype-assets-rig.json",
+    "new_robot_reference_manifest": "assets/task-c/robot-reference-20261031/manifest.json",
+    "status": "open_with_documented_gaps",
+    "permission": "User confirmed all materials have permission; specific authors/license proof URLs not supplied"
+  },
+  "robotModelReplacement": {
+    "date": "2026-11-01",
+    "record": "https://github.com/Grip1122/HOME-HomeMe/tree/feat/robot-fbx-v1/docs/task-c/robot-fbx-20261101",
+    "release": "https://github.com/Grip1122/HOME-HomeMe/releases/tag/robot-fbx-v1",
+    "legacyInventoryScope": "20261031 archived prototype before replacement",
+    "newModelRig": "single mesh, no bones or animation clips"
   }
 }

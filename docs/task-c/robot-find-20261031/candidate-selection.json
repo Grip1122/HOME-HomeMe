@@ -1,0 +1,505 @@
+{
+  "scope": "Observed extraction and runtime selection; not an invented retrospective automatic policy",
+  "sources": {
+    "extractor": "tools/recognize-scene.cjs in archived robot-find",
+    "candidates": "assets/models/scene-objects.json in archive",
+    "runtime": "src/scene-objects.js in archive"
+  },
+  "extractor_rules": {
+    "interior_source_bounds": {
+      "x": [
+        -4.2,
+        3.7
+      ],
+      "y": [
+        -3.3,
+        0.1
+      ],
+      "z": [
+        -1.8,
+        1.2
+      ]
+    },
+    "horizontal_columns_m": 0.05,
+    "y_histogram_bin_m": 0.02,
+    "surface_min_bin_points": 4,
+    "above_surface_m": [
+      0.025,
+      0.55
+    ],
+    "voxel_m": 0.04,
+    "connectivity": 26,
+    "min_points": 60,
+    "max_dimension_range_m": [
+      0.06,
+      0.55
+    ],
+    "min_dimension_m": 0.012,
+    "sort": "point count descending",
+    "center_dedup_distance_3d_m": 0.18,
+    "max_output": 12,
+    "recognition_type": "geometric + colour heuristic, not semantic segmentation"
+  },
+  "runtime_rule": {
+    "type": "fixed explicit ID allowlist in source",
+    "ids": [
+      "obj_1",
+      "obj_2",
+      "obj_3",
+      "obj_4",
+      "obj_5",
+      "obj_8",
+      "obj_10",
+      "obj_11"
+    ],
+    "automatic_top_eight": false,
+    "producer_for_12_to_8_not_in_package": true
+  },
+  "decisions": [
+    {
+      "id": "obj_1",
+      "name": "黑大长方体物体",
+      "colorName": "黑",
+      "color": "#272218",
+      "shape": "长方体",
+      "size": "大",
+      "surface": "层板",
+      "height": 0.9,
+      "src": [
+        3.207,
+        -0.902,
+        -0.482
+      ],
+      "world": [
+        3.557,
+        0.932,
+        0.182
+      ],
+      "zone": "C",
+      "points": 3285,
+      "dims": [
+        0.44,
+        0.04,
+        0.52
+      ],
+      "point_count_rank": 1,
+      "runtime_included": true,
+      "selection_rule": "included in fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_3",
+        "distance_m": 0.5403748698820107
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_2",
+      "name": "橙大长方体物体",
+      "colorName": "橙",
+      "color": "#5b4c3e",
+      "shape": "长方体",
+      "size": "大",
+      "surface": "矮桌",
+      "height": 0.62,
+      "src": [
+        2.873,
+        -0.625,
+        -1.522
+      ],
+      "world": [
+        3.223,
+        0.655,
+        1.222
+      ],
+      "zone": "C",
+      "points": 1823,
+      "dims": [
+        0.08,
+        0.32,
+        0.24
+      ],
+      "point_count_rank": 2,
+      "runtime_included": true,
+      "selection_rule": "included in fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_8",
+        "distance_m": 0.7355202240591349
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_3",
+      "name": "黑大圆柱物体",
+      "colorName": "黑",
+      "color": "#5e564f",
+      "shape": "圆柱",
+      "size": "大",
+      "surface": "矮桌",
+      "height": 0.84,
+      "src": [
+        2.985,
+        -0.842,
+        0.007
+      ],
+      "world": [
+        3.335,
+        0.872,
+        -0.307
+      ],
+      "zone": "C",
+      "points": 932,
+      "dims": [
+        0.24,
+        0.24,
+        0.28
+      ],
+      "point_count_rank": 3,
+      "runtime_included": true,
+      "selection_rule": "included in fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_1",
+        "distance_m": 0.5403748698820107
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_4",
+      "name": "灰大圆柱物体",
+      "colorName": "灰",
+      "color": "#857f7a",
+      "shape": "圆柱",
+      "size": "大",
+      "surface": "矮桌",
+      "height": 0.65,
+      "src": [
+        1.339,
+        -0.652,
+        0.181
+      ],
+      "world": [
+        1.689,
+        0.682,
+        -0.481
+      ],
+      "zone": "B",
+      "points": 915,
+      "dims": [
+        0.32,
+        0.36,
+        0.32
+      ],
+      "point_count_rank": 4,
+      "runtime_included": true,
+      "selection_rule": "included in fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_11",
+        "distance_m": 0.2974424314048015
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_5",
+      "name": "灰中长条物体",
+      "colorName": "灰",
+      "color": "#867e7d",
+      "shape": "长条",
+      "size": "中",
+      "surface": "矮桌",
+      "height": 0.69,
+      "src": [
+        0.417,
+        -0.695,
+        -0.2
+      ],
+      "world": [
+        0.767,
+        0.725,
+        -0.1
+      ],
+      "zone": "B",
+      "points": 788,
+      "dims": [
+        0.08,
+        0.08,
+        0.24
+      ],
+      "point_count_rank": 5,
+      "runtime_included": true,
+      "selection_rule": "included in fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_11",
+        "distance_m": 0.859521960161577
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_6",
+      "name": "黑大长方体物体",
+      "colorName": "黑",
+      "color": "#59544c",
+      "shape": "长方体",
+      "size": "大",
+      "surface": "矮桌",
+      "height": 0.85,
+      "src": [
+        2.974,
+        -0.846,
+        0.437
+      ],
+      "world": [
+        3.324,
+        0.876,
+        -0.737
+      ],
+      "zone": "C",
+      "points": 749,
+      "dims": [
+        0.16,
+        0.12,
+        0.28
+      ],
+      "point_count_rank": 6,
+      "runtime_included": false,
+      "selection_rule": "absent from fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_3",
+        "distance_m": 0.4301592728281003
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_7",
+      "name": "黑大长方体物体",
+      "colorName": "黑",
+      "color": "#2f2d22",
+      "shape": "长方体",
+      "size": "大",
+      "surface": "地面",
+      "height": 0.28,
+      "src": [
+        3.255,
+        -0.276,
+        0.83
+      ],
+      "world": [
+        3.605,
+        0.306,
+        -1.13
+      ],
+      "zone": "C",
+      "points": 615,
+      "dims": [
+        0.2,
+        0.36,
+        0.2
+      ],
+      "point_count_rank": 7,
+      "runtime_included": false,
+      "selection_rule": "absent from fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_3",
+        "distance_m": 1.034690775062772
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_8",
+      "name": "黑中长方体物体",
+      "colorName": "黑",
+      "color": "#3b3835",
+      "shape": "长方体",
+      "size": "中",
+      "surface": "台面",
+      "height": 1.1,
+      "src": [
+        3.104,
+        -1.102,
+        -1.012
+      ],
+      "world": [
+        3.454,
+        1.132,
+        0.712
+      ],
+      "zone": "C",
+      "points": 585,
+      "dims": [
+        0.12,
+        0.16,
+        0.2
+      ],
+      "point_count_rank": 8,
+      "runtime_included": true,
+      "selection_rule": "included in fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_1",
+        "distance_m": 0.5757681825179297
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_9",
+      "name": "黑小长方体物体",
+      "colorName": "黑",
+      "color": "#4d4742",
+      "shape": "长方体",
+      "size": "小",
+      "surface": "矮桌",
+      "height": 0.82,
+      "src": [
+        2.938,
+        -0.821,
+        -0.949
+      ],
+      "world": [
+        3.288,
+        0.851,
+        0.649
+      ],
+      "zone": "C",
+      "points": 509,
+      "dims": [
+        0.08,
+        0.12,
+        0.12
+      ],
+      "point_count_rank": 9,
+      "runtime_included": false,
+      "selection_rule": "absent from fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_8",
+        "distance_m": 0.3323943441155401
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_10",
+      "name": "黑中长条物体",
+      "colorName": "黑",
+      "color": "#191816",
+      "shape": "长条",
+      "size": "中",
+      "surface": "台面",
+      "height": 1.39,
+      "src": [
+        -3.41,
+        -1.387,
+        0.033
+      ],
+      "world": [
+        -3.06,
+        1.417,
+        -0.333
+      ],
+      "zone": "A",
+      "points": 345,
+      "dims": [
+        0.08,
+        0.2,
+        0.08
+      ],
+      "point_count_rank": 10,
+      "runtime_included": true,
+      "selection_rule": "included in fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_5",
+        "distance_m": 3.8960341374274425
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_11",
+      "name": "橙中长方体物体",
+      "colorName": "橙",
+      "color": "#b59f76",
+      "shape": "长方体",
+      "size": "中",
+      "surface": "矮桌",
+      "height": 0.74,
+      "src": [
+        1.269,
+        -0.738,
+        -0.095
+      ],
+      "world": [
+        1.619,
+        0.768,
+        -0.205
+      ],
+      "zone": "B",
+      "points": 332,
+      "dims": [
+        0.12,
+        0.2,
+        0.2
+      ],
+      "point_count_rank": 11,
+      "runtime_included": true,
+      "selection_rule": "included in fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_4",
+        "distance_m": 0.2974424314048015
+      },
+      "recorded_geometric_thresholds_pass": true
+    },
+    {
+      "id": "obj_12",
+      "name": "黑中长条物体",
+      "colorName": "黑",
+      "color": "#26190f",
+      "shape": "长条",
+      "size": "中",
+      "surface": "矮桌",
+      "height": 0.36,
+      "src": [
+        1.495,
+        -0.36,
+        -0.353
+      ],
+      "world": [
+        1.845,
+        0.39,
+        0.053
+      ],
+      "zone": "B",
+      "points": 273,
+      "dims": [
+        0.12,
+        0.24,
+        0.12
+      ],
+      "point_count_rank": 12,
+      "runtime_included": false,
+      "selection_rule": "absent from fixed RF.SCENE_OBJECTS array",
+      "author_rationale": null,
+      "rationale_status": "not supplied; do not infer rejection cause from size/surface/point count",
+      "nearest_other_runtime_center": {
+        "id": "obj_11",
+        "distance_m": 0.5104155170055081
+      },
+      "recorded_geometric_thresholds_pass": true
+    }
+  ],
+  "review_gap": "Gary must confirm intended reasons for excluding obj_6/7/9/12, or provide a revised explicit selection policy and rerun evidence. Statistics alone do not prove they are duplicates, fragments or false detections."
+}

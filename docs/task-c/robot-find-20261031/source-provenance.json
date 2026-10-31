@@ -1,0 +1,44 @@
+{
+  "scene": "old-building-source-for-robot-find",
+  "file": "scene.ply",
+  "bytes": 471149518,
+  "sha256": "901cf8ce0be73706d6ab0f2649e4f7520def2ee4342a30bca984b55ce2678fae",
+  "splat_count": 1996390,
+  "verified": {
+    "local_original": true,
+    "github_release_digest": true,
+    "repository_manifest": true
+  },
+  "source_chain": {
+    "recorded_origin": "Externally supplied to project; existing repository asset manifest records external handoff",
+    "repository_manifest": "assets/gaussian-splat/manifest.json",
+    "release": "https://github.com/Grip1122/HOME-HomeMe/releases/download/splat-v1/scene.ply",
+    "original_author": null,
+    "original_download_or_capture_url": null
+  },
+  "permission": {
+    "status": "user_confirmed_permission",
+    "statement": "都许可",
+    "confirmed_date": "2026-10-31",
+    "purpose": "Upload the supplied scene/reference materials to this project as requested by the user",
+    "author": null,
+    "source_url": null,
+    "specific_license_or_spdx": null,
+    "documentary_proof_provided": false,
+    "note": "User permission confirmation is recorded separately from an identified public/open-source license. No CC/MIT license is inferred for the reference images or scan."
+  },
+  "existing_repository_license_claim": "开源素材（Jesu 于 2026-10-31 确认；具体许可证条款待补）",
+  "license_resolution": "User confirms permission. Existing manifest says open-source, but an exact license name/text and provenance link are not supplied; these remain review gaps.",
+  "derived_splat": {
+    "path_in_archive": "assets/models/scene.splat",
+    "bytes": 49779968,
+    "sha256": "05755d69e3987abcc6195bf4d5b364f362fce2be995f8ad365f4930f5c3195f2",
+    "splat_count": 1555624,
+    "sha256_verified": true
+  },
+  "separate_from_restaurant": {
+    "restaurant_sha256": "db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28",
+    "restaurant_splats": 999131,
+    "note": "Restaurant license/scale/orthographic/FPS conclusions do not apply to this old-building prototype."
+  }
+}
