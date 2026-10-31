@@ -12,17 +12,19 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from jsonschema import Draft202012Validator, FormatChecker
 
-from .app.layoutlib import Index, load_json
+from .app.layoutlib import Index, load_json, furniture_box
 from .app.planner import plan_offline
-from .app.storage import Store
+from .app.storage import Store, execution_ok
 from .app.validate import validate_steps
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def create_app(db_path=None, layouts=None, static_dir=None):
+def create_app(db_path=None, layouts=None, static_dir=None, *, online_planner=None):
     plan_schema = load_json(ROOT / "contracts/plan.schema.json")
     request_validator = Draft202012Validator({**plan_schema, "$ref": "#/$defs/request"})
+    robot_validator = Draft202012Validator(plan_schema["$defs"]["request"]["properties"]["robot"])
+    step_validator = Draft202012Validator({**plan_schema, "$ref": "#/$defs/step"})
     response_validator = Draft202012Validator({**plan_schema, "$ref": "#/$defs/response"})
     memory_validator = Draft202012Validator(load_json(ROOT / "contracts/memory.schema.json"), format_checker=FormatChecker())
     layout_validator = Draft202012Validator(load_json(ROOT / "contracts/layout.schema.json"))
@@ -67,6 +69,14 @@ def create_app(db_path=None, layouts=None, static_dir=None):
             raise HTTPException(422, "unknown_object")
         return object_id
 
+    def robot_holding(payload, index):
+        robot = payload.get("robot", {})
+        checked(robot_validator, robot)
+        holding = robot.get("holding")
+        if holding is not None and holding not in index.objects:
+            raise HTTPException(422, "unknown_holding")
+        return holding
+
     def observations(payload, index):
         entries = payload.get("entries")
         if not isinstance(entries, list) or len(entries) > len(index.objects):
@@ -96,18 +106,17 @@ def create_app(db_path=None, layouts=None, static_dir=None):
     def plan(payload: dict = Body(...)):
         checked(request_validator, payload)
         index = index_for(payload["layout_id"])
-        holding = (payload.get("robot") or {}).get("holding")
-        if holding is not None and holding not in index.objects:
-            raise HTTPException(422, "unknown_holding")
-        response = plan_offline(payload["query"], index, payload)
+        holding = robot_holding(payload, index)
+        if online_planner is None:
+            response = plan_offline(payload["query"], index, payload)
+        else:
+            response = plan_offline(payload["query"], index, payload, online=online_planner)
         checked(response_validator, response)
         errors = validate_steps(index, response["steps"], holding)
         if errors:
             raise HTTPException(422, errors)
-        if response.get("corrected"):
-            target = response["corrected_to"]
-            store.correct(payload["layout_id"], {"object_id": response["corrected_object"],
-                          "room": index.furniture[target]["room"], "pos": index.surface_pos(target)})
+        # Planning is read-only. The executor commits a correction through /memory/correct
+        # only after drop succeeds, so failed/cancelled plans cannot move remembered objects.
         return response
 
     @router.get("/memory")
@@ -151,8 +160,13 @@ def create_app(db_path=None, layouts=None, static_dir=None):
         target = payload.get("to")
         if not isinstance(target, str) or target not in index.furniture or not index.furniture[target]["surface"]:
             raise HTTPException(422, "invalid_surface")
-        return store.correct(layout_id, {"object_id": object_id, "room": index.furniture[target]["room"],
-                                        "pos": index.surface_pos(target)})
+        entry = {"object_id": object_id, "room": index.furniture[target]["room"],
+                 "pos": payload.get("pos", index.surface_pos(target))}
+        observations({"entries": [entry]}, index)
+        x0, z0, x1, z1 = furniture_box(index.furniture[target])
+        if not (x0 <= entry["pos"][0] <= x1 and z0 <= entry["pos"][2] <= z1):
+            raise HTTPException(422, "position_outside_surface")
+        return store.correct(layout_id, entry)
 
     @router.post("/memory/reset")
     def reset(payload: dict = Body(...)):
@@ -168,19 +182,34 @@ def create_app(db_path=None, layouts=None, static_dir=None):
         index = index_for(payload.get("layout_id"))
         plan_value = payload.get("plan")
         checked(response_validator, plan_value)
-        holding = (payload.get("robot") or {}).get("holding")
+        holding = robot_holding(payload, index)
         if validate_steps(index, plan_value["steps"], holding):
             raise HTTPException(422, "invalid_plan_steps")
-        if not isinstance(payload.get("query"), str) or not payload["query"].strip():
+        if not isinstance(payload.get("query"), str) or not payload["query"].strip() or len(payload["query"]) > 200:
             raise HTTPException(422, "invalid_query")
         steps = payload.get("steps")
         duration = payload.get("duration_ms")
-        if not isinstance(steps, list) or len(steps) > 10000 or any(not isinstance(s, dict) for s in steps):
+        if not isinstance(steps, list) or len(steps) > len(plan_value["steps"]):
             raise HTTPException(422, "invalid_executed_steps")
+        for number, event in enumerate(steps):
+            if not isinstance(event, dict) or event.get("result") not in ("succeeded", "failed", "cancelled"):
+                raise HTTPException(422, "invalid_execution_result")
+            instruction = {k: v for k, v in event.items() if k != "result"}
+            checked(step_validator, instruction)
+            if instruction != plan_value["steps"][number]:
+                raise HTTPException(422, "execution_must_match_plan_prefix")
+            if event["result"] != "succeeded" and number != len(steps) - 1:
+                raise HTTPException(422, "execution_after_terminal_failure")
         if isinstance(duration, bool) or not isinstance(duration, (int, float)) or not math.isfinite(duration) or duration < 0:
             raise HTTPException(422, "invalid_duration")
         if not isinstance(payload.get("memory_enabled"), bool):
             raise HTTPException(422, "invalid_memory_enabled")
+        if "ok" in payload and not isinstance(payload["ok"], bool):
+            raise HTTPException(422, "invalid_execution_ok")
+        if payload.get("ok") is True and not execution_ok(payload):
+            raise HTTPException(422, "execution_did_not_complete")
+        if "reason" in payload and (not isinstance(payload["reason"], str) or len(payload["reason"]) > 200):
+            raise HTTPException(422, "invalid_execution_reason")
         return {"id": store.append_log(payload)}
 
     @router.get("/log")
@@ -190,9 +219,12 @@ def create_app(db_path=None, layouts=None, static_dir=None):
 
     app.include_router(router)
     app.include_router(router, prefix="/api", include_in_schema=False)
+    # A may import the adapter through Vite's existing /api proxy without changing config.
+    for prefix in ("/client", "/api/client"):
+        app.mount(prefix, StaticFiles(directory=ROOT / "server/client"), name=prefix.strip("/"))
     # Keep D's delivery resources separate from A/B/C-owned frontend modules.
     delivery = ROOT / "server/delivery"
-    if delivery.is_dir():
+    if os.getenv("HOMETWIN_ENABLE_EXPERIMENTAL_DELIVERY") == "1" and delivery.is_dir():
         # Shared resources live once in the repo (assets/ owned by B, reference/ read-only archive).
         # Mount them under /delivery/ before the catch-all instead of copying; /assets is left to Vite's dist.
         for prefix, source in (("/delivery/assets", ROOT / "assets"),
@@ -206,5 +238,5 @@ def create_app(db_path=None, layouts=None, static_dir=None):
     else:
         @app.get("/", include_in_schema=False)
         def delivery_index():
-            return RedirectResponse("/delivery/index.html" if delivery.is_dir() else "/docs")
+            return RedirectResponse("/docs")
     return app

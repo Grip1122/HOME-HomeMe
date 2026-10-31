@@ -28,6 +28,9 @@ def test_plan_preserves_corrective_source_and_updates_memory(client):
     value = response.json()
     assert value["source"] == "corrective"
     assert len(value["steps"]) == 4
+    # A plan is intent, not evidence that the executor has moved an object.
+    assert client.get("/memory", params={"layout_id": "A"}).json()[0]["room"] == "living"
+    assert client.post("/memory/correct", json={"layout_id": "A", "object_id": "cup_red", "to": "desk"}).status_code == 200
     record = client.get("/memory", params={"layout_id": "A"}).json()[0]
     assert record["confidence"] == .90 and record["room"] == "study"
     assert record["source"] == "correct" and record["status"] == "fresh"
@@ -118,7 +121,7 @@ def test_missing_memory_and_non_surface_correction_are_rejected(client):
 def test_log_uses_plan_source_correction_flag_and_actual_execution_count(client):
     plan = client.post("/plan", json={"query": "不对，应该放书房", "layout_id": "A", "last_object": "cup_red"}).json()
     payload = {"layout_id": "A", "query": "不对，应该放书房", "plan": plan,
-               "steps": [{"action": "go", "ok": True, "ms": 200}],
+               "steps": [{**plan["steps"][0], "result": "succeeded"}],
                "duration_ms": 200, "memory_enabled": True}
     assert client.post("/log", json=payload).status_code == 200
     row = client.get("/log", params={"layout_id": "A"}).json()[0]
@@ -135,9 +138,11 @@ def test_reset_seed_validates_confidence_before_deleting_existing_memory(client)
     assert client.get("/memory", params={"layout_id": "A"}).json()[0]["confidence"] == .8
 
 
-def test_delivery_preview_serves_shared_assets_without_a_second_copy(client):
+def test_delivery_preview_serves_shared_assets_without_a_second_copy(client, monkeypatch):
     """D's preview reuses repo-root assets/ and the archived PlayCanvas; no duplicate copy under server/delivery/."""
     from server.main import ROOT
+    monkeypatch.setenv("HOMETWIN_ENABLE_EXPERIMENTAL_DELIVERY", "1")
+    client = TestClient(create_app(client.app.state.store.path))
     glb = client.get("/delivery/assets/robot/roomscan-rs01.glb")
     assert glb.status_code == 200
     assert glb.content == (ROOT / "assets/robot/roomscan-rs01.glb").read_bytes()
