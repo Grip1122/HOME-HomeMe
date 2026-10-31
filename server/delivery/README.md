@@ -11,7 +11,7 @@
 
 ## Windows 资源预览
 
-Python 3.11+；Node.js 22.12+（满足仓库锁定的 Vitest 5 要求）。命令均从仓库根目录执行，无本机绝对路径：
+Python 3.11+；Node.js 24（以 web/.nvmrc 为准，与 Jesu 的 PR #10 一致）。命令均从仓库根目录执行，无本机绝对路径：
 
 ```powershell
 npm --prefix web ci
