@@ -1,4 +1,4 @@
-"""One process for the frozen HOME HTTP API and D's integration preview."""
+"""Start the HOME / 小觅 HTTP API and optional production frontend."""
 import argparse
 import os
 from pathlib import Path

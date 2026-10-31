@@ -41,6 +41,8 @@ class Store:
             db.row_factory = sqlite3.Row
             try:
                 with db:
+                    # Serialize read-modify-write across independent Store instances/processes.
+                    db.execute("BEGIN IMMEDIATE")
                     yield db
             finally:
                 db.close()
