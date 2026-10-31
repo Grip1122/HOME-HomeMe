@@ -2,10 +2,10 @@
 (function (global) {
   "use strict";
   const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const C = UI.COPY;
 
   function nowLabel() {
-    const d = new Date();
-    return d.toLocaleTimeString("zh-CN", { hour12: false, hour: "2-digit", minute: "2-digit" });
+    return new Date().toLocaleTimeString("zh-CN", { hour12: false, hour: "2-digit", minute: "2-digit" });
   }
 
   class Chat {
@@ -19,34 +19,47 @@
       this.sendEl = root.querySelector(".ht-send-btn");
       this.typingEl = null;
       this.busy = false;
+      this.lastUser = { text: "", at: 0 };
+      this.getMemoryEnabled = this.options.getMemoryEnabled || (() => true);
+      this.onToast = this.options.onToast || (() => {});
       this._bind();
       this._subscribe();
     }
 
     _subscribe() {
-      this._onMessage = (payload) => {
-        if (!payload || !payload.text) return;
-        this.addMessage(payload.role || "butler", payload.text, payload.meta);
+      this._onRequest = (p) => {
+        if (!p || typeof p.query !== "string" || !p.query.trim()) return;
+        this.addUser(p.query.trim());
+        this.setTyping(true);
+        this.setBusy(true);
       };
-      this._onTyping = (payload) => this.setTyping(!!(payload && payload.on));
-      this._onTaskStart = () => this.setBusy(true);
-      this._onTaskEnd = () => this.setBusy(false);
-      this._onTaskReset = () => this.setBusy(false);
-      this._onVoice = (payload) => {
-        if (!payload || !payload.text) return;
-        this.addMessage("user", payload.text, { source: "voice" });
-        if (this.options.voiceEcho !== false) {
-          this.bus.emit("ui:query", { text: payload.text, source: "voice" });
-        }
+      this._onSay = (p) => {
+        if (!p || typeof p.text !== "string") return;
+        if (p.who === "user") this.addUser(p.text);
+        else this.addMessage("robot", p.text);
+        this.setTyping(false);
       };
-      this._onClear = () => this.clear();
-      this.bus.on("chat:message", this._onMessage);
-      this.bus.on("chat:typing", this._onTyping);
+      this._onPlanReceived = () => this.setTyping(false);
+      this._onPlanRejected = (p) => {
+        this.setTyping(false);
+        this.setBusy(false);
+        const reason = p && p.reason ? "：" + p.reason : "";
+        this.addMessage("robot", C.chat.planRejected + reason);
+      };
+      this._onTaskStart = () => {
+        this.setTyping(false);
+        this.setBusy(true);
+      };
+      this._onTaskEnd = () => {
+        this.setTyping(false);
+        this.setBusy(false);
+      };
+      this.bus.on("plan:request", this._onRequest);
+      this.bus.on("task:say", this._onSay);
+      this.bus.on("plan:received", this._onPlanReceived);
+      this.bus.on("plan:rejected", this._onPlanRejected);
       this.bus.on("task:start", this._onTaskStart);
       this.bus.on("task:end", this._onTaskEnd);
-      this.bus.on("task:reset", this._onTaskReset);
-      this.bus.on("ui:voice", this._onVoice);
-      this.bus.on("chat:clear", this._onClear);
     }
 
     _bind() {
@@ -60,40 +73,51 @@
       });
       this.root.querySelectorAll(".ht-sug").forEach((btn) => {
         btn.addEventListener("click", () => {
-          if (this.busy) return;
-          const q = btn.dataset.query || btn.textContent.trim();
-          this.addMessage("user", q);
-          this.bus.emit("ui:query", { text: q, source: "chip" });
+          if (this.busy) {
+            this.onToast(C.chat.busy, "warn");
+            return;
+          }
+          this.send(btn.dataset.query || btn.textContent.trim());
         });
       });
     }
 
     submit() {
-      if (this.busy) {
-        this.bus.emit("toast", { text: "小方正在执行上一个任务，请稍等", type: "warn" });
-        return;
-      }
       const text = (this.inputEl.value || "").trim();
       if (!text) return;
+      if (this.busy) {
+        this.onToast(C.chat.busy, "warn");
+        return;
+      }
       this.inputEl.value = "";
-      this.addMessage("user", text);
-      this.bus.emit("ui:query", { text, source: "text" });
+      this.send(text);
     }
 
-    addMessage(role, text, meta) {
+    send(text) {
+      this.bus.emit("plan:request", { query: text, memoryEnabled: !!this.getMemoryEnabled() });
+    }
+
+    addUser(text) {
+      const now = Date.now();
+      if (this.lastUser.text === text && now - this.lastUser.at < 1500) return;
+      this.lastUser = { text, at: now };
+      this.addMessage("user", text);
+    }
+
+    addMessage(role, text) {
       this.setTyping(false);
       const wrap = document.createElement("div");
       wrap.className = "ht-msg " + (role === "user" ? "user" : "butler");
       const avatar = document.createElement("span");
       avatar.className = "ht-msg-avatar";
-      avatar.textContent = role === "user" ? "我" : "方";
+      avatar.textContent = role === "user" ? C.chat.avatarUser : C.chat.avatarRobot;
       const bubble = document.createElement("div");
       bubble.className = "ht-bubble";
       bubble.textContent = text;
-      const metaEl = document.createElement("span");
-      metaEl.className = "ht-msg-meta";
-      metaEl.textContent = nowLabel() + (meta && meta.tag ? " · " + meta.tag : "");
-      bubble.appendChild(metaEl);
+      const meta = document.createElement("span");
+      meta.className = "ht-msg-meta";
+      meta.textContent = nowLabel();
+      bubble.appendChild(meta);
       wrap.appendChild(avatar);
       wrap.appendChild(bubble);
       this.messagesEl.appendChild(wrap);
@@ -107,8 +131,9 @@
         const wrap = document.createElement("div");
         wrap.className = "ht-msg butler";
         wrap.innerHTML =
-          '<span class="ht-msg-avatar">方</span>' +
+          '<span class="ht-msg-avatar"></span>' +
           '<div class="ht-bubble"><span class="ht-typing"><i></i><i></i><i></i></span></div>';
+        wrap.querySelector(".ht-msg-avatar").textContent = C.chat.avatarRobot;
         this.messagesEl.appendChild(wrap);
         this.typingEl = wrap;
       } else if (this.typingEl) {
@@ -130,15 +155,13 @@
     }
 
     destroy() {
-      if (this.bus.off) {
-        this.bus.off("chat:message", this._onMessage);
-        this.bus.off("chat:typing", this._onTyping);
-        this.bus.off("task:start", this._onTaskStart);
-        this.bus.off("task:end", this._onTaskEnd);
-        this.bus.off("task:reset", this._onTaskReset);
-        this.bus.off("ui:voice", this._onVoice);
-        this.bus.off("chat:clear", this._onClear);
-      }
+      if (!this.bus.off) return;
+      this.bus.off("plan:request", this._onRequest);
+      this.bus.off("task:say", this._onSay);
+      this.bus.off("plan:received", this._onPlanReceived);
+      this.bus.off("plan:rejected", this._onPlanRejected);
+      this.bus.off("task:start", this._onTaskStart);
+      this.bus.off("task:end", this._onTaskEnd);
     }
   }
 

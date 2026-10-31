@@ -2,86 +2,106 @@
 (function (global) {
   "use strict";
   const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const C = UI.COPY;
   const ROOM_ORDER = { 客厅: 0, 卧室: 1, 书房: 2, living: 0, bedroom: 1, study: 2 };
 
-  function toArray(objects) {
-    if (!objects) return [];
-    if (Array.isArray(objects)) return objects.slice();
-    return Object.keys(objects).map((k) => Object.assign({ object_id: k }, objects[k]));
-  }
-
-  function fmtTime(iso) {
-    if (!iso) return "";
-    const d = new Date(iso);
-    if (isNaN(d.getTime())) return "";
-    return d.toLocaleTimeString("zh-CN", { hour12: false, hour: "2-digit", minute: "2-digit" });
-  }
-
   class MemoryPanel {
-    constructor(bus, root) {
+    constructor(bus, root, options) {
       this.bus = bus;
       this.root = root;
+      this.options = options || {};
+      this.catalog = this.options.catalog || {};
       this.listEl = root.querySelector(".ht-memory-list");
       this.countEl = root.querySelector(".ht-count");
       this.emptyEl = root.querySelector(".ht-mem-empty");
-      this.items = new Map();
+      this.records = new Map();
       this.prev = new Map();
       this.foundId = null;
-      this._bind();
       this._subscribe();
+      this.render();
     }
 
     _subscribe() {
-      this._onUpdate = (payload) => {
-        const objects = toArray(payload && payload.objects);
-        this.render(objects, payload && payload.layoutId);
-      };
-      this._onHighlight = (payload) => {
-        if (payload && payload.objectId) this.flash(payload.objectId);
-      };
-      this._onFound = (payload) => {
-        this.foundId = payload && (payload.objectId || payload.object_id);
-        this.markFound();
-      };
+      this._onUpdated = (p) => this.update(p);
+      this._onHit = (p) => this.hit(p);
+      this._onMiss = (p) => this.miss(p);
       this._onTaskStart = () => {
         this.foundId = null;
         this.markFound();
       };
-      this.bus.on("memory:update", this._onUpdate);
-      this.bus.on("memory:highlight", this._onHighlight);
-      this.bus.on("found", this._onFound);
+      this.bus.on("memory:updated", this._onUpdated);
+      this.bus.on("memory:hit", this._onHit);
+      this.bus.on("memory:miss", this._onMiss);
       this.bus.on("task:start", this._onTaskStart);
     }
 
-    _bind() {
-      this.listEl.addEventListener("click", (e) => {
-        const item = e.target.closest(".ht-mem-item");
-        if (!item) return;
-        this.bus.emit("ui:focusObject", { objectId: item.dataset.id });
-      });
+    update(p) {
+      if (!p || typeof p.objectId !== "string" || !p.objectId) return;
+      const prev = this.records.get(p.objectId);
+      const room = typeof p.room === "string" ? p.room : prev ? prev.room : C.memory.unknownRoom;
+      const confidence = typeof p.confidence === "number" && isFinite(p.confidence) ? p.confidence : prev ? prev.confidence : 0;
+      const status = typeof p.status === "string" ? p.status : prev ? prev.status : "fresh";
+      this.records.set(p.objectId, { objectId: p.objectId, room, confidence, status });
+      this.render(p.objectId);
     }
 
-    render(objects, layoutId) {
-      this.objects = objects;
-      this.layoutId = layoutId || this.layoutId;
-      const sorted = objects.slice().sort((a, b) => {
+    hit(p) {
+      if (!p || typeof p.objectId !== "string" || !p.objectId) return;
+      const prev = this.records.get(p.objectId);
+      const confidence = typeof p.confidence === "number" && isFinite(p.confidence)
+        ? p.confidence
+        : prev ? prev.confidence : 0;
+      this.records.set(p.objectId, {
+        objectId: p.objectId,
+        room: prev ? prev.room : C.memory.unknownRoom,
+        confidence,
+        status: "fresh",
+      });
+      this.foundId = p.objectId;
+      this.render(p.objectId);
+    }
+
+    miss(p) {
+      if (!p || typeof p.objectId !== "string" || !p.objectId) return;
+      const prev = this.records.get(p.objectId);
+      const confidence = typeof p.confidence === "number" && isFinite(p.confidence)
+        ? p.confidence
+        : prev ? Math.max(0, prev.confidence - 0.4) : 0;
+      this.records.set(p.objectId, {
+        objectId: p.objectId,
+        room: prev ? prev.room : C.memory.unknownRoom,
+        confidence,
+        status: "stale",
+      });
+      this.render(p.objectId);
+    }
+
+    meta(id) {
+      return this.catalog[id] || {};
+    }
+
+    render(flashId) {
+      const list = Array.from(this.records.values()).sort((a, b) => {
         const ra = ROOM_ORDER[a.room] === undefined ? 9 : ROOM_ORDER[a.room];
         const rb = ROOM_ORDER[b.room] === undefined ? 9 : ROOM_ORDER[b.room];
         if (ra !== rb) return ra - rb;
-        return String(a.name || a.object_id).localeCompare(String(b.name || b.object_id), "zh");
+        return this.meta(a.objectId).name?.localeCompare?.(this.meta(b.objectId).name || b.objectId, "zh") ||
+          String(a.objectId).localeCompare(String(b.objectId), "zh");
       });
-      this.countEl.textContent = String(sorted.length);
-      this.items.clear();
+      this.countEl.textContent = String(list.length);
       this.listEl.innerHTML = "";
-      if (!sorted.length) {
+      if (!list.length) {
         this.emptyEl.style.display = "";
+        this.prev.clear();
         return;
       }
       this.emptyEl.style.display = "none";
-      for (const obj of sorted) {
-        const id = obj.object_id || obj.id;
-        const conf = obj.confidence === undefined ? 0.8 : Number(obj.confidence);
-        const status = obj.status || "fresh";
+      const nextPrev = new Map();
+      for (const rec of list) {
+        const id = rec.objectId;
+        const meta = this.meta(id);
+        const conf = Math.max(0, Math.min(1, rec.confidence));
+        const status = rec.status || "fresh";
         const el = document.createElement("div");
         el.className = "ht-mem-item";
         el.dataset.id = id;
@@ -93,27 +113,26 @@
 
         const prev = this.prev.get(id);
         const changed = prev && (
-          Math.abs((prev.confidence || 0) - conf) > 0.001 ||
-          prev.room !== obj.room ||
+          Math.abs(prev.confidence - conf) > 0.001 ||
+          prev.room !== rec.room ||
           prev.status !== status ||
-          String(prev.pos) !== String(obj.pos)
+          id === flashId
         );
         if (changed) el.classList.add("is-flash");
 
         const swatch = document.createElement("span");
         swatch.className = "ht-mem-swatch";
-        swatch.style.background = obj.color || "#b9a897";
-
+        swatch.style.background = meta.color || "#b9a897";
         const body = document.createElement("div");
         body.className = "ht-mem-body";
         const row = document.createElement("div");
         row.className = "ht-mem-row";
         const name = document.createElement("span");
         name.className = "ht-mem-name";
-        name.textContent = obj.name || id;
+        name.textContent = meta.name || id;
         const badge = document.createElement("span");
         badge.className = "ht-mem-room";
-        badge.textContent = (obj.room || "未知") + (obj.furniture ? " · " + obj.furniture : "");
+        badge.textContent = rec.room + (meta.furniture ? " · " + meta.furniture : "");
         row.appendChild(name);
         row.appendChild(badge);
         const sub = document.createElement("div");
@@ -130,7 +149,7 @@
         if (status === "stale") {
           const stale = document.createElement("span");
           stale.className = "ht-mem-badge";
-          stale.textContent = "待复核";
+          stale.textContent = C.memory.stale;
           sub.appendChild(stale);
         }
         sub.appendChild(num);
@@ -138,29 +157,19 @@
         body.appendChild(sub);
         el.appendChild(swatch);
         el.appendChild(body);
-
-        if (changed) {
-          setTimeout(() => {
-            el.classList.remove("is-flash");
-          }, 1100);
-        }
+        if (changed) setTimeout(() => el.classList.remove("is-flash"), 1100);
         this.listEl.appendChild(el);
-        this.items.set(id, el);
+        nextPrev.set(id, { confidence: conf, room: rec.room, status });
       }
-      this.prev = new Map();
-      for (const obj of sorted) {
-        const id = obj.object_id || obj.id;
-        this.prev.set(id, {
-          confidence: obj.confidence,
-          room: obj.room,
-          status: obj.status,
-          pos: obj.pos,
-        });
-      }
+      this.prev = nextPrev;
+    }
+
+    get(id) {
+      return this.records.get(id);
     }
 
     flash(id) {
-      const el = this.items.get(id);
+      const el = Array.from(this.listEl.querySelectorAll(".ht-mem-item")).find((item) => item.dataset.id === id);
       if (!el) return;
       el.classList.remove("is-flash");
       void el.offsetWidth;
@@ -169,14 +178,23 @@
     }
 
     markFound() {
-      this.items.forEach((el, id) => el.classList.toggle("is-found", id === this.foundId));
+      this.listEl.querySelectorAll(".ht-mem-item").forEach((el) => {
+        el.classList.toggle("is-found", el.dataset.id === this.foundId);
+      });
+    }
+
+    reset() {
+      this.records.clear();
+      this.prev.clear();
+      this.foundId = null;
+      this.render();
     }
 
     destroy() {
       if (!this.bus.off) return;
-      this.bus.off("memory:update", this._onUpdate);
-      this.bus.off("memory:highlight", this._onHighlight);
-      this.bus.off("found", this._onFound);
+      this.bus.off("memory:updated", this._onUpdated);
+      this.bus.off("memory:hit", this._onHit);
+      this.bus.off("memory:miss", this._onMiss);
       this.bus.off("task:start", this._onTaskStart);
     }
   }

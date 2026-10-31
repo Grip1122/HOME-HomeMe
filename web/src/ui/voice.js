@@ -2,6 +2,7 @@
 (function (global) {
   "use strict";
   const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const C = UI.COPY;
 
   class Voice {
     constructor(bus, root, options) {
@@ -15,6 +16,8 @@
       this.recognition = null;
       this.synth = global.speechSynthesis || null;
       this.voice = null;
+      this.getMemoryEnabled = this.options.getMemoryEnabled || (() => true);
+      this.onToast = this.options.onToast || (() => {});
       this._loadPref();
       this._bind();
       this._subscribe();
@@ -40,15 +43,11 @@
     }
 
     _subscribe() {
-      this._onChat = (p) => {
-        if (!p || p.role === "user") return;
+      this._onSay = (p) => {
+        if (!p || p.who !== "robot" || typeof p.text !== "string") return;
         if (this.enabled) this.speak(p.text);
       };
-      this._onSpeak = (p) => {
-        if (p && p.text && this.enabled) this.speak(p.text);
-      };
-      this.bus.on("chat:message", this._onChat);
-      this.bus.on("voice:speak", this._onSpeak);
+      this.bus.on("task:say", this._onSay);
     }
 
     _bind() {
@@ -59,10 +58,10 @@
     toggle() {
       this.setEnabled(!this.enabled);
       if (this.enabled) {
-        this.bus.emit("toast", { text: "语音播报已开启", type: "" });
-        this.speak("语音已开启，我在呢。");
+        this.onToast(C.chat.voice.on, "");
+        this.speak(C.chat.welcome);
       } else {
-        this.bus.emit("toast", { text: "语音播报已关闭", type: "" });
+        this.onToast(C.chat.voice.off, "");
         if (this.synth) this.synth.cancel();
       }
     }
@@ -80,22 +79,22 @@
     _refresh() {
       if (this.speakEl) {
         this.speakEl.classList.toggle("is-on", this.enabled);
-        this.speakEl.title = this.enabled ? "关闭语音播报" : "开启语音播报";
-        this.speakEl.setAttribute("aria-label", this.speakEl.title);
+        this.speakEl.title = C.chat.speak;
+        this.speakEl.setAttribute("aria-label", C.chat.speak);
       }
       if (this.micEl) {
         const SR = global.SpeechRecognition || global.webkitSpeechRecognition;
         this.micEl.disabled = !SR;
-        this.micEl.title = SR ? "说话（语音识别）" : "当前浏览器不支持语音识别";
+        this.micEl.title = SR ? C.chat.mic : C.chat.voice.unsupported;
         this.micEl.setAttribute("aria-label", this.micEl.title);
       }
     }
 
     speak(text) {
-      if (!this.synth || !text) return;
+      if (!this.synth || !text || typeof global.SpeechSynthesisUtterance !== "function") return;
       try {
         this.synth.cancel();
-        const utter = new SpeechSynthesisUtterance(String(text).replace(/https?:\/\/\S+/g, ""));
+        const utter = new global.SpeechSynthesisUtterance(String(text).replace(/https?:\/\/\S+/g, ""));
         utter.lang = "zh-CN";
         utter.rate = 1.05;
         utter.pitch = 1.02;
@@ -109,7 +108,7 @@
     listen() {
       const SR = global.SpeechRecognition || global.webkitSpeechRecognition;
       if (!SR) {
-        this.bus.emit("toast", { text: "当前浏览器不支持语音识别，请用文字输入", type: "warn" });
+        this.onToast(C.chat.voice.unsupported, "warn");
         return;
       }
       if (this.listening && this.recognition) {
@@ -125,15 +124,21 @@
         rec.onstart = () => {
           this.listening = true;
           if (this.micEl) this.micEl.classList.add("is-listening");
-          this.bus.emit("toast", { text: "我在听，请说…", type: "" });
+          this.onToast(C.chat.voice.listening, "");
         };
         rec.onresult = (event) => {
           const text = event.results && event.results[0] && event.results[0][0] && event.results[0][0].transcript;
-          if (text && text.trim()) this.bus.emit("ui:voice", { text: text.trim() });
+          if (text && text.trim()) {
+            this.bus.emit("plan:request", { query: text.trim(), memoryEnabled: !!this.getMemoryEnabled() });
+          }
         };
         rec.onerror = (event) => {
-          const map = { "not-allowed": "麦克风权限未开启", "no-speech": "没有听到声音", network: "语音识别网络异常" };
-          this.bus.emit("toast", { text: map[event.error] || "语音识别失败，请用文字", type: "warn" });
+          const map = {
+            "not-allowed": C.chat.voice.notAllowed,
+            "no-speech": C.chat.voice.noSpeech,
+            network: C.chat.voice.network,
+          };
+          this.onToast(map[event.error] || C.chat.voice.failed, "warn");
         };
         rec.onend = () => {
           this.listening = false;
@@ -142,7 +147,7 @@
         this.recognition = rec;
         rec.start();
       } catch (e) {
-        this.bus.emit("toast", { text: "语音识别启动失败，请用文字输入", type: "warn" });
+        this.onToast(C.chat.voice.startFailed, "warn");
       }
     }
 
@@ -151,10 +156,7 @@
         try { this.recognition.abort(); } catch (e) { /* ignore */ }
       }
       if (this.synth) this.synth.cancel();
-      if (this.bus.off) {
-        this.bus.off("chat:message", this._onChat);
-        this.bus.off("voice:speak", this._onSpeak);
-      }
+      if (this.bus.off) this.bus.off("task:say", this._onSay);
     }
   }
 

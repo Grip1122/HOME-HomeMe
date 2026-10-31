@@ -665,4 +665,42 @@
 .ht-switch b { display: block; font-size: 10px; color: var(--ht-ink-2); font-weight: 550; }
 .ht-switch small { display: block; font-size: 8px; color: var(--ht-muted); margin-top: 2px; }
 
+/* ---------------- contract-compliant states ---------------- */
+.ht-tl-summary {
+  margin-top: 8px;
+  padding: 8px 9px;
+  border-radius: 8px;
+  border: 1px solid var(--ht-line);
+  background: rgba(62, 155, 109, 0.06);
+  color: var(--ht-ink-2);
+  font-size: 9px;
+  line-height: 1.55;
+}
+.ht-tl-summary.is-error {
+  border-color: rgba(199, 91, 74, 0.28);
+  background: rgba(199, 91, 74, 0.06);
+  color: var(--ht-danger);
+}
+.ht-compare-empty {
+  margin-top: 14px;
+  padding: 18px 14px;
+  border-radius: 12px;
+  border: 1px dashed var(--ht-line-strong);
+  text-align: center;
+  color: var(--ht-muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+.ht-compare-empty[hidden] { display: none; }
+.ht-compare-empty strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ht-ink-2);
+  font-size: 12px;
+  font-weight: 550;
+}
+.ht-compare.is-empty .ht-compare-grid,
+.ht-compare.is-empty .ht-compare-bars { display: none; }
+.ht-compare.is-empty .ht-compare-empty { display: block; }
+
 

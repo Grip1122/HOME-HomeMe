@@ -5,6 +5,7 @@
  *
  * 也可以按顺序用 <script> 加载各文件（见 README）。
  */
+import "./copy.js";
 import "./chat.js";
 import "./status.js";
 import "./memory-panel.js";
@@ -18,6 +19,7 @@ const UI = window.HomeTwinUI;
 
 export const createHud = UI.createHud;
 export const version = UI.version;
+export const COPY = UI.COPY;
 export const Chat = UI.Chat;
 export const Status = UI.Status;
 export const MemoryPanel = UI.MemoryPanel;

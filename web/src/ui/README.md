@@ -1,29 +1,29 @@
-# web/src/ui · 集成说明
+# web/src/ui · HUD 集成说明
 
 ## 1. 目录
 
 ```
 web/src/ui/
-├─ hud.css          # 设计 token + 全部样式
-├─ hud.js           # createHud() 装配器（含 DOM 模板）
-├─ chat.js          # 对话 / 输入 / 快捷指令 / 单飞锁
-├─ status.js        # 状态 / 进度 / 规划来源
-├─ memory-panel.js  # 记忆面板 / 置信度 / 更新高亮
-├─ timeline.js      # 任务时间线 / 每步耗时 / 错误态
-├─ compare.js       # 训练前后对比卡片
-├─ voice.js         # TTS / ASR
-├─ director.js      # 导演模式抽屉
-└─ index.mjs        # ESM 入口
+├─ copy.js            # 所有用户可见文案（唯一来源）
+├─ hud.css            # 设计 token + 样式
+├─ hud.js             # createHud() 装配器
+├─ chat.js            # 对话 / 输入 / 单飞锁
+├─ status.js          # 状态条 / 步骤 / 规划来源
+├─ memory-panel.js    # 记忆面板 / 置信度 / hit/miss
+├─ timeline.js        # 任务时间线 / 失败步骤
+├─ compare.js         # 从 task:end 事件构建对比（无数据即空态）
+├─ voice.js           # TTS / ASR
+├─ director.js        # 导演模式（只发契约事件）
+├─ index.mjs          # ESM 入口
+├─ *.test.js          # Vitest 测试（与组件同目录）
+└─ README.md
 ```
 
-无第三方依赖，不需要 `npm install`。
+无第三方运行时依赖；测试使用 `vitest` + `jsdom`。
 
----
-
-## 2. 最小接入（Vite / ESM）
+## 2. 最小接入
 
 ```js
-// main.js
 import "./ui/hud.css";
 import { createHud } from "./ui/index.mjs";
 import { bus } from "./core/bus.js";
@@ -31,194 +31,86 @@ import { bus } from "./core/bus.js";
 const hud = createHud({
   bus,
   root: document.body,
-  welcomeText: "我在呢。要找什么？",
+  catalog: {
+    cup_red: { name: "红色水杯", color: "#e8643a", furniture: "茶几" },
+  },
+  memoryEnabled: true,
+  layoutId: "A",
 });
-
-// 场景 / 状态机 / 记忆模块照常 emit：
-bus.emit("memory:update", { layoutId: "A", objects: memoryList });
-bus.emit("robot:state", { state: "idle", text: "待机 · 我在呢" });
 ```
 
 `createHud` 返回：
 
 ```js
-{
-  el,          // .ht-ui 根节点
-  chat, status, memory, timeline, compare, voice, director,
-  destroy()
-}
+{ el, chat, status, memory, timeline, compare, voice, director, destroy() }
 ```
 
----
+## 3. 事件契约
 
-## 3. 非构建页面
+唯一真值：`contracts/events.md`。HUD **只**使用以下事件。
 
-按顺序加载：
+### 3.1 订阅
 
-```html
-<link rel="stylesheet" href="./ui/hud.css" />
-<script src="./ui/chat.js"></script>
-<script src="./ui/status.js"></script>
-<script src="./ui/memory-panel.js"></script>
-<script src="./ui/timeline.js"></script>
-<script src="./ui/compare.js"></script>
-<script src="./ui/voice.js"></script>
-<script src="./ui/director.js"></script>
-<script src="./ui/hud.js"></script>
-<script>
-  const hud = HomeTwinUI.createHud({
-    bus: myBus,
-    root: document.body,
-    welcomeText: "我在呢。要找什么？",
-    layoutName: "布局 A",
-  });
-</script>
-```
+| 事件 | 载荷字段 | HUD 用途 |
+|---|---|---|
+| `robot:state` | `{from,to,step,taskId}` | 状态条读取 `to` |
+| `robot:blocked` | `{reason,at}` | toast + 困惑状态 |
+| `task:start` | `{taskId,query,source}` | 进入任务、锁输入 |
+| `task:step` | `{taskId,index,action,target,ok,ms}` | 进度、时间线成功/失败 |
+| `task:end` | `{taskId,ok,steps,durationMs,corrected}` | 完成/中断、进度、对比 |
+| `task:say` | `{text,who:"robot"\|"user"}` | 对话气泡、TTS |
+| `plan:request` | `{query,memoryEnabled}` | Chat/Voice/Director 发出；Chat 回显用户、Compare 记录 |
+| `plan:received` | `{source,steps,latencyMs}` | 规划来源、计划步数 |
+| `plan:rejected` | `{reason,raw}` | 对话错误提示 + toast |
+| `memory:updated` | `{objectId,room,confidence,status}` | 单条记忆写入/更新 |
+| `memory:hit` | `{objectId,confidence}` | 命中、目标卡片 |
+| `memory:miss` | `{objectId,confidence}` | 过期、置信度下降 |
+| `demo:reset` | `{layoutId}` | 重置任务 HUD |
 
----
+### 3.2 派发
 
-## 4. 事件接线
+| 事件 | 载荷 | 触发 |
+|---|---|---|
+| `plan:request` | `{query,memoryEnabled}` | 输入、快捷指令、语音、导演旅程 |
+| `demo:teleport` | `{objectId,to}` | 导演「物品被移动」 |
+| `demo:reset` | `{layoutId}` | 顶栏/导演重置 |
+| `ui:view` | `{view:"real"\|"overlay"\|"splat"}` | 预留；当前 HUD 不主动切换 |
 
-完整字段见 `contracts/events.md`。
+不得新增 HUD 私有事件。确需新增，先改 `contracts/events.md`（`[CONTRACT]` PR + `contracts.lock.json` + `CHANGELOG.md`）。
 
-必需事件：
+## 4. 关键行为
 
-```js
-robot:state
-task:start / task:step / task:end / task:reset
-plan:received / plan:degraded
-memory:update / memory:highlight / memory:toggle
-chat:message / chat:typing / chat:clear
-found
-compare:update
-layout:change
-offline:change
-toast
-```
+- **状态**：只读 `robot:state.to`；缺失 `to` 显示「状态未知」，不会沿用旧状态。
+- **失败步骤**：`task:step.ok === false` 显示失败 + 「请查看任务日志」，不会标成完成。
+- **失败任务**：`task:end.ok === false` 按 `steps / 计划步数` 计算进度，不设 100%；状态显示中断。
+- **单飞锁**：`plan:request` / `task:start` 锁输入，`task:end` / `plan:rejected` 释放。
+- **记忆**：`memory:updated` 是单条记录；面板用 Map 维护全量。命中/过期分别由 `memory:hit` / `memory:miss` 驱动。
+- **对比**：`compare.js` 只从本次会话的 `plan:request + task:start + task:end` 推导同指令、不同 `memoryEnabled` 的真实 steps/耗时；没有成对数据时显示「暂无对比数据」，不填默认值。
+- **文案**：全部在 `copy.js`，组件不再散落中文串。
+- **目标卡片**：由 `memory:hit` 驱动，只显示 objectId/catalog 名称、房间、置信度；没有「带回来」这类契约外动作。
 
-UI 发出：
-
-```js
-ui:query
-ui:voice
-ui:focusObject
-ui:director
-ui:foundAction
-ui:compareClose
-```
-
-### 示例：把记忆面板接上
-
-```js
-// 任务开始时拉全量
-bus.emit("memory:update", {
-  layoutId: currentLayout,
-  objects: await fetch("/memory?layout_id=A").then(r => r.json()).then(d => Object.values(d.objects)),
-});
-```
-
-### 示例：把时间线接上
-
-```js
-async function runStep(index, action, label, targetLabel, fn) {
-  bus.emit("task:step", {
-    index, total, action, label, targetLabel,
-    status: "active", sub: "",
-  });
-  const t0 = performance.now();
-  try {
-    await fn();
-    bus.emit("task:step", {
-      index, total, action, label, targetLabel,
-      status: "done", durationMs: performance.now() - t0,
-    });
-  } catch (e) {
-    bus.emit("task:step", {
-      index, total, action, label, targetLabel,
-      status: "error", durationMs: performance.now() - t0, sub: String(e),
-    });
-    throw e;
-  }
-}
-```
-
----
-
-## 5. 样式定制
-
-所有 token 在 `hud.css` 的 `:root`：
-
-```css
-:root {
-  --ht-brand: #e8643a;
-  --ht-green: #3e9b6d;
-  --ht-amber: #d89a2b;
-  --ht-paper: #fffaf3;
-  --ht-ink: #2b211b;
-}
-```
-
-- 换品牌色只改 `--ht-brand` / `--ht-brand-deep` / `--ht-brand-soft`。
-- 场景更亮时，可把 `--ht-card` 提到 0.96、加 1px 白色描边。
-- 不要改 `.ht-` 前缀类名，预览与文档依赖它。
-
----
-
-## 6. 回调 / 导演模式
-
-`ui:director` 的 action 由业务层处理：
-
-```js
-bus.on("ui:director", ({ action, enabled }) => {
-  switch (action) {
-    case "script:memory": return runDemo("memory");
-    case "script:moved": return runDemo("moved");
-    case "script:correct": return runDemo("correct");
-    case "script:compare": return showCompare();
-    case "script:layoutB": return switchLayout("B");
-    case "script:offline": return setOffline(true);
-    case "scene:reset": return resetScene();
-    case "clear": return clearMemory();
-    case "reset": return resetAll();
-    case "memory:toggle": return setMemoryEnabled(enabled);
-  }
-});
-```
-
----
-
-## 7. 语音
-
-- TTS：`speechSynthesis`；默认关闭，用户点扬声器开启，偏好存 `localStorage["hometwin.voice"]`。
-- ASR：`SpeechRecognition` / `webkitSpeechRecognition`；不支持时按钮 disabled。
-- 识别结果通过 `ui:voice` 发出；Chat 负责转成 `ui:query`。
-- 注意：部分浏览器的 ASR 需要联网；纯离线场景以文字输入为主。
-
----
-
-## 8. 浏览器支持
-
-- Chrome / Edge 最新版（推荐）。
-- Safari：布局与 TTS 可用；ASR 支持不稳定。
-- Firefox：ASR 通常不可用；TTS 可用。
-- 不支持 `backdrop-filter` 时卡片会退化为半透明纯色，不影响功能。
-
----
-
-## 9. 预览与调试
+## 5. 测试
 
 ```bash
-# 直接双击
-web/preview/index.html
-
-# 关闭自动演示
-web/preview/index.html?auto=0
-
-# 自动跑某条旅程
-?auto=memory|first|moved|correct|compare|layoutB|offline|move
-
-# 输出布局测量
-?debug=1
+cd web
+npm ci
+npm test
 ```
 
-预览中的 `scene.js` 只是 HUD 底图；生产环境请替换为团队的 three.js 场景。
+覆盖：
+
+- `status.test.js`：`to` 字段、idle/walking/celebrating/error、失败进度、缺失 `ok`、异常 step。
+- `timeline.test.js`：成功步骤、失败步骤、缺失字段、失败任务摘要。
+- `compare.test.js`：空数据、真实 pair、部分数据、缺 duration。
+- `interaction.test.js`：`plan:request`、`task:say`、单飞锁、记忆 hit/miss。
+- `hud.contract.test.js`：动态读取 `contracts/events.md`，断言 HUD 订阅/派发的每个事件名都在契约内。
+
+`docs/test-evidence/red.txt` 是故意把 `status.js` 的 `p.to` 改成 `p.state` 后的失败输出；`green.txt` 是恢复后的 21 条通过输出。
+
+## 6. 预览
+
+`web/preview/index.html` 是 demo-only 页面：
+
+- 用 `?auto=memory|first|moved|correct|compare|move` 驱动；
+- 预览的 mock bus 在 `preview.js` 里把旧 demo 事件翻译成正式契约；**生产 HUD 不使用这层适配**；
+- 对比卡片在预览里使用 `setData(..., {preview:true})`，必须显示「预览数据（非正式任务日志）」。

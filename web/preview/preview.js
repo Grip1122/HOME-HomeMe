@@ -21,7 +21,146 @@
     }
   }
 
-  const bus = new Bus();
+  // PREVIEW ONLY: the legacy mock events used by this demo scene are
+  // translated into the official contracts/events.md vocabulary. The
+  // production HUD in web/src/ui never subscribes to or emits these names.
+  function createPreviewBus(raw) {
+    let currentTaskId = null;
+    let taskTotal = 0;
+    let taskFailed = false;
+    let lastState = "idle";
+    return {
+      on: (name, fn) => raw.on(name, fn),
+      off: (name, fn) => raw.off(name, fn),
+      emit(name, payload) {
+        switch (name) {
+          case "memory:update": {
+            const objects = (payload && payload.objects) || [];
+            if (!objects.length) {
+              if (raw.hud) raw.hud.resetMemory();
+              return;
+            }
+            for (const o of objects) {
+              raw.emit("memory:updated", {
+                objectId: o.object_id,
+                room: o.room,
+                confidence: o.confidence,
+                status: o.status,
+              });
+            }
+            return;
+          }
+          case "memory:highlight":
+            if (raw.hud && raw.hud.memory && payload && payload.objectId) {
+              raw.hud.memory.flash(payload.objectId);
+            }
+            return;
+          case "memory:toggle":
+            if (raw.hud) raw.hud.setMemoryEnabled(payload && payload.enabled);
+            return;
+          case "layout:change":
+            if (raw.hud) raw.hud.setLayout((payload && (payload.id || payload.name)) || "A");
+            return;
+          case "offline:change":
+            return;
+          case "chat:message":
+            raw.emit("task:say", {
+              text: payload && payload.text,
+              who: payload && payload.role === "user" ? "user" : "robot",
+            });
+            return;
+          case "chat:typing":
+            return;
+          case "chat:clear":
+            if (raw.hud) raw.hud.chat.clear();
+            return;
+          case "task:start":
+            currentTaskId = payload.id;
+            taskTotal = payload.total || 0;
+            taskFailed = false;
+            raw.emit("plan:received", {
+              source: payload.source || "rule",
+              steps: Array.from({ length: taskTotal }, () => ({})),
+              latencyMs: 120,
+            });
+            raw.emit("task:start", { taskId: payload.id, query: payload.query, source: payload.source || "rule" });
+            return;
+          case "task:step":
+            if (!payload || payload.status === "active") return;
+            if (payload.status === "error") taskFailed = true;
+            raw.emit("task:step", {
+              taskId: currentTaskId,
+              index: payload.index,
+              action: payload.action,
+              target: payload.target || payload.targetLabel || "",
+              ok: payload.status !== "error",
+              ms: payload.durationMs,
+            });
+            return;
+          case "task:end":
+            raw.emit("task:end", {
+              taskId: payload.id,
+              ok: payload.found === true ? true : !taskFailed,
+              steps: payload.stepCount === undefined ? taskTotal : payload.stepCount,
+              durationMs: payload.durationMs,
+              corrected: !!payload.corrected,
+            });
+            return;
+          case "task:reset":
+            if (raw.hud) raw.hud.resetTask();
+            return;
+          case "robot:state": {
+            const to = payload && payload.state;
+            if (typeof to !== "string") return;
+            raw.emit("robot:state", { from: lastState, to, step: 0, taskId: currentTaskId });
+            lastState = to;
+            return;
+          }
+          case "toast":
+            if (raw.hud) raw.hud.toast(payload && payload.text, payload && payload.type);
+            return;
+          case "found":
+            raw.emit("memory:updated", {
+              objectId: payload.objectId,
+              room: payload.room,
+              confidence: payload.confidence,
+              status: "fresh",
+            });
+            raw.emit("memory:hit", { objectId: payload.objectId, confidence: payload.confidence });
+            return;
+          case "compare:update":
+            if (raw.hud) raw.hud.compare.setData(payload, { preview: true });
+            return;
+          case "plan:request":
+            raw.emit("plan:request", payload);
+            return;
+          case "demo:reset":
+            raw.emit("ui:director", { action: "reset", layoutId: payload && payload.layoutId });
+            return;
+          case "demo:teleport":
+            raw.emit("ui:director", {
+              action: "teleport",
+              objectId: payload && payload.objectId,
+              to: payload && payload.to,
+            });
+            return;
+          case "plan:received":
+            return;
+          case "ui:query":
+            raw.emit("plan:request", { query: payload.text, memoryEnabled: payload.memoryEnabled !== false });
+            return;
+          case "ui:director":
+            raw.emit("ui:director", payload);
+            return;
+          default:
+            raw.emit(name, payload);
+        }
+      },
+    };
+  }
+
+  const rawBus = new Bus();
+  const bus = createPreviewBus(rawBus);
   const scene = new window.HomeTwinScene(document.getElementById("ht-scene"));
   const root = document.getElementById("ht-root");
 
@@ -106,12 +245,20 @@
   scene.setObjects(sceneObjects);
   scene.setLayout("A");
 
+  const catalog = {};
+  META.forEach((m) => {
+    const lm = LAYOUT_META.A[m.id] || {};
+    catalog[m.id] = { name: m.name, color: m.color, furniture: lm.furniture || "" };
+  });
   const hud = window.HomeTwinUI.createHud({
     bus,
     root,
-    welcomeText: "我在呢。要找什么？说颜色或物品名就行。",
-    options: { layoutName: "布局 A" },
+    catalog,
+    memoryEnabled: true,
+    layoutId: "A",
+    welcomeText: window.HomeTwinUI.COPY.chat.welcome,
   });
+  rawBus.hud = hud;
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -609,10 +756,10 @@
     bus.emit("compare:update", {
       memoryOn: { steps: 4, seconds: 5.6, distance: 4.2 },
       memoryOff: { steps: 8, seconds: 18.4, distance: 11.8 },
-      note: "同一布局、同一指令、同一初始位置，只切换 memory_enabled。步骤与耗时来自任务日志；完整搬运指令含抓取/放置。",
+      note: "预览数据（非正式任务日志）",
     });
-    say("同一句找物指令：记忆开 4 步，记忆关 8 步。数据来自任务日志，可以直接展开原始步骤。");
-    toast("训练前后对比 · 真实日志", "");
+    say("预览对比：记忆开 4 步，记忆关 8 步。正式组件只读取 task:end 事件。");
+    toast("训练前后对比 · 预览数据", "");
   }
 
   async function runLayoutB() {
@@ -754,6 +901,18 @@
       case "script:compare": return runCompare();
       case "script:layoutB": return runLayoutB();
       case "script:offline": return runOffline();
+      case "teleport": {
+        const id = (payload && payload.objectId) || "cup_red";
+        const rec = memory.get(id);
+        const oldX = rec ? rec.pos[0] : 0;
+        const oldZ = rec ? rec.pos[2] : 0;
+        scene.setObjectPosition(id, 9.55, 1.55, 0.55);
+        movedRooms[id] = "卧室";
+        movedFurniture[id] = "床头柜";
+        scene.setMemoryMarker(oldX, oldZ);
+        toast("已把 " + (BY_ID[id] ? BY_ID[id].name : id) + " 移到卧室；记忆未更新", "warn");
+        return;
+      }
       case "scene:reset": return sceneReset();
       case "clear": return clearMemory();
       case "reset": return resetAll();
@@ -762,23 +921,13 @@
     }
   }
 
-  bus.on("ui:query", (p) => { if (p && p.text) handleQuery(p.text); });
+  bus.on("plan:request", (p) => {
+    if (!p || typeof p.query !== "string") return;
+    memoryEnabled = p.memoryEnabled !== false;
+    hud.setMemoryEnabled(memoryEnabled);
+    handleQuery(p.query);
+  });
   bus.on("ui:director", (p) => { if (p && p.action) handleDirector(p.action, p); });
-  bus.on("ui:focusObject", (p) => {
-    if (!p || !p.objectId) return;
-    const rec = memory.get(p.objectId);
-    if (!rec) return;
-    scene.focusObject(p.objectId);
-    toast("定位：" + rec.name + " · " + rec.room, "");
-  });
-  bus.on("ui:foundAction", (p) => {
-    if (!p) return;
-    if (p.action === "bring" && p.objectId) {
-      const rec = memory.get(p.objectId);
-      say("好，我把" + (rec ? rec.name : "它") + "带回来。");
-      toast("已加入带回队列", "");
-    }
-  });
 
   seedMemory();
   emitMemory();

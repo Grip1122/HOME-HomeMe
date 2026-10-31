@@ -2,29 +2,13 @@
 (function (global) {
   "use strict";
   const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const C = UI.COPY;
 
-  const STATE_LABEL = {
-    idle: "待机 · 我在呢",
-    thinking: "思考中 · 正在理解",
-    walking: "前往中 · 正在走路",
-    scanning: "观察中 · 正在环顾",
-    picking: "拿取中 · 抓住物品",
-    placing: "放置中 · 正在放下",
-    confused: "困惑 · 记忆对不上",
-    celebrating: "完成 · 找到啦",
-    correct: "纠正中 · 记住新位置",
-    offline: "离线 · 本机运行",
-    error: "异常 · 请重试",
-  };
-
-  const SOURCE_LABEL = {
-    cache: "缓存命中",
-    llm: "在线规划",
-    online: "在线规划",
-    rule: "规则解析",
-    offline: "离线脚本",
-    seed: "预置脚本",
-  };
+  function fmtMs(ms) {
+    if (!Number.isFinite(ms)) return C.timeline.durationUnknown;
+    if (ms < 1000) return Math.round(ms) + "ms";
+    return (ms / 1000).toFixed(1) + "s";
+  }
 
   class Status {
     constructor(bus, root) {
@@ -35,69 +19,130 @@
       this.sourceEl = root.querySelector(".ht-source-badge");
       this.stepEl = root.querySelector(".ht-step-indicator");
       this.progressEl = root.querySelector(".ht-progress i");
+      this.plannedTotal = 0;
       this.total = 0;
-      this.index = 0;
+      this.done = 0;
+      this.taskId = null;
       this._subscribe();
     }
 
     _subscribe() {
       this._handlers = {
-        "robot:state": (p) => this.setState(p && p.state, p && p.text),
-        "task:start": (p) => this.startTask(p || {}),
-        "task:step": (p) => this.updateStep(p || {}),
-        "task:end": (p) => this.endTask(p || {}),
-        "task:reset": () => this.reset(),
-        "plan:received": (p) => this.setSource(p && p.source, p && p.latencyMs),
-        "plan:degraded": () => this.setSource("rule", null),
+        "robot:state": (p) => this.onRobotState(p),
+        "plan:received": (p) => this.onPlanReceived(p),
+        "plan:rejected": (p) => this.onPlanRejected(p),
+        "task:start": (p) => this.startTask(p),
+        "task:step": (p) => this.updateStep(p),
+        "task:end": (p) => this.endTask(p),
+        "robot:blocked": (p) => this.onBlocked(p),
       };
       Object.keys(this._handlers).forEach((k) => this.bus.on(k, this._handlers[k]));
     }
 
+    onRobotState(p) {
+      if (!p || typeof p.to !== "string") {
+        this.setState("error", C.status.unknownState);
+        return;
+      }
+      this.setState(p.to);
+    }
+
+    onPlanReceived(p) {
+      if (!p) return;
+      this.setSource(p.source, p.latencyMs);
+      if (Array.isArray(p.steps)) {
+        this.plannedTotal = p.steps.length;
+        if (!this.total) this.total = this.plannedTotal;
+        this.renderProgress();
+      }
+    }
+
+    onPlanRejected(p) {
+      this.stepEl.textContent = p && p.reason ? C.status.planRejected + "：" + p.reason : C.status.planRejected;
+      this.progressEl.style.width = "0%";
+      this.setState("error", C.status.planRejected);
+    }
+
+    onBlocked(p) {
+      const reason = p && p.reason ? p.reason : C.status.blocked;
+      this.setState("confused", reason);
+    }
+
     setState(state, text) {
-      this.stateEl.textContent = text || STATE_LABEL[state] || state || "待机";
-      this.dotEl.className = "ht-state-dot " + (state || "");
+      const known = C.status.states[state];
+      this.stateEl.textContent = text || known || state || C.status.unknownState;
+      this.dotEl.className = "ht-state-dot " + (known ? state : "error");
     }
 
     setSource(source, latency) {
       if (!source) return;
-      const label = SOURCE_LABEL[source] || source;
-      this.sourceEl.textContent = latency ? label + " · " + Math.round(latency) + "ms" : label;
+      const label = C.status.sources[source] || source;
+      this.sourceEl.textContent = Number.isFinite(latency) ? label + " · " + Math.round(latency) + "ms" : label;
       this.sourceEl.dataset.source = source;
     }
 
     startTask(payload) {
-      this.total = payload.total || payload.stepCount || 0;
-      this.index = 0;
-      this.setSource(payload.source || "rule", payload.latencyMs);
-      this.stepEl.textContent = this.total ? "0/" + this.total + " 步" : "准备中";
-      this.progressEl.style.width = "0%";
-      if (!payload.state) this.setState("thinking");
+      this.taskId = (payload && payload.taskId) || null;
+      this.total = this.plannedTotal || 0;
+      this.done = 0;
+      this.setSource(payload && payload.source, null);
+      this.renderProgress();
+      this.setState("thinking");
     }
 
     updateStep(payload) {
-      if (payload.total) this.total = payload.total;
-      if (payload.index !== undefined) this.index = payload.index;
-      if (payload.status === "active") {
-        const label = payload.label || payload.action || "执行";
-        this.stepEl.textContent = "第 " + (this.index + 1) + "/" + (this.total || "?") + " 步 · " + label;
-        if (this.total) this.progressEl.style.width = ((this.index + 0.35) / this.total) * 100 + "%";
-        if (payload.state) this.setState(payload.state);
-      } else if (payload.status === "done") {
-        if (this.total) this.progressEl.style.width = ((this.index + 1) / this.total) * 100 + "%";
+      if (!payload || typeof payload.index !== "number" || typeof payload.ok !== "boolean") {
+        this.stepEl.textContent = C.status.badStep;
+        return;
       }
+      const item = payload.index + 1;
+      this.done = payload.ok ? item : payload.index;
+      this.renderProgress(payload.ok ? "" : " · " + C.status.stepFailed);
+      if (!payload.ok) this.setState("error", C.status.stepFailed);
     }
 
     endTask(payload) {
-      this.progressEl.style.width = "100%";
-      const sec = payload.durationMs ? (payload.durationMs / 1000).toFixed(1) + "s" : "";
-      this.stepEl.textContent = "完成 · " + (payload.stepCount || this.total || this.index) + " 步" + (sec ? " / " + sec : "");
-      this.setState(payload.found ? "celebrating" : "idle");
+      if (!payload || typeof payload.ok !== "boolean") {
+        this.stepEl.textContent = C.timeline.summaryUnknown;
+        this.setState("error", C.timeline.summaryUnknown);
+        return;
+      }
+      const steps = Number.isFinite(payload.steps) ? payload.steps : this.done;
+      const total = this.total || 0;
+      const duration = fmtMs(payload.durationMs);
+      if (payload.ok) {
+        this.progressEl.style.width = "100%";
+        this.stepEl.textContent = C.timeline.summaryDone(steps, duration);
+        this.setState("idle");
+      } else {
+        const pct = total ? Math.min(100, Math.max(0, (steps / total) * 100)) : 0;
+        this.progressEl.style.width = pct + "%";
+        this.stepEl.textContent = C.timeline.summaryInterrupted(steps, total);
+        this.setState("error", C.timeline.summaryInterrupted(steps, total));
+      }
+    }
+
+    renderProgress(suffix) {
+      const total = this.total || this.plannedTotal || 0;
+      if (total) {
+        this.progressEl.style.width = Math.min(100, (this.done / total) * 100) + "%";
+        this.stepEl.textContent =
+          C.status.completed + " " + this.done + "/" + total + " " + C.status.steps + (suffix || "");
+      } else {
+        this.progressEl.style.width = "0%";
+        this.stepEl.textContent =
+          this.done === 0
+            ? C.status.waiting
+            : C.status.completed + " " + this.done + " " + C.status.steps + (suffix || "");
+      }
     }
 
     reset() {
+      this.plannedTotal = 0;
       this.total = 0;
-      this.index = 0;
-      this.stepEl.textContent = "等待指令";
+      this.done = 0;
+      this.taskId = null;
+      this.stepEl.textContent = C.status.waiting;
       this.progressEl.style.width = "0%";
       this.setState("idle");
     }
