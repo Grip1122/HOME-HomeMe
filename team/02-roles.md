@@ -16,7 +16,7 @@
 | **wei** | `krlozhilderman287-creator` | **AI-D**：后端与算法　**＋　整体审核与把关人** | 后端接 HTTP 与 SQLite、GLM 规划；同时是唯一的验收人，验收最终交付成果 | [task-D](tasks/task-D-backend-algo.md) |
 | **Jesu** | `Grip1122`（仓库所有者） | **设计 A**：前端 3D 与执行层　**＋　总体库整合调配　＋　代 Gary 上传** | 机器人怎么动（状态机、寻路行走、五个动作）；维护 `main` 的整合、冲突仲裁、素材与 Release；把 Gary 的交付包校验后上传 | [task-A](tasks/task-A-frontend-3d.md) |
 | **Gary** | **无账号** | **设计 C**：产品 UI 与验收 | 用户看到的一切：HUD、对话气泡、导演面板、验收用例、路演稿 | [task-C](tasks/task-C-ui-acceptance.md) |
-| **sen** | `sen985211sen-sys` | **设计 B**：场景与美术 | 世界长什么样：layout 数据、家具与物体、灰盒到正式美术、高斯泼溅素材接入 | [task-B](tasks/task-B-scene-art.md) |
+| **sen** | `sen985211sen-sys` | **设计 B**：场景与美术 | 世界长什么样：layout 数据、点云接入与坐标标定、隐形碰撞层、泼溅质量调优（**不做灰盒**） | [task-B](tasks/task-B-scene-art.md) |
 
 > **⚠ 待确认 · sen 担任设计 B 是我的推断。** 原话只分了 Gary→C、wei→D、Jesu→A，剩下的设计 B 正好空着，而 sen 是唯一没被分配的人，所以暂记 sen→B。若不对，请直接改本表与 `.github/CODEOWNERS`。
 
@@ -201,6 +201,8 @@ Jesu 同时是设计 A，不能随到随传。约定：**每个整点后 10 分�
 - [ ] **sen 是否担任设计 B**（见 1 节的警告）
 - [ ] **日程重排。** 原计划基于 10/30 21:45 开工、M1 定在 10/31 12:00。现在是 10/31 上午，前端尚无代码，素材与渲染路线还没验证，M1 按原时间**不可能达成**。需要 wei 与 Jesu 按相对工期重排，并重新核对提交截止（原定 11/1 10:30）
 - [ ] 是否把文档与代码里的 "小方 / HomeTwin" 全量改成 "小觅 / HOME"（目前只做了命名对照和唤醒词兼容）
+- [x] **场景路线已定（Jesu 10/31 确认）：以高斯泼溅素材为准，不做灰盒。** 总览「修订 1」与设计 B 任务书已同步改写
 - [ ] **高斯泼溅素材 `scene.ply` 的三项验证**（浏览器能否渲染 / 正交相机下是否排序出错 / 帧率）：**Jesu 与 sen 共同做**，结论写回 `assets/gaussian-splat/README.md`，在此之前不要改 `layout_A.json` 的坐标。详见 [`../assets/gaussian-splat/README.md`](../assets/gaussian-splat/README.md)
-- [ ] `scene.ply` 的授权状态与网盘链接，由 Jesu 填入 `assets/gaussian-splat/manifest.json`；原始文件在 Release `splat-v1`（上传完成并核对 sha256 后才算数）
+- [x] `scene.ply` 授权：Jesu 已确认为开源素材（具体许可证条款待补进 `manifest.json`）
+- [ ] 原始文件在 Release `splat-v1`：**上传完成并核对 sha256 后才算数**，在此之前队友无法下载素材
 - [x] wei 与 sen 的 GitHub 用户名，邀请已被接受；`CODEOWNERS` 已换成真实用户名
