@@ -18,74 +18,60 @@
     .join("");
 
   const TEMPLATE = `
-  <div class="ht-topbar">
-    <div class="ht-brand">
-      <div class="ht-brand-mark">${C.brand.mark}</div>
-      <div class="ht-brand-text"><strong>${C.brand.title}</strong><span>${C.brand.subtitle}</span></div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M6 22V12.5C6 8.9 8.9 6 12.5 6h7C23.1 6 26 8.9 26 12.5V22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="14.5" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M10 25h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="brand-text"><strong>小觅HOME</strong><span>空间记忆 · 具身找物系统</span></div>
     </div>
-    <div class="ht-pills">
-      <span class="ht-pill is-live ht-online-pill"><i class="dot"></i>${C.pills.online}</span>
-      <span class="ht-pill ht-layout-pill"><i class="dot"></i>${C.pills.layout} A</span>
-      <span class="ht-pill is-brand ht-memory-pill"><i class="dot"></i>${C.pills.memoryOn}</span>
-      <span class="ht-pill mono ht-plan-pill">${C.pills.plan} · ${C.status.sourceDefault}</span>
+    <div class="top-status">
+      <span class="pill"><i class="dot live"></i>端侧运行</span>
+      <span class="pill ht-layout-pill"><i class="dot"></i>餐厅实景</span>
+      <span class="pill ht-memory-pill"><i class="dot cyan"></i>${C.pills.memoryOn}</span>
+      <span class="pill mono ht-plan-pill">3DGS · ROBOT</span>
     </div>
-    <div class="ht-actions">
-      <button class="ht-btn ghost ht-compare-open" type="button">${C.actions.compare}</button>
-      <button class="ht-btn ghost ht-director-open" type="button" aria-label="${C.actions.director}">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M3 4.5h10M3 8h10M3 11.5h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-        ${C.actions.director} <span class="ht-kbd">D</span>
-      </button>
-      <button class="ht-btn brand ht-reset" type="button" aria-label="${C.actions.reset}">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M3.2 7.5A4.9 4.9 0 1 1 4.6 11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M3 3.5v4h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        ${C.actions.reset}
-      </button>
+    <div class="top-actions">
+      <button class="btn ghost" id="btn-health" type="button">服务状态</button>
+      <button class="btn ghost ht-compare-open" type="button">${C.actions.compare}</button>
+      <button class="btn ghost ht-director-open" type="button">${C.actions.director}</button>
+      <button class="btn primary ht-reset" type="button">${C.actions.reset}</button>
+      <button class="btn ghost" id="btn-experience" type="button">空间记忆体验</button>
     </div>
-  </div>
+  </header>
 
-  <aside class="ht-side left">
-    <section class="ht-panel ht-card grow ht-left-panel">
-      <div class="ht-panel-head"><span>${C.memory.title}</span><span class="ht-count">0</span></div>
-      <p class="ht-panel-sub">${C.memory.sub}</p>
-      <div class="ht-memory-list" role="list"></div>
-      <div class="ht-mem-empty"><strong>${C.memory.emptyTitle}</strong><span>${C.memory.emptySub}</span></div>
-      <div class="ht-memory-foot"><span>${C.memory.footLeft}</span><strong>${C.memory.footRight}</strong></div>
-    </section>
+  <aside class="side-panel left glass ht-left-panel">
+    <div class="panel-title"><span>${C.memory.title}</span><span class="count ht-count">0</span></div>
+    <p class="panel-sub">${C.memory.sub}</p>
+    <div class="memory-list ht-memory-list" role="list"></div>
+    <div class="memory-empty ht-mem-empty"><div class="empty-orbit"><span></span></div><strong>${C.memory.emptyTitle}</strong><span>${C.memory.emptySub}</span></div>
+    <div class="privacy-card"><div class="privacy-head"><span class="privacy-shield">◈</span><div><strong>${C.memory.footLeft}</strong><small>本地记忆 · 断网可检索</small></div><span class="live-tag">LOCAL</span></div></div>
   </aside>
 
-  <aside class="ht-side right">
-    <section class="ht-panel ht-card ht-status">
-      <div class="ht-robot-card">
-        <div class="ht-avatar"><span class="ring"></span><span class="eye"></span><span class="eye"></span></div>
-        <div class="ht-robot-meta">
-          <div class="ht-robot-name">${C.brand.robotName} <span class="ht-live-tag">${C.pills.online}</span></div>
-          <div class="ht-state-text" aria-live="polite">${C.status.default}</div>
-        </div>
+  <aside class="side-panel right glass">
+    <section class="ht-status">
+      <div class="robot-card">
+        <div class="robot-avatar"><span class="avatar-ring"></span><span class="avatar-eye"></span><span class="avatar-eye"></span></div>
+        <div class="robot-meta"><div class="robot-name">${C.brand.robotName}<span class="online">在线</span></div><div class="robot-state ht-state-text" aria-live="polite">${C.status.default}</div></div>
         <span class="ht-state-dot"></span>
       </div>
       <div class="ht-task-meta"><span class="ht-step-indicator">${C.status.waiting}</span><span class="ht-source-badge">${C.status.sourceDefault}</span></div>
       <div class="ht-progress"><i></i></div>
     </section>
-
-    <section class="ht-panel ht-card grow ht-timeline-panel">
-      <div class="ht-timeline-head"><span>${C.timeline.title}</span><span class="ht-task-pill">${C.timeline.pill.idle}</span></div>
-      <div class="ht-timeline-wrap"><div class="ht-timeline" aria-live="polite"><div class="ht-tl-empty">${C.timeline.empty}</div></div></div>
-    </section>
+    <div class="timeline-head"><span>${C.timeline.title}</span><span class="step-badge ht-task-pill">${C.timeline.pill.idle}</span></div>
+    <div class="timeline ht-timeline" aria-live="polite"><div class="timeline-empty ht-tl-empty">${C.timeline.empty}</div></div>
+    <div id="ops" class="demo-actions"><div class="demo-title">现场演示</div><button id="btn-cancel" type="button" disabled>取消当前任务</button><button id="btn-fail" type="button">演示：执行失败</button></div>
   </aside>
 
-  <div class="ht-bottom">
-    <div class="ht-card ht-chat">
-      <div class="ht-chat-messages" role="log" aria-live="polite"></div>
-      <div class="ht-suggestions">
-        <span class="ht-sug-label">${C.chat.suggestLabel}</span>
-        ${SUGGESTIONS}
-      </div>
-      <form class="ht-chat-bar" autocomplete="off">
-        <input class="ht-chat-input" type="text" placeholder="${C.chat.placeholder}" aria-label="${C.chat.ariaInput}" />
-        <button class="ht-icon-btn ht-mic" type="button" aria-label="${C.chat.mic}" title="${C.chat.mic}">${ICON_MIC}</button>
-        <button class="ht-icon-btn ht-speak" type="button" aria-label="${C.chat.speak}" title="${C.chat.speak}">${ICON_SPEAK}</button>
-        <button class="ht-send-btn" type="submit" aria-label="${C.chat.send}">${C.chat.send} ${ICON_SEND}</button>
-      </form>
-    </div>
+  <div class="bottom-dock ht-chat">
+    <div class="ht-chat-messages" role="log" aria-live="polite"></div>
+    <div class="suggestions"><span class="sug-label">${C.chat.suggestLabel}</span>${SUGGESTIONS}</div>
+    <form class="query-bar ht-chat-bar" autocomplete="off">
+      <span class="search-ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13.2 13.2l3.3 3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      <input class="ht-chat-input" type="text" placeholder="${C.chat.placeholder}" aria-label="${C.chat.ariaInput}" />
+      <button class="ht-icon-btn ht-mic" type="button" aria-label="${C.chat.mic}">${ICON_MIC}</button>
+      <button class="ht-icon-btn ht-speak" type="button" aria-label="${C.chat.speak}">${ICON_SPEAK}</button>
+      <button class="find-btn ht-send-btn" type="submit" aria-label="${C.chat.send}">${C.chat.send} ${ICON_SEND}</button>
+    </form>
+    <div class="dock-footer"><span class="hint">真实餐厅 · 交付机器人模型</span><span class="hint">拖拽旋转 · 滚轮缩放 · 右键平移</span></div>
   </div>
 
   <div class="ht-found" role="status" aria-live="polite">

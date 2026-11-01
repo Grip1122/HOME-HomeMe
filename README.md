@@ -25,7 +25,7 @@ py -3.11 scripts/start_xiaomi_home.py
 帮我把红色水杯放到3号桌上
 ```
 
-页面会展示规划后的动作、机器人执行状态和日志保存结果。右上角“空间记忆体验”可进入母版交互界面；其中“查看餐厅实景空间”加载随仓库交付的高斯溅射模型。
+首页直接加载真实 `restaurant.splat` 餐厅，并使用交付的 `robot.fbx` 转换出的轻量 `robot.glb` 模型。原始 FBX 随仓库保留。页面会展示规划后的动作、机器人执行状态和日志保存结果；右上角“空间记忆体验”可进入母版交互界面。
 
 ## VR 公网体验
 
@@ -44,7 +44,7 @@ py -3.11 scripts/start_xiaomi_home.py
 | 机器人执行与任务日志 | ✅ | 使用餐厅布局和语义数据，任务结果写入本地 SQLite |
 | 空间记忆体验 | ✅ | 支持扫描、检索、纠错、导出与清除浏览器本地记忆 |
 | 餐厅高斯溅射实景 | ✅ | 程序内入口加载 `restaurant.splat`，支持旋转、缩放、平移 |
-| 餐厅实景内同屏导航 | ⚠️ | 布局、语义、导航数据已随仓库交付；实景渲染与任务代理尚未对齐为同一画面 |
+| 真实餐厅与机器人主视觉 | ✅ | 首页加载 `restaurant.splat` 与 `robot.fbx`，保留任务逻辑层 |
 | 移动端完整适配 | ⚠️ | 当前以桌面现场演示为主，窄屏提供基础显示 |
 
 ## 运行与验证
@@ -108,6 +108,7 @@ npm run build
 | 餐厅高斯溅射模型 | `web/public/robot-find/models/restaurant.splat` | 随仓库交付，31.4 MB |
 | 餐厅布局、语义与导航数据 | `web/public/layouts/`、`web/public/scene-data/` | 随仓库交付 |
 | 建筑主场景高斯资产 | `assets/gaussian-splat/scene.ply` | 449 MiB，按素材清单获取 |
+| 首页机器人模型 | 原始 `assets/robot/robot.fbx`；网页 `web/public/models/robot.glb` | 随仓库交付，62.3 MB / 21.9 MB |
 | 机器人模型与清单 | `assets/robot/` | 随仓库交付 |
 
 餐厅模型 SHA-256：`18731c2cbdcd11a3c3ece79555fdcd4c4e916304af30a88180b17d9a67ad3b6b`。完整素材边界见 [assets/README.md](assets/README.md)。

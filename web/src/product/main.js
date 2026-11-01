@@ -1,5 +1,7 @@
 import * as THREE from 'three';
+import '../robot-find/styles.css';
 import '../ui/hud.css';
+import './robot-find-theme.css';
 import { createHud } from '../ui/index.mjs';
 import { createRestaurantScene } from '../scene/restaurant-scene.js';
 import { createEventBus } from '../core/eventbus.js';
@@ -24,6 +26,9 @@ async function loadDisplayRobot(url) {
   root.scale.setScalar(0.9 / height);
   root.updateMatrixWorld(true);
   const grounded = new THREE.Box3().setFromObject(root);
+  const center = grounded.getCenter(new THREE.Vector3());
+  root.position.x -= center.x;
+  root.position.z -= center.z;
   root.position.y -= grounded.min.y;
   return createRobot({ root });
 }
@@ -57,7 +62,7 @@ async function loadRestaurantViewer(rootElement, scene) {
 const $ = (id) => document.getElementById(id);
 const banner = $('banner');
 function show(kind, text, action) {
-  banner.className = kind;
+  banner.className = `toast ${kind}`;
   banner.textContent = text;
   if (action) {
     const b = document.createElement('button');
@@ -81,11 +86,13 @@ async function boot() {
   ]);
   const health = await fetch('/api/health').then((r) => r.ok, () => false);
   if (!health) show('err', '后端 /api 不可达：指令将无法规划，日志无法保存（不会降级为 mock）。请使用“一键启动”或先启动 scripts/run_home.py。');
-  $('btn-experience').onclick = () => { location.href = `${base}experience.html`; };
-  $('btn-health').onclick = async () => {
-    const online = await fetch('/api/health').then((r) => r.ok, () => false);
-    show(online ? 'ok' : 'err', online ? '本地规划、记忆与日志服务已连接' : '服务未连接：请使用一键启动后重新打开页面');
-  };
+  document.addEventListener('click', async (event) => {
+    if (event.target.closest('#btn-experience')) location.href = `${base}experience.html`;
+    if (event.target.closest('#btn-health')) {
+      const online = await fetch('/api/health').then((r) => r.ok, () => false);
+      show(online ? 'ok' : 'err', online ? '本地规划、记忆与日志服务已连接' : '服务未连接：请使用一键启动后重新打开页面');
+    }
+  });
 
   const canvas = $('scene');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -123,11 +130,14 @@ async function boot() {
 
   const ticker = createTicker();
   const bus = createEventBus({ now: () => performance.now() });
-  const robot = await loadDisplayRobot(`${base}models/roomscan-rs01.glb`);
+  const robot = await loadDisplayRobot(`${base}models/robot.glb`);
   const s = layout.rooms[0].scan_point;
   robot.setPose(s[0], s[2], 0);
-  // 机器人是实际可见的 GLB，附到高斯点云渲染器的 threeScene 中。
-  scene.add(robot.group);
+  // 显示模型由交付的 FBX 转换；独立平移展示锚点，不改写任务/导航坐标。
+  const robotPresentation = new THREE.Group();
+  robotPresentation.position.set(-s[0], 0, -s[2]);
+  robotPresentation.add(robot.group);
+  scene.add(robotPresentation);
 
   const ctx = { world, layout, ticker, bus, robot, grid: buildGrid(layout), sm: createStateMachine({ bus }),
     memory: createLocalMemory({ bus, enabled: true }), holding: null, handBusy: false, options: {} };
@@ -158,7 +168,7 @@ async function boot() {
   bus.on('plan:request', (p) => {
     if (selfEmit) { selfEmit = false; return; }
     if (loop.busy) { hud.toast('正在执行，请稍候', 'warn'); return; }
-    banner.className = '';
+    banner.className = 'toast hidden';
     loop.run(p.query).then((r) => {
       if (r && r.reason === 'plan_failed') show('err', `规划失败：${r.error}`);
       if (r && r.result && !r.result.ok) {

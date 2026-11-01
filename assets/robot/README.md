@@ -1,16 +1,18 @@
 # assets/robot · RS-01 履带扫描机器人
 
 > 归属：设计 B（场景与美术）＋ Jesu 共管，见 `.github/CODEOWNERS` 的 `/assets/`。
-> 来源：AI-D 交付（`reference/hackerson/`），原样迁入，未改一个字节。
+> 来源：`robot.fbx` 为 Task C 本地交付；轻量模型为 AI-D 交付（`reference/hackerson/`）。
 
-hometwin 里「小觅」的外观资产。**逻辑层不读这个目录**：碰撞半径、杆高限位、履带参数在
+小觅HOME 的机器人外观资产。**逻辑层不读这个目录**：碰撞半径、杆高限位、履带参数在
 `web/src/robot/kinematics.js` 里另有一份常量，改动几何后两边要一起改（有测试比对 `manifest.json`）。
 
 ## 1. 文件
 
 | 文件 | 用途 |
 | --- | --- |
-| `roomscan-rs01.glb` | 主模型，25,720 三角形，约 340 KiB。GLB 坐标：X 前、Y 上、Z 右 |
+| `robot.fbx` | 原始主视觉模型，来自 Task C 本地交付；62,266,860 bytes，1,714,693 个多边形 |
+| `../../web/public/models/robot.glb` | 由上述 FBX 保留外观、减面至 5% 的网页显示模型；不额外制作替代造型 |
+| `roomscan-rs01.glb` | 轻量履带扫描机器人模型，25,720 三角形，约 340 KiB。GLB 坐标：X 前、Y 上、Z 右 |
 | `manifest.json` | 部件 → 网格 → 颜色；关节限位；履带闭合轮廓与环形路径参数 |
 | `meshes/*.obj` | MuJoCo 几何代理部件（每个材质一个 OBJ），仅供仿真，不要拿去渲染主视角 |
 | `source/create3/` | 上游 iRobot Create 3 的原始 DAE / URDF 与 BSD 许可，**当前履带版不使用** |
