@@ -1,5 +1,19 @@
 /* The product task controls reuse the robot-find interaction skin. */
 #scene { background: transparent; }
+/* Keep the command field in the same mint-green family as the header controls. */
+.ht-ui .query-bar {
+  border: 1px solid rgba(95, 227, 207, .58);
+  background: linear-gradient(180deg, rgba(19, 48, 43, .98), rgba(8, 28, 25, .98));
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(149, 255, 235, .1);
+}
+.ht-ui .query-bar:focus-within {
+  border-color: #79f5df;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .4), 0 0 0 3px rgba(95, 227, 207, .18);
+}
+.ht-ui .query-bar input { color: #f2fffc; font-size: 14px; caret-color: #8af3e1; }
+.ht-ui .query-bar input::placeholder { color: #a8c9c1; opacity: 1; }
+.ht-ui .find-btn { color: #062b25; background: linear-gradient(135deg, #a0f9e8, #58d9c4); }
+.ht-ui .search-ico, .ht-ui .dock-footer .hint { color: #b1d7ce; }
 .ht-ui {
   --ht-brand: #5fe3cf;
   --ht-brand-deep: #47cfbc;

@@ -67,6 +67,23 @@ def _clarify(say):
     return {"say": say[:40], "steps": [], "source": "rule", "corrected": False}
 
 
+_FIND_INTENT = re.compile(r"(找|寻找|在哪|哪里|哪儿|定位)")
+_MOVE_INTENT = re.compile(r"(放到|放在|搬到|移到|挪到|送到|拿起|抓起|拿给)")
+
+
+def try_find(query, index: Index):
+    """Recognize ordinary single-object finding requests without weakening move plans."""
+    text = normalize(query)
+    if not _FIND_INTENT.search(text) or _MOVE_INTENT.search(text):
+        return None
+    spans = _spans(text, index.object_tokens.keys())
+    if not spans:
+        return None
+    obj = index.object_tokens[spans[-1][2]]
+    return _result(f"好的，我去找{index.name_of(obj)}。",
+                   [{"action": "find", "target": obj}], source="rule")
+
+
 def is_correction(text: str) -> bool:
     """判定一句话是不是「纠正上一轮」而不是「新下一道指令」。
 

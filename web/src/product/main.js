@@ -19,6 +19,21 @@ async function loadDisplayRobot(url) {
   const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
   const gltf = await new GLTFLoader().loadAsync(url);
   const root = gltf.scene;
+  // The delivered FBX has a single untextured material. Preserve its geometry while
+  // giving the shell a restrained mint-metal finish; directional lights reveal joints.
+  root.traverse((object) => {
+    if (!object.isMesh) return;
+    object.material = new THREE.MeshStandardMaterial({
+      color: 0x6eaa9d,
+      metalness: 0.32,
+      roughness: 0.38,
+      flatShading: false,
+    });
+    object.castShadow = true;
+    object.receiveShadow = true;
+  });
+  // Model forward is +Z, matching robot.js yaw = atan2(dx, dz).
+  root.rotation.y = Math.PI;
   root.updateMatrixWorld(true);
   const bounds = new THREE.Box3().setFromObject(root);
   const height = bounds.getSize(new THREE.Vector3()).y;
@@ -33,16 +48,28 @@ async function loadDisplayRobot(url) {
   return createRobot({ root });
 }
 
-async function loadRestaurantViewer(rootElement, scene) {
+async function loadRestaurantViewer(rootElement, camera) {
   const Lib = window['Gaussian Splats 3D'];
   if (!Lib) throw new Error('餐厅实景渲染库未加载');
   const real = robotFindConfig.realtwin;
+  const calibration = await getJson(`${import.meta.env.BASE_URL}scene-data/restaurant_scene_config.json`);
+  // restaurant.splat uses the same raw-to-sim base rotation as robot-find. Apply the
+  // reviewed layout yaw on top so the visible room shares layout_restaurant.json's frame.
+  const baseRotation = new THREE.Quaternion(...real.rotation);
+  const layoutYaw = new THREE.Quaternion().setFromAxisAngle(
+    new THREE.Vector3(0, 1, 0), THREE.MathUtils.degToRad(calibration.frame.yaw_degrees));
+  const rotation = layoutYaw.multiply(baseRotation);
   const viewer = new Lib.Viewer({
     rootElement,
+    camera,
     selfDrivenMode: true,
-    useBuiltInControls: true,
+    useBuiltInControls: false,
     sharedMemoryForWorkers: false,
     gpuAcceleratedSort: false,
+    integerBasedSort: false,
+    antialiased: true,
+    maxScreenSpaceSplatSize: 64,
+    kernel2DSize: 0.3,
     cameraUp: [0, 1, 0],
     initialCameraPosition: real.camera.position,
     initialCameraLookAt: real.camera.lookAt,
@@ -50,11 +77,19 @@ async function loadRestaurantViewer(rootElement, scene) {
     ignoreDevicePixelRatio: true,
   });
   await viewer.addSplatScene(real.model, {
-    rotation: real.rotation,
-    position: real.position,
-    splatAlphaRemovalThreshold: real.alphaThreshold,
+    rotation: rotation.toArray(),
+    position: calibration.frame.raw_ply_entity_transform.position,
+    splatAlphaRemovalThreshold: 12,
     showLoadingUI: false,
   });
+  const updateSplatMesh = viewer.updateSplatMesh.bind(viewer);
+  viewer.updateSplatMesh = () => {
+    updateSplatMesh();
+    if (viewer.splatMesh?.material?.uniforms?.orthoZoom) {
+      viewer.splatMesh.material.uniforms.orthoZoom.value =
+        camera.projectionMatrix.elements[5] * viewer.renderer.domElement.height / 2;
+    }
+  };
   viewer.start();
   return viewer;
 }
@@ -99,23 +134,39 @@ async function boot() {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
   const scene = new THREE.Scene();
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x334455, 1.6));
-  const camera = new THREE.PerspectiveCamera(52, innerWidth / innerHeight, 0.01, 200);
-  const real = robotFindConfig.realtwin;
+  scene.add(new THREE.HemisphereLight(0xe9fff9, 0x18372f, 1.25));
+  const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
+  keyLight.position.set(3, 6, 5);
+  scene.add(keyLight);
+  const rimLight = new THREE.DirectionalLight(0x77e8d2, 1.4);
+  rimLight.position.set(-4, 3, -3);
+  scene.add(rimLight);
+  const camera = new THREE.OrthographicCamera(-10, 10, 7, -7, 0.05, 500);
   let viewer = null;
-  const cameraPosition = new THREE.Vector3(...real.camera.position);
-  const cameraTarget = new THREE.Vector3(...real.camera.lookAt);
-  camera.position.copy(cameraPosition);
+  const cameraTarget = new THREE.Vector3(-1, 0.5, -0.4);
+  camera.position.copy(cameraTarget).add(new THREE.Vector3(0, 10, 10));
   camera.lookAt(cameraTarget);
+  camera.zoom = 1.5;
+  camera.updateProjectionMatrix();
   function resizeOverlay() {
-    const w = innerWidth, h = innerHeight;
+    const w = innerWidth, h = innerHeight, aspect = w / h;
     renderer.setSize(w, h);
-    camera.aspect = w / h;
+    camera.left = -7 * aspect;
+    camera.right = 7 * aspect;
+    camera.top = 7;
+    camera.bottom = -7;
     camera.updateProjectionMatrix();
     if (viewer?.renderer && viewer?.camera) {
       viewer.renderer.setSize(w, h);
-      viewer.camera.aspect = w / h;
+      viewer.camera.left = camera.left;
+      viewer.camera.right = camera.right;
+      viewer.camera.top = camera.top;
+      viewer.camera.bottom = camera.bottom;
+      viewer.camera.zoom = camera.zoom;
+      viewer.camera.position.copy(camera.position);
+      viewer.camera.lookAt(cameraTarget);
       viewer.camera.updateProjectionMatrix();
+      viewer.camera.updateMatrixWorld(true);
     }
   }
   addEventListener('resize', resizeOverlay);
@@ -125,7 +176,7 @@ async function boot() {
   // 任务语义和碰撞仍保留，但不再把代理几何作为可视场景。
   world.root.visible = false;
   scene.add(world.root);
-  viewer = await loadRestaurantViewer($('restaurant-live'), scene);
+  viewer = await loadRestaurantViewer($('restaurant-live'), camera);
   show('ok', '真实餐厅空间已加载；任务语义层已与可视画面分离');
 
   const ticker = createTicker();
@@ -133,11 +184,8 @@ async function boot() {
   const robot = await loadDisplayRobot(`${base}models/robot.glb`);
   const s = layout.rooms[0].scan_point;
   robot.setPose(s[0], s[2], 0);
-  // 显示模型由交付的 FBX 转换；独立平移展示锚点，不改写任务/导航坐标。
-  const robotPresentation = new THREE.Group();
-  robotPresentation.position.set(-s[0], 0, -s[2]);
-  robotPresentation.add(robot.group);
-  scene.add(robotPresentation);
+  // The visible mesh and task executor share the exact same Object3D pose.
+  scene.add(robot.group);
 
   const ctx = { world, layout, ticker, bus, robot, grid: buildGrid(layout), sm: createStateMachine({ bus }),
     memory: createLocalMemory({ bus, enabled: true }), holding: null, handBusy: false, options: {} };

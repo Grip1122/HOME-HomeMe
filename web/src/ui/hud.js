@@ -71,7 +71,7 @@
       <button class="ht-icon-btn ht-speak" type="button" aria-label="${C.chat.speak}">${ICON_SPEAK}</button>
       <button class="find-btn ht-send-btn" type="submit" aria-label="${C.chat.send}">${C.chat.send} ${ICON_SEND}</button>
     </form>
-    <div class="dock-footer"><span class="hint">真实餐厅 · 交付机器人模型</span><span class="hint">拖拽旋转 · 滚轮缩放 · 右键平移</span></div>
+    <div class="dock-footer"><span class="hint">真实餐厅 · 交付机器人模型</span><span class="hint">45° 固定视角 · 实景与任务坐标对齐</span></div>
   </div>
 
   <div class="ht-found" role="status" aria-live="polite">
