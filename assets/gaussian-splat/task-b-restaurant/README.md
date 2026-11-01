@@ -1,11 +1,28 @@
-# 餐厅Task B接入候选与验证证据
+# 餐厅场景 · 接入候选与验证证据
 
-布局：web/public/layouts/layout_restaurant.json。场景适配器与测试：web/src/scene/restaurant-scene*.js。侧车坐标与语义：web/public/scene-data/。独立联调页：web/public/restaurant-integration/index.html。
+餐厅素材为小觅HOME 当前演示前端的实景基础；运行时模型与语义数据分层存放，避免把视觉坐标直接混写进产品逻辑。
 
-原素材从Release splat-restaurant-v1下载scene.ply，SHA256 db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28。原PLY不入普通Git。使用Vite打开/restaurant-integration/index.html后，可从文件框选择本机PLY，文件只在浏览器读取。原本地服务器仍支持直接加载。
+## 资源位置
 
-Schema和原check_layout.py零错误，三项故意改坏检查有效，8目标可达，180路线段与外扩阻挡交叉数0，4项场景Node测试通过。完整仓库Vitest与CI尚需在合入环境运行，不将独立页视为主页面已接入。
+| 内容 | 路径 | 当前用途 |
+| --- | --- | --- |
+| 餐厅实景高斯模型 | `web/public/robot-find/models/restaurant.splat` | 主界面“餐厅实景”入口加载，随仓库交付 |
+| 餐厅布局 | `web/public/layouts/layout_restaurant.json` | 场景空间描述 |
+| 餐厅语义、路线与校验数据 | `web/public/scene-data/` | 后续语义导航整合依据 |
+| 场景适配器与测试 | `web/src/scene/restaurant-scene*.js` | 餐厅坐标、对象及验证逻辑 |
+| 独立联调页 | `web/public/restaurant-integration/index.html` | 本地集成验证 |
 
-63件语义家具的blocks=false依赖99个nav_block_*覆盖，不能删除代理。原标注和墙/门不确定性在annotations_accepted_v2.json；墙厚/墙高未知，D1未开放通行，C08高度待实测。截图为新世界坐标，附属旧审核坐标不再额外套用旧建筑rawToSim映射。
+`restaurant.splat`：31,358,432 bytes，SHA-256 `18731c2cbdcd11a3c3ece79555fdcd4c4e916304af30a88180b17d9a67ad3b6b`。
 
-任务物体是新增虚拟标记。点云显示SH0并裁切上部，仅改变显示，源PLY未改。Hilo / heroizme，CC BY4.0，https://superspl.at/scene/40c67340。
+## 已验证范围
+
+- Layout Schema 与 `check_layout.py` 验证通过；故意改坏的检查可触发失败。
+- 8 个目标可达，180 条路线段与外扩阻挡的交叉数为 0。
+- 餐厅场景相关 Node 测试通过。
+- 前端母版提供独立餐厅实景查看器，并与空间记忆找物演示并列交付。
+
+## 尚未完成的整合
+
+- 母版的主找物世界仍使用独立演示世界；**不能宣称已经在餐厅实景中完成同屏找物与导航闭环**。
+- 餐厅布局/语义/路线数据待接入主交互流程后，再以真实坐标更新可达性和任务验证。
+- 正式公开发布前需再确认餐厅模型的可公开分发授权；当前仅按项目内部演示使用。
