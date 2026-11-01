@@ -191,8 +191,8 @@
 
   class SDCard {
     constructor() {
-      this.sceneId = RF.config?.sceneId || "robot-find-apartment-v1";
-      this.storagePrefix = "robot-find." + encodeURIComponent(this.sceneId);
+      this.sceneId = RF.config?.sceneId || "xiaomi-home-restaurant-v1";
+      this.storagePrefix = "xiaomi-home." + encodeURIComponent(this.sceneId);
       this.storagePack = this.storagePrefix + ".sdcard.pack";
       this.storageKey = this.storagePrefix + ".deviceKey";
       this.layoutId = "A";
@@ -551,7 +551,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = (envelope.meta.packId || "robot-find-memory") + ".rfpack.json";
+      a.download = (envelope.meta.packId || "xiaomi-home-memory") + ".rfpack.json";
       document.body.appendChild(a);
       a.click();
       a.remove();

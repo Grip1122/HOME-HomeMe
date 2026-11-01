@@ -1,8 +1,8 @@
-// 样本场景独立于 HOME 后端 layout A；换场景时必须换 sceneId，禁止混写旧坐标。
+// 小觅HOME 的演示前端与产品后端隔离；餐厅实景资产使用独立场景标识，避免混写旧坐标。
 export const config = Object.freeze({
-  sceneId: 'robot-find-apartment-v1',
-  mode: 'local-demo',
-  assetStatus: 'placeholder',
+  sceneId: 'xiaomi-home-restaurant-v1',
+  mode: 'demo',
+  assetStatus: 'restaurant-splat-ready',
   backendConnected: false,
   realtwin: {
     model: `${import.meta.env.BASE_URL}robot-find/models/restaurant.splat`,

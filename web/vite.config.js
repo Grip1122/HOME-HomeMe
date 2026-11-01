@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'node:path';
 
 // /api 代理到后端，避免跨域。端口与 server 的 uvicorn 默认一致。
 export default defineConfig({
@@ -10,6 +11,14 @@ export default defineConfig({
         target: 'http://127.0.0.1:8000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(import.meta.dirname, 'index.html'),
+        experience: resolve(import.meta.dirname, 'experience.html'),
       },
     },
   },

@@ -4,338 +4,45 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="data:," />
-<title>小觅 M1 · 空间记忆找物系统</title>
-<meta name="description" content="HOME 小觅：沿用 robot-find 的本地空间记忆找物演示。场景与机器人为待替换示范素材。" />
+  <title>小觅HOME · 餐厅任务演示</title>
+  <meta name="description" content="小觅HOME：在餐厅虚拟空间中完成自然语言规划、机器人执行与任务日志记录。" />
+  <style>
+  :root { color-scheme: dark; font-family: "Microsoft YaHei", system-ui, sans-serif; }
+  html, body { margin: 0; height: 100%; background: #070b11; overflow: hidden; }
+  #scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  #appbar { position: fixed; z-index: 40; top: 18px; left: 24px; right: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; pointer-events: none; }
+  .brand { pointer-events: auto; color: #edf8f7; display: flex; flex-direction: column; gap: 2px; text-shadow: 0 1px 16px #071015; }
+  .brand strong { font-size: 16px; letter-spacing: 0; }
+  .brand span { font-size: 12px; color: #a9c6c2; }
+  .app-actions { pointer-events: auto; display: flex; gap: 8px; align-items: center; }
+  button { font: inherit; }
+  .app-actions button, #ops button { padding: 7px 11px; border-radius: 6px; border: 1px solid #3c6f69; background: #102521e8; color: #e8f7f3; cursor: pointer; font-size: 12px; }
+  .app-actions button:hover, #ops button:hover { background: #1a3832; }
+  #ops { position: fixed; right: 24px; bottom: 24px; z-index: 40; display: flex; gap: 8px; align-items: center; }
+  #ops button:disabled { opacity: .45; cursor: default; }
+  #banner { position: fixed; left: 50%; top: 82px; transform: translateX(-50%); z-index: 41; padding: 8px 14px; border-radius: 6px; font-size: 12px; display: none; max-width: 70vw; }
+  #banner.err { display: block; background: #a84138; color: #fff; }
+  #banner.ok { display: block; background: #28785a; color: #fff; }
+  #banner button { margin-left: 10px; }
+  #fatal { position: fixed; inset: 0; z-index: 99; background: #200; color: #fff; padding: 40px; white-space: pre-wrap; display: none; }
+  @media (max-width: 700px) { #appbar { left: 12px; right: 12px; top: 12px; } .brand span { display: none; } #ops { right: 12px; bottom: 12px; } .app-actions button { padding: 7px 8px; } }
+  </style>
 </head>
 <body>
 <canvas id="scene"></canvas>
-<div id="ui">
-
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" fill="none">
-          <path d="M6 22V12.5C6 8.9 8.9 6 12.5 6h7C23.1 6 26 8.9 26 12.5V22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="16" cy="14.5" r="3.2" stroke="currentColor" stroke-width="1.8"/>
-          <circle cx="16" cy="14.5" r="1" fill="currentColor"/>
-          <path d="M10 25h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="brand-text">
-        <strong>小觅 M1</strong>
-        <span>空间记忆 · 具身找物系统</span>
-      </div>
-    </div>
-
-    <div class="top-status">
-      <span class="pill"><i class="dot live"></i>端侧运行</span>
-      <span class="pill" id="pill-layout"><i class="dot"></i>布局 A · 三区</span>
-      <button class="pill pill-btn" id="pill-memory" title="点击切换记忆增强">
-        <i class="dot cyan"></i>记忆增强 ON
-      </button>
-      <span class="pill mono" id="pill-splat">GS 0 pts</span>
-    </div>
-
-    <div class="top-actions">
-      <button class="btn ghost icon-only" id="btn-realtwin" type="button" title="打开餐厅实景空间" aria-label="打开餐厅实景空间">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M8 1.8l5 2.8v6.8l-5 2.8-5-2.8V4.6l5-2.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 4.6l5 2.9 5-2.9M8 7.5v6.6" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="btn ghost" id="btn-help">演示脚本</button>
-      <button class="btn primary" id="btn-scan">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v2M8 12v2M2 8h2M12 8h2M3.8 3.8l1.4 1.4M10.8 10.8l1.4 1.4M12.2 3.8l-1.4 1.4M5.2 10.8l-1.4 1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        全屋扫描
-      </button>
-    </div>
-  </header>
-
-  <aside class="side-panel left glass" id="left-panel">
-    <div class="panel-title">
-      <span>空间记忆</span>
-      <span class="count" id="memory-count">0</span>
-    </div>
-    <p class="panel-sub">扫描结果写入机身 SD 卡，断网仍可检索</p>
-
-    <div class="memory-empty" id="memory-empty">
-      <div class="empty-orbit"><span></span></div>
-      <strong>尚未建立空间记忆</strong>
-      <span>点击「全屋扫描」开始</span>
-    </div>
-    <div class="memory-list" id="memory-list"></div>
-
-    <div class="privacy-card">
-      <div class="privacy-head">
-        <span class="privacy-shield">
-          <svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5l6 2.2v4.6c0 3.8-2.6 6.6-6 8.2-3.4-1.6-6-4.4-6-8.2V4.7l6-2.2z" stroke="currentColor" stroke-width="1.3"/><path d="M7.4 10l1.8 1.8 3.4-3.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <div>
-          <strong>数据不出机身</strong>
-          <small id="privacy-line">0 KB 上云 · 网络隔离</small>
-        </div>
-        <span class="live-tag">LOCAL</span>
-      </div>
-    </div>
-
-    <div class="sd-block" id="sd-block">
-      <div class="sd-head">
-        <span class="sd-icon">SD</span>
-        <div class="sd-name"><strong>机身存储卡</strong><small id="sd-status">等待写入</small></div>
-        <span class="sd-lock" id="sd-lock">AES-256</span>
-      </div>
-      <div class="capacity"><div class="capacity-fill" id="sd-bar"></div></div>
-      <div class="sd-meta"><span id="sd-used">0 KB</span><span>64 GB · 离线可读</span></div>
-      <div class="sd-actions">
-        <button id="btn-export">导出记忆包</button>
-        <button id="btn-erase">清除记忆</button>
-      </div>
-    </div>
-  </aside>
-
-  <aside class="side-panel right glass" id="right-panel">
-    <div class="robot-card">
-      <div class="robot-avatar" id="robot-avatar">
-        <div class="avatar-eye"></div>
-        <div class="avatar-eye"></div>
-        <span class="avatar-ring"></span>
-      </div>
-      <div class="robot-meta">
-        <div class="robot-name">小觅 M1 <span class="online">在线</span></div>
-        <div class="robot-state" id="robot-state">待机 · 等待指令</div>
-      </div>
-      <div class="battery"><i></i><span>86%</span></div>
-    </div>
-
-    <div class="mini-stats">
-      <div><span>记忆物品</span><strong id="stat-objects">0</strong></div>
-      <div><span>高斯点</span><strong id="stat-splats">0</strong></div>
-      <div><span>本次动作</span><strong id="stat-steps">0</strong></div>
-    </div>
-
-    <div class="toggles">
-      <label class="switch">
-        <input type="checkbox" id="toggle-memory" checked />
-        <span class="track"><i></i></span>
-        <span class="switch-label">记忆增强<small>关闭后每次全屋搜索</small></span>
-      </label>
-    </div>
-
-    <div class="timeline-head">
-      <span>任务执行</span>
-      <span class="step-badge" id="step-count">0 步</span>
-    </div>
-    <div class="timeline" id="timeline">
-      <div class="timeline-empty">等待指令…</div>
-    </div>
-
-    <div class="reasoning hidden" id="reasoning">
-      <div class="reasoning-head">属性检索</div>
-      <div class="attr-chips" id="attr-chips"></div>
-      <div class="match-list" id="match-list"></div>
-    </div>
-
-    <div class="demo-actions">
-      <div class="demo-title">现场演示</div>
-      <button id="btn-move"><span>01</span>物品被移动 · 记忆过期</button>
-      <button id="btn-correct"><span>02</span>用户纠正位置</button>
-    </div>
-  </aside>
-
-  <div class="scan-toast hidden" id="scan-toast">
-    <div class="radar"><span></span><span></span></div>
-    <div class="scan-copy">
-      <strong id="scan-title">正在扫描</strong>
-      <small id="scan-sub">构建高斯泼溅记忆…</small>
-      <div class="scan-progress"><i id="scan-progress-bar"></i></div>
-    </div>
-    <div class="scan-pct" id="scan-pct">0%</div>
-  </div>
-
-  <div class="speech hidden" id="speech">
-    <span class="speech-name">小觅</span>
-    <span class="speech-text" id="speech-text"></span>
-  </div>
-
-  <div class="object-label hidden" id="object-label">
-    <span class="obj-dot"></span>
-    <div><strong id="obj-label-name">物品</strong><small id="obj-label-sub">本地记忆命中 · 0.0</small></div>
-  </div>
-
-  <div class="room-labels" id="room-labels">
-    <div class="room-label" data-room="客厅"><i></i><span>客厅</span><small>LIVING</small></div>
-    <div class="room-label" data-room="卧室"><i></i><span>卧室</span><small>BEDROOM</small></div>
-    <div class="room-label" data-room="书房"><i></i><span>书房</span><small>STUDY</small></div>
-  </div>
-
-  <div class="bottom-dock">
-    <div class="suggestions" id="suggestions">
-      <span class="sug-label">试着问我</span>
-      <button data-q="我的红色马克杯在哪？">红色马克杯</button>
-      <button data-q="帮我找黑色遥控器">黑色遥控器</button>
-      <button data-q="蓝色书本放哪了？">蓝色书本</button>
-      <button data-q="找一下黄色钥匙">黄色钥匙</button>
-      <button data-q="紫色雨伞在哪里">紫色雨伞</button>
-    </div>
-    <form class="query-bar" id="query-form">
-      <span class="search-ico" aria-hidden="true">
-        <svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13.2 13.2l3.3 3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </span>
-      <input id="query-input" type="text" autocomplete="off" placeholder="问我：我的红色马克杯在哪？" disabled />
-      <button type="submit" class="find-btn" id="btn-find" disabled>
-        开始寻找
-        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </form>
-    <div class="dock-footer">
-      <div class="view-switch" id="view-switch" role="group" aria-label="视图模式">
-        <button data-mode="real">真实</button>
-        <button data-mode="overlay" class="active">叠加</button>
-        <button data-mode="splat">高斯</button>
-      </div>
-      <span class="hint">拖拽旋转 · 滚轮缩放 · 右键平移</span>
-    </div>
-  </div>
-
-  <div class="toast hidden" id="toast"></div>
-
-  <div class="intro" id="intro">
-    <div class="intro-glow"></div>
-    <div class="intro-content">
-      <div class="intro-kicker"><i></i>EMBODIED SPATIAL MEMORY · 2026</div>
-      <h1>让家，记得<br /><em>每一件东西。</em></h1>
-      <p class="intro-lead">
-        小觅 M1 扫描全屋空间，用 3D Gaussian Splatting 建立物品记忆，<br />
-        加密写入机身 SD 卡。找不到东西时，问它就好。
-      </p>
-      <div class="intro-features">
-        <div class="feature">
-          <span class="f-ico">◈</span>
-          <strong>高斯泼溅记忆</strong>
-          <small>5 万个高斯点重建空间与物品外观</small>
-        </div>
-        <div class="feature">
-          <span class="f-ico">⌁</span>
-          <strong>端侧离线检索</strong>
-          <small>颜色 / 形状 / 尺寸语义匹配，0 次上云</small>
-        </div>
-        <div class="feature">
-          <span class="f-ico">▣</span>
-          <strong>机身 SD 卡</strong>
-          <small>AES-256-GCM 加密，断网即时读取</small>
-        </div>
-      </div>
-      <div class="intro-actions">
-        <button class="btn hero" id="btn-start">
-          启动演示 · 全屋扫描
-          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="btn ghost hidden" id="btn-load">加载机身 SD 卡记忆</button>
-        <button class="btn ghost" id="btn-realtwin-intro">
-          查看餐厅实景空间
-          <svg viewBox="0 0 16 16" fill="none"><path d="M8 1.8l5 2.8v6.8l-5 2.8-5-2.8V4.6l5-2.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 4.6l5 2.9 5-2.9M8 7.5v6.6" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-      <div class="intro-note">
-        <span class="pulse-dot"></span>本地演示 · 场景 / 机器人待替换 · 尚未连接 HOME 后端
-      </div>
-    </div>
-    <div class="intro-spec">
-      <div class="spec-row"><span>空间重建</span><strong>3DGS · 实时</strong></div>
-      <div class="spec-row"><span>语义检索</span><strong>颜色 / 形状 / 尺寸</strong></div>
-      <div class="spec-row"><span>本地存储</span><strong>64 GB microSD</strong></div>
-      <div class="spec-row"><span>规划层</span><strong>L2 端侧规则 · 离线</strong></div>
-      <div class="spec-foot">NO CLOUD · NO UPLOAD</div>
-    </div>
-  </div>
-
-  <div class="modal hidden" id="help-modal">
-    <div class="modal-card glass">
-      <button class="modal-close" id="btn-help-close">×</button>
-      <div class="modal-kicker">DEMO SCRIPT / 现场演示</div>
-      <h2>三分钟演示脚本</h2>
-      <ol class="script-list">
-        <li><b>建立记忆</b><span>点击「全屋扫描」，机器人依次进入客厅、卧室、书房，高斯点沿扫描波前生长并写入 SD 卡。</span></li>
-        <li><b>属性找物</b><span>问「我的红色马克杯在哪？」，系统在端侧解析颜色/类别，直接检索记忆并导航，高亮目标。</span></li>
-        <li><b>记忆过期</b><span>点击「演示：物品被移动」后再找一次，机器人到达旧位置扑空、置信度下降、自动全屋复扫并更新记忆。</span></li>
-        <li><b>隐私与离线</b><span>切换到「高斯」视图查看纯泼溅记忆；SD 卡面板显示加密包大小、校验和与 0 KB 上云。</span></li>
-        <li><b>餐厅实景</b><span>点击顶栏方块图标或首页「查看餐厅实景空间」，加载 976,476 个真实 3DGS 点；拖拽查看餐厅，返回后机器人演示继续。</span></li>
-      </ol>
-      <div class="modal-kicker" style="margin-top:22px">ACCEPTANCE API / 控制台验收</div>
-      <pre class="code-block">await window.__demo.run("我的红色马克杯在哪？");
-window.__demo.getState();      // "completed"
-window.__demo.getStepCount();  // 记忆开启时 ≤ 4
-window.__demo.getMemory();     // cup_red 的 room / confidence
-window.__demo.getSDCard();     // 本地加密包信息</pre>
-      <p class="modal-note">演示中的高斯点由程序化场景采样生成，用于展示扫描、存储与检索链路；真实部署时替换为 COLMAP + 3DGS 训练导出的点云。</p>
-    </div>
-  </div>
-
-  <div class="fatal hidden" id="fatal">
-    <div class="fatal-card">
-      <h2>演示加载失败</h2>
-      <pre id="fatal-msg"></pre>
-      <p>请通过项目本地服务打开，并确认 robot-find/vendor 下的本地依赖完整。</p>
-    </div>
-  </div>
+<header id="appbar">
+  <div class="brand"><strong>小觅HOME</strong><span>餐厅虚拟场景 · 自然语言任务演示</span></div>
+  <nav class="app-actions" aria-label="产品导航">
+    <button id="btn-experience" type="button">空间记忆体验</button>
+    <button id="btn-health" type="button">服务状态</button>
+  </nav>
+</header>
+<div id="ops">
+  <button id="btn-cancel" type="button" disabled>取消当前任务</button>
+  <button id="btn-fail" type="button">演示：执行失败</button>
 </div>
-
-<div id="realtwin" class="realtwin hidden" aria-label="餐厅实景空间">
-  <div id="rt-viewer" class="rt-viewer"></div>
-
-  <header class="rt-topbar">
-    <div class="rt-brand">
-      <div class="rt-mark">◈</div>
-      <div>
-        <strong>小觅 M1 · 餐厅实景</strong>
-        <small>3D GAUSSIAN SPLATTING · 空间模型</small>
-      </div>
-    </div>
-    <div class="rt-pills">
-      <span class="rt-pill"><i class="dot"></i>实景扫描</span>
-      <span class="rt-pill mono" id="rt-count">976,476 splats</span>
-      <span class="rt-pill mono" id="rt-file">restaurant.splat · 31.4 MB</span>
-      <span class="rt-pill" id="rt-status">准备中</span>
-    </div>
-    <div class="rt-actions">
-      <button class="rt-btn" id="rt-reset" type="button">重置视角</button>
-      <button class="rt-btn primary" id="rt-close" type="button">返回示范公寓</button>
-    </div>
-  </header>
-
-  <div class="rt-loading" id="rt-loading">
-    <div class="rt-radar"><span></span></div>
-    <div class="rt-loading-copy">
-      <div class="rt-kicker">GAUSSIAN SPLATTING · 3DGS</div>
-      <h2>正在解码餐厅空间模型</h2>
-      <p id="rt-loading-sub">读取 31.4 MB 压缩高斯点…</p>
-      <div class="rt-progress"><i id="rt-progress"></i></div>
-      <div class="rt-loading-meta"><span id="rt-percent">0%</span><span>999,131 原始点 · 976,476 渲染</span></div>
-    </div>
-  </div>
-
-  <div class="rt-error hidden" id="rt-error">
-    <h2>实景模型加载失败</h2>
-    <pre id="rt-error-msg"></pre>
-    <p>请通过本地预览服务打开；餐厅模型为待替换素材，需要放在 <b>web/public/robot-find/models/restaurant.splat</b>。模型文件不入 Git，缺失时示范公寓仍可完整运行。</p>
-    <div class="rt-error-actions">
-      <button id="rt-retry" type="button">重试</button>
-      <button id="rt-close-error" type="button">返回示范公寓</button>
-    </div>
-  </div>
-
-  <aside class="rt-info">
-    <div class="rt-info-head">SPATIAL MODEL</div>
-    <div class="rt-info-row"><span>源文件</span><strong>餐厅.ply</strong></div>
-    <div class="rt-info-row"><span>原始点数</span><strong>999,131</strong></div>
-    <div class="rt-info-row"><span>网页渲染</span><strong id="rt-info-count">976,476</strong></div>
-    <div class="rt-info-row"><span>原始体积</span><strong>224.9 MB</strong></div>
-    <div class="rt-info-row"><span>压缩后</span><strong>31.4 MB</strong></div>
-    <div class="rt-info-row"><span>坐标</span><strong>Z-up → Y-up</strong></div>
-    <div class="rt-info-row"><span>渲染</span><strong>3DGS · WebGL</strong></div>
-  </aside>
-
-  <div class="rt-hint">拖拽旋转 · 滚轮缩放 · 右键平移</div>
-  <div class="rt-tag">REAL SCAN · RESTAURANT<br />Z-UP → Y-UP · DC COLOR</div>
-</div>
-
-<script type="module" src="/src/main.js"></script>
+<div id="banner"></div>
+<pre id="fatal"></pre>
+<script type="module" src="/src/product/main.js"></script>
 </body>
 </html>

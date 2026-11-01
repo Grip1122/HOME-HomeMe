@@ -1,0 +1,12 @@
+✔ raw point transform matches editor Rz180 followed by layout yaw and ground translation (1.7988ms)
+✔ registry exposes semantic furniture and task world positions while colliders stay hidden (16.6983ms)
+✔ attach preserves world coordinates under translated rotated scaled parent (7.041ms)
+✔ malformed geometry and disabling required navigation proxies are rejected (1.2806ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 185.5655

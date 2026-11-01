@@ -32,6 +32,30 @@
         { "action": "observe", "room": "bedroom" },
         { "action": "observe", "room": "study" }
       ]
+    },
+    "帮我把红色水杯放到长桌上": {
+      "say": "好的，我去拿红色水杯，放到长桌上。",
+      "steps": [
+        { "action": "find", "target": "cup_red" },
+        { "action": "grab", "target": "cup_red" },
+        { "action": "drop", "target": "cup_red", "to": "long_table_01" }
+      ]
+    },
+    "帮我把红色水杯放到2号桌上": {
+      "say": "好的，我去拿红色水杯，放到2号桌上。",
+      "steps": [
+        { "action": "find", "target": "cup_red" },
+        { "action": "grab", "target": "cup_red" },
+        { "action": "drop", "target": "cup_red", "to": "table_02" }
+      ]
+    },
+    "帮我把红色水杯放到3号桌上": {
+      "say": "好的，我去拿红色水杯，放到3号桌上。",
+      "steps": [
+        { "action": "find", "target": "cup_red" },
+        { "action": "grab", "target": "cup_red" },
+        { "action": "drop", "target": "cup_red", "to": "table_03" }
+      ]
     }
   }
 }

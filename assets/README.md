@@ -1,35 +1,33 @@
 # assets · 素材总索引
 
-> **找素材先看这里。** 每样素材在仓库里只放一份；超过 GitHub 单文件上限的放 Release，这里给拉取命令和校验和。
-> 归属：设计 B（场景与美术）＋ Jesu 共管（`.github/CODEOWNERS` 的 `/assets/`）。
+> **新增、替换或引用素材前先查此表。** 同一素材只保留一个权威路径；每项资源须写明体积、来源/使用范围和校验方式。
 
-## 1. 一览
+## 资源清单
 
-| 素材 | 仓库路径 | 在 Git 里？ | 体积 | 怎么拿 | 详情 |
-| --- | --- | --- | --- | --- | --- |
-| RS-01 履带机器人（主模型） | `assets/robot/roomscan-rs01.glb` | ✅ | 340 KiB | 克隆即得 | [robot/README.md](robot/README.md) |
-| RS-01 部件清单（节点名、履带参数） | `assets/robot/manifest.json` | ✅ | 16 KiB | 克隆即得 | 同上 |
-| RS-01 Create 3 底盘变体 | `assets/robot/variants/` | ✅ | 560 KiB | 克隆即得 | 同上 |
-| RS-01 MuJoCo 分材质网格 | `assets/robot/meshes/` | ✅ | 960 KiB | 克隆即得 | 同上 |
-| Create 3 上游源文件与许可 | `assets/robot/source/create3/` | ✅ | 1.5 MiB | 克隆即得 | 同上 |
-| 建筑高斯泼溅（主场景 `scene_main`） | `assets/gaussian-splat/scene.ply` | ❌ 超限 | 449 MiB | `python scripts/fetch_team_scene.py`（下载并校验） | [gaussian-splat/README.md](gaussian-splat/README.md) |
-| 主场景轻量预览（裁剪＋28% 采样） | `server/delivery/team-scene/home-preview.compressed.ply` | ✅ | 2.1 MiB | 克隆即得 | `server/delivery/team-scene/preview-manifest.json` |
-| Hackerson 原工程完整备份（6712 文件） | — | ❌ 超限 | 107 MiB | Release [`d-roomscan-source-20261031`](https://github.com/Grip1122/HOME-HomeMe/releases/tag/d-roomscan-source-20261031) | 附件 `*.manifest.json` 是逐文件 sha256 清单 |
-| Hackerson 源码、文档、QA 截图（只读归档） | `reference/hackerson/` | ✅ | 12 MiB | 克隆即得 | [reference/README.md](../reference/README.md) |
+| 素材 | 仓库路径 | Git 状态 | 体积 | 用途 / 获取方式 |
+| --- | --- | --- | --- | --- |
+| 餐厅高斯溅射演示模型 | `web/public/robot-find/models/restaurant.splat` | ✅ | 31.4 MB | 小觅HOME 餐厅实景查看器，克隆即得 |
+| 餐厅布局、语义与导航数据 | `web/public/layouts/layout_restaurant.json`、`web/public/scene-data/` | ✅ | 小型 JSON | 餐厅空间适配与后续语义导航整合 |
+| RS-01 履带机器人主模型 | `assets/robot/roomscan-rs01.glb` | ✅ | 340 KiB | 克隆即得 |
+| RS-01 节点与运动清单 | `assets/robot/manifest.json` | ✅ | 16 KiB | 机器人运动代码的校验依据 |
+| RS-01 变体、网格和来源 | `assets/robot/variants/`、`assets/robot/meshes/`、`assets/robot/source/` | ✅ | 约 3 MiB | 克隆即得，详见 [`robot/README.md`](robot/README.md) |
+| 建筑主场景高斯资产 | `assets/gaussian-splat/scene.ply` | ❌ | 449 MiB | 超出 GitHub 单文件上限；按 [`gaussian-splat/README.md`](gaussian-splat/README.md) 获取并校验 |
+| 主场景轻量预览 | `server/delivery/team-scene/home-preview.compressed.ply` | ✅ | 2.1 MiB | 克隆即得 |
+| Hackerson 完整原工程备份 | GitHub Release | ❌ | 107 MiB | Release `d-roomscan-source-20261031`，附逐文件 SHA-256 清单 |
+| 参考实现归档 | `reference/hackerson/` | ✅ | 约 12 MiB | 只读参考，不进入产品运行路径 |
 
-**不在仓库里、也不要再传的**：原「天安骏业集团餐厅」场景包及其转换产物（用户明确排除，以队友的 `scene_main` 代替）。
+## 校验信息
 
-## 2. 校验和
-
-| 文件 | sha256 |
+| 文件 | SHA-256 |
 | --- | --- |
-| `scene.ply` | `901cf8ce0be73706d6ab0f2649e4f7520def2ee4342a30bca984b55ce2678fae` |
-| `home-preview.compressed.ply` | `b9a5a013433331d37d1f8e157e43a3301bc9dc84f2f3aa2a5b880d396718f884` |
-| `hackerson-d-delivery.tar.gz` | `f0fc6083a66bdb219b135e17a3105de0c7b0444115a27c01de67facf382a518b` |
+| `web/public/robot-find/models/restaurant.splat` | `18731c2cbdcd11a3c3ece79555fdcd4c4e916304af30a88180b17d9a67ad3b6b` |
+| `assets/gaussian-splat/scene.ply` | `901cf8ce0be73706d6ab0f2649e4f7520def2ee4342a30bca984b55ce2678fae` |
+| `server/delivery/team-scene/home-preview.compressed.ply` | `b9a5a013433331d37d1f8e157e43a3301bc9dc84f2f3aa2a5b880d396718f884` |
 
-## 3. 给 agent 的规则
+## 管理规则
 
-1. **先查这张表再新增素材。** 已有的东西不要换个目录再放一份；需要在别处用，就引用这里的路径（后端预览页通过 `/delivery/assets/` 挂载本目录，不复制）。
-2. **超过 50 MiB 的文件不进 Git**：上传 Release，在本表加一行，写清 sha256 和拉取方式。
-3. **`reference/` 只读**：要复用里面的逻辑，抽成纯函数放进 `web/src/` 或 `server/` 并写测试。
-4. 改了 `robot/` 的几何，要同步 `web/src/robot/kinematics.js` 的常量（有测试比对 `manifest.json`）。
+1. **先索引、后落位**：新增资源前先确认没有已有等价素材；写入本表后再接入代码。
+2. **普通 Git 单文件不超过 100 MB**：超限文件使用 Release、网盘或团队共享路径，并记录 SHA-256 与获取方式。
+3. **运行路径和参考路径分离**：`reference/` 只读；需要复用逻辑时抽取到 `web/src/` 或 `server/` 并补测试。
+4. **餐厅素材边界清晰**：`restaurant.splat` 已随演示交付；餐厅 JSON 是后续整合的语义/导航数据，不能据此宣称主找物流程已接入餐厅坐标。
+5. **变更机器人几何时同步验证**：改动 `assets/robot/` 后，需检查 `web/src/robot/kinematics.js` 与 `manifest.json` 的一致性测试。

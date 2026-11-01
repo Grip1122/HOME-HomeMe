@@ -23,6 +23,8 @@ ROOT = Path(__file__).resolve().parents[1]
 def create_app(db_path=None, layouts=None, static_dir=None):
     plan_schema = load_json(ROOT / "contracts/plan.schema.json")
     request_validator = Draft202012Validator({**plan_schema, "$ref": "#/$defs/request"})
+    robot_validator = Draft202012Validator(plan_schema["$defs"]["request"]["properties"]["robot"])
+    step_validator = Draft202012Validator({**plan_schema, "$ref": "#/$defs/step"})
     response_validator = Draft202012Validator({**plan_schema, "$ref": "#/$defs/response"})
     memory_validator = Draft202012Validator(load_json(ROOT / "contracts/memory.schema.json"), format_checker=FormatChecker())
     layout_validator = Draft202012Validator(load_json(ROOT / "contracts/layout.schema.json"))
@@ -67,6 +69,14 @@ def create_app(db_path=None, layouts=None, static_dir=None):
             raise HTTPException(422, "unknown_object")
         return object_id
 
+    def robot_holding(payload, index):
+        robot = payload.get("robot", {})
+        checked(robot_validator, robot)
+        holding = robot.get("holding")
+        if holding is not None and holding not in index.objects:
+            raise HTTPException(422, "unknown_holding")
+        return holding
+
     def observations(payload, index):
         entries = payload.get("entries")
         if not isinstance(entries, list) or len(entries) > len(index.objects):
@@ -96,9 +106,7 @@ def create_app(db_path=None, layouts=None, static_dir=None):
     def plan(payload: dict = Body(...)):
         checked(request_validator, payload)
         index = index_for(payload["layout_id"])
-        holding = (payload.get("robot") or {}).get("holding")
-        if holding is not None and holding not in index.objects:
-            raise HTTPException(422, "unknown_holding")
+        holding = robot_holding(payload, index)
         response = plan_offline(payload["query"], index, payload)
         checked(response_validator, response)
         errors = validate_steps(index, response["steps"], holding)
@@ -168,15 +176,24 @@ def create_app(db_path=None, layouts=None, static_dir=None):
         index = index_for(payload.get("layout_id"))
         plan_value = payload.get("plan")
         checked(response_validator, plan_value)
-        holding = (payload.get("robot") or {}).get("holding")
+        holding = robot_holding(payload, index)
         if validate_steps(index, plan_value["steps"], holding):
             raise HTTPException(422, "invalid_plan_steps")
-        if not isinstance(payload.get("query"), str) or not payload["query"].strip():
+        if not isinstance(payload.get("query"), str) or not payload["query"].strip() or len(payload["query"]) > 200:
             raise HTTPException(422, "invalid_query")
         steps = payload.get("steps")
         duration = payload.get("duration_ms")
-        if not isinstance(steps, list) or len(steps) > 10000 or any(not isinstance(s, dict) for s in steps):
+        if not isinstance(steps, list) or len(steps) > len(plan_value["steps"]):
             raise HTTPException(422, "invalid_executed_steps")
+        for number, event in enumerate(steps):
+            if not isinstance(event, dict) or event.get("result") not in ("succeeded", "failed", "cancelled"):
+                raise HTTPException(422, "invalid_execution_result")
+            instruction = {k: v for k, v in event.items() if k != "result"}
+            checked(step_validator, instruction)
+            if instruction != plan_value["steps"][number]:
+                raise HTTPException(422, "execution_must_match_plan_prefix")
+            if event["result"] != "succeeded" and number != len(steps) - 1:
+                raise HTTPException(422, "execution_after_terminal_failure")
         if isinstance(duration, bool) or not isinstance(duration, (int, float)) or not math.isfinite(duration) or duration < 0:
             raise HTTPException(422, "invalid_duration")
         if not isinstance(payload.get("memory_enabled"), bool):

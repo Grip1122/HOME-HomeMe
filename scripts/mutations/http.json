@@ -1,0 +1,30 @@
+[
+  [
+    "http_robot_boundary",
+    "server/main.py",
+    "        checked(robot_validator, robot)",
+    "        pass  # disabled robot validation",
+    "test_log_rejects_invalid_robot_types_as_422_without_write"
+  ],
+  [
+    "http_execution_results",
+    "server/main.py",
+    "            if not isinstance(event, dict) or event.get(\"result\") not in (\"succeeded\", \"failed\", \"cancelled\"):",
+    "            if False:",
+    "test_log_rejects_invalid_execution_event_or_plan_mismatch"
+  ],
+  [
+    "storage_log_actual_count",
+    "server/app/storage.py",
+    "                 json.dumps(payload[\"steps\"]), len(payload[\"steps\"]), payload[\"duration_ms\"],",
+    "                 json.dumps(payload[\"steps\"]), len(plan[\"steps\"]), payload[\"duration_ms\"],",
+    "test_log_uses_plan_source_correction_flag_and_actual_execution_count"
+  ],
+  [
+    "storage_atomic_correction",
+    "server/app/storage.py",
+    "                self._write(db, layout_id, old, memory.on_correct_old(old[\"confidence\"]), \"correct\", \"stale\")",
+    "                self._write(db, layout_id, old, memory.on_correct_old(old[\"confidence\"]), \"correct\", \"stale\"); db.commit()",
+    "test_failed_correction_rolls_back_memory_and_both_history_rows"
+  ]
+]
