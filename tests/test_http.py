@@ -118,7 +118,7 @@ def test_missing_memory_and_non_surface_correction_are_rejected(client):
 def test_log_uses_plan_source_correction_flag_and_actual_execution_count(client):
     plan = client.post("/plan", json={"query": "不对，应该放书房", "layout_id": "A", "last_object": "cup_red"}).json()
     payload = {"layout_id": "A", "query": "不对，应该放书房", "plan": plan,
-               "steps": [{"action": "go", "ok": True, "ms": 200}],
+               "steps": [{**plan["steps"][0], "result": "succeeded"}],
                "duration_ms": 200, "memory_enabled": True}
     assert client.post("/log", json=payload).status_code == 200
     row = client.get("/log", params={"layout_id": "A"}).json()[0]

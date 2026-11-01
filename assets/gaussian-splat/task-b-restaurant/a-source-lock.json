@@ -1,0 +1,64 @@
+{
+  "repository": "Grip1122/HOME-HomeMe",
+  "pr": 20,
+  "ref": "1499b6a420219c9788e2cc8eac0384464de78edb",
+  "files": [
+    {
+      "path": "web/src/core/config.js",
+      "sha256": "ca290f515479363dcd244398be438626cc1191bfaf2e84764962b682c4e71899"
+    },
+    {
+      "path": "web/src/core/eventbus.js",
+      "sha256": "882f2f683a7e286f1703b7508c318e98415ead5592ab935acaf8526e9fca995b"
+    },
+    {
+      "path": "web/src/core/statemachine.js",
+      "sha256": "26a039e8d942e752a4241f3d4d9441af48345263942d9a363f42bd3f95ec571d"
+    },
+    {
+      "path": "web/src/core/ticker.js",
+      "sha256": "8a28f97aa23f8111babfdea0059fa7534aeada3a772969d752be1a260cc840c6"
+    },
+    {
+      "path": "web/src/core/taskqueue.js",
+      "sha256": "f39c79c08f978db9f975b79ae4909f8a953b32aa27440b3fa0e33854bdca20c1"
+    },
+    {
+      "path": "web/src/core/memory.js",
+      "sha256": "dc2e8a80da2eaf755c08ba04de07119fd5838ed6b2e1476cbe561b282c8b13c4"
+    },
+    {
+      "path": "web/src/core/sim.js",
+      "sha256": "9c8d4aaa209eddb592aa3a0cb6f462a067491212393329760085ee4534821d41"
+    },
+    {
+      "path": "web/src/nav/grid.js",
+      "sha256": "ba18639a0a6b5698c7aeb64f7b19e83168ea66ea4526c2cccc9b5f8bb1e7925f"
+    },
+    {
+      "path": "web/src/nav/astar.js",
+      "sha256": "2fdc2a91d49740b6e0d95e797257136f66e41cc373089ec72b6250dc69417fae"
+    },
+    {
+      "path": "web/src/nav/route.js",
+      "sha256": "d1db714384f1362a1868f2f4d476785c2a3bcd8c0ed21cd2410cbfd4b5529127"
+    },
+    {
+      "path": "web/src/nav/walker.js",
+      "sha256": "c5907e42270b6d394aa7c0791d5841ffc611bd29ef16ed8095a72c7cac0455ae"
+    },
+    {
+      "path": "web/src/robot/actions.js",
+      "sha256": "9e4481910a730e050fa3bca3b5328ef61e197bc6d334bc66436a92d29ed2a8e5"
+    },
+    {
+      "path": "web/src/robot/robot.js",
+      "sha256": "c60929716067f82ca6883e8f055804272bc784edf4f84bc43e6589f9b8d48428"
+    },
+    {
+      "path": "web/src/robot/executor.js",
+      "sha256": "cdabd91d6557447ab41ec426fb6636667c8475c9ec120368fb616b9da6ef7dd9"
+    }
+  ],
+  "scope": "Downloaded read-only source snapshot, no A module edits; hashes are local UTF-8 LF snapshots."
+}

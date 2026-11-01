@@ -1,0 +1,207 @@
+{
+  "base": "http://127.0.0.1:8000",
+  "at": "2026-10-31T23:29:25.076Z",
+  "results": [
+    {
+      "name": "单一 Three 实例",
+      "ok": true
+    },
+    {
+      "name": "成功：杯子落在 3 号桌",
+      "ok": true,
+      "detail": {
+        "sm": "idle",
+        "holding": null,
+        "handBusy": false,
+        "busy": false,
+        "cupParent": "furniture:table_03",
+        "cupPos": [
+          -6.461551146277263,
+          0.8006919172406197,
+          -0.47673670053004824
+        ]
+      }
+    },
+    {
+      "name": "成功：/log 新增 1 条、3 步 succeeded",
+      "ok": true,
+      "detail": {
+        "id": 1,
+        "layout_id": "restaurant_candidate_v1",
+        "query": "帮我把红色水杯放到3号桌上",
+        "plan_json": "{\"say\": \"\\u597d\\u7684\\uff0c\\u6211\\u53bb\\u62ff\\u7ea2\\u8272\\u6c34\\u676f\\uff0c\\u653e\\u52303\\u53f7\\u684c\\u4e0a\\u3002\", \"steps\": [{\"action\": \"find\", \"target\": \"cup_red\"}, {\"action\": \"grab\", \"target\": \"cup_red\"}, {\"action\": \"drop\", \"target\": \"cup_red\", \"to\": \"table_03\"}], \"source\": \"cache\", \"latency_ms\": 0}",
+        "source": "cache",
+        "steps_json": "[{\"action\": \"find\", \"target\": \"cup_red\", \"result\": \"succeeded\"}, {\"action\": \"grab\", \"target\": \"cup_red\", \"result\": \"succeeded\"}, {\"action\": \"drop\", \"target\": \"cup_red\", \"to\": \"table_03\", \"result\": \"succeeded\"}]",
+        "step_count": 3,
+        "duration_ms": 13082,
+        "corrected": 0,
+        "memory_enabled": 1,
+        "created_at": "2026-10-31T23:29:03.694405+00:00",
+        "plan": {
+          "say": "好的，我去拿红色水杯，放到3号桌上。",
+          "steps": [
+            {
+              "action": "find",
+              "target": "cup_red"
+            },
+            {
+              "action": "grab",
+              "target": "cup_red"
+            },
+            {
+              "action": "drop",
+              "target": "cup_red",
+              "to": "table_03"
+            }
+          ],
+          "source": "cache",
+          "latency_ms": 0
+        },
+        "steps": [
+          {
+            "action": "find",
+            "target": "cup_red",
+            "result": "succeeded"
+          },
+          {
+            "action": "grab",
+            "target": "cup_red",
+            "result": "succeeded"
+          },
+          {
+            "action": "drop",
+            "target": "cup_red",
+            "to": "table_03",
+            "result": "succeeded"
+          }
+        ]
+      }
+    },
+    {
+      "name": "失败：HUD 显示失败、杯子回到 3 号桌、空手",
+      "ok": true,
+      "detail": {
+        "sm": "idle",
+        "holding": null,
+        "handBusy": false,
+        "busy": false,
+        "cupParent": "furniture:table_03",
+        "cupPos": [
+          -6.461551146277263,
+          0.8006919172406197,
+          -0.47673670053004824
+        ]
+      }
+    },
+    {
+      "name": "失败：/log 新增 1 条",
+      "ok": true,
+      "detail": {
+        "id": 2,
+        "layout_id": "restaurant_candidate_v1",
+        "query": "帮我把红色水杯放到3号桌上",
+        "plan_json": "{\"say\": \"\\u597d\\u7684\\uff0c\\u6211\\u53bb\\u62ff\\u7ea2\\u8272\\u6c34\\u676f\\uff0c\\u653e\\u52303\\u53f7\\u684c\\u4e0a\\u3002\", \"steps\": [{\"action\": \"find\", \"target\": \"cup_red\"}, {\"action\": \"grab\", \"target\": \"cup_red\"}, {\"action\": \"drop\", \"target\": \"cup_red\", \"to\": \"table_03\"}], \"source\": \"cache\", \"latency_ms\": 0}",
+        "source": "cache",
+        "steps_json": "[{\"action\": \"find\", \"target\": \"cup_red\", \"result\": \"failed\"}]",
+        "step_count": 1,
+        "duration_ms": 10474,
+        "corrected": 0,
+        "memory_enabled": 1,
+        "created_at": "2026-10-31T23:29:15.162399+00:00",
+        "plan": {
+          "say": "好的，我去拿红色水杯，放到3号桌上。",
+          "steps": [
+            {
+              "action": "find",
+              "target": "cup_red"
+            },
+            {
+              "action": "grab",
+              "target": "cup_red"
+            },
+            {
+              "action": "drop",
+              "target": "cup_red",
+              "to": "table_03"
+            }
+          ],
+          "source": "cache",
+          "latency_ms": 0
+        },
+        "steps": [
+          {
+            "action": "find",
+            "target": "cup_red",
+            "result": "failed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "取消：holding 与挂载一致、锁释放、idle",
+      "ok": true,
+      "detail": {
+        "sm": "idle",
+        "holding": "cup_red",
+        "handBusy": false,
+        "busy": false,
+        "cupParent": "carryAnchor",
+        "cupPos": [
+          -6.486586347513247,
+          0.55,
+          -0.4705763284600296
+        ]
+      }
+    },
+    {
+      "name": "取消：/log 新增 1 条",
+      "ok": true,
+      "detail": {
+        "id": 3,
+        "layout_id": "restaurant_candidate_v1",
+        "query": "帮我把红色水杯放到2号桌上",
+        "plan_json": "{\"say\": \"\\u597d\\u7684\\uff0c\\u6211\\u53bb\\u62ff\\u7ea2\\u8272\\u6c34\\u676f\\uff0c\\u653e\\u52302\\u53f7\\u684c\\u4e0a\\u3002\", \"steps\": [{\"action\": \"find\", \"target\": \"cup_red\"}, {\"action\": \"grab\", \"target\": \"cup_red\"}, {\"action\": \"drop\", \"target\": \"cup_red\", \"to\": \"table_02\"}], \"source\": \"cache\", \"latency_ms\": 1}",
+        "source": "cache",
+        "steps_json": "[{\"action\": \"find\", \"target\": \"cup_red\", \"result\": \"succeeded\"}, {\"action\": \"grab\", \"target\": \"cup_red\", \"result\": \"cancelled\"}]",
+        "step_count": 2,
+        "duration_ms": 7334,
+        "corrected": 0,
+        "memory_enabled": 1,
+        "created_at": "2026-10-31T23:29:23.861584+00:00",
+        "plan": {
+          "say": "好的，我去拿红色水杯，放到2号桌上。",
+          "steps": [
+            {
+              "action": "find",
+              "target": "cup_red"
+            },
+            {
+              "action": "grab",
+              "target": "cup_red"
+            },
+            {
+              "action": "drop",
+              "target": "cup_red",
+              "to": "table_02"
+            }
+          ],
+          "source": "cache",
+          "latency_ms": 1
+        },
+        "steps": [
+          {
+            "action": "find",
+            "target": "cup_red",
+            "result": "succeeded"
+          },
+          {
+            "action": "grab",
+            "target": "cup_red",
+            "result": "cancelled"
+          }
+        ]
+      }
+    }
+  ],
+  "console": []
+}

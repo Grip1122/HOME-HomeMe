@@ -4,7 +4,7 @@
   const RF = (window.RF = window.RF || {});
   const LIB_NAME = "Gaussian Splats 3D";
 
-  // 实景查看器的资源与变换集中配置，不改变示范公寓的语义坐标。
+  // 实景查看器的资源与变换集中配置，不改变小觅HOME 餐厅场景的语义坐标。
   const CONFIG = RF.config.realtwin;
 
   class RealtwinViewer {
@@ -201,7 +201,7 @@
         } catch (e) {
           this.fail(
             (e && (e.stack || e.message || String(e))) +
-            "\n\n请确认本地示范模型存在：" + CONFIG.model + "。可返回示范公寓继续找物。"
+            "\n\n请确认本地示范模型存在：" + CONFIG.model + "。可返回小觅HOME 餐厅场景继续找物。"
           );
         } finally {
           this.loadingPromise = null;

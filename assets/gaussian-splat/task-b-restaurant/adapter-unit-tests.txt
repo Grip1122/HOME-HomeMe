@@ -1,0 +1,101 @@
+Test engine: node:test; same assertions as restaurant-scene.test.js, JSON imports adapted for Node.
+
+MUTATION stale-room-query -> expected nonzero exit 1
+✔ raw point follows one scene quaternion and ground translation (1.8279ms)
+✔ semantic registry has task coordinates, hidden proxies and real surface heights (16.6733ms)
+✖ A registry excludes navigation proxies and follows moved objects across room bounds (8.9787ms)
+✔ attach retains world coordinates with parent transform (8.5688ms)
+✔ negative sizes and removing blocking proxies fail (1.8685ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 158.3942
+
+✖ failing tests:
+
+test at web\src\scene\restaurant-mutant.node.test.mjs:31:1
+✖ A registry excludes navigation proxies and follows moved objects across room bounds (8.9787ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'restaurant'
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/Documents/ChatGPT/%E8%8B%8F%E5%AE%A2%E6%9D%BE/homeme-world-adapter/web/src/scene/restaurant-mutant.node.test.mjs:44:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'restaurant',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+MUTATION incorrect-furniture-box -> expected nonzero exit 1
+✔ raw point follows one scene quaternion and ground translation (1.9209ms)
+✔ semantic registry has task coordinates, hidden proxies and real surface heights (15.7724ms)
+✖ A registry excludes navigation proxies and follows moved objects across room bounds (8.1139ms)
+✔ attach retains world coordinates with parent transform (6.6331ms)
+✔ negative sizes and removing blocking proxies fail (1.6875ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 156.1788
+
+✖ failing tests:
+
+test at web\src\scene\restaurant-mutant.node.test.mjs:31:1
+✖ A registry excludes navigation proxies and follows moved objects across room bounds (8.1139ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      -2.564851494614996,
+      -3.393129189767248,
+  +   -1.8107770009981168,
+  -   -1.6107770009981168,
+      -2.4090370533897865
+    ]
+  
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/Documents/ChatGPT/%E8%8B%8F%E5%AE%A2%E6%9D%BE/homeme-world-adapter/web/src/scene/restaurant-mutant.node.test.mjs:38:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ -2.564851494614996, -3.393129189767248, -1.8107770009981168, -2.4090370533897865 ],
+    expected: [ -2.564851494614996, -3.393129189767248, -1.6107770009981168, -2.4090370533897865 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+ORIGINAL (never edited) -> exit 0
+✔ raw point follows one scene quaternion and ground translation (1.8758ms)
+✔ semantic registry has task coordinates, hidden proxies and real surface heights (15.6775ms)
+✔ A registry excludes navigation proxies and follows moved objects across room bounds (7.8998ms)
+✔ attach retains world coordinates with parent transform (7.7295ms)
+✔ negative sizes and removing blocking proxies fail (1.4764ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 152.0006

@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "schema_errors": [],
+  "logical_errors": [],
+  "semantic_furniture": 63,
+  "navigation_proxy_rectangles": 99,
+  "proxy_overlap_pairs": [],
+  "conservative_outward_rounding_step_m": 0.000244140625,
+  "source_quantized_union_area_xz": 92.82713651657104,
+  "proxy_union_area_xz": 92.82713651657104,
+  "quantized_union_area_preserved": true,
+  "grid_cells": 2720,
+  "blocked_cells_radius025": 2027,
+  "reachable_cells": 681,
+  "unreachable_free_cells": 12,
+  "placements": [
+    {
+      "id": "cup_red",
+      "on": "table_01",
+      "nearest_reachable_distance_m": 0.6204052398273255,
+      "basis": "New virtual task object intentionally placed on inset true four-point tabletop; not claimed present in scan"
+    },
+    {
+      "id": "bottle_green",
+      "on": "table_03",
+      "nearest_reachable_distance_m": 0.58417235003755,
+      "basis": "New virtual task object intentionally placed on inset true four-point tabletop; not claimed present in scan"
+    },
+    {
+      "id": "remote_black",
+      "on": "long_table_01",
+      "nearest_reachable_distance_m": 0.43176671801556843,
+      "basis": "New virtual task object intentionally placed on inset true four-point tabletop; not claimed present in scan"
+    },
+    {
+      "id": "keys_yellow",
+      "on": "table_05",
+      "nearest_reachable_distance_m": 0.65708078664681,
+      "basis": "New virtual task object intentionally placed on inset true four-point tabletop; not claimed present in scan"
+    },
+    {
+      "id": "phone_white",
+      "on": "table_07",
+      "nearest_reachable_distance_m": 0.6380459575191327,
+      "basis": "New virtual task object intentionally placed on inset true four-point tabletop; not claimed present in scan"
+    },
+    {
+      "id": "notebook_orange",
+      "on": "table_09",
+      "nearest_reachable_distance_m": 0.5782523897696362,
+      "basis": "New virtual task object intentionally placed on inset true four-point tabletop; not claimed present in scan"
+    },
+    {
+      "id": "book_blue",
+      "on": "table_10",
+      "nearest_reachable_distance_m": 0.6370329529054285,
+      "basis": "New virtual task object intentionally placed on inset true four-point tabletop; not claimed present in scan"
+    },
+    {
+      "id": "glasses_black",
+      "on": "counter_01",
+      "nearest_reachable_distance_m": 0.8368153911422447,
+      "basis": "New virtual task object intentionally placed on inset true four-point tabletop; not claimed present in scan"
+    }
+  ],
+  "negative_checks": [
+    {
+      "mutation": "narrow_door",
+      "caught": true,
+      "expected_category": "门洞过窄",
+      "errors": [
+        "门洞过窄: mutation_door 宽 0.8 < 1.0"
+      ],
+      "scope": "temporary test copy only; not in delivery layout"
+    },
+    {
+      "mutation": "object_outside_table",
+      "caught": true,
+      "expected_category": "够不着",
+      "errors": [
+        "物体 cup_red 不在 table_01 台面范围内",
+        "物体 cup_red 够不着：最近可站格距 89.42 m > 1.0 m"
+      ],
+      "scope": "temporary test copy only; not in delivery layout"
+    },
+    {
+      "mutation": "duplicate_alias",
+      "caught": true,
+      "expected_category": "物体词重名",
+      "errors": [
+        "物体词重名: 红色水杯 (cup_red / bottle_green)"
+      ],
+      "scope": "temporary test copy only; not in delivery layout"
+    }
+  ],
+  "source_checker_sha256": "a0117d9f948b2bcd6190bfd9389b9e4275b2da650c965c0d0b3f53a3eb388efa",
+  "source_schema_sha256": "fb0dc569531bf44f508bf7818dfcc03c528b28d9f93d60ca98b1d1b0c0b680a8",
+  "note": "Schema and unchanged upstream logical checks on candidate; does not prove runtime rendering, robot animations, real door passability or unknown wall measurements.",
+  "layout_sha256": "208d214800101ce82ad5d76795cdda683c988a555f7eb63212f19054b8aaebe9",
+  "all_source_rectangles_conservatively_covered": true,
+  "coverage_errors": []
+}

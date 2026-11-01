@@ -1,0 +1,14 @@
+
+ RUN  v5.0.5 D:/黑客松/HOME-HomeMe_PR7/web
+
+ ✓ src/ui/hud.contract.test.js (2 tests) 124ms
+ ✓ src/ui/timeline.test.js (4 tests) 161ms
+ ✓ src/ui/compare.test.js (4 tests) 170ms
+ ✓ src/ui/interaction.test.js (5 tests) 200ms
+ ✓ src/ui/status.test.js (6 tests) 205ms
+
+ Test Files  5 passed (5)
+      Tests  21 passed (21)
+   Start at  13:46:51
+   Duration  1.65s (environment 84%, tests 12%, import 2%, transform 2%)
+EXIT_CODE=0

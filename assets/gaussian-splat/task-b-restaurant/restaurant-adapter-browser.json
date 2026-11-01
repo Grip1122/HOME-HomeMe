@@ -1,0 +1,83 @@
+{
+  "scope": "Existing B preview, real original PLY loaded; actual unmodified A executor performs cross-table find/grab/drop using B world adapter; no new page or main-entry claim.",
+  "browser": "Chrome headless",
+  "gaussians": 999131,
+  "pitch": 45,
+  "isOrthographicCamera": true,
+  "objects": [
+    {
+      "id": "cup_red",
+      "distance_m": 0.6204052398273254
+    },
+    {
+      "id": "bottle_green",
+      "distance_m": 0.58417235003755
+    },
+    {
+      "id": "remote_black",
+      "distance_m": 0.4317667180155685
+    },
+    {
+      "id": "keys_yellow",
+      "distance_m": 0.65708078664681
+    },
+    {
+      "id": "phone_white",
+      "distance_m": 0.6380459575191327
+    },
+    {
+      "id": "notebook_orange",
+      "distance_m": 0.5782523897696362
+    },
+    {
+      "id": "book_blue",
+      "distance_m": 0.6370329529054285
+    },
+    {
+      "id": "glasses_black",
+      "distance_m": 0.8368153911422448
+    }
+  ],
+  "execution": {
+    "result": {
+      "ok": true,
+      "reason": null,
+      "steps": 3
+    },
+    "steps": [
+      {
+        "taskId": "t1",
+        "index": 0,
+        "action": "find",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 4000
+      },
+      {
+        "taskId": "t1",
+        "index": 1,
+        "action": "grab",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 633
+      },
+      {
+        "taskId": "t1",
+        "index": 2,
+        "action": "drop",
+        "target": "cup_red",
+        "ok": true,
+        "ms": 7500
+      }
+    ],
+    "final_parent": "furniture:table_03",
+    "final_world": [
+      -6.461551146277263,
+      0.8006919172406197,
+      -0.47673670053004824
+    ],
+    "holding": null,
+    "simulated_seconds": 13.133333333333297
+  },
+  "page_errors": []
+}

@@ -1,0 +1,51 @@
+{
+  "asset": {
+    "name": "scene.ply",
+    "sha256": "db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28",
+    "splat_count": 999131
+  },
+  "release_url": "https://github.com/Grip1122/HOME-HomeMe/releases/download/splat-restaurant-v1/scene.ply",
+  "frame": {
+    "from": "accepted editor-aligned world",
+    "to": "proposed layout world",
+    "yaw_degrees": -25.448004826759416,
+    "up": "+Y",
+    "unit": "metres_nominal_scale1",
+    "source_to_layout": {
+      "x": "0.9029755958520769 * oldX + -0.4296918352675399 * oldZ",
+      "y": "oldY + 0.017037947475910184",
+      "z": "0.4296918352675399 * oldX + 0.9029755958520769 * oldZ"
+    },
+    "raw_ply_entity_transform": {
+      "rotation_order": "Ry(yaw) * Rz(180deg)",
+      "quaternion_xyzw": [
+        -0.22025485709505147,
+        0,
+        0.9754423601249017,
+        0
+      ],
+      "position": [
+        0,
+        0.06703794747591019,
+        0
+      ],
+      "scale": 1
+    },
+    "note": "Rigid yaw and ground translation applied consistently to whole Gaussian entity, all annotation vertices and world-coordinate consumers. Does not shrink source footprints. Requires a new project integration screenshot before adoption."
+  },
+  "display_cutaway": {
+    "enabled": true,
+    "maximum_layout_y": 1.16703794747591
+  },
+  "camera": {
+    "projection": "orthographic",
+    "elevation_degrees": 45,
+    "rotation_locked": true,
+    "zoom_limits": [
+      0.7,
+      1.5
+    ]
+  },
+  "layout_file": "/layouts/layout_restaurant.json",
+  "runtime_status": "candidate_pending_project_integration"
+}
