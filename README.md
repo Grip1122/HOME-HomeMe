@@ -27,6 +27,15 @@ py -3.11 scripts/start_xiaomi_home.py
 
 页面会展示规划后的动作、机器人执行状态和日志保存结果。右上角“空间记忆体验”可进入母版交互界面；其中“查看餐厅实景空间”加载随仓库交付的高斯溅射模型。
 
+## VR 公网体验
+
+可直接在浏览器打开餐厅 VR 展示：
+
+- **体验链接**：https://time-continued-replacement-trigger.trycloudflare.com/vr
+- **访问密码**：`CF4qyMOxTVRlLTRzuf4fYplZPhXVHNxKqMsp1XDZNWM`
+
+该链接通过临时公网隧道提供，地址或访问状态可能随本地服务和隧道重启而变化；用于演示体验，不替代仓库内的本地一键启动方式。
+
 ## 当前能力
 
 | 能力 | 状态 | 说明 |
