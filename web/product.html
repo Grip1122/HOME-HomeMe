@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:," />
+<title>小觅 · 餐厅产品闭环</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #070b11; overflow: hidden; font-family: "Microsoft YaHei", system-ui, sans-serif; }
+  #scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  #ops { position: fixed; left: 50%; top: 64px; transform: translateX(-50%); z-index: 40; display: flex; gap: 8px; align-items: center; }
+  #ops button { padding: 6px 12px; border-radius: 10px; border: 1px solid #c94d28; background: #fffaf3; color: #2b211b; cursor: pointer; font-size: 12px; }
+  #ops button:disabled { opacity: .45; cursor: default; }
+  #banner { position: fixed; left: 50%; top: 100px; transform: translateX(-50%); z-index: 41; padding: 8px 14px; border-radius: 10px; font-size: 12px; display: none; max-width: 70vw; }
+  #banner.err { display: block; background: #c75b4a; color: #fff; }
+  #banner.ok { display: block; background: #3e9b6d; color: #fff; }
+  #banner button { margin-left: 10px; }
+  #fatal { position: fixed; inset: 0; z-index: 99; background: #200; color: #fff; padding: 40px; white-space: pre-wrap; display: none; }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="ops">
+  <button id="btn-cancel" type="button" disabled>取消当前任务</button>
+  <button id="btn-fail" type="button">演示：执行失败</button>
+</div>
+<div id="banner"></div>
+<pre id="fatal"></pre>
+<script type="module" src="/src/product/main.js"></script>
+</body>
+</html>
