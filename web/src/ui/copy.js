@@ -1,14 +1,14 @@
 /* global window */
 (function (global) {
   "use strict";
-  const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const UI = (global.XiaomiHomeUI = global.XiaomiHomeUI || {});
 
   UI.COPY = {
     brand: {
-      title: "小方 HomeTwin",
-      robotName: "小方",
-      mark: "方",
-      subtitle: "虚拟孪生家庭 · 具身找物管家",
+      title: "小觅HOME",
+      robotName: "小觅",
+      mark: "觅",
+      subtitle: "虚拟孪生空间 · 具身找物管家",
     },
     pills: {
       online: "本机在线",
@@ -26,7 +26,7 @@
       title: "空间记忆",
       sub: "扫描后自动写入 · 低置信度会触发复扫",
       emptyTitle: "还没有空间记忆",
-      emptySub: "让小方扫描全屋后开始",
+      emptySub: "让小觅扫描空间后开始",
       footLeft: "本机 SQLite",
       footRight: "0 KB 上云",
       unknownRoom: "未知房间",
@@ -107,7 +107,7 @@
     },
     chat: {
       welcome: "我在呢。要找什么？直接说颜色或物品名就好。",
-      placeholder: "告诉小方要找什么，例如：红色水杯在哪？",
+      placeholder: "告诉小觅要找什么，例如：红色水杯在哪？",
       ariaInput: "输入找物指令",
       send: "发送",
       mic: "语音输入",
@@ -115,7 +115,7 @@
       suggestLabel: "试着说",
       avatarUser: "我",
       avatarRobot: "方",
-      busy: "小方正在执行上一个任务，请稍等",
+      busy: "小觅正在执行上一个任务，请稍等",
       planRejected: "我没能理解这条指令：",
       suggestions: [
         { label: "找红色水杯", query: "帮我找红色水杯" },

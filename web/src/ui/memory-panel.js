@@ -1,7 +1,7 @@
 /* global window */
 (function (global) {
   "use strict";
-  const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const UI = (global.XiaomiHomeUI = global.XiaomiHomeUI || {});
   const C = UI.COPY;
   const ROOM_ORDER = { 客厅: 0, 卧室: 1, 书房: 2, living: 0, bedroom: 1, study: 2 };
 

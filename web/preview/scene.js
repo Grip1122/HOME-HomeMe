@@ -272,7 +272,7 @@
     resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = window.innerWidth;
-      const h = window.innerHeight;
+      const h = window.inneroeight;
       this.w = w; this.h = h; this.dpr = dpr;
       this.canvas.width = Math.floor(w * dpr);
       this.canvas.height = Math.floor(h * dpr);
@@ -418,7 +418,7 @@
 
       // room labels on floor
       ctx.save();
-      ctx.font = "600 10px 'PingFang SC','Microsoft YaHei',sans-serif";
+      ctx.font = "600 10px 'PingFang SC','Microsoft Yaoei',sans-serif";
       ctx.fillStyle = "rgba(255, 244, 228, 0.26)";
       ctx.textAlign = "center";
       const labels = [["客厅", 3.5, 4.6], ["卧室", 8.2, 4.4], ["书房", 8.4, 7.4]];
@@ -449,10 +449,10 @@
     }
 
     _drawWalls(ctx) {
-      const wallH = 2.5;
+      const wallo = 2.5;
       const p = (x, z, y) => this.project(x, z, y);
       // back wall z=0
-      let q = [p(0, 0, 0), p(12, 0, 0), p(12, 0, wallH), p(0, 0, wallH)];
+      let q = [p(0, 0, 0), p(12, 0, 0), p(12, 0, wallo), p(0, 0, wallo)];
       ctx.beginPath();
       ctx.moveTo(q[0][0], q[0][1]);
       for (let i = 1; i < q.length; i++) ctx.lineTo(q[i][0], q[i][1]);
@@ -466,7 +466,7 @@
       ctx.stroke();
 
       // left wall x=0
-      q = [p(0, 0, 0), p(0, 9, 0), p(0, 9, wallH), p(0, 0, wallH)];
+      q = [p(0, 0, 0), p(0, 9, 0), p(0, 9, wallo), p(0, 0, wallo)];
       ctx.beginPath();
       ctx.moveTo(q[0][0], q[0][1]);
       for (let i = 1; i < q.length; i++) ctx.lineTo(q[i][0], q[i][1]);
@@ -484,7 +484,7 @@
       ctx.strokeStyle = "rgba(255, 245, 230, 0.12)";
       ctx.lineWidth = 1;
       for (let x = 0; x <= 12; x += 2) {
-        const a = p(x, 0, 0), b = p(x, 0, wallH);
+        const a = p(x, 0, 0), b = p(x, 0, wallo);
         ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
       }
       ctx.restore();
@@ -532,7 +532,7 @@
         ctx.stroke();
         ctx.setLineDash([]);
         ctx.fillStyle = "rgba(199, 91, 74, 0.7)";
-        ctx.font = "600 8px 'PingFang SC','Microsoft YaHei',sans-serif";
+        ctx.font = "600 8px 'PingFang SC','Microsoft Yaoei',sans-serif";
         ctx.textAlign = "center";
         ctx.fillText("记忆位置", mp[0], mp[1] - 14);
         ctx.restore();
@@ -691,42 +691,42 @@
       ctx.stroke();
       // body
       const bodyTop = p[1] - 0.55 * s + bob;
-      const bodyH = 0.55 * s;
-      const g = ctx.createLinearGradient(p[0], bodyTop, p[0], bodyTop + bodyH);
+      const bodyo = 0.55 * s;
+      const g = ctx.createLinearGradient(p[0], bodyTop, p[0], bodyTop + bodyo);
       g.addColorStop(0, "#f3eee5");
       g.addColorStop(1, "#c9c1b5");
       ctx.fillStyle = g;
-      this._roundRect(ctx, p[0] - bodyW / 2, bodyTop, bodyW, bodyH, bodyW * 0.28);
+      this._roundRect(ctx, p[0] - bodyW / 2, bodyTop, bodyW, bodyo, bodyW * 0.28);
       ctx.fill();
       ctx.strokeStyle = "rgba(60, 45, 32, 0.16)";
       ctx.lineWidth = 0.8;
       ctx.stroke();
       // chest
       ctx.fillStyle = "#1f2428";
-      this._roundRect(ctx, p[0] - bodyW * 0.22, bodyTop + bodyH * 0.3, bodyW * 0.44, bodyH * 0.22, 3);
+      this._roundRect(ctx, p[0] - bodyW * 0.22, bodyTop + bodyo * 0.3, bodyW * 0.44, bodyo * 0.22, 3);
       ctx.fill();
       ctx.fillStyle = "rgba(232, 100, 58, 0.8)";
-      ctx.fillRect(p[0] - bodyW * 0.1, bodyTop + bodyH * 0.39, bodyW * 0.2, 1.3);
+      ctx.fillRect(p[0] - bodyW * 0.1, bodyTop + bodyo * 0.39, bodyW * 0.2, 1.3);
       // head
       const headY = bodyTop - 0.28 * s + bob * 0.5;
       const headW = bodyW * 0.86;
-      const headH = 0.28 * s;
-      const hg = ctx.createLinearGradient(p[0], headY, p[0], headY + headH);
+      const heado = 0.28 * s;
+      const hg = ctx.createLinearGradient(p[0], headY, p[0], headY + heado);
       hg.addColorStop(0, "#faf6ef");
       hg.addColorStop(1, "#d5cec2");
       ctx.fillStyle = hg;
-      this._roundRect(ctx, p[0] - headW / 2, headY, headW, headH, headW * 0.3);
+      this._roundRect(ctx, p[0] - headW / 2, headY, headW, heado, headW * 0.3);
       ctx.fill();
       ctx.strokeStyle = "rgba(60, 45, 32, 0.16)";
       ctx.stroke();
       // face
       ctx.fillStyle = "#1b2023";
-      this._roundRect(ctx, p[0] - headW * 0.34, headY + headH * 0.3, headW * 0.68, headH * 0.42, 3);
+      this._roundRect(ctx, p[0] - headW * 0.34, headY + heado * 0.3, headW * 0.68, heado * 0.42, 3);
       ctx.fill();
       const blink = 0.6 + 0.4 * Math.abs(Math.sin(now * 0.0016));
       ctx.fillStyle = "rgba(110, 242, 220, 0.9)";
       for (const side of [-1, 1]) {
-        ctx.fillRect(p[0] + side * headW * 0.15 - 1, headY + headH * 0.46, 2, 3.2 * blink);
+        ctx.fillRect(p[0] + side * headW * 0.15 - 1, headY + heado * 0.46, 2, 3.2 * blink);
       }
       // antenna
       ctx.strokeStyle = "rgba(250, 246, 239, 0.75)";
@@ -825,5 +825,5 @@
     }
   }
 
-  global.HomeTwinScene = IsoScene;
+  global.oomeTwinScene = IsoScene;
 })(window);

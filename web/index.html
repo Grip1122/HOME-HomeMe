@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="data:," />
-<title>小觅 M1 · 空间记忆找物系统</title>
-<meta name="description" content="HOME 小觅：沿用 robot-find 的本地空间记忆找物演示。场景与机器人为待替换示范素材。" />
+<title>小觅HOME · 空间记忆找物系统</title>
+<meta name="description" content="小觅HOME：餐厅高斯溅射空间中的本地空间记忆找物演示。" />
 </head>
 <body>
 <canvas id="scene"></canvas>
@@ -22,7 +22,7 @@
         </svg>
       </div>
       <div class="brand-text">
-        <strong>小觅 M1</strong>
+        <strong>小觅HOME</strong>
         <span>空间记忆 · 具身找物系统</span>
       </div>
     </div>
@@ -98,7 +98,7 @@
         <span class="avatar-ring"></span>
       </div>
       <div class="robot-meta">
-        <div class="robot-name">小觅 M1 <span class="online">在线</span></div>
+        <div class="robot-name">小觅HOME <span class="online">在线</span></div>
         <div class="robot-state" id="robot-state">待机 · 等待指令</div>
       </div>
       <div class="battery"><i></i><span>86%</span></div>
@@ -202,7 +202,7 @@
       <div class="intro-kicker"><i></i>EMBODIED SPATIAL MEMORY · 2026</div>
       <h1>让家，记得<br /><em>每一件东西。</em></h1>
       <p class="intro-lead">
-        小觅 M1 扫描全屋空间，用 3D Gaussian Splatting 建立物品记忆，<br />
+小觅HOME 扫描餐厅空间，用 3D Gaussian Splatting 建立物品记忆，<br />
         加密写入机身 SD 卡。找不到东西时，问它就好。
       </p>
       <div class="intro-features">
@@ -234,7 +234,7 @@
         </button>
       </div>
       <div class="intro-note">
-        <span class="pulse-dot"></span>本地演示 · 场景 / 机器人待替换 · 尚未连接 HOME 后端
+        <span class="pulse-dot"></span>本地演示 · 餐厅高斯溅射实景已接入 · 独立于产品后端
       </div>
     </div>
     <div class="intro-spec">
@@ -252,11 +252,11 @@
       <div class="modal-kicker">DEMO SCRIPT / 现场演示</div>
       <h2>三分钟演示脚本</h2>
       <ol class="script-list">
-        <li><b>建立记忆</b><span>点击「全屋扫描」，机器人依次进入客厅、卧室、书房，高斯点沿扫描波前生长并写入 SD 卡。</span></li>
+        <li><b>建立记忆</b><span>点击「全屋扫描」，小觅HOME建立空间记忆，高斯点沿扫描波前生长并写入 SD 卡。</span></li>
         <li><b>属性找物</b><span>问「我的红色马克杯在哪？」，系统在端侧解析颜色/类别，直接检索记忆并导航，高亮目标。</span></li>
-        <li><b>记忆过期</b><span>点击「演示：物品被移动」后再找一次，机器人到达旧位置扑空、置信度下降、自动全屋复扫并更新记忆。</span></li>
+        <li><b>记忆过期</b><span>点击「演示：物品被移动」后再找一次，小觅HOME到达旧位置扑空、置信度下降、自动复扫并更新记忆。</span></li>
         <li><b>隐私与离线</b><span>切换到「高斯」视图查看纯泼溅记忆；SD 卡面板显示加密包大小、校验和与 0 KB 上云。</span></li>
-        <li><b>餐厅实景</b><span>点击顶栏方块图标或首页「查看餐厅实景空间」，加载 976,476 个真实 3DGS 点；拖拽查看餐厅，返回后机器人演示继续。</span></li>
+        <li><b>餐厅实景</b><span>点击顶栏方块图标或首页「查看餐厅实景空间」，加载 976,476 个真实 3DGS 点；拖拽查看餐厅，返回后小觅HOME 演示继续。</span></li>
       </ol>
       <div class="modal-kicker" style="margin-top:22px">ACCEPTANCE API / 控制台验收</div>
       <pre class="code-block">await window.__demo.run("我的红色马克杯在哪？");
@@ -284,7 +284,7 @@ window.__demo.getSDCard();     // 本地加密包信息</pre>
     <div class="rt-brand">
       <div class="rt-mark">◈</div>
       <div>
-        <strong>小觅 M1 · 餐厅实景</strong>
+        <strong>小觅HOME · 餐厅实景</strong>
         <small>3D GAUSSIAN SPLATTING · 空间模型</small>
       </div>
     </div>
@@ -296,7 +296,7 @@ window.__demo.getSDCard();     // 本地加密包信息</pre>
     </div>
     <div class="rt-actions">
       <button class="rt-btn" id="rt-reset" type="button">重置视角</button>
-      <button class="rt-btn primary" id="rt-close" type="button">返回示范公寓</button>
+      <button class="rt-btn primary" id="rt-close" type="button">返回小觅HOME</button>
     </div>
   </header>
 
@@ -314,10 +314,10 @@ window.__demo.getSDCard();     // 本地加密包信息</pre>
   <div class="rt-error hidden" id="rt-error">
     <h2>实景模型加载失败</h2>
     <pre id="rt-error-msg"></pre>
-    <p>请通过本地预览服务打开；餐厅模型为待替换素材，需要放在 <b>web/public/robot-find/models/restaurant.splat</b>。模型文件不入 Git，缺失时示范公寓仍可完整运行。</p>
+    <p>请通过本地预览服务打开，并确认餐厅模型位于 <b>web/public/robot-find/models/restaurant.splat</b>。</p>
     <div class="rt-error-actions">
       <button id="rt-retry" type="button">重试</button>
-      <button id="rt-close-error" type="button">返回示范公寓</button>
+      <button id="rt-close-error" type="button">返回小觅HOME</button>
     </div>
   </div>
 

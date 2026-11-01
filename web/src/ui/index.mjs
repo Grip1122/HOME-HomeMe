@@ -1,4 +1,4 @@
-/* HomeTwin Task C · ESM 入口
+/* 小觅HOME · ESM 入口
  * 团队 Vite 项目可直接：
  *   import { createHud } from "./ui/index.mjs";
  *   import "./ui/hud.css";
@@ -15,7 +15,7 @@ import "./voice.js";
 import "./director.js";
 import "./hud.js";
 
-const UI = window.HomeTwinUI;
+const UI = window.XiaomiHomeUI;
 
 export const createHud = UI.createHud;
 export const version = UI.version;

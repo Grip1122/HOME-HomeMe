@@ -1,7 +1,7 @@
 /* global window */
 (function (global) {
   "use strict";
-  const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const UI = (global.XiaomiHomeUI = global.XiaomiHomeUI || {});
   const C = UI.COPY;
 
   function nowLabel() {

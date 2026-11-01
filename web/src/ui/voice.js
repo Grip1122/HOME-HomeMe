@@ -1,7 +1,7 @@
 /* global window */
 (function (global) {
   "use strict";
-  const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const UI = (global.XiaomiHomeUI = global.XiaomiHomeUI || {});
   const C = UI.COPY;
 
   class Voice {
@@ -30,7 +30,7 @@
 
     _loadPref() {
       try {
-        this.enabled = localStorage.getItem("hometwin.voice") === "on";
+        this.enabled = localStorage.getItem("xiaomi-home.voice") === "on";
       } catch (e) {
         this.enabled = false;
       }
@@ -69,7 +69,7 @@
     setEnabled(v) {
       this.enabled = !!v;
       try {
-        localStorage.setItem("hometwin.voice", this.enabled ? "on" : "off");
+        localStorage.setItem("xiaomi-home.voice", this.enabled ? "on" : "off");
       } catch (e) {
         // ignore
       }

@@ -161,7 +161,7 @@
 
   const rawBus = new Bus();
   const bus = createPreviewBus(rawBus);
-  const scene = new window.HomeTwinScene(document.getElementById("ht-scene"));
+  const scene = new window.XiaomiHomeScene(document.getElementById("ht-scene"));
   const root = document.getElementById("ht-root");
 
   const META = [
@@ -250,13 +250,13 @@
     const lm = LAYOUT_META.A[m.id] || {};
     catalog[m.id] = { name: m.name, color: m.color, furniture: lm.furniture || "" };
   });
-  const hud = window.HomeTwinUI.createHud({
+  const hud = window.XiaomiHomeUI.createHud({
     bus,
     root,
     catalog,
     memoryEnabled: true,
     layoutId: "A",
-    welcomeText: window.HomeTwinUI.COPY.chat.welcome,
+    welcomeText: window.XiaomiHomeUI.COPY.chat.welcome,
   });
   rawBus.hud = hud;
 
@@ -363,7 +363,7 @@
 
   function beginTask(query, source, total) {
     if (busy) {
-      toast("小方正在执行上一个任务，请稍等", "warn");
+      toast("小觅正在执行上一个任务，请稍等", "warn");
       return null;
     }
     runId += 1;
@@ -856,7 +856,7 @@
   async function handleQuery(text) {
     const t = normalize(text);
     if (!t) return;
-    if (busy) { toast("小方正在执行上一个任务，请稍等", "warn"); return; }
+    if (busy) { toast("小觅正在执行上一个任务，请稍等", "warn"); return; }
     if (/对比|训练前后|前后差/.test(t)) return runCompare();
     if (/断网|离线/.test(t)) return runOffline();
     if (/布局/.test(t)) return runLayoutB();

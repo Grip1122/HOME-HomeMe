@@ -8,10 +8,10 @@ import vm from "node:vm";
 import { describe, it } from "vitest";
 
 const source = readFileSync(new URL("./memory.js", import.meta.url), "utf8");
-const DEFAULT_SCENE = "robot-find-apartment-v1";
+const DEFAULT_SCENE = "xiaomi-home-restaurant-v1";
 const copy = (value) => JSON.parse(JSON.stringify(value));
-const packKey = (sceneId = DEFAULT_SCENE) => "robot-find." + encodeURIComponent(sceneId) + ".sdcard.pack";
-const keyKey = (sceneId = DEFAULT_SCENE) => "robot-find." + encodeURIComponent(sceneId) + ".deviceKey";
+const packKey = (sceneId = DEFAULT_SCENE) => "xiaomi-home." + encodeURIComponent(sceneId) + ".sdcard.pack";
+const keyKey = (sceneId = DEFAULT_SCENE) => "xiaomi-home." + encodeURIComponent(sceneId) + ".deviceKey";
 
 function createStorage(options = {}) {
   const values = new Map();
@@ -71,7 +71,7 @@ function createHarness({ storage = createStorage(), sceneId, crypto = webcrypto,
     URL: {
       createObjectURL(blob) {
         downloads.push(blob);
-        return "blob:robot-find-memory";
+        return "blob:xiaomi-home-memory";
       },
       revokeObjectURL() {},
     },
@@ -217,7 +217,7 @@ describe("SDCard 本地加密记忆包", () => {
     assert.equal((await first.sd.load()).memory.objects.cup.name, "场景一");
     assert.equal((await second.sd.load()).memory.objects.cup.name, "场景二");
     for (const [key, value] of Object.entries(legacy)) assert.equal(storage.getItem(key), value);
-    assert.equal([...storage.values.keys()].some((key) => key.startsWith("robot-find.") && key.includes(".meta")), false);
+    assert.equal([...storage.values.keys()].some((key) => key.startsWith("xiaomi-home.") && key.includes(".meta")), false);
   });
 
   it("实例创建时读取 sceneId，之后的配置切换不串写已创建的卡", async () => {

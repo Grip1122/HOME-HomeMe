@@ -1,7 +1,7 @@
 /* global window, document */
 (function (global) {
   "use strict";
-  const UI = (global.HomeTwinUI = global.HomeTwinUI || {});
+  const UI = (global.XiaomiHomeUI = global.XiaomiHomeUI || {});
   const C = UI.COPY;
 
   const ICON_MIC =
@@ -156,7 +156,7 @@
     constructor(opts) {
       opts = opts || {};
       if (!opts.bus) throw new Error("createHud requires { bus }");
-      if (!C) throw new Error("HomeTwinUI.copy 未加载");
+      if (!C) throw new Error("XiaomiHomeUI.copy 未加载");
       this.bus = opts.bus;
       this.options = opts;
       this.subs = [];
@@ -180,7 +180,7 @@
     _checkDeps() {
       const need = ["Chat", "Status", "MemoryPanel", "Timeline", "Compare", "Voice", "Director"];
       const missing = need.filter((k) => !UI[k]);
-      if (missing.length) throw new Error("HomeTwinUI 缺少组件: " + missing.join(", "));
+      if (missing.length) throw new Error("XiaomiHomeUI 缺少组件: " + missing.join(", "));
     }
 
     _components() {
