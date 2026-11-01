@@ -1,5 +1,7 @@
 import * as THREE from 'three';
+import '../robot-find/styles.css';
 import '../ui/hud.css';
+import './robot-find-theme.css';
 import { createHud } from '../ui/index.mjs';
 import { createRestaurantScene } from '../scene/restaurant-scene.js';
 import { createEventBus } from '../core/eventbus.js';
@@ -11,11 +13,91 @@ import { createRobot } from '../robot/robot.js';
 import { createExecutor } from '../robot/executor.js';
 import { buildGrid } from '../nav/route.js';
 import { createProductLoop } from './loop.js';
+import { config as robotFindConfig } from '../robot-find/config.js';
+
+async function loadDisplayRobot(url) {
+  const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
+  const gltf = await new GLTFLoader().loadAsync(url);
+  const root = gltf.scene;
+  // The delivered FBX has a single untextured material. Preserve its geometry while
+  // giving the shell a restrained mint-metal finish; directional lights reveal joints.
+  root.traverse((object) => {
+    if (!object.isMesh) return;
+    object.material = new THREE.MeshStandardMaterial({
+      color: 0x6eaa9d,
+      metalness: 0.32,
+      roughness: 0.38,
+      flatShading: false,
+    });
+    object.castShadow = true;
+    object.receiveShadow = true;
+  });
+  // Model forward is +Z, matching robot.js yaw = atan2(dx, dz).
+  root.rotation.y = Math.PI;
+  root.updateMatrixWorld(true);
+  const bounds = new THREE.Box3().setFromObject(root);
+  const height = bounds.getSize(new THREE.Vector3()).y;
+  if (!Number.isFinite(height) || height <= 0) throw new Error('真实机器人模型尺寸无效');
+  root.scale.setScalar(0.9 / height);
+  root.updateMatrixWorld(true);
+  const grounded = new THREE.Box3().setFromObject(root);
+  const center = grounded.getCenter(new THREE.Vector3());
+  root.position.x -= center.x;
+  root.position.z -= center.z;
+  root.position.y -= grounded.min.y;
+  return createRobot({ root });
+}
+
+async function loadRestaurantViewer(rootElement, camera) {
+  const Lib = window['Gaussian Splats 3D'];
+  if (!Lib) throw new Error('餐厅实景渲染库未加载');
+  const real = robotFindConfig.realtwin;
+  const calibration = await getJson(`${import.meta.env.BASE_URL}scene-data/restaurant_scene_config.json`);
+  // restaurant.splat uses the same raw-to-sim base rotation as robot-find. Apply the
+  // reviewed layout yaw on top so the visible room shares layout_restaurant.json's frame.
+  const baseRotation = new THREE.Quaternion(...real.rotation);
+  const layoutYaw = new THREE.Quaternion().setFromAxisAngle(
+    new THREE.Vector3(0, 1, 0), THREE.MathUtils.degToRad(calibration.frame.yaw_degrees));
+  const rotation = layoutYaw.multiply(baseRotation);
+  const viewer = new Lib.Viewer({
+    rootElement,
+    camera,
+    selfDrivenMode: true,
+    useBuiltInControls: false,
+    sharedMemoryForWorkers: false,
+    gpuAcceleratedSort: false,
+    integerBasedSort: false,
+    antialiased: true,
+    maxScreenSpaceSplatSize: 64,
+    kernel2DSize: 0.3,
+    cameraUp: [0, 1, 0],
+    initialCameraPosition: real.camera.position,
+    initialCameraLookAt: real.camera.lookAt,
+    showLoadingUI: false,
+    ignoreDevicePixelRatio: true,
+  });
+  await viewer.addSplatScene(real.model, {
+    rotation: rotation.toArray(),
+    position: calibration.frame.raw_ply_entity_transform.position,
+    splatAlphaRemovalThreshold: 12,
+    showLoadingUI: false,
+  });
+  const updateSplatMesh = viewer.updateSplatMesh.bind(viewer);
+  viewer.updateSplatMesh = () => {
+    updateSplatMesh();
+    if (viewer.splatMesh?.material?.uniforms?.orthoZoom) {
+      viewer.splatMesh.material.uniforms.orthoZoom.value =
+        camera.projectionMatrix.elements[5] * viewer.renderer.domElement.height / 2;
+    }
+  };
+  viewer.start();
+  return viewer;
+}
 
 const $ = (id) => document.getElementById(id);
 const banner = $('banner');
 function show(kind, text, action) {
-  banner.className = kind;
+  banner.className = `toast ${kind}`;
   banner.textContent = text;
   if (action) {
     const b = document.createElement('button');
@@ -38,63 +120,72 @@ async function boot() {
     getJson(`${base}scene-data/restaurant_semantics.json`),
   ]);
   const health = await fetch('/api/health').then((r) => r.ok, () => false);
-  if (!health) show('err', '后端 /api 不可达：指令将无法规划，日志无法保存（不会降级为 mock）。请先启动 scripts/run_home.py');
+  if (!health) show('err', '后端 /api 不可达：指令将无法规划，日志无法保存（不会降级为 mock）。请使用“一键启动”或先启动 scripts/run_home.py。');
+  document.addEventListener('click', async (event) => {
+    if (event.target.closest('#btn-experience')) location.href = `${base}experience.html`;
+    if (event.target.closest('#btn-health')) {
+      const online = await fetch('/api/health').then((r) => r.ok, () => false);
+      show(online ? 'ok' : 'err', online ? '本地规划、记忆与日志服务已连接' : '服务未连接：请使用一键启动后重新打开页面');
+    }
+  });
 
   const canvas = $('scene');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0b1118);
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x334455, 1.2));
-  const camera = new THREE.OrthographicCamera(-10, 10, 7, -7, 0.1, 200);
-  const target = new THREE.Vector3(0.75, 0, 0.5);
-  let zoom = 0.85;
-  function placeCamera() {
-    camera.position.copy(target).add(new THREE.Vector3(0, 12, 12));
-    camera.lookAt(target);
-    camera.zoom = zoom;
-    camera.updateProjectionMatrix();
-  }
-  function resize() {
-    const w = innerWidth, h = innerHeight, a = w / h;
+  scene.add(new THREE.HemisphereLight(0xe9fff9, 0x18372f, 1.25));
+  const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
+  keyLight.position.set(3, 6, 5);
+  scene.add(keyLight);
+  const rimLight = new THREE.DirectionalLight(0x77e8d2, 1.4);
+  rimLight.position.set(-4, 3, -3);
+  scene.add(rimLight);
+  const camera = new THREE.OrthographicCamera(-10, 10, 7, -7, 0.05, 500);
+  let viewer = null;
+  const cameraTarget = new THREE.Vector3(-1, 0.5, -0.4);
+  camera.position.copy(cameraTarget).add(new THREE.Vector3(0, 10, 10));
+  camera.lookAt(cameraTarget);
+  camera.zoom = 1.5;
+  camera.updateProjectionMatrix();
+  function resizeOverlay() {
+    const w = innerWidth, h = innerHeight, aspect = w / h;
     renderer.setSize(w, h);
-    camera.left = -7 * a; camera.right = 7 * a; camera.top = 7; camera.bottom = -7;
-    placeCamera();
+    camera.left = -7 * aspect;
+    camera.right = 7 * aspect;
+    camera.top = 7;
+    camera.bottom = -7;
+    camera.updateProjectionMatrix();
+    if (viewer?.renderer && viewer?.camera) {
+      viewer.renderer.setSize(w, h);
+      viewer.camera.left = camera.left;
+      viewer.camera.right = camera.right;
+      viewer.camera.top = camera.top;
+      viewer.camera.bottom = camera.bottom;
+      viewer.camera.zoom = camera.zoom;
+      viewer.camera.position.copy(camera.position);
+      viewer.camera.lookAt(cameraTarget);
+      viewer.camera.updateProjectionMatrix();
+      viewer.camera.updateMatrixWorld(true);
+    }
   }
-  addEventListener('resize', resize);
-  resize();
-  canvas.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    zoom = Math.max(0.7, Math.min(1.5, zoom * Math.exp(-e.deltaY * 0.001)));
-    placeCamera();
-  }, { passive: false });
+  addEventListener('resize', resizeOverlay);
+  resizeOverlay();
 
   const world = createRestaurantScene({ THREE, layout, semantics });
+  // 任务语义和碰撞仍保留，但不再把代理几何作为可视场景。
+  world.root.visible = false;
   scene.add(world.root);
-  // 可视化碰撞/语义代理（同一 layout 数据，不另造几何）
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(17, 10), new THREE.MeshBasicMaterial({ color: 0x1a232c }));
-  floor.rotation.x = -Math.PI / 2;
-  floor.position.set(0.75, -0.001, 0.5);
-  scene.add(floor);
-  for (const f of layout.furniture) {
-    const m = new THREE.Mesh(new THREE.BoxGeometry(...f.size),
-      new THREE.MeshLambertMaterial({ color: f.surface ? 0x8a5a3a : 0x3a4652, transparent: true, opacity: f.surface ? 0.9 : 0.55 }));
-    m.position.set(f.pos[0] + f.size[0] / 2, f.pos[1] + f.size[1] / 2, f.pos[2] + f.size[2] / 2);
-    scene.add(m);
-  }
+  viewer = await loadRestaurantViewer($('restaurant-live'), camera);
+  show('ok', '真实餐厅空间已加载；任务语义层已与可视画面分离');
 
   const ticker = createTicker();
   const bus = createEventBus({ now: () => performance.now() });
-  const body = new THREE.Group();
-  const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.25, 0.9, 20), new THREE.MeshLambertMaterial({ color: 0xdbe5e6 }));
-  torso.position.y = 0.45;
-  const eye = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.08, 0.05), new THREE.MeshBasicMaterial({ color: 0x5fe3cf }));
-  eye.position.set(0, 0.75, 0.22);
-  body.add(torso, eye);
-  const robot = createRobot({ root: body });
+  const robot = await loadDisplayRobot(`${base}models/robot.glb`);
   const s = layout.rooms[0].scan_point;
   robot.setPose(s[0], s[2], 0);
-  world.root.add(robot.group);
+  // The visible mesh and task executor share the exact same Object3D pose.
+  scene.add(robot.group);
 
   const ctx = { world, layout, ticker, bus, robot, grid: buildGrid(layout), sm: createStateMachine({ bus }),
     memory: createLocalMemory({ bus, enabled: true }), holding: null, handBusy: false, options: {} };
@@ -125,7 +216,7 @@ async function boot() {
   bus.on('plan:request', (p) => {
     if (selfEmit) { selfEmit = false; return; }
     if (loop.busy) { hud.toast('正在执行，请稍候', 'warn'); return; }
-    banner.className = '';
+    banner.className = 'toast hidden';
     loop.run(p.query).then((r) => {
       if (r && r.reason === 'plan_failed') show('err', `规划失败：${r.error}`);
       if (r && r.result && !r.result.ok) {
@@ -165,16 +256,23 @@ async function boot() {
   bus.on('demo:reset', () => location.reload());
 
   let last = performance.now();
-  renderer.setAnimationLoop((now) => {
-    // rAF 时间戳可能早于启动时取的 performance.now()，负 dt 会让 ticker 抛错并停掉整个渲染循环
+  function tick(now) {
+    // 点云餐厅由自身渲染器绘制；透明覆盖层仅渲染真实 GLB 机器人。
     const dt = Math.max(0, Math.min(0.05, (now - last) / 1000));
     last = now;
     ticker.update(dt);
     robot.update(dt);
+    if (viewer.camera) {
+      camera.position.copy(viewer.camera.position);
+      camera.quaternion.copy(viewer.camera.quaternion);
+      camera.updateMatrixWorld();
+    }
     renderer.render(scene, camera);
-  });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 
-  window.__product = { ctx, loop, layout, hud, threeRevision: THREE.REVISION,
+  window.__product = { ctx, loop, layout, hud, viewer, threeRevision: THREE.REVISION,
     state: () => ({ sm: ctx.sm.state, holding: ctx.holding, handBusy: ctx.handBusy, busy: loop.busy,
       cupParent: world.getObject('cup_red').parent?.name ?? null, cupPos: world.worldPos('cup_red') }) };
 }

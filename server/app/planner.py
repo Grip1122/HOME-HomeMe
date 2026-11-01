@@ -31,7 +31,9 @@ def plan_offline(query, index: Index, ctx=None, cache=None):
         if hit:
             resp = {"say": hit["say"], "steps": [dict(s) for s in hit["steps"]], "source": "cache"}
         else:
-            resp = {"say": "我没听懂，可以换个说法吗？", "steps": [], "source": "rule"}
+            resp = rules.try_find(query, index) or {
+                "say": "我没听懂，可以换个说法吗？", "steps": [], "source": "rule"
+            }
 
     # 出口再校验一次：任何来源的 steps 都不允许带着语义错误离开后端
     errs = validate_steps(index, resp["steps"], holding)

@@ -1,53 +1,90 @@
 # 小觅HOME
 
-> **虚拟孪生空间中的具身找物与空间记忆演示**
+> **面向家庭空间的虚拟孪生找物与机器人任务演示**
 
-小觅HOME 是一个面向家庭空间的本地优先演示原型：用户通过自然语言让机器人“小觅”执行扫描、寻找、复核和纠错；系统在浏览器端维护可导出、可清除的空间记忆，并提供餐厅高斯溅射实景查看入口。
+小觅HOME 是一个可在本机直接运行的交互原型。用户用自然语言向机器人“小觅”下达任务；系统根据餐厅布局规划动作、在虚拟场景中执行，并记录任务日志。程序同时提供空间记忆体验与餐厅高斯溅射实景浏览。
 
 - **产品名称**：小觅HOME
 - **机器人名称**：小觅
-- **当前版本**：餐厅实景演示前端（`feat/xiaomi-home-release`）
-- **核心原则**：契约优先、本地优先、演示可复现
+- **默认入口**：餐厅任务程序（规划 → 执行 → 日志）
+- **运行方式**：本地浏览器，无需云端密钥
 
-> 本仓库名称仍为 `hometwin`，仅作为 GitHub 历史地址兼容；产品与所有用户可见文案统一使用“小觅HOME”。
+## 直接使用
 
-## 演示能力
+Windows 下在仓库根目录运行：
 
-| 能力 | 当前状态 | 说明 |
-| --- | --- | --- |
-| 空间扫描与三区记忆 | ✅ | 可建立、检索、导出和清除浏览器本地记忆 |
-| 属性找物与执行反馈 | ✅ | 支持扫描、查找、复核及步骤可视化 |
-| 记忆纠错与过期复扫 | ✅ | 演示层提供纠错和重新扫描流程 |
-| 餐厅高斯溅射实景 | ✅ | 通过独立入口加载 `restaurant.splat` 实景资产 |
-| 后端 `/plan → 执行 → /log` 闭环 | ✅ | 后端模块保留并通过测试；当前母版前端未直接接入产品 API |
-| 餐厅语义导航与找物同屏闭环 | ⚠️ | 餐厅语义/导航数据已保留，尚待与母版找物世界整合 |
-| 移动端完整适配 | ⚠️ | 当前以桌面演示为主，窄屏仅保留基础降级行为 |
-
-## 快速开始
-
-### 1. 后端与契约测试
-
-```bash
-git clone https://github.com/Grip1122/hometwin.git
-cd hometwin
-py -3.11 -m venv .venv
-.venv\Scripts\python -m pip install -r server\requirements.txt
-.venv\Scripts\python -m pytest -q
-.venv\Scripts\python scripts\check_contracts.py --base origin/main
-git config core.hooksPath .githooks
+```powershell
+py -3.11 scripts/start_xiaomi_home.py
 ```
 
-### 2. 前端演示
+首次启动会在项目内创建 `.venv`、安装缺失依赖、构建前端，然后自动打开 `http://127.0.0.1:8000`。后续启动仍使用同一条命令。
 
-```bash
+打开后可以直接输入：
+
+```text
+帮我把红色水杯放到3号桌上
+```
+
+首页直接加载真实 `restaurant.splat` 餐厅，并使用交付的 `robot.fbx` 转换出的轻量 `robot.glb` 模型。原始 FBX 随仓库保留。机器人显示位姿与任务执行共用同一坐标，薄荷绿材质与三向照明用于呈现结构；点云启用抗锯齿和异常点尺寸限制。支持“找到红色水杯”“请寻找红色水杯”“红色水杯在哪里”等找物指令，页面会展示规划动作、执行状态和日志保存结果。
+
+## VR 公网体验
+
+可直接在浏览器打开餐厅 VR 展示：
+
+- **体验链接**：https://time-continued-replacement-trigger.trycloudflare.com/vr
+- **访问密码**：`CF4qyMOxTVRlLTRzuf4fYplZPhXVHNxKqMsp1XDZNWM`
+
+该链接通过临时公网隧道提供，地址或访问状态可能随本地服务和隧道重启而变化；用于演示体验，不替代仓库内的本地一键启动方式。
+
+## 当前能力
+
+| 能力 | 状态 | 说明 |
+| --- | --- | --- |
+| 餐厅自然语言任务 | ✅ | 本地 `/plan → 执行 → /log` 闭环，失败与取消均有状态反馈 |
+| 机器人执行与任务日志 | ✅ | 使用餐厅布局和语义数据，任务结果写入本地 SQLite |
+| 空间记忆体验 | ✅ | 支持扫描、检索、纠错、导出与清除浏览器本地记忆 |
+| 餐厅高斯溅射实景 | ✅ | 程序内入口加载 `restaurant.splat`，支持旋转、缩放、平移 |
+| 真实餐厅与机器人主视觉 | ✅ | 首页加载 `restaurant.splat` 与网页优化 `robot.glb`，显示位姿和任务坐标一致 |
+| 移动端完整适配 | ⚠️ | 当前以桌面现场演示为主，窄屏提供基础显示 |
+
+## 运行与验证
+
+### 一键启动
+
+```powershell
+py -3.11 scripts/start_xiaomi_home.py
+```
+
+可选参数：
+
+```powershell
+py -3.11 scripts/start_xiaomi_home.py --port 8000 --skip-install
+```
+
+### 开发模式
+
+终端一启动后端：
+
+```powershell
+.venv\Scripts\python scripts\run_home.py --port 8000
+```
+
+终端二启动 Vite：
+
+```powershell
 cd web
 npm ci
 npm run dev
 ```
 
-打开 `http://127.0.0.1:5173`，点击顶部立方体入口即可查看餐厅高斯溅射实景。常用验证命令：
+开发页为 `http://127.0.0.1:5173`，会将 `/api` 转发至 8000 端口。
 
-```bash
+### 自动检查
+
+```powershell
+.venv\Scripts\python -m pytest -q
+.venv\Scripts\python scripts\check_contracts.py --base origin/main
+cd web
 npm test
 npm run build
 ```
@@ -55,37 +92,32 @@ npm run build
 ## 项目结构
 
 ```text
-├─ web/                    小觅HOME 前端演示、UI、3D 交互与餐厅实景查看器
-├─ server/                 本地规划、规则纠错、缓存与服务接口
-├─ contracts/              跨模块事件与数据契约（唯一真值）
-├─ assets/                 机器人、场景素材索引、来源与校验记录
-├─ docs/                   验收、协作、分支和提交规范
-├─ team/                   四人分工与任务书
-├─ scripts/                契约、资源与测试辅助脚本
-└─ reference/              只读参考实现，不进入产品运行路径
+├─ web/                    用户界面、机器人执行可视化、空间记忆和实景查看器
+├─ server/                 本地规划、规则纠错、记忆与日志 HTTP 服务
+├─ contracts/              跨模块数据契约
+├─ assets/                 机器人和场景素材索引、来源与校验记录
+├─ scripts/                启动器、契约和资源验证脚本
+├─ docs/                   验收与协作资料
+└─ reference/              只读参考实现，不进入默认运行路径
 ```
 
 ## 资源说明
 
 | 资源 | 路径 | 交付方式 |
 | --- | --- | --- |
-| 餐厅高斯溅射演示模型 | `web/public/robot-find/models/restaurant.splat` | 随仓库交付，31.4 MB |
+| 餐厅高斯溅射模型 | `web/public/robot-find/models/restaurant.splat` | 随仓库交付，31.4 MB |
 | 餐厅布局、语义与导航数据 | `web/public/layouts/`、`web/public/scene-data/` | 随仓库交付 |
-| 建筑主场景高斯资产 | `assets/gaussian-splat/scene.ply` | 449 MiB，超过 GitHub 单文件上限；按素材清单获取 |
+| 建筑主场景高斯资产 | `assets/gaussian-splat/scene.ply` | 449 MiB，按素材清单获取 |
+| 首页机器人模型 | 原始 `assets/robot/robot.fbx`；网页 `web/public/models/robot.glb` | 随仓库交付，62.3 MB / 21.9 MB |
 | 机器人模型与清单 | `assets/robot/` | 随仓库交付 |
 
-餐厅模型 SHA-256：`18731c2cbdcd11a3c3ece79555fdcd4c4e916304af30a88180b17d9a67ad3b6b`。完整资源规则见 [`assets/README.md`](assets/README.md)。
+餐厅模型 SHA-256：`18731c2cbdcd11a3c3ece79555fdcd4c4e916304af30a88180b17d9a67ad3b6b`。完整素材边界见 [assets/README.md](assets/README.md)。
 
 ## 开发约定
 
-1. **不直推 `main`**：所有改动通过功能分支与 PR 提交。
-2. **契约单独改**：`contracts/` 变更不得与业务代码混合，详情见 [`contracts/README.md`](contracts/README.md)。
-3. **测试必须能失败**：新增逻辑要附带可验证的失败用例或证据。
-4. **素材只存一份**：先查 [`assets/README.md`](assets/README.md)，不得为同一资源重复建目录。
-5. **参考代码只读**：`reference/` 内内容不可直接并入运行路径。
+1. 不直推 `main`，通过功能分支与 PR 提交。
+2. `contracts/` 是接口真值，契约变更单独提交与审查。
+3. 素材不重复存放；先查 [assets/README.md](assets/README.md)。
+4. `reference/` 为只读参考，不直接纳入产品入口。
 
-分工、审核和交付流程见 [`team/README.md`](team/README.md) 与 [`docs/branch-commit-spec.md`](docs/branch-commit-spec.md)。
-
-## 许可证与素材使用
-
-第三方运行库的许可证保留在其对应目录；餐厅演示模型仅用于本项目内部演示，不应在未确认来源授权前拆分或二次发布。
+第三方运行库许可证保留在对应目录。餐厅模型仅限本项目内部演示，未确认授权前不得拆分或二次发布。

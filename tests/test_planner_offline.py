@@ -76,6 +76,21 @@ def test_restaurant_find_line_reuses_existing_entry(restaurant):
     assert r["source"] == "cache" and r["steps"] == [{"action": "find", "target": "cup_red"}]
 
 
+@pytest.mark.parametrize("q", ["找到红色水杯", "请寻找红色水杯", "红色水杯在哪里"])
+def test_restaurant_natural_find_requests_execute_one_find_step(restaurant, q):
+    r = plan_offline(q, restaurant)
+    assert r["steps"] == [{"action": "find", "target": "cup_red"}]
+
+
+def test_find_rule_does_not_override_delivery_request(restaurant):
+    r = plan_offline("帮我把红色水杯放到3号桌上", restaurant)
+    assert [step["action"] for step in r["steps"]] == ["find", "grab", "drop"]
+
+
+def test_find_rule_still_clarifies_unknown_object(restaurant):
+    assert plan_offline("找到外星飞船", restaurant)["steps"] == []
+
+
 def test_home_only_lines_are_still_refused_on_restaurant(restaurant):
     r = plan_offline("帮我把书拿到卧室", restaurant)
     assert r["steps"] == [] and "没听懂" in r["say"]
