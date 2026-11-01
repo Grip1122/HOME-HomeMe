@@ -1,12 +1,114 @@
 {
-  "$comment": "建筑高斯泼溅素材清单。原始文件不入库（449 MiB，超出 GitHub 单文件上限），此文件是唯一索引。",
-  "version": 1,
+  "$comment": "当前采用原版餐厅scene.ply，Release原始附件已核对大小与SHA256。大型PLY不进Git；旧建筑保留为archived_scene。",
+  "version": 2,
   "project": "小觅HOME：虚拟孪生家庭具身空间物体定位",
+  "active_asset_id": "scene_restaurant",
   "assets": [
     {
-      "id": "scene_main",
+      "id": "scene_restaurant",
       "role": "primary_scene",
-      "note": "项目所有场景表现的视觉基点。逻辑层仍走 layout JSON，不读此文件。",
+      "title": "天安骏业集团餐厅",
+      "file": "scene.ply",
+      "format": "ply",
+      "ply_encoding": "binary_little_endian",
+      "bytes": 235796393,
+      "sha256": "db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28",
+      "splat_count": 999131,
+      "attributes_per_point": 59,
+      "sh_degree": 3,
+      "header_bytes": 1477,
+      "non_finite_attribute_values": 0,
+      "bbox": {
+        "min": [
+          -1273.3934326171875,
+          -370.0976867675781,
+          -386.9431457519531
+        ],
+        "max": [
+          580.2391967773438,
+          401.2098693847656,
+          619.3587646484375
+        ]
+      },
+      "roi_p1_p99": {
+        "min": [
+          -9.741427421569824,
+          -3.703444480895996,
+          -5.635874271392822
+        ],
+        "max": [
+          9.2931489944458,
+          0.45819205045700073,
+          9.04332447052002
+        ],
+        "note": "原始重建坐标统计，不代表米制范围或自动裁剪边界。"
+      },
+      "units": "unverified_numeric_calibration",
+      "units_note": "sen 已确认尺寸测量正确；未附参照物与具体读数，不自动推算项目 sceneScale。",
+      "up_axis_verified": false,
+      "source": "https://superspl.at/scene/40c67340",
+      "author": "Hilo",
+      "author_account": "heroizme",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "external_copy": "https://github.com/Grip1122/HOME-HomeMe/releases/download/splat-restaurant-v1/scene.ply",
+      "release": {
+        "tag": "splat-restaurant-v1",
+        "status": "uploaded_verified",
+        "id": 429755566,
+        "html_url": "https://github.com/Grip1122/HOME-HomeMe/releases/tag/splat-restaurant-v1",
+        "asset_id": 694545411,
+        "asset_name": "scene.ply",
+        "download_url": "https://github.com/Grip1122/HOME-HomeMe/releases/download/splat-restaurant-v1/scene.ply",
+        "asset_count_observed": 1,
+        "bytes_verified": 235796393,
+        "digest_verified": "sha256:db3ff012934704ba8787f82464bdc7b1db21760281189274626914a2800efb28",
+        "verified_date": "2026-10-31",
+        "verification_method": "GitHub Release reported size/digest compared with locally computed SHA256",
+        "note": "餐厅原版已上传，远端大小和SHA256与本地原版一致；旧splat-v1同名文件是另一份素材。"
+      },
+      "editor_observation": {
+        "viewer": "SuperSplat 3.7.0",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_degrees_xyz": [
+          0,
+          0,
+          180
+        ],
+        "scale": 1,
+        "note": "截图所见编辑器变换；原始PLY未改写。项目导入器需要核对，避免重复转换。"
+      },
+      "verification": {
+        "browser_rendering": "screenshots_reviewed",
+        "dimension_measurement": "user_confirmed_without_numeric_attachment",
+        "orthographic_45_degree": "pending",
+        "project_layout_alignment": "pending"
+      },
+      "performance": {
+        "gpu_reported": "1650（具体型号未独立核实）",
+        "motion_fps_initial": 18,
+        "sh_bands_1_and_0_combined_fps_range": [
+          22,
+          27
+        ],
+        "per_band_fps": null,
+        "stochastic_alpha_mode": null,
+        "source": "sen 实机观察；非受控基准",
+        "hard_30_fps_required": false,
+        "acceptance_decision": "sen 决定保留画质，帧率留档；最终演示机复测。"
+      },
+      "converted": [],
+      "decision_record": "scene_decision.md",
+      "validation_record": "restaurant_validation.json"
+    },
+    {
+      "id": "scene_main",
+      "role": "archived_scene",
+      "note": "历史建筑素材；保留追溯，不是本次 sen 选择的餐厅 scene.ply。",
       "file": "scene.ply",
       "format": "ply",
       "ply_encoding": "binary_little_endian",
@@ -18,22 +120,46 @@
       "header_bytes": 1478,
       "non_finite_points": 0,
       "bbox": {
-        "min": [-26.22, -11.58, -12.35],
-        "max": [9.82, 3.41, 6.87],
-        "extent": [36.05, 14.99, 19.23]
+        "min": [
+          -26.22,
+          -11.58,
+          -12.35
+        ],
+        "max": [
+          9.82,
+          3.41,
+          6.87
+        ],
+        "extent": [
+          36.05,
+          14.99,
+          19.23
+        ]
       },
       "roi_p1_p99": {
-        "min": [-4.09, -3.03, -1.95],
-        "max": [3.53, 0.06, 1.94],
+        "min": [
+          -4.09,
+          -3.03,
+          -1.95
+        ],
+        "max": [
+          3.53,
+          0.06,
+          1.94
+        ],
         "note": "主体建筑集中区，外围为稀疏离群高斯"
       },
-      "centroid": [0.11, -0.73, -0.08],
+      "centroid": [
+        0.11,
+        -0.73,
+        -0.08
+      ],
       "units": "unknown",
       "units_note": "重建坐标系原始值，未标定。需量一处已知尺寸求缩放系数后填 sceneScale。",
       "up_axis_verified": false,
-      "source": "外部提供（D:\\学术工作台\\空间定位虚拟具身\\scene.ply）",
+      "source": "历史建筑素材，来源沿用原交付记录。",
       "license": "开源素材（Jesu 于 2026-10-31 确认；具体许可证条款待补）",
-      "external_copy": "https://github.com/Grip1122/hometwin/releases/tag/splat-v1（已上传并核对 sha256 一致，2026-10-31）",
+      "external_copy": "https://github.com/Grip1122/HOME-HomeMe/releases/tag/splat-v1",
       "converted": []
     }
   ],

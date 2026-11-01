@@ -1,0 +1,7 @@
+Title: 天安骏业集团餐厅
+Author: Hilo (https://superspl.at/user/heroizme)
+Source: https://superspl.at/scene/40c67340
+License: CC BY 4.0
+License URL: https://creativecommons.org/licenses/by/4.0/
+Current selected asset: original scene.ply, unchanged.
+Viewer transform: rotation about Z by 180 degrees, recorded separately.
