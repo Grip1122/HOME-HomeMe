@@ -38,7 +38,12 @@ async function boot() {
     getJson(`${base}scene-data/restaurant_semantics.json`),
   ]);
   const health = await fetch('/api/health').then((r) => r.ok, () => false);
-  if (!health) show('err', '后端 /api 不可达：指令将无法规划，日志无法保存（不会降级为 mock）。请先启动 scripts/run_home.py');
+  if (!health) show('err', '后端 /api 不可达：指令将无法规划，日志无法保存（不会降级为 mock）。请使用“一键启动”或先启动 scripts/run_home.py。');
+  $('btn-experience').onclick = () => { location.href = `${base}experience.html`; };
+  $('btn-health').onclick = async () => {
+    const online = await fetch('/api/health').then((r) => r.ok, () => false);
+    show(online ? 'ok' : 'err', online ? '本地规划、记忆与日志服务已连接' : '服务未连接：请使用一键启动后重新打开页面');
+  };
 
   const canvas = $('scene');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });

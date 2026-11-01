@@ -74,7 +74,7 @@ try {
   });
   await send('Runtime.enable');
   await send('Page.enable');
-  await send('Page.navigate', { url: `${BASE}/product.html` });
+  await send('Page.navigate', { url: `${BASE}/` });
   await waitFor('!!window.__product');
   const before = (await lastLog()).length;
   check('单一 Three 实例', await evalJs('window.__product.threeRevision') === '187' && await evalJs('typeof window.THREE') === 'undefined');

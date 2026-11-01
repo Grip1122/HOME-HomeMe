@@ -18,7 +18,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
-        product: resolve(import.meta.dirname, 'product.html'),
+        experience: resolve(import.meta.dirname, 'experience.html'),
       },
     },
   },
